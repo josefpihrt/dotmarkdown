@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyName>DotMarkdown</AssemblyName>
+    <RootNamespace>DotMarkdown</RootNamespace>
+    <CodeAnalysisRuleSet>..\..\global.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>DotMarkdown.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>DotMarkdown</PackageId>
+    <PackageVersion>0.1.0-beta</PackageVersion>
+    <Version>0.1.0-beta</Version>
+    <Authors>Josef Pihrt</Authors>
+    <Company></Company>
+    <Description>DotMarkdown provides convenient way to generate markdown from any data.
+
+Commonly Used Types:
+DotMarkdown.MarkdownWriter
+DotMarkdown.Linq.MFactory</Description>
+    <Copyright>Copyright (c) 2017-2018 Josef Pihrt</Copyright>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>http://github.com/JosefPihrt/DotMarkdown/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://github.com/JosefPihrt/DotMarkdown</PackageProjectUrl>
+    <PackageIconUrl>http://pihrt.net/images/DotMarkdown.ico</PackageIconUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags>markdown;md;linq</PackageTags>
+    <RepositoryUrl>http://github.com/JosefPihrt/DotMarkdown.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+</Project>
