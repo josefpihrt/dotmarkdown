@@ -19,10 +19,11 @@
     <Version>0.1.0-beta</Version>
     <Authors>Josef Pihrt</Authors>
     <Company></Company>
-    <Description>DotMarkdown provides convenient way to generate markdown from any data.
+    <Description>DotMarkdown is Markdown framework for .NET
 
 Commonly Used Types:
 DotMarkdown.MarkdownWriter
+DotMarkdown.MarkdownFormat
 DotMarkdown.Linq.MFactory</Description>
     <Copyright>Copyright (c) 2017-2018 Josef Pihrt</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
