@@ -1,4 +1,4 @@
-# DotMarkdown
+# DotMarkdown <img align="left" width="48px" height="48px" src="images/DotMarkdown.ico">
 
 ## Introduction 
 
