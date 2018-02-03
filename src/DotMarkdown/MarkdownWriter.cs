@@ -53,6 +53,34 @@ namespace DotMarkdown
             return new MarkdownTextWriter(output, settings);
         }
 
+        internal static MarkdownWriter Create(string fileName, MarkdownWriterSettings settings = null)
+        {
+            if (settings == null
+                || object.ReferenceEquals(settings, MarkdownWriterSettings.Default))
+            {
+                settings = MarkdownWriterSettings.DefaultCloseOutput;
+            }
+            else
+            {
+                settings = settings.WithCloseOutput(true);
+            }
+
+            FileStream fs = null;
+
+            try
+            {
+                fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read);
+
+                return Create(fs, settings);
+            }
+            catch
+            {
+                fs?.Dispose();
+
+                throw;
+            }
+        }
+
         public static MarkdownWriter Create(Stream stream, MarkdownWriterSettings settings = null)
         {
             return Create(stream, Encoding.UTF8, settings);
@@ -66,7 +94,38 @@ namespace DotMarkdown
             if (encoding == null)
                 throw new ArgumentNullException(nameof(encoding));
 
-            return new MarkdownTextWriter(new StreamWriter(stream, encoding), settings);
+            if (settings == null)
+                settings = MarkdownWriterSettings.Default;
+
+            StreamWriter sw = null;
+
+            if (settings.CloseOutput)
+            {
+                try
+                {
+                    sw = new StreamWriter(stream, encoding);
+
+                    return new MarkdownTextWriter(sw, settings);
+                }
+                catch
+                {
+                    sw?.Dispose();
+                    throw;
+                }
+            }
+            else
+            {
+                try
+                {
+                    sw = new StreamWriter(stream, encoding, bufferSize: 1024, leaveOpen: true);
+
+                    return new MarkdownTextWriter(sw, settings);
+                }
+                finally
+                {
+                    sw?.Dispose();
+                }
+            }
         }
 
         public abstract void WriteStartBold();
