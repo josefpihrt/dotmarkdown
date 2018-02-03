@@ -22,6 +22,8 @@ namespace DotMarkdown
 
         public static MarkdownWriterSettings Default { get; } = new MarkdownWriterSettings();
 
+        internal static MarkdownWriterSettings DefaultCloseOutput { get; } = Default.WithCloseOutput(true);
+
         internal static MarkdownWriterSettings Debugging { get; } = new MarkdownWriterSettings(MarkdownFormat.Debugging);
 
         public MarkdownFormat Format { get; }
@@ -31,6 +33,26 @@ namespace DotMarkdown
         public NewLineHandling NewLineHandling { get; }
 
         public bool CloseOutput { get; }
+
+        public MarkdownWriterSettings WithFormat(MarkdownFormat format)
+        {
+            return new MarkdownWriterSettings(format, NewLineChars, NewLineHandling, CloseOutput);
+        }
+
+        public MarkdownWriterSettings WithNewLineChars(string newLineChars)
+        {
+            return new MarkdownWriterSettings(Format, newLineChars, NewLineHandling, CloseOutput);
+        }
+
+        public MarkdownWriterSettings WithNewLineHandling(NewLineHandling newLineHandling)
+        {
+            return new MarkdownWriterSettings(Format, NewLineChars, newLineHandling, CloseOutput);
+        }
+
+        public MarkdownWriterSettings WithCloseOutput(bool closeOutput)
+        {
+            return new MarkdownWriterSettings(Format, NewLineChars, NewLineHandling, closeOutput);
+        }
 
         internal static MarkdownWriterSettings From(MarkdownFormat format)
         {
