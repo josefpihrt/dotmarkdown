@@ -21,7 +21,7 @@ namespace DotMarkdown.Tests
         [InlineData("**", null)]
         [InlineData("**", EmphasisStyle.Asterisk)]
         [InlineData("__", EmphasisStyle.Underscore)]
-        public void MarkdownWriter_AppendBold(string syntax, EmphasisStyle? boldStyle)
+        public void MarkdownWriter_WriteBold(string syntax, EmphasisStyle? boldStyle)
         {
             const string x = Chars;
             const string y = CharsEscaped;
@@ -35,7 +35,7 @@ namespace DotMarkdown.Tests
         [InlineData("**", null)]
         [InlineData("**", EmphasisStyle.Asterisk)]
         [InlineData("__", EmphasisStyle.Underscore)]
-        public void MarkdownWriter_Append_Bold(string syntax, EmphasisStyle? boldStyle)
+        public void MarkdownWriter_Write_Bold(string syntax, EmphasisStyle? boldStyle)
         {
             const string x = Chars;
             const string y = CharsEscaped;
@@ -50,7 +50,7 @@ namespace DotMarkdown.Tests
         [InlineData("*", null)]
         [InlineData("*", EmphasisStyle.Asterisk)]
         [InlineData("_", EmphasisStyle.Underscore)]
-        public void MarkdownWriter_AppendItalic(string syntax, EmphasisStyle? ItalicStyle)
+        public void MarkdownWriter_WriteItalic(string syntax, EmphasisStyle? ItalicStyle)
         {
             const string x = Chars;
             const string y = CharsEscaped;
@@ -64,7 +64,7 @@ namespace DotMarkdown.Tests
         [InlineData("*", null)]
         [InlineData("*", EmphasisStyle.Asterisk)]
         [InlineData("_", EmphasisStyle.Underscore)]
-        public void MarkdownWriter_Append_Italic(string syntax, EmphasisStyle? italicStyle)
+        public void MarkdownWriter_Write_Italic(string syntax, EmphasisStyle? italicStyle)
         {
             const string x = Chars;
             const string y = CharsEscaped;
@@ -75,7 +75,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendStrikethrough()
+        public void MarkdownWriter_WriteStrikethrough()
         {
             const string x = Chars;
             const string y = CharsEscaped;
@@ -86,7 +86,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_Append_Strikethrough()
+        public void MarkdownWriter_Write_Strikethrough()
         {
             const string x = Chars;
             const string y = CharsEscaped;
@@ -97,7 +97,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendCode()
+        public void MarkdownWriter_WriteCode()
         {
             const string x = CharsEnclosedWithBacktick;
             const string y = CharsEnclosedWithBacktickDoubled;
@@ -108,7 +108,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendCode_String()
+        public void MarkdownWriter_WriteCode_String()
         {
             MarkdownWriter mw = CreateWriter();
             mw.WriteInlineCode("`");
@@ -117,7 +117,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_Append_InlineCode()
+        public void MarkdownWriter_Write_InlineCode()
         {
             const string x = CharsEnclosedWithBacktick;
             const string y = CharsEnclosedWithBacktickDoubled;
@@ -131,7 +131,7 @@ namespace DotMarkdown.Tests
         [InlineData(null)]
         [InlineData(HeadingOptions.None | HeadingOptions.EmptyLineAfter)]
         [InlineData(HeadingOptions.UnderlineHeading2 | HeadingOptions.EmptyLineAfter)]
-        public void MarkdownWriter_AppendHeading1(HeadingOptions? options)
+        public void MarkdownWriter_WriteHeading1(HeadingOptions? options)
         {
             MarkdownWriter mw = CreateBuilderWithHeadingOptions(options);
             mw.WriteHeading1(Value);
@@ -143,7 +143,7 @@ namespace DotMarkdown.Tests
         [InlineData(null)]
         [InlineData(HeadingOptions.None | HeadingOptions.EmptyLineAfter)]
         [InlineData(HeadingOptions.UnderlineHeading1 | HeadingOptions.EmptyLineAfter)]
-        public void MarkdownWriter_AppendHeading2(HeadingOptions? options)
+        public void MarkdownWriter_WriteHeading2(HeadingOptions? options)
         {
             MarkdownWriter mw = CreateBuilderWithHeadingOptions(options);
             mw.WriteHeading2(Value);
@@ -157,7 +157,7 @@ namespace DotMarkdown.Tests
         [InlineData(HeadingOptions.UnderlineHeading1 | HeadingOptions.EmptyLineAfter)]
         [InlineData(HeadingOptions.UnderlineHeading2 | HeadingOptions.EmptyLineAfter)]
         [InlineData(HeadingOptions.Underline | HeadingOptions.EmptyLineAfter)]
-        public void MarkdownWriter_AppendHeading3(HeadingOptions? options)
+        public void MarkdownWriter_WriteHeading3(HeadingOptions? options)
         {
             MarkdownWriter mw = CreateBuilderWithHeadingOptions(options);
             mw.WriteHeading3(Value);
@@ -171,7 +171,7 @@ namespace DotMarkdown.Tests
         [InlineData(HeadingOptions.UnderlineHeading1 | HeadingOptions.EmptyLineAfter)]
         [InlineData(HeadingOptions.UnderlineHeading2 | HeadingOptions.EmptyLineAfter)]
         [InlineData(HeadingOptions.Underline | HeadingOptions.EmptyLineAfter)]
-        public void MarkdownWriter_AppendHeading4(HeadingOptions? options)
+        public void MarkdownWriter_WriteHeading4(HeadingOptions? options)
         {
             MarkdownWriter mw = CreateBuilderWithHeadingOptions(options);
             mw.WriteHeading4(Value);
@@ -185,7 +185,7 @@ namespace DotMarkdown.Tests
         [InlineData(HeadingOptions.UnderlineHeading1 | HeadingOptions.EmptyLineAfter)]
         [InlineData(HeadingOptions.UnderlineHeading2 | HeadingOptions.EmptyLineAfter)]
         [InlineData(HeadingOptions.Underline | HeadingOptions.EmptyLineAfter)]
-        public void MarkdownWriter_AppendHeading5(HeadingOptions? options)
+        public void MarkdownWriter_WriteHeading5(HeadingOptions? options)
         {
             MarkdownWriter mw = CreateBuilderWithHeadingOptions(options);
             mw.WriteHeading5(Value);
@@ -199,7 +199,7 @@ namespace DotMarkdown.Tests
         [InlineData(HeadingOptions.UnderlineHeading1 | HeadingOptions.EmptyLineAfter)]
         [InlineData(HeadingOptions.UnderlineHeading2 | HeadingOptions.EmptyLineAfter)]
         [InlineData(HeadingOptions.Underline | HeadingOptions.EmptyLineAfter)]
-        public void MarkdownWriter_AppendHeading6(HeadingOptions? options)
+        public void MarkdownWriter_WriteHeading6(HeadingOptions? options)
         {
             MarkdownWriter mw = CreateBuilderWithHeadingOptions(options);
             mw.WriteHeading6(Value);
@@ -214,7 +214,7 @@ namespace DotMarkdown.Tests
         [InlineData(4)]
         [InlineData(5)]
         [InlineData(6)]
-        public void MarkdownWriter_AppendHeading(int level)
+        public void MarkdownWriter_WriteHeading(int level)
         {
             MarkdownWriter mw = CreateWriter(new MarkdownFormat(headingOptions: HeadingOptions.None));
             mw.WriteHeading(level, Value);
@@ -225,7 +225,7 @@ namespace DotMarkdown.Tests
         [Theory]
         [InlineData(0)]
         [InlineData(7)]
-        public void MarkdownWriter_AppendHeading_Throws(int level)
+        public void MarkdownWriter_WriteHeading_Throws(int level)
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -233,7 +233,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendHeading_Params()
+        public void MarkdownWriter_WriteHeading_Params()
         {
             MarkdownWriter mw = CreateWriter(new MarkdownFormat(headingOptions: HeadingOptions.None));
         }
@@ -241,7 +241,7 @@ namespace DotMarkdown.Tests
         [Theory]
         [InlineData(HeadingOptions.UnderlineHeading1)]
         [InlineData(HeadingOptions.Underline)]
-        public void MarkdownWriter_AppendHeading_UnderlineH1(HeadingOptions? options)
+        public void MarkdownWriter_WriteHeading_UnderlineH1(HeadingOptions? options)
         {
             MarkdownWriter mw = CreateBuilderWithHeadingOptions(options);
             mw.WriteHeading1(Value);
@@ -252,7 +252,7 @@ namespace DotMarkdown.Tests
         [Theory]
         [InlineData(HeadingOptions.UnderlineHeading2)]
         [InlineData(HeadingOptions.Underline)]
-        public void MarkdownWriter_AppendHeading_UnderlineH2(HeadingOptions? options)
+        public void MarkdownWriter_WriteHeading_UnderlineH2(HeadingOptions? options)
         {
             MarkdownWriter mw = CreateBuilderWithHeadingOptions(options);
             mw.WriteHeading2(Value);
@@ -261,7 +261,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendHeading_EmptyLineBefore()
+        public void MarkdownWriter_WriteHeading_EmptyLineBefore()
         {
             string text = HeadingText();
             const string s = "# " + CharsEscaped + NewLine;
@@ -278,7 +278,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendHeading_EmptyLineAfter()
+        public void MarkdownWriter_WriteHeading_EmptyLineAfter()
         {
             string text = HeadingText();
             const string s = "# " + CharsEscaped + NewLine;
@@ -295,7 +295,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendHeading_EmptyLineBeforeAfter()
+        public void MarkdownWriter_WriteHeading_EmptyLineBeforeAfter()
         {
             string text = HeadingText();
             const string s = "# " + CharsEscaped + NewLine;
@@ -315,7 +315,7 @@ namespace DotMarkdown.Tests
         [InlineData(-2)]
         [InlineData(0)]
         [InlineData(2)]
-        public void MarkdownWriter_AppendHorizontalRule_Throws(int count)
+        public void MarkdownWriter_WriteHorizontalRule_Throws(int count)
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -325,7 +325,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendImage()
+        public void MarkdownWriter_WriteImage()
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -343,7 +343,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendImage_NoTitle()
+        public void MarkdownWriter_WriteImage_NoTitle()
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -360,7 +360,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_Append_Image()
+        public void MarkdownWriter_Write_Image()
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -378,7 +378,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_Append_Image_NoTitle()
+        public void MarkdownWriter_Write_Image_NoTitle()
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -395,7 +395,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendImage_Throws()
+        public void MarkdownWriter_WriteImage_Throws()
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -404,7 +404,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendLink()
+        public void MarkdownWriter_WriteLink()
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -422,7 +422,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_AppendLink_NoTitle()
+        public void MarkdownWriter_WriteLink_NoTitle()
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -439,7 +439,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_Append_Link()
+        public void MarkdownWriter_Write_Link()
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -455,7 +455,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_Append_Link_NoTitle()
+        public void MarkdownWriter_Write_Link_NoTitle()
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -476,10 +476,10 @@ namespace DotMarkdown.Tests
         [InlineData("*", BulletListStyle.Asterisk)]
         [InlineData("-", BulletListStyle.Minus)]
         [InlineData("+", BulletListStyle.Plus)]
-        public void MarkdownWriter_AppendListItem(string syntax, BulletListStyle? style)
+        public void MarkdownWriter_WriteBulletItem(string syntax, BulletListStyle? style)
         {
-            MarkdownWriter mw = CreateBuilderWithListItemStyle(style);
-            const string text = "ListItemText";
+            MarkdownWriter mw = CreateBuilderWithBulletItemStyle(style);
+            const string text = "BulletItemText";
             string expected = syntax + " " + text + CharsEscaped + NewLine + "  " + syntax + " " + text + NewLine;
             MBulletItem item = BulletItem(text + Chars, BulletItem(text));
             item.WriteTo(mw);
@@ -492,10 +492,10 @@ namespace DotMarkdown.Tests
         [InlineData("*", BulletListStyle.Asterisk)]
         [InlineData("-", BulletListStyle.Minus)]
         [InlineData("+", BulletListStyle.Plus)]
-        public void MarkdownWriter_Append_ListItem(string syntax, BulletListStyle? style)
+        public void MarkdownWriter_Write_BulletItem(string syntax, BulletListStyle? style)
         {
-            MarkdownWriter mw = CreateBuilderWithListItemStyle(style);
-            const string text = "ListItemText";
+            MarkdownWriter mw = CreateBuilderWithBulletItemStyle(style);
+            const string text = "BulletItemText";
             string expected = syntax + " " + text + CharsEscaped + NewLine + "  " + syntax + " " + text + NewLine;
             MBulletItem item = BulletItem(text + Chars, BulletItem(text));
 
@@ -509,11 +509,11 @@ namespace DotMarkdown.Tests
         [InlineData(1, "   ")]
         [InlineData(10, "    ")]
         [InlineData(100, "     ")]
-        public void MarkdownWriter_AppendOrderedListItem(int number, string indentation)
+        public void MarkdownWriter_WriteOrderedItem(int number, string indentation)
         {
             MarkdownWriter mw = CreateWriter();
 
-            const string text = "OrderedListItemText";
+            const string text = "OrderedItemText";
 
             string expected = number + ". " + text + CharsEscaped + NewLine + indentation + number + ". " + text + NewLine;
             MOrderedItem item = OrderedItem(number, text + Chars, OrderedItem(number, text));
@@ -528,11 +528,11 @@ namespace DotMarkdown.Tests
         [InlineData(1, "   ")]
         [InlineData(10, "    ")]
         [InlineData(100, "     ")]
-        public void MarkdownWriter_Append_OrderedListItem(int number, string indentation)
+        public void MarkdownWriter_Write_OrderedItem(int number, string indentation)
         {
             MarkdownWriter mw = CreateWriter();
 
-            const string text = "OrderedListItemText";
+            const string text = "OrderedItemText";
 
             string expected = number + ". " + text + CharsEscaped + NewLine + indentation + number + ". " + text + NewLine;
             MOrderedItem item = OrderedItem(number, text + Chars, OrderedItem(number, text));
@@ -545,7 +545,7 @@ namespace DotMarkdown.Tests
         [InlineData(-3)]
         [InlineData(-2)]
         [InlineData(-1)]
-        public void MarkdownWriter_AppendOrderedListItem_Throws(int number)
+        public void MarkdownWriter_WriteOrderedItem_Throws(int number)
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -557,7 +557,7 @@ namespace DotMarkdown.Tests
         [InlineData("", "")]
         [InlineData(" ", " ")]
         [InlineData(Chars, CharsEscaped)]
-        public void MarkdownWriter_AppendTaskListItem(string text, string text2)
+        public void MarkdownWriter_WriteTaskItem(string text, string text2)
         {
             MarkdownWriter mw = CreateWriter();
             const string start = "- [ ] ";
@@ -573,7 +573,7 @@ namespace DotMarkdown.Tests
         [InlineData("", "")]
         [InlineData(" ", " ")]
         [InlineData(Chars, CharsEscaped)]
-        public void MarkdownWriter_Append_TaskListItem(string text, string text2)
+        public void MarkdownWriter_Write_TaskItem(string text, string text2)
         {
             MarkdownWriter mw = CreateWriter();
             const string start = "- [ ] ";
@@ -589,7 +589,7 @@ namespace DotMarkdown.Tests
         [InlineData("", "")]
         [InlineData(" ", " ")]
         [InlineData(Chars, CharsEscaped)]
-        public void MarkdownWriter_Append_TaskListItem_Completed(string text, string text2)
+        public void MarkdownWriter_Write_TaskItem_Completed(string text, string text2)
         {
             MarkdownWriter mw = CreateWriter();
             const string start = "- [x] ";
@@ -605,7 +605,7 @@ namespace DotMarkdown.Tests
         [InlineData("", "")]
         [InlineData(" ", " ")]
         [InlineData(Chars, CharsEscaped)]
-        public void MarkdownWriter_AppendCompletedTaskListItem(string text, string text2)
+        public void MarkdownWriter_WriteCompletedTaskItem(string text, string text2)
         {
             MarkdownWriter mw = CreateWriter();
             const string start = "- [x] ";
@@ -620,7 +620,7 @@ namespace DotMarkdown.Tests
         [InlineData("```", null)]
         [InlineData("```", CodeFenceStyle.Backtick)]
         [InlineData("~~~", CodeFenceStyle.Tilde)]
-        public void MarkdownWriter_Append_CodeBlock_CodeFenceStyle(string syntax, CodeFenceStyle? style)
+        public void MarkdownWriter_Write_CodeBlock_CodeFenceStyle(string syntax, CodeFenceStyle? style)
         {
             MarkdownWriter mw = CreateBuilderWithCodeFenceOptions(style);
 
@@ -633,7 +633,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_Append_CodeBlock_CodeBlockOptionsNone()
+        public void MarkdownWriter_Write_CodeBlock_CodeBlockOptionsNone()
         {
             MarkdownWriter mw = CreateBuilderWithCodeBlockOptions(CodeBlockOptions.None);
 
@@ -650,7 +650,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_Append_CodeBlock_CodeBlockOptionsEmptyLineBefore()
+        public void MarkdownWriter_Write_CodeBlock_CodeBlockOptionsEmptyLineBefore()
         {
             MarkdownWriter mw = CreateBuilderWithCodeBlockOptions(CodeBlockOptions.EmptyLineBefore);
 
@@ -667,7 +667,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_Append_CodeBlock_CodeBlockOptionsEmptyLineAfter()
+        public void MarkdownWriter_Write_CodeBlock_CodeBlockOptionsEmptyLineAfter()
         {
             MarkdownWriter mw = CreateBuilderWithCodeBlockOptions(CodeBlockOptions.EmptyLineAfter);
 
@@ -684,7 +684,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownWriter_Append_CodeBlock_CodeBlockOptionsEmptyLineBeforeAndAfter()
+        public void MarkdownWriter_Write_CodeBlock_CodeBlockOptionsEmptyLineBeforeAndAfter()
         {
             MarkdownWriter mw = CreateBuilderWithCodeBlockOptions(CodeBlockOptions.EmptyLineBeforeAndAfter);
 
@@ -703,7 +703,7 @@ namespace DotMarkdown.Tests
         [Theory]
         [InlineData(Chars, "> " + CharsEscaped + NewLine)]
         [InlineData(Chars + NewLine + Chars, "> " + CharsEscaped + NewLine + "> " + CharsEscaped + NewLine)]
-        public void MarkdownWriter_AppendBlockQuote(string text1, string text2)
+        public void MarkdownWriter_WriteBlockQuote(string text1, string text2)
         {
             MarkdownWriter mw = CreateWriter();
 
@@ -715,7 +715,7 @@ namespace DotMarkdown.Tests
         [Theory]
         [InlineData(Chars, "> " + CharsEscaped + NewLine)]
         [InlineData(Chars + NewLine + Chars, "> " + CharsEscaped + NewLine + "> " + CharsEscaped + NewLine)]
-        public void MarkdownWriter_Append_BlockQuote(string text1, string text2)
+        public void MarkdownWriter_Write_BlockQuote(string text1, string text2)
         {
             MarkdownWriter mw = CreateWriter();
             MBlockQuote blockQuote = BlockQuote(text1);
@@ -729,7 +729,7 @@ namespace DotMarkdown.Tests
         [InlineData("&#x", "X", null)]
         [InlineData("&#x", "X", CharEntityFormat.Hexadecimal)]
         [InlineData("&#", null, CharEntityFormat.Decimal)]
-        public void MarkdownWriter_AppendHtmlEntity(string syntax, string format, CharEntityFormat? htmlEntityFormat)
+        public void MarkdownWriter_WriteHtmlEntity(string syntax, string format, CharEntityFormat? htmlEntityFormat)
         {
             MarkdownWriter mw = CreateBuilderWithHtmlEntityFormat(htmlEntityFormat);
 
@@ -745,7 +745,7 @@ namespace DotMarkdown.Tests
         [InlineData("&#x", "X", null)]
         [InlineData("&#x", "X", CharEntityFormat.Hexadecimal)]
         [InlineData("&#", null, CharEntityFormat.Decimal)]
-        public void MarkdownWriter_Append_HtmlEntity(string syntax, string format, CharEntityFormat? htmlEntityFormat)
+        public void MarkdownWriter_Write_HtmlEntity(string syntax, string format, CharEntityFormat? htmlEntityFormat)
         {
             MarkdownWriter mw = CreateBuilderWithHtmlEntityFormat(htmlEntityFormat);
 

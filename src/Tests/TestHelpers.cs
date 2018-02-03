@@ -319,7 +319,7 @@ namespace DotMarkdown.Tests
             return CreateWriter((headingOptions != null) ? new MarkdownFormat(headingOptions: headingOptions.Value) : null);
         }
 
-        public static MarkdownWriter CreateBuilderWithListItemStyle(BulletListStyle? style)
+        public static MarkdownWriter CreateBuilderWithBulletItemStyle(BulletListStyle? style)
         {
             return CreateWriter((style != null) ? new MarkdownFormat(bulletListStyle: style.Value) : null);
         }
