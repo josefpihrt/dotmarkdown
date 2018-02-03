@@ -480,8 +480,8 @@ namespace DotMarkdown.Tests
         {
             MarkdownWriter mw = CreateBuilderWithListItemStyle(style);
             const string text = "ListItemText";
-            string expected = syntax + $" {text + CharsEscaped}" + NewLine;
-            MBulletItem item = BulletItem(text + Chars);
+            string expected = syntax + " " + text + CharsEscaped + NewLine + "  " + syntax + " " + text + NewLine;
+            MBulletItem item = BulletItem(text + Chars, BulletItem(text));
             item.WriteTo(mw);
 
             Assert.Equal(expected, mw.ToStringAndClear());
@@ -496,8 +496,8 @@ namespace DotMarkdown.Tests
         {
             MarkdownWriter mw = CreateBuilderWithListItemStyle(style);
             const string text = "ListItemText";
-            string expected = syntax + $" {text + CharsEscaped}" + NewLine;
-            MBulletItem item = BulletItem(text + Chars);
+            string expected = syntax + " " + text + CharsEscaped + NewLine + "  " + syntax + " " + text + NewLine;
+            MBulletItem item = BulletItem(text + Chars, BulletItem(text));
 
             mw.Write(item);
 
@@ -505,17 +505,18 @@ namespace DotMarkdown.Tests
         }
 
         [Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(2)]
-        public void MarkdownWriter_AppendOrderedListItem(int number)
+        [InlineData(0, "   ")]
+        [InlineData(1, "   ")]
+        [InlineData(10, "    ")]
+        [InlineData(100, "     ")]
+        public void MarkdownWriter_AppendOrderedListItem(int number, string indentation)
         {
             MarkdownWriter mw = CreateWriter();
 
             const string text = "OrderedListItemText";
 
-            string expected = number + $". {text + CharsEscaped}" + NewLine;
-            MOrderedItem item = OrderedItem(number, text + Chars);
+            string expected = number + ". " + text + CharsEscaped + NewLine + indentation + number + ". " + text + NewLine;
+            MOrderedItem item = OrderedItem(number, text + Chars, OrderedItem(number, text));
 
             item.WriteTo(mw);
 
@@ -523,17 +524,18 @@ namespace DotMarkdown.Tests
         }
 
         [Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(2)]
-        public void MarkdownWriter_Append_OrderedListItem(int number)
+        [InlineData(0, "   ")]
+        [InlineData(1, "   ")]
+        [InlineData(10, "    ")]
+        [InlineData(100, "     ")]
+        public void MarkdownWriter_Append_OrderedListItem(int number, string indentation)
         {
             MarkdownWriter mw = CreateWriter();
 
             const string text = "OrderedListItemText";
 
-            string expected = number + $". {text + CharsEscaped}" + NewLine;
-            MOrderedItem item = OrderedItem(number, text + Chars);
+            string expected = number + ". " + text + CharsEscaped + NewLine + indentation + number + ". " + text + NewLine;
+            MOrderedItem item = OrderedItem(number, text + Chars, OrderedItem(number, text));
             mw.Write(item);
 
             Assert.Equal(expected, mw.ToStringAndClear());
@@ -559,8 +561,8 @@ namespace DotMarkdown.Tests
         {
             MarkdownWriter mw = CreateWriter();
             const string start = "- [ ] ";
-            string expected = start + text2 + CharsEscaped + NewLine;
-            MTaskItem item = TaskItem(false, text + Chars);
+            string expected = start + text2 + CharsEscaped + NewLine + "  " + start + text2 + NewLine;
+            MTaskItem item = TaskItem(false, text + Chars, TaskItem(false, text));
             item.WriteTo(mw);
 
             Assert.Equal(expected, mw.ToStringAndClear());
@@ -575,24 +577,8 @@ namespace DotMarkdown.Tests
         {
             MarkdownWriter mw = CreateWriter();
             const string start = "- [ ] ";
-            string expected = start + text2 + CharsEscaped + NewLine;
-            MTaskItem item = TaskItem(false, text + Chars);
-            item.WriteTo(mw);
-
-            Assert.Equal(expected, mw.ToStringAndClear());
-        }
-
-        [Theory]
-        [InlineData(null, "")]
-        [InlineData("", "")]
-        [InlineData(" ", " ")]
-        [InlineData(Chars, CharsEscaped)]
-        public void MarkdownWriter_Append_TaskListItem_NotCompleted(string text, string text2)
-        {
-            MarkdownWriter mw = CreateWriter();
-            const string start = "- [ ] ";
-            string expected = start + text2 + CharsEscaped + NewLine;
-            MTaskItem item = TaskItem(false, text + Chars);
+            string expected = start + text2 + CharsEscaped + NewLine + "  " + start + text2 + NewLine;
+            MTaskItem item = TaskItem(false, text + Chars, TaskItem(false, text));
             item.WriteTo(mw);
 
             Assert.Equal(expected, mw.ToStringAndClear());
@@ -607,8 +593,8 @@ namespace DotMarkdown.Tests
         {
             MarkdownWriter mw = CreateWriter();
             const string start = "- [x] ";
-            string expected = start + text2 + CharsEscaped + NewLine;
-            MTaskItem item = TaskItem(true, text + Chars);
+            string expected = start + text2 + CharsEscaped + NewLine + "  " + start + text2 + NewLine;
+            MTaskItem item = TaskItem(true, text + Chars, TaskItem(true, text));
             item.WriteTo(mw);
 
             Assert.Equal(expected, mw.ToStringAndClear());
@@ -623,24 +609,8 @@ namespace DotMarkdown.Tests
         {
             MarkdownWriter mw = CreateWriter();
             const string start = "- [x] ";
-            string expected = start + text2 + CharsEscaped + NewLine;
-            MTaskItem item = CompletedTaskItem(text + Chars);
-            item.WriteTo(mw);
-
-            Assert.Equal(expected, mw.ToStringAndClear());
-        }
-
-        [Theory]
-        [InlineData(null, "")]
-        [InlineData("", "")]
-        [InlineData(" ", " ")]
-        [InlineData(Chars, CharsEscaped)]
-        public void MarkdownWriter_Append_CompletedTaskListItem(string text, string text2)
-        {
-            MarkdownWriter mw = CreateWriter();
-            const string start = "- [x] ";
-            string expected = start + text2 + CharsEscaped + NewLine;
-            MTaskItem item = CompletedTaskItem(text + Chars);
+            string expected = start + text2 + CharsEscaped + NewLine + "  " + start + text2 + NewLine;
+            MTaskItem item = CompletedTaskItem(text + Chars, CompletedTaskItem(text));
             item.WriteTo(mw);
 
             Assert.Equal(expected, mw.ToStringAndClear());

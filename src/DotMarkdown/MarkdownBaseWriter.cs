@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace DotMarkdown
@@ -21,8 +22,9 @@ namespace DotMarkdown
         private int _tableCellPos = -1;
 
         protected State _state;
+        private int _orderedItemNumber;
 
-        private readonly Collection<State> _states = new Collection<State>();
+        private readonly Collection<ElementInfo> _stack = new Collection<ElementInfo>();
 
         protected MarkdownBaseWriter(MarkdownWriterSettings settings = null)
         {
@@ -80,7 +82,7 @@ namespace DotMarkdown
 
         private bool IsFirstColumn => _tableColumnIndex == 0;
 
-        private void Push(State state)
+        private void Push(State state, int orderedItemNumber = 0)
         {
             if (_state == State.Closed)
                 throw new InvalidOperationException("Cannot write to a closed writer.");
@@ -93,13 +95,14 @@ namespace DotMarkdown
             if (newState == State.Error)
                 throw new InvalidOperationException($"Cannot write '{state}' when state is '{_state}'.");
 
-            _states.Add((_state == State.Start) ? State.Document : _state);
+            _stack.Add(new ElementInfo((_state == State.Start) ? State.Document : _state, orderedItemNumber));
             _state = newState;
+            _orderedItemNumber = orderedItemNumber;
         }
 
         private void Pop(State state)
         {
-            int count = _states.Count;
+            int count = _stack.Count;
 
             if (count == 0)
                 throw new InvalidOperationException($"Cannot close '{state}' when state is '{_state}'.");
@@ -107,8 +110,10 @@ namespace DotMarkdown
             if (_state != state)
                 throw new InvalidOperationException($"Cannot close '{state}' when state is '{_state}'.");
 
-            _state = _states[count - 1];
-            _states.RemoveAt(count - 1);
+            ElementInfo info = _stack[count - 1];
+            _state = info.State;
+            _orderedItemNumber = info.Number;
+            _stack.RemoveAt(count - 1);
         }
 
         private void ThrowIfCannotWriteEnd(State state)
@@ -401,7 +406,7 @@ namespace DotMarkdown
                 WriteLineIfNecessary();
                 WriteValue(number);
                 WriteRaw(Format.OrderedItemStart);
-                Push(State.OrderedItem);
+                Push(State.OrderedItem, number);
             }
             catch
             {
@@ -1150,8 +1155,10 @@ namespace DotMarkdown
 
         protected void WriteIndentation()
         {
-            for (int i = 0; i < _states.Count; i++)
-                WriteIndentation(_states[i]);
+            for (int i = 0; i < _stack.Count; i++)
+            {
+                WriteIndentation(_stack[i].State, _stack[i].Number);
+            }
 
             if (_state == State.IndentedCodeBlock)
             {
@@ -1159,18 +1166,23 @@ namespace DotMarkdown
             }
             else
             {
-                WriteIndentation(_state);
+                WriteIndentation(_state, _orderedItemNumber);
             }
 
-            void WriteIndentation(State state)
+            void WriteIndentation(State state, int orderedItemNumber)
             {
                 switch (state)
                 {
                     case State.BulletItem:
-                    case State.OrderedItem:
                     case State.TaskItem:
                         {
                             this.WriteIndentation("  ");
+                            break;
+                        }
+                    case State.OrderedItem:
+                        {
+                            int count = orderedItemNumber.GetDigitCount() + Format.OrderedItemStart.Length;
+                            this.WriteIndentation(TextUtility.GetSpaces(count));
                             break;
                         }
                     case State.BlockQuote:
@@ -1270,6 +1282,19 @@ namespace DotMarkdown
             Document = 16,
             Closed = 17,
             Error = 18
+        }
+
+        private struct ElementInfo
+        {
+            public ElementInfo(State state, int number)
+            {
+                State = state;
+                Number = number;
+            }
+
+            public State State { get; }
+
+            public int Number { get; }
         }
 
         private static readonly State[] _stateTable =

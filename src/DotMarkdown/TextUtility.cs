@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System.Diagnostics;
 namespace DotMarkdown
 {
     internal static class TextUtility
@@ -62,6 +63,41 @@ namespace DotMarkdown
             }
 
             return true;
+        }
+
+        public static string GetSpaces(int count)
+        {
+            switch (count)
+            {
+                case 1:
+                    return " ";
+                case 2:
+                    return "  ";
+                case 3:
+                    return "   ";
+                case 4:
+                    return "    ";
+                case 5:
+                    return "     ";
+                case 6:
+                    return "      ";
+                case 7:
+                    return "       ";
+                case 8:
+                    return "        ";
+                case 9:
+                    return "         ";
+                case 10:
+                    return "          ";
+                case 11:
+                    return "           ";
+                case 12:
+                    return "            ";
+            }
+
+            Debug.Fail("");
+
+            return new string(' ', count);
         }
     }
 }
