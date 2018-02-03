@@ -76,11 +76,27 @@ namespace DotMarkdown.Linq
             return ToString(MarkdownWriterSettings.Debugging);
         }
 
+        public void Save(string fileName, MarkdownFormat format = null)
+        {
+            using (MarkdownWriter mw = MarkdownWriter.Create(fileName, MarkdownWriterSettings.From(format)))
+            {
+                Save(mw);
+            }
+        }
+
+        public void Save(Stream stream, MarkdownFormat format = null)
+        {
+            using (MarkdownWriter mw = MarkdownWriter.Create(stream, MarkdownWriterSettings.From(format)))
+            {
+                Save(mw);
+            }
+        }
+
         public void Save(TextWriter writer, MarkdownFormat format = null)
         {
             using (MarkdownWriter mw = MarkdownWriter.Create(writer, MarkdownWriterSettings.From(format)))
             {
-                WriteTo(mw);
+                Save(mw);
             }
         }
 
