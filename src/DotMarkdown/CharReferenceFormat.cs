@@ -5,6 +5,6 @@ namespace DotMarkdown
     public enum CharEntityFormat
     {
         Hexadecimal = 0,
-        Decimal = 1
+        Decimal = 1,
     }
 }

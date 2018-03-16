@@ -1281,7 +1281,7 @@ namespace DotMarkdown
             BlockQuote = 15,
             Document = 16,
             Closed = 17,
-            Error = 18
+            Error = 18,
         }
 
         private struct ElementInfo

@@ -5,6 +5,6 @@ namespace DotMarkdown
     public enum CodeFenceStyle
     {
         Backtick = 0,
-        Tilde = 1
+        Tilde = 1,
     }
 }

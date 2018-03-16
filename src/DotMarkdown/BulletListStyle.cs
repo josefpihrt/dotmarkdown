@@ -6,6 +6,6 @@ namespace DotMarkdown
     {
         Asterisk = 0,
         Plus = 1,
-        Minus = 2
+        Minus = 2,
     }
 }

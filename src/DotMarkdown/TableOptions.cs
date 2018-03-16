@@ -15,6 +15,6 @@ namespace DotMarkdown
         OuterDelimiter = 8,
         EmptyLineBefore = 16,
         EmptyLineAfter = 32,
-        EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter
+        EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter,
     }
 }

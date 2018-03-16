@@ -4,6 +4,6 @@ namespace DotMarkdown
 {
     public enum HeadingStyle
     {
-        NumberSign = 0
+        NumberSign = 0,
     }
 }

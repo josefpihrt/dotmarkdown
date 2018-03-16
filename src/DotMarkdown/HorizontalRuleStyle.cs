@@ -6,6 +6,6 @@ namespace DotMarkdown
     {
         Hyphen = 0,
         Underscore = 1,
-        Asterisk = 2
+        Asterisk = 2,
     }
 }

@@ -5,6 +5,6 @@ namespace DotMarkdown
     public enum EmphasisStyle
     {
         Asterisk = 0,
-        Underscore = 1
+        Underscore = 1,
     }
 }

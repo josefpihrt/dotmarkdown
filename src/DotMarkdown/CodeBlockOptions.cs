@@ -10,6 +10,6 @@ namespace DotMarkdown
         None = 0,
         EmptyLineBefore = 1,
         EmptyLineAfter = 2,
-        EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter
+        EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter,
     }
 }

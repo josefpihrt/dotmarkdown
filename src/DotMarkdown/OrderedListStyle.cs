@@ -5,6 +5,6 @@ namespace DotMarkdown
     public enum OrderedListStyle
     {
         Dot = 0,
-        Parenthesis = 1
+        Parenthesis = 1,
     }
 }

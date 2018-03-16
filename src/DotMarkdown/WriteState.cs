@@ -7,6 +7,6 @@ namespace DotMarkdown
         Start = 0,
         Content = 1,
         Closed = 2,
-        Error = 3
+        Error = 3,
     }
 }
