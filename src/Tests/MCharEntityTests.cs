@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MCharEntityTests
+    public static class MCharEntityTests
     {
         [Fact]
-        public void MCharEntity_Equals()
+        public static void MCharEntity_Equals()
         {
             MCharEntity htmlEntity = CreateHtmlEntity();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MCharEntity_NotEquals()
+        public static void MCharEntity_NotEquals()
         {
             MCharEntity htmlEntity = CreateHtmlEntity();
             MCharEntity htmlEntity2 = htmlEntity.Modify();
@@ -28,7 +28,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MCharEntity_GetHashCode_Equal()
+        public static void MCharEntity_GetHashCode_Equal()
         {
             MCharEntity htmlEntity = CreateHtmlEntity();
 
@@ -36,7 +36,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MCharEntity_GetHashCode_NotEqual()
+        public static void MCharEntity_GetHashCode_NotEqual()
         {
             MCharEntity htmlEntity = CreateHtmlEntity();
             MCharEntity htmlEntity2 = htmlEntity.Modify();
@@ -45,7 +45,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MCharEntity_OperatorEquals()
+        public static void MCharEntity_OperatorEquals()
         {
             MCharEntity htmlEntity = CreateHtmlEntity();
             MCharEntity htmlEntity2 = htmlEntity;
@@ -54,7 +54,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MCharEntity_OperatorNotEquals()
+        public static void MCharEntity_OperatorNotEquals()
         {
             MCharEntity htmlEntity = CreateHtmlEntity();
             MCharEntity htmlEntity2 = htmlEntity.Modify();
@@ -63,7 +63,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MCharEntity_Constructor_AssignNumber()
+        public static void MCharEntity_Constructor_AssignNumber()
         {
             char ch = CharEntityChar();
             var htmlEntity = new MCharEntity(value: ch);

@@ -6,10 +6,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MFencedCodeBlockTests
+    public static class MFencedCodeBlockTests
     {
         [Fact]
-        public void MFencedCodeBlock_Equals()
+        public static void MFencedCodeBlock_Equals()
         {
             MFencedCodeBlock block = CreateCodeBlock();
 
@@ -17,7 +17,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFencedCodeBlock_NotEquals()
+        public static void MFencedCodeBlock_NotEquals()
         {
             MFencedCodeBlock block = CreateCodeBlock();
             MFencedCodeBlock block2 = block.Modify();
@@ -26,7 +26,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFencedCodeBlock_GetHashCode_Equal()
+        public static void MFencedCodeBlock_GetHashCode_Equal()
         {
             MFencedCodeBlock block = CreateCodeBlock();
 
@@ -34,7 +34,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFencedCodeBlock_GetHashCode_NotEqual()
+        public static void MFencedCodeBlock_GetHashCode_NotEqual()
         {
             MFencedCodeBlock block = CreateCodeBlock();
             MFencedCodeBlock block2 = block.Modify();
@@ -43,7 +43,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFencedCodeBlock_OperatorEquals()
+        public static void MFencedCodeBlock_OperatorEquals()
         {
             MFencedCodeBlock block = CreateCodeBlock();
             MFencedCodeBlock block2 = block;
@@ -52,7 +52,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFencedCodeBlock_OperatorNotEquals()
+        public static void MFencedCodeBlock_OperatorNotEquals()
         {
             MFencedCodeBlock block = CreateCodeBlock();
             MFencedCodeBlock block2 = block.Modify();
@@ -61,7 +61,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFencedCodeBlock_Constructor_AssignText()
+        public static void MFencedCodeBlock_Constructor_AssignText()
         {
             string text = CodeBlockText();
             var block = new MFencedCodeBlock(text: text, info: CodeBlockInfo());
@@ -70,7 +70,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFencedCodeBlock_Constructor_AssignInfo()
+        public static void MFencedCodeBlock_Constructor_AssignInfo()
         {
             string info = CodeBlockInfo();
             var block = new MFencedCodeBlock(text: CodeBlockText(), info: info);

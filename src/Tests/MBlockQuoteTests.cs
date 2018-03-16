@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MBlockQuoteTests
+    public static class MBlockQuoteTests
     {
         [Fact]
-        public void MBlockQuote_Equals()
+        public static void MBlockQuote_Equals()
         {
             MBlockQuote blockQuote = CreateBlockQuote();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MBlockQuote_GetHashCode_Equal()
+        public static void MBlockQuote_GetHashCode_Equal()
         {
             MBlockQuote blockQuote = CreateBlockQuote();
 
@@ -27,7 +27,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MBlockQuote_OperatorEquals()
+        public static void MBlockQuote_OperatorEquals()
         {
             MBlockQuote blockQuote = CreateBlockQuote();
             MBlockQuote blockQuote2 = blockQuote;

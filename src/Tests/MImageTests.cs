@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MImageTests
+    public static class MImageTests
     {
         [Fact]
-        public void MImage_Equals()
+        public static void MImage_Equals()
         {
             MImage image = CreateImage();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MImage_NotEquals()
+        public static void MImage_NotEquals()
         {
             MImage image = CreateImage();
             MImage image2 = image.Modify();
@@ -28,7 +28,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MImage_GetHashCode_Equal()
+        public static void MImage_GetHashCode_Equal()
         {
             MImage image = CreateImage();
 
@@ -36,7 +36,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MImage_GetHashCode_NotEqual()
+        public static void MImage_GetHashCode_NotEqual()
         {
             MImage image = CreateImage();
             MImage image2 = image.Modify();
@@ -45,7 +45,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MImage_OperatorEquals()
+        public static void MImage_OperatorEquals()
         {
             MImage image = CreateImage();
             MImage image2 = image;
@@ -54,7 +54,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MImage_OperatorNotEquals()
+        public static void MImage_OperatorNotEquals()
         {
             MImage image = CreateImage();
             MImage image2 = image.Modify();
@@ -63,7 +63,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MImage_Constructor_AssignText()
+        public static void MImage_Constructor_AssignText()
         {
             string text = LinkText();
             var image = new MImage(text: text, url: LinkUrl(), title: LinkTitle());
@@ -72,7 +72,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MImage_Constructor_AssignUrl()
+        public static void MImage_Constructor_AssignUrl()
         {
             string url = LinkUrl();
             var image = new MImage(text: LinkText(), url: url, title: LinkTitle());
@@ -81,7 +81,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MImage_Constructor_AssignTitle()
+        public static void MImage_Constructor_AssignTitle()
         {
             string title = LinkTitle();
             var image = new MImage(text: LinkText(), url: LinkUrl(), title: title);

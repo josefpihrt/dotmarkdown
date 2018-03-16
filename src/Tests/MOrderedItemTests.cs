@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MOrderedItemTests
+    public static class MOrderedItemTests
     {
         [Fact]
-        public void MOrderedItem_Equals()
+        public static void MOrderedItem_Equals()
         {
             MOrderedItem item = CreateOrderedListItem();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MOrderedItem_GetHashCode_Equal()
+        public static void MOrderedItem_GetHashCode_Equal()
         {
             MOrderedItem item = CreateOrderedListItem();
 
@@ -27,7 +27,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MOrderedItem_OperatorEquals()
+        public static void MOrderedItem_OperatorEquals()
         {
             MOrderedItem item = CreateOrderedListItem();
             MOrderedItem item2 = item;
@@ -36,7 +36,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MOrderedItem_Constructor_AssignNumber()
+        public static void MOrderedItem_Constructor_AssignNumber()
         {
             int number = OrderedListItemNumber();
             var item = new MOrderedItem(number: number, content: StringValue());

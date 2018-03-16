@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MTaskItemTests
+    public static class MTaskItemTests
     {
         [Fact]
-        public void MTaskItem_Equals()
+        public static void MTaskItem_Equals()
         {
             MTaskItem item = CreateTaskListItem();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MTaskItem_GetHashCode_Equal()
+        public static void MTaskItem_GetHashCode_Equal()
         {
             MTaskItem item = CreateTaskListItem();
 
@@ -27,7 +27,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MTaskItem_OperatorEquals()
+        public static void MTaskItem_OperatorEquals()
         {
             MTaskItem item = CreateTaskListItem();
             MTaskItem item2 = item;
@@ -36,7 +36,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MTaskItem_Constructor_AssignIsCompleted()
+        public static void MTaskItem_Constructor_AssignIsCompleted()
         {
             bool isCompleted = TaskListItemIsCompleted();
             var item = new MTaskItem(isCompleted: isCompleted, content: StringValue());

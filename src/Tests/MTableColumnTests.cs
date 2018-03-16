@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MTableColumnTests
+    public static class MTableColumnTests
     {
         [Fact]
-        public void MTableColumn_Equals()
+        public static void MTableColumn_Equals()
         {
             MTableColumn column = CreateTableColumn();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MTableColumn_GetHashCode_Equal()
+        public static void MTableColumn_GetHashCode_Equal()
         {
             MTableColumn column = CreateTableColumn();
 
@@ -27,7 +27,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MTableColumn_OperatorEquals()
+        public static void MTableColumn_OperatorEquals()
         {
             MTableColumn column = CreateTableColumn();
             MTableColumn column2 = column;
@@ -36,7 +36,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MTableColumn_Constructor_AssignAlignment()
+        public static void MTableColumn_Constructor_AssignAlignment()
         {
             HorizontalAlignment alignment = TableColumnAlignment();
             var column = new MTableColumn(alignment: alignment, content: StringValue());

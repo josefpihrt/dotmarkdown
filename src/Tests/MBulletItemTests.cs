@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MBulletItemTests
+    public static class MBulletItemTests
     {
         [Fact]
-        public void MBulletItem_Equals()
+        public static void MBulletItem_Equals()
         {
             MBulletItem item = CreateListItem();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MBulletItem_GetHashCode_Equal()
+        public static void MBulletItem_GetHashCode_Equal()
         {
             MBulletItem item = CreateListItem();
 
@@ -27,7 +27,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MBulletItem_OperatorEquals()
+        public static void MBulletItem_OperatorEquals()
         {
             MBulletItem item = CreateListItem();
             MBulletItem item2 = item;

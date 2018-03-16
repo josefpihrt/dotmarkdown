@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MHorizontalRuleTests
+    public static class MHorizontalRuleTests
     {
         [Fact]
-        public void MHorizontalRule_Equals()
+        public static void MHorizontalRule_Equals()
         {
             MHorizontalRule horizontalRule = CreateHorizontalRule();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MHorizontalRule_GetHashCode_Equal()
+        public static void MHorizontalRule_GetHashCode_Equal()
         {
             MHorizontalRule horizontalRule = CreateHorizontalRule();
 
@@ -27,7 +27,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MHorizontalRule_OperatorEquals()
+        public static void MHorizontalRule_OperatorEquals()
         {
             MHorizontalRule horizontalRule = CreateHorizontalRule();
             MHorizontalRule horizontalRule2 = horizontalRule;
@@ -36,7 +36,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MHorizontalRule_Constructor_AssignStyle()
+        public static void MHorizontalRule_Constructor_AssignStyle()
         {
             HorizontalRuleStyle style = HorizontalRuleStyle();
 
@@ -46,7 +46,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MHorizontalRule_Constructor_AssignCount()
+        public static void MHorizontalRule_Constructor_AssignCount()
         {
             int count = HorizontalRuleCount();
 
@@ -56,7 +56,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MHorizontalRule_Constructor_AssignSpace()
+        public static void MHorizontalRule_Constructor_AssignSpace()
         {
             string space = HorizontalRuleSpace();
 

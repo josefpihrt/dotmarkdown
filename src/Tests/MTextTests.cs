@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MTextTests
+    public static class MTextTests
     {
         [Fact]
-        public void MText_Equals()
+        public static void MText_Equals()
         {
             MText markdownText = CreateMarkdownText();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MText_GetHashCode_Equal()
+        public static void MText_GetHashCode_Equal()
         {
             MText markdownText = CreateMarkdownText();
 
@@ -27,7 +27,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MText_OperatorEquals()
+        public static void MText_OperatorEquals()
         {
             MText markdownText = CreateMarkdownText();
             MText markdownText2 = markdownText;
@@ -36,7 +36,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MText_Constructor_AssignText()
+        public static void MText_Constructor_AssignText()
         {
             string text = MarkdownTextText();
             var markdownText = new MText(value: text);

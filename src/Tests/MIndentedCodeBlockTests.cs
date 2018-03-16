@@ -6,10 +6,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MIndentedCodeBlockTests
+    public static class MIndentedCodeBlockTests
     {
         [Fact]
-        public void MIndentedCodeBlock_Equals()
+        public static void MIndentedCodeBlock_Equals()
         {
             MIndentedCodeBlock block = CreateIndentedCodeBlock();
 
@@ -17,7 +17,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MIndentedCodeBlock_NotEquals()
+        public static void MIndentedCodeBlock_NotEquals()
         {
             MIndentedCodeBlock block = CreateIndentedCodeBlock();
             MIndentedCodeBlock block2 = block.Modify();
@@ -26,7 +26,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MIndentedCodeBlock_GetHashCode_Equal()
+        public static void MIndentedCodeBlock_GetHashCode_Equal()
         {
             MIndentedCodeBlock block = CreateIndentedCodeBlock();
 
@@ -34,7 +34,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MIndentedCodeBlock_GetHashCode_NotEqual()
+        public static void MIndentedCodeBlock_GetHashCode_NotEqual()
         {
             MIndentedCodeBlock block = CreateIndentedCodeBlock();
             MIndentedCodeBlock block2 = block.Modify();
@@ -43,7 +43,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MIndentedCodeBlock_OperatorEquals()
+        public static void MIndentedCodeBlock_OperatorEquals()
         {
             MIndentedCodeBlock block = CreateIndentedCodeBlock();
             MIndentedCodeBlock block2 = block;
@@ -52,7 +52,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MIndentedCodeBlock_OperatorNotEquals()
+        public static void MIndentedCodeBlock_OperatorNotEquals()
         {
             MIndentedCodeBlock block = CreateIndentedCodeBlock();
             MIndentedCodeBlock block2 = block.Modify();
@@ -61,7 +61,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MIndentedCodeBlock_Constructor_AssignText()
+        public static void MIndentedCodeBlock_Constructor_AssignText()
         {
             string text = IndentedCodeBlockText();
             var block = new MIndentedCodeBlock(text: text);

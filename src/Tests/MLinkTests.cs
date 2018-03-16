@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MLinkTests
+    public static class MLinkTests
     {
         [Fact]
-        public void MLink_Equals()
+        public static void MLink_Equals()
         {
             MLink link = CreateLink();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MLink_NotEquals()
+        public static void MLink_NotEquals()
         {
             MLink link = CreateLink();
             MLink link2 = link.Modify();
@@ -28,7 +28,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MLink_GetHashCode_Equal()
+        public static void MLink_GetHashCode_Equal()
         {
             MLink link = CreateLink();
 
@@ -36,7 +36,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MLink_GetHashCode_NotEqual()
+        public static void MLink_GetHashCode_NotEqual()
         {
             MLink link = CreateLink();
             MLink link2 = link.Modify();
@@ -45,7 +45,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MLink_OperatorEquals()
+        public static void MLink_OperatorEquals()
         {
             MLink link = CreateLink();
             MLink link2 = link;
@@ -54,7 +54,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MLink_OperatorNotEquals()
+        public static void MLink_OperatorNotEquals()
         {
             MLink link = CreateLink();
             MLink link2 = link.Modify();
@@ -63,7 +63,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MLink_Constructor_AssignText()
+        public static void MLink_Constructor_AssignText()
         {
             string text = LinkText();
             var link = new MLink(text: text, url: LinkUrl(), title: LinkTitle());
@@ -72,7 +72,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MLink_Constructor_AssignUrl()
+        public static void MLink_Constructor_AssignUrl()
         {
             string url = LinkUrl();
             var link = new MLink(text: LinkText(), url: url, title: LinkTitle());
@@ -81,7 +81,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MLink_Constructor_AssignTitle()
+        public static void MLink_Constructor_AssignTitle()
         {
             string title = LinkTitle();
             var link = new MLink(text: LinkText(), url: LinkUrl(), title: title);

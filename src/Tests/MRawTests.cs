@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MRawTests
+    public static class MRawTests
     {
         [Fact]
-        public void MRaw_Equals()
+        public static void MRaw_Equals()
         {
             MRaw rawText = CreateRawText();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MRaw_NotEquals()
+        public static void MRaw_NotEquals()
         {
             MRaw rawText = CreateRawText();
             MRaw rawText2 = rawText.Modify();
@@ -28,7 +28,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MRaw_GetHashCode_Equal()
+        public static void MRaw_GetHashCode_Equal()
         {
             MRaw rawText = CreateRawText();
 
@@ -36,7 +36,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MRaw_GetHashCode_NotEqual()
+        public static void MRaw_GetHashCode_NotEqual()
         {
             MRaw rawText = CreateRawText();
             MRaw rawText2 = rawText.Modify();
@@ -45,7 +45,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MRaw_OperatorEquals()
+        public static void MRaw_OperatorEquals()
         {
             MRaw rawText = CreateRawText();
             MRaw rawText2 = rawText;
@@ -54,7 +54,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MRaw_OperatorNotEquals()
+        public static void MRaw_OperatorNotEquals()
         {
             MRaw rawText = CreateRawText();
             MRaw rawText2 = rawText.Modify();

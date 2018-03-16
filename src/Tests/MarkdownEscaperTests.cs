@@ -5,10 +5,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MarkdownEscaperTests
+    public static class MarkdownEscaperTests
     {
         [Fact]
-        public void MarkdownEscaper_Escape_Chars()
+        public static void MarkdownEscaper_Escape_Chars()
         {
             Assert.Equal(CharsEscaped, MarkdownEscaper.Escape(Chars));
             Assert.Equal(CharsEscaped + NewLine + CharsEscaped, MarkdownEscaper.Escape(Chars + NewLine + Chars));
@@ -34,7 +34,7 @@ namespace DotMarkdown.Tests
         [InlineData(">", false)]
         [InlineData("\"", false)]
         [InlineData("'", false)]
-        public void MarkdownEscaper_Escape_SingleChar(string value, bool shouldBeEscaped)
+        public static void MarkdownEscaper_Escape_SingleChar(string value, bool shouldBeEscaped)
         {
             Assert.Equal((shouldBeEscaped) ? "\\" + value : value, MarkdownEscaper.Escape(value));
         }
@@ -59,7 +59,7 @@ namespace DotMarkdown.Tests
         [InlineData(">", false)]
         [InlineData("\"", false)]
         [InlineData("'", false)]
-        public void MarkdownEscaper_Escape_NoEscape(string value, bool shouldBeEscaped)
+        public static void MarkdownEscaper_Escape_NoEscape(string value, bool shouldBeEscaped)
         {
             Assert.Equal((shouldBeEscaped) ? "\\" + value : value, MarkdownEscaper.Escape(value, shouldBeEscaped: ch => false, escapingChar: '\\'));
         }
@@ -84,7 +84,7 @@ namespace DotMarkdown.Tests
         [InlineData('>', false)]
         [InlineData('"', false)]
         [InlineData('\'', false)]
-        public void MarkdownEscaper_ShouldBeEscaped(char ch, bool shouldBeEscaped)
+        public static void MarkdownEscaper_ShouldBeEscaped(char ch, bool shouldBeEscaped)
         {
             Assert.Equal(MarkdownEscaper.ShouldBeEscaped(ch), shouldBeEscaped);
         }
@@ -109,7 +109,7 @@ namespace DotMarkdown.Tests
         [InlineData('>', false)]
         [InlineData('"', false)]
         [InlineData('\'', false)]
-        public void MarkdownEscaper_ShouldBeEscapedInLinkText(char ch, bool shouldBeEscaped)
+        public static void MarkdownEscaper_ShouldBeEscapedInLinkText(char ch, bool shouldBeEscaped)
         {
             Assert.Equal(MarkdownEscaper.ShouldBeEscapedInLinkText(ch), shouldBeEscaped);
         }
@@ -134,7 +134,7 @@ namespace DotMarkdown.Tests
         [InlineData('>', false)]
         [InlineData('"', false)]
         [InlineData('\'', false)]
-        public void MarkdownEscaper_ShouldBeEscapedInLinkUrl(char ch, bool shouldBeEscaped)
+        public static void MarkdownEscaper_ShouldBeEscapedInLinkUrl(char ch, bool shouldBeEscaped)
         {
             Assert.Equal(MarkdownEscaper.ShouldBeEscapedInLinkUrl(ch), shouldBeEscaped);
         }
@@ -159,7 +159,7 @@ namespace DotMarkdown.Tests
         [InlineData('>', false)]
         [InlineData('"', true)]
         [InlineData('\'', false)]
-        public void MarkdownEscaper_ShouldBeEscapedInLinkTitle(char ch, bool shouldBeEscaped)
+        public static void MarkdownEscaper_ShouldBeEscapedInLinkTitle(char ch, bool shouldBeEscaped)
         {
             Assert.Equal(MarkdownEscaper.ShouldBeEscapedInLinkTitle(ch), shouldBeEscaped);
         }

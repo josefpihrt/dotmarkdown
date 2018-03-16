@@ -9,10 +9,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MFactoryTests
+    public static class MFactoryTests
     {
         [Fact]
-        public void MFactory_RawText()
+        public static void MFactory_RawText()
         {
             string text = MarkdownTextText();
 
@@ -20,7 +20,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_InlineCode()
+        public static void MFactory_InlineCode()
         {
             string text = MarkdownTextText();
 
@@ -34,7 +34,7 @@ namespace DotMarkdown.Tests
         [InlineData(4)]
         [InlineData(5)]
         [InlineData(6)]
-        public void MFactory_Heading(int level)
+        public static void MFactory_Heading(int level)
         {
             string text = MarkdownTextText();
 
@@ -43,7 +43,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_Heading1()
+        public static void MFactory_Heading1()
         {
             string text = MarkdownTextText();
 
@@ -52,7 +52,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_Heading2()
+        public static void MFactory_Heading2()
         {
             string text = MarkdownTextText();
 
@@ -61,7 +61,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_Heading3()
+        public static void MFactory_Heading3()
         {
             string text = MarkdownTextText();
 
@@ -70,7 +70,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_Heading4()
+        public static void MFactory_Heading4()
         {
             string text = MarkdownTextText();
 
@@ -79,7 +79,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_Heading5()
+        public static void MFactory_Heading5()
         {
             string text = MarkdownTextText();
 
@@ -88,7 +88,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_Heading6()
+        public static void MFactory_Heading6()
         {
             string text = MarkdownTextText();
 
@@ -99,13 +99,13 @@ namespace DotMarkdown.Tests
         [Theory]
         [InlineData(0)]
         [InlineData(7)]
-        public void MFactory_Heading_Throws(int level)
+        public static void MFactory_Heading_Throws(int level)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => MFactory.Heading(level, "x"));
         }
 
         [Fact]
-        public void MFactory_ListItem()
+        public static void MFactory_ListItem()
         {
             string text = MarkdownTextText();
             Assert.Equal(text, MFactory.BulletItem(text).content);
@@ -118,7 +118,7 @@ namespace DotMarkdown.Tests
         [InlineData(4)]
         [InlineData(5)]
         [InlineData(6)]
-        public void MFactory_OrderedListItem(int number)
+        public static void MFactory_OrderedListItem(int number)
         {
             string text = MarkdownTextText();
 
@@ -127,7 +127,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_TaskListItem_DefaultValues()
+        public static void MFactory_TaskListItem_DefaultValues()
         {
             string text = MarkdownTextText();
 
@@ -138,7 +138,7 @@ namespace DotMarkdown.Tests
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void MFactory_TaskListItem(bool isCompleted)
+        public static void MFactory_TaskListItem(bool isCompleted)
         {
             string text = MarkdownTextText();
 
@@ -147,7 +147,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_CompletedTaskListItem()
+        public static void MFactory_CompletedTaskListItem()
         {
             string text = MarkdownTextText();
 
@@ -156,7 +156,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_Image_DefaultValues()
+        public static void MFactory_Image_DefaultValues()
         {
             string text = LinkText();
             string url = LinkUrl();
@@ -170,7 +170,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_Image()
+        public static void MFactory_Image()
         {
             string text = LinkText();
             string url = LinkUrl();
@@ -186,7 +186,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_Link_DefaultValues()
+        public static void MFactory_Link_DefaultValues()
         {
             string text = LinkText();
             string url = LinkUrl();
@@ -200,7 +200,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_Link()
+        public static void MFactory_Link()
         {
             string text = LinkText();
             string url = LinkUrl();
@@ -214,7 +214,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_LinkOrText_Link()
+        public static void MFactory_LinkOrText_Link()
         {
             string text = LinkText();
             string url = LinkUrl();
@@ -223,7 +223,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_LinkOrText_Text()
+        public static void MFactory_LinkOrText_Text()
         {
             string text = LinkText();
             string url = LinkUrl();
@@ -234,7 +234,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_CodeBlock_DefaultValues()
+        public static void MFactory_CodeBlock_DefaultValues()
         {
             string text = CodeBlockText();
             string info = CodeBlockInfo();
@@ -246,7 +246,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_CodeBlock()
+        public static void MFactory_CodeBlock()
         {
             string text = CodeBlockText();
             string info = CodeBlockInfo();
@@ -258,7 +258,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_IndentedCodeBlock()
+        public static void MFactory_IndentedCodeBlock()
         {
             string text = IndentedCodeBlockText();
 
@@ -268,7 +268,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_BlockQuote()
+        public static void MFactory_BlockQuote()
         {
             string text = BlockQuoteText();
 
@@ -281,7 +281,7 @@ namespace DotMarkdown.Tests
         [InlineData(HorizontalRuleStyle.Asterisk)]
         [InlineData(HorizontalRuleStyle.Hyphen)]
         [InlineData(HorizontalRuleStyle.Underscore)]
-        public void MFactory_HorizontalRule_DefaultValues(HorizontalRuleStyle style)
+        public static void MFactory_HorizontalRule_DefaultValues(HorizontalRuleStyle style)
         {
             for (int i = 3; i <= 5; i++)
             {
@@ -295,7 +295,7 @@ namespace DotMarkdown.Tests
         [InlineData(HorizontalRuleStyle.Asterisk)]
         [InlineData(HorizontalRuleStyle.Hyphen)]
         [InlineData(HorizontalRuleStyle.Underscore)]
-        public void MFactory_HorizontalRule(HorizontalRuleStyle style)
+        public static void MFactory_HorizontalRule(HorizontalRuleStyle style)
         {
             for (int i = 3; i <= 5; i++)
             {
@@ -311,7 +311,7 @@ namespace DotMarkdown.Tests
         [InlineData(-2)]
         [InlineData(0)]
         [InlineData(2)]
-        public void MFactory_HorizontalRule_Throws(int count)
+        public static void MFactory_HorizontalRule_Throws(int count)
         {
             MarkdownWriter mb = CreateWriter();
 
@@ -321,7 +321,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MFactory_HtmlEntity()
+        public static void MFactory_HtmlEntity()
         {
             var ch = (char)IntValue(1, 0xFFFF);
 

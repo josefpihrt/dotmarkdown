@@ -8,10 +8,10 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MHeadingTests
+    public static class MHeadingTests
     {
         [Fact]
-        public void MHeading_Equals()
+        public static void MHeading_Equals()
         {
             MHeading heading = CreateHeading();
 
@@ -19,7 +19,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MHeading_GetHashCode_Equal()
+        public static void MHeading_GetHashCode_Equal()
         {
             MHeading heading = CreateHeading();
 
@@ -27,7 +27,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MHeading_OperatorEquals()
+        public static void MHeading_OperatorEquals()
         {
             MHeading heading = CreateHeading();
             MHeading heading2 = heading;
@@ -36,7 +36,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MHeading_Constructor_AssignText()
+        public static void MHeading_Constructor_AssignText()
         {
             string text = HeadingText();
             var heading = new MHeading(level: HeadingLevel(), content: text);
@@ -45,7 +45,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MHeading_Constructor_AssignLevel()
+        public static void MHeading_Constructor_AssignLevel()
         {
             int level = HeadingLevel();
 

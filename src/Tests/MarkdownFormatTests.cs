@@ -5,12 +5,12 @@ using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Tests
 {
-    public class MarkdownFormatTests
+    public static class MarkdownFormatTests
     {
         [Theory]
         [InlineData(EmphasisStyle.Asterisk)]
         [InlineData(EmphasisStyle.Underscore)]
-        public void MarkdownFormat_Constructor_BoldStyle(EmphasisStyle boldStyle)
+        public static void MarkdownFormat_Constructor_BoldStyle(EmphasisStyle boldStyle)
         {
             var format = new MarkdownFormat(boldStyle: boldStyle);
 
@@ -20,7 +20,7 @@ namespace DotMarkdown.Tests
         [Theory]
         [InlineData(EmphasisStyle.Asterisk)]
         [InlineData(EmphasisStyle.Underscore)]
-        public void MarkdownFormat_Constructor_ItalicStyle(EmphasisStyle italicStyle)
+        public static void MarkdownFormat_Constructor_ItalicStyle(EmphasisStyle italicStyle)
         {
             var format = new MarkdownFormat(italicStyle: italicStyle);
 
@@ -31,7 +31,7 @@ namespace DotMarkdown.Tests
         [InlineData(BulletListStyle.Asterisk)]
         [InlineData(BulletListStyle.Minus)]
         [InlineData(BulletListStyle.Plus)]
-        public void MarkdownFormat_Constructor_ListItemStyle(BulletListStyle listItemStyle)
+        public static void MarkdownFormat_Constructor_ListItemStyle(BulletListStyle listItemStyle)
         {
             var format = new MarkdownFormat(bulletListStyle: listItemStyle);
 
@@ -39,7 +39,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownFormat_Constructor_HorizontalRule()
+        public static void MarkdownFormat_Constructor_HorizontalRule()
         {
             const HorizontalRuleStyle style = HorizontalRuleStyle.Hyphen;
             const int count = 3;
@@ -56,7 +56,7 @@ namespace DotMarkdown.Tests
 
         [Theory]
         [InlineData(HeadingStyle.NumberSign)]
-        public void MarkdownFormat_Constructor_HeadingStyle(HeadingStyle headingStyle)
+        public static void MarkdownFormat_Constructor_HeadingStyle(HeadingStyle headingStyle)
         {
             var format = new MarkdownFormat(headingStyle: headingStyle);
 
@@ -67,7 +67,7 @@ namespace DotMarkdown.Tests
         [InlineData(HeadingOptions.None)]
         [InlineData(HeadingOptions.EmptyLineBefore)]
         [InlineData(HeadingOptions.EmptyLineBeforeAndAfter)]
-        public void MarkdownFormat_Constructor_HeadingOptions(HeadingOptions headingOptions)
+        public static void MarkdownFormat_Constructor_HeadingOptions(HeadingOptions headingOptions)
         {
             var format = new MarkdownFormat(headingOptions: headingOptions);
 
@@ -78,7 +78,7 @@ namespace DotMarkdown.Tests
         [InlineData(TableOptions.None)]
         [InlineData(TableOptions.FormatHeader)]
         [InlineData(TableOptions.FormatHeaderAndContent)]
-        public void MarkdownFormat_Constructor_TableOptions(TableOptions tableOptions)
+        public static void MarkdownFormat_Constructor_TableOptions(TableOptions tableOptions)
         {
             var format = new MarkdownFormat(tableOptions: tableOptions);
 
@@ -89,7 +89,7 @@ namespace DotMarkdown.Tests
         [InlineData(CodeBlockOptions.None)]
         [InlineData(CodeBlockOptions.EmptyLineBefore)]
         [InlineData(CodeBlockOptions.EmptyLineBeforeAndAfter)]
-        public void MarkdownFormat_Constructor_CodeBlockOptions(CodeBlockOptions codeBlockOptions)
+        public static void MarkdownFormat_Constructor_CodeBlockOptions(CodeBlockOptions codeBlockOptions)
         {
             var format = new MarkdownFormat(codeBlockOptions: codeBlockOptions);
 
@@ -97,7 +97,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownFormat_Equals()
+        public static void MarkdownFormat_Equals()
         {
             MarkdownFormat format = CreateMarkdownFormat();
 
@@ -105,7 +105,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownFormat_NotEquals()
+        public static void MarkdownFormat_NotEquals()
         {
             MarkdownFormat format = CreateMarkdownFormat();
             MarkdownFormat format2 = format.Modify();
@@ -114,7 +114,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownFormat_GetHashCode_Equal()
+        public static void MarkdownFormat_GetHashCode_Equal()
         {
             MarkdownFormat format = CreateMarkdownFormat();
 
@@ -122,7 +122,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownFormat_GetHashCode_NotEqual()
+        public static void MarkdownFormat_GetHashCode_NotEqual()
         {
             MarkdownFormat format = CreateMarkdownFormat();
             MarkdownFormat format2 = format.Modify();
@@ -131,7 +131,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownFormat_OperatorEquals()
+        public static void MarkdownFormat_OperatorEquals()
         {
             MarkdownFormat format = CreateMarkdownFormat();
             MarkdownFormat format2 = format;
@@ -140,7 +140,7 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public void MarkdownFormat_OperatorNotEquals()
+        public static void MarkdownFormat_OperatorNotEquals()
         {
             MarkdownFormat format = CreateMarkdownFormat();
             MarkdownFormat format2 = format.Modify();
