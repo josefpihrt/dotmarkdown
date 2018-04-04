@@ -242,7 +242,6 @@ namespace DotMarkdown
                         _bufPos = (int)(pDst - pDstStart);
                         FlushBuffer();
                         pDst = pDstStart;
-                        continue;
                     }
                 }
 
