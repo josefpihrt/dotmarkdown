@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <Version>0.1.0.1</Version>
     <AssemblyName>DotMarkdown</AssemblyName>
     <RootNamespace>DotMarkdown</RootNamespace>
     <CodeAnalysisRuleSet>..\..\global.ruleset</CodeAnalysisRuleSet>
@@ -15,8 +16,7 @@
 
   <PropertyGroup>
     <PackageId>DotMarkdown</PackageId>
-    <PackageVersion>0.1.0-beta</PackageVersion>
-    <Version>0.1.0-beta</Version>
+    <PackageVersion>0.1.0-rc</PackageVersion>
     <Authors>Josef Pihrt</Authors>
     <Company></Company>
     <Description>DotMarkdown is Markdown framework for .NET
