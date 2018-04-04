@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <!--
+    <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
+    -->
   </PropertyGroup>
 
   <PropertyGroup>
