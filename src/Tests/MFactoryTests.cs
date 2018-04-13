@@ -228,9 +228,37 @@ namespace DotMarkdown.Tests
             string text = LinkText();
             string url = LinkUrl();
 
-            Assert.IsType<MText>(MFactory.LinkOrText(text));
             Assert.IsType<MText>(MFactory.LinkOrText(text, url: ""));
             Assert.IsType<MText>(MFactory.LinkOrText(text, url: null));
+        }
+
+        [Fact]
+        public static void MFactory_Autolink()
+        {
+            string url = LinkUrl();
+
+            MAutolink autolink = MFactory.Autolink(url);
+
+            Assert.Equal(url, autolink.Url);
+        }
+
+        [Fact]
+        public static void MFactory_LinkOrAutolink_Link()
+        {
+            string text = LinkText();
+            string url = LinkUrl();
+
+            Assert.IsType<MLink>(MFactory.LinkOrAutolink(text, url));
+        }
+
+        [Fact]
+        public static void MFactory_LinkOrAutolink_Autolink()
+        {
+            string text = LinkText();
+            string url = LinkUrl();
+
+            Assert.IsType<MAutolink>(MFactory.LinkOrAutolink(text: "", url: url));
+            Assert.IsType<MAutolink>(MFactory.LinkOrAutolink(text: null, url: url));
         }
 
         [Fact]

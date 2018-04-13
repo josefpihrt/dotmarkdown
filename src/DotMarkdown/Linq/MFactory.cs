@@ -405,12 +405,22 @@ namespace DotMarkdown.Linq
             return new MImage(text, url, title);
         }
 
+        public static MImage Image(MImage other)
+        {
+            return new MImage(other);
+        }
+
         public static MLink Link(string text, string url, string title = null)
         {
             return new MLink(text, url, title);
         }
 
-        public static MElement LinkOrText(string text, string url = null, string title = null)
+        public static MLink Link(MLink other)
+        {
+            return new MLink(other);
+        }
+
+        public static MElement LinkOrText(string text, string url, string title = null)
         {
             if (!string.IsNullOrEmpty(url))
                 return new MLink(text, url, title);
@@ -418,14 +428,42 @@ namespace DotMarkdown.Linq
             return new MText(text);
         }
 
+        public static MAutolink Autolink(string url)
+        {
+            return new MAutolink(url);
+        }
+
+        public static MAutolink Autolink(MAutolink other)
+        {
+            return new MAutolink(other);
+        }
+
+        public static MElement LinkOrAutolink(string text, string url, string title = null)
+        {
+            if (!string.IsNullOrEmpty(text))
+                return new MLink(text, url, title);
+
+            return new MAutolink(url);
+        }
+
         public static MFencedCodeBlock FencedCodeBlock(string value, string info = null)
         {
             return new MFencedCodeBlock(value, info);
         }
 
+        public static MFencedCodeBlock FencedCodeBlock(MFencedCodeBlock other)
+        {
+            return new MFencedCodeBlock(other);
+        }
+
         public static MIndentedCodeBlock IndentedCodeBlock(string value)
         {
             return new MIndentedCodeBlock(value);
+        }
+
+        public static MIndentedCodeBlock IndentedCodeBlock(MIndentedCodeBlock other)
+        {
+            return new MIndentedCodeBlock(other);
         }
 
         public static MBlockQuote BlockQuote()
@@ -468,9 +506,19 @@ namespace DotMarkdown.Linq
             return new MCharEntity(value);
         }
 
+        public static MCharEntity CharEntity(MCharEntity other)
+        {
+            return new MCharEntity(other);
+        }
+
         public static MEntityRef EntityRef(string name)
         {
             return new MEntityRef(name);
+        }
+
+        public static MEntityRef EntityRef(MEntityRef other)
+        {
+            return new MEntityRef(other);
         }
 
         public static MEntityRef NonBreakingSpace() => MEntityRef.CreateTrusted("nbsp");
