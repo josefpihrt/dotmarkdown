@@ -442,7 +442,6 @@ namespace DotMarkdown
 
         public virtual void Close()
         {
-            Dispose();
         }
     }
 }
