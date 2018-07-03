@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Globalization;
 
 namespace DotMarkdown
@@ -15,7 +14,7 @@ namespace DotMarkdown
 
         private int _headingLevel = -1;
 
-        private IReadOnlyList<TableColumnInfo> _tableColumns;
+        private List<TableColumnInfo> _tableColumns;
         private int _tableColumnCount = -1;
         private int _tableRowIndex = -1;
         private int _tableColumnIndex = -1;
@@ -74,13 +73,11 @@ namespace DotMarkdown
 
         protected char EscapingChar { get; set; } = '\\';
 
-        private TableColumnInfo CurrentColumn => _tableColumns?[_tableColumnIndex] ?? TableColumnInfo.Default;
-
-        private int ColumnCount => _tableColumns?.Count ?? _tableColumnCount;
-
-        private bool IsLastColumn => _tableColumnIndex == ColumnCount - 1;
+        private TableColumnInfo CurrentColumn => _tableColumns[_tableColumnIndex];
 
         private bool IsFirstColumn => _tableColumnIndex == 0;
+
+        private bool IsLastColumn => _tableColumnIndex == _tableColumnCount - 1;
 
         private void Push(State state, int orderedItemNumber = 0)
         {
@@ -788,13 +785,30 @@ namespace DotMarkdown
 
         private void WriteStartTable(IReadOnlyList<TableColumnInfo> columns, int columnCount)
         {
+            if (columnCount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(columnCount), columnCount, "Table must have at least one column.");
+
             try
             {
                 Push(State.Table);
 
                 WriteLine(Format.EmptyLineBeforeTable);
 
-                _tableColumns = columns;
+                if (_tableColumns == null)
+                    _tableColumns = new List<TableColumnInfo>(columnCount);
+
+                if (columns != null)
+                {
+                    _tableColumns.AddRange(columns);
+                }
+                else
+                {
+                    for (int i = 0; i < columnCount; i++)
+                    {
+                        _tableColumns.Add(new TableColumnInfo(HorizontalAlignment.Left, width: 0, isWhiteSpace: true));
+                    }
+                }
+
                 _tableColumnCount = columnCount;
             }
             catch
@@ -810,7 +824,7 @@ namespace DotMarkdown
             {
                 ThrowIfCannotWriteEnd(State.Table);
                 _tableRowIndex = -1;
-                _tableColumns = null;
+                _tableColumns.Clear();
                 _tableColumnCount = -1;
                 WriteEmptyLineIf(Format.EmptyLineAfterTable);
                 Pop(State.Table);
@@ -872,7 +886,7 @@ namespace DotMarkdown
                 if (IsFirstColumn)
                 {
                     if (Format.TableOuterDelimiter
-                        || IsLastColumn
+                        || _tableColumnCount == 1
                         || CurrentColumn.IsWhiteSpace)
                     {
                         WriteTableColumnSeparator();
@@ -915,17 +929,27 @@ namespace DotMarkdown
             {
                 ThrowIfCannotWriteEnd(State.TableCell);
 
+                int width = Length - _tableCellPos;
+
+                TableColumnInfo currentColumn = CurrentColumn;
+
+                if (currentColumn.Width == 0
+                    && width > 0)
+                {
+                    _tableColumns[_tableColumnIndex] = currentColumn.WithWidth(width);
+                }
+
                 if (Format.TableOuterDelimiter
                     || !IsLastColumn)
                 {
                     if (_tableRowIndex == 0)
                     {
                         if (Format.FormatTableHeader)
-                            WritePadRight(Length - _tableCellPos);
+                            WritePadRight(width);
                     }
                     else if (Format.FormatTableContent)
                     {
-                        WritePadRight(Length - _tableCellPos);
+                        WritePadRight(width);
                     }
                 }
 
@@ -933,8 +957,7 @@ namespace DotMarkdown
                 {
                     if (Format.TablePadding)
                     {
-                        if (!CurrentColumn.IsWhiteSpace)
-                            WriteRaw(" ");
+                        WriteRaw(" ");
                     }
                     else if (Format.FormatTableHeader
                          && CurrentColumn.Alignment != HorizontalAlignment.Left)
@@ -944,7 +967,7 @@ namespace DotMarkdown
                 }
                 else if (Format.TablePadding)
                 {
-                    if (Length - _tableCellPos > 0)
+                    if (width > 0)
                         WriteRaw(" ");
                 }
 
@@ -966,7 +989,7 @@ namespace DotMarkdown
 
                 WriteStartTableRow();
 
-                int count = ColumnCount;
+                int count = _tableColumnCount;
 
                 for (int i = 0; i < count; i++)
                 {
