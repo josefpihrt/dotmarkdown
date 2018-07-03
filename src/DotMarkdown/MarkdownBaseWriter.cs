@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace DotMarkdown
@@ -1307,6 +1308,7 @@ namespace DotMarkdown
             Error = 18,
         }
 
+        [DebuggerDisplay("{DebuggerDisplay,nq}")]
         private struct ElementInfo
         {
             public ElementInfo(State state, int number)
@@ -1318,6 +1320,12 @@ namespace DotMarkdown
             public State State { get; }
 
             public int Number { get; }
+
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            private string DebuggerDisplay
+            {
+                get { return $"{State} {Number}"; }
+            }
         }
 
         private static readonly State[] _stateTable =
