@@ -45,6 +45,30 @@ namespace DotMarkdown
             return new TableColumnInfo(alignment, length, writer.GetStringBuilder().IsWhiteSpace(index, length));
         }
 
+        public TableColumnInfo WithAlignment(HorizontalAlignment alignment)
+        {
+            return new TableColumnInfo(
+                alignment: alignment,
+                width: Width,
+                isWhiteSpace: IsWhiteSpace);
+        }
+
+        public TableColumnInfo WithWidth(int width)
+        {
+            return new TableColumnInfo(
+                alignment: Alignment,
+                width: width,
+                isWhiteSpace: IsWhiteSpace);
+        }
+
+        public TableColumnInfo WithIsWhiteSpace(bool isWhiteSpace)
+        {
+            return new TableColumnInfo(
+                alignment: Alignment,
+                width: Width,
+                isWhiteSpace: isWhiteSpace);
+        }
+
         public override bool Equals(object obj)
         {
             return (obj is TableColumnInfo other)
