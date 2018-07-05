@@ -1224,7 +1224,32 @@ namespace DotMarkdown
 
         protected void OnBeforeWriteLine()
         {
-            //XTODO: Table
+            if (_tableColumnCount > 0)
+            {
+                if (_state == State.TableCell)
+                    ThrowOnNewLineInTableCell();
+
+                if (_state != State.Table
+                    || _state != State.TableRow)
+                {
+                    for (int i = _stack.Count - 1; i >= 0; i--)
+                    {
+                        switch (_stack[i].State)
+                        {
+                            case State.Table:
+                            case State.TableRow:
+                                {
+                                    break;
+                                }
+                            case State.TableCell:
+                                {
+                                    ThrowOnNewLineInTableCell();
+                                    break;
+                                }
+                        }
+                    }
+                }
+            }
 
             if (_lineStartPos == Length)
             {
@@ -1233,6 +1258,11 @@ namespace DotMarkdown
             else
             {
                 _emptyLineStartPos = -1;
+            }
+
+            void ThrowOnNewLineInTableCell()
+            {
+                throw new InvalidOperationException("Cannot write newline characters in a table cell.");
             }
         }
 
