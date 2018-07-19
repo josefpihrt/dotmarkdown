@@ -97,34 +97,63 @@ namespace DotMarkdown.Tests
         }
 
         [Fact]
-        public static void MarkdownWriter_WriteCode()
+        public static void MarkdownWriter_WriteInlineCode_WithBacktick()
         {
             const string x = CharsEnclosedWithBacktick;
-            const string y = CharsEnclosedWithBacktickDoubled;
+            const string y = CharsEnclosedWithBacktick;
             MarkdownWriter mw = CreateWriter();
             mw.WriteInlineCode(x);
 
-            Assert.Equal("` " + y + " `", mw.ToStringAndClear());
+            Assert.Equal("`` " + y + " ``", mw.ToStringAndClear());
         }
 
         [Fact]
-        public static void MarkdownWriter_WriteCode_String()
+        public static void MarkdownWriter_WriteInlineCode_WithoutBacktick()
+        {
+            const string x = CharsWithoutBacktick;
+            const string y = CharsWithoutBacktick;
+            MarkdownWriter mw = CreateWriter();
+            mw.WriteInlineCode(x);
+
+            Assert.Equal("`" + y + "`", mw.ToStringAndClear());
+        }
+
+        [Fact]
+        public static void MarkdownWriter_WriteInlineCode()
         {
             MarkdownWriter mw = CreateWriter();
             mw.WriteInlineCode("`");
 
-            Assert.Equal("` `` `", mw.ToStringAndClear());
+            Assert.Equal("`` ` ``", mw.ToStringAndClear());
+        }
+
+        [Fact]
+        public static void MarkdownWriter_WriteInlineCode2()
+        {
+            MarkdownWriter mw = CreateWriter();
+            mw.WriteInlineCode("`` ` ``");
+
+            Assert.Equal("``` `` ` `` ```", mw.ToStringAndClear());
+        }
+
+        [Fact]
+        public static void MarkdownWriter_WriteInlineCode3()
+        {
+            MarkdownWriter mw = CreateWriter();
+            mw.WriteInlineCode("`` ``` ``");
+
+            Assert.Equal("` `` ``` `` `", mw.ToStringAndClear());
         }
 
         [Fact]
         public static void MarkdownWriter_Write_InlineCode()
         {
             const string x = CharsEnclosedWithBacktick;
-            const string y = CharsEnclosedWithBacktickDoubled;
+            const string y = CharsEnclosedWithBacktick;
             MarkdownWriter mw = CreateWriter();
             mw.Write(InlineCode(x));
 
-            Assert.Equal("` " + y + " `", mw.ToStringAndClear());
+            Assert.Equal("`` " + y + " ``", mw.ToStringAndClear());
         }
 
         [Theory]

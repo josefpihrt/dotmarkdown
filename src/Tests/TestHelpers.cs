@@ -26,6 +26,8 @@ namespace DotMarkdown.Tests
 
         public const string CharsEnclosedWithBacktickDoubled = @"`` ! "" # $ % & ' ) ( * + , - . / : ; < = > ? @ ] [ \ ^ _ } { | ~ ``";
 
+        public const string CharsWithoutBacktick = @"! "" # $ % & ' ) ( * + , - . / : ; < = > ? @ ] [ \ ^ _ } { | ~";
+
         public const string NewLine = "\r\n";
 
         public const string DefaultText = "Text";

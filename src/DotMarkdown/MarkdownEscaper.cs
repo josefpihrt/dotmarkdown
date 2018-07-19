@@ -133,16 +133,5 @@ namespace DotMarkdown
                     return false;
             }
         }
-
-        internal static bool ShouldBeEscapedInInlineCode(char ch)
-        {
-            switch (ch)
-            {
-                case '`':
-                    return true;
-                default:
-                    return false;
-            }
-        }
     }
 }
