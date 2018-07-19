@@ -664,21 +664,19 @@ namespace DotMarkdown
             try
             {
                 Error.ThrowOnInvalidFencedCodeBlockInfo(info);
+
                 Push(State.FencedCodeBlock);
 
                 WriteLine(Format.EmptyLineBeforeCodeBlock);
-
                 WriteRaw(Format.CodeFence);
                 WriteRaw(info);
                 WriteLine();
                 WriteString(text, _ => false);
-
                 WriteLineIfNecessary();
-
                 WriteRaw(Format.CodeFence);
-
                 WriteLine();
                 WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
+
                 Pop(State.FencedCodeBlock);
             }
             catch
