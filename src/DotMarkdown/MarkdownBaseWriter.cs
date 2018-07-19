@@ -478,6 +478,19 @@ namespace DotMarkdown
             }
         }
 
+        public override void WriteTaskItem(string text, bool isCompleted = false)
+        {
+            try
+            {
+                base.WriteTaskItem(text, isCompleted);
+            }
+            catch
+            {
+                _state = State.Error;
+                throw;
+            }
+        }
+
         public override void WriteImage(string text, string url, string title = null)
         {
             try
