@@ -982,6 +982,19 @@ namespace DotMarkdown
             }
         }
 
+        public override void WriteTableCell(string text)
+        {
+            try
+            {
+                base.WriteTableCell(text);
+            }
+            catch
+            {
+                _state = State.Error;
+                throw;
+            }
+        }
+
         public override void WriteTableHeaderSeparator()
         {
             try

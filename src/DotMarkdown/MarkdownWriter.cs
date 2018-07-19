@@ -338,6 +338,13 @@ namespace DotMarkdown
 
         public abstract void WriteEndTableCell();
 
+        public virtual void WriteTableCell(string text)
+        {
+            WriteStartTableCell();
+            WriteString(text);
+            WriteEndTableCell();
+        }
+
         public abstract void WriteTableHeaderSeparator();
 
         public abstract void WriteCharEntity(char value);
