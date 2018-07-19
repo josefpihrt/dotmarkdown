@@ -293,7 +293,7 @@ namespace DotMarkdown
             WriteHorizontalRule(Format.HorizontalRuleFormat);
         }
 
-        public void WriteHorizontalRule(HorizontalRuleFormat format)
+        public void WriteHorizontalRule(in HorizontalRuleFormat format)
         {
             WriteHorizontalRule(format.Style, format.Count, format.Separator);
         }

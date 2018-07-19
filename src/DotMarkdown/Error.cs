@@ -33,7 +33,7 @@ namespace DotMarkdown
             }
         }
 
-        public static void ThrowOnInvalidHorizontalRuleFormat(HorizontalRuleFormat format)
+        public static void ThrowOnInvalidHorizontalRuleFormat(in HorizontalRuleFormat format)
         {
             ThrowOnInvalidHorizontalRuleCount(format.Count);
             ThrowOnInvalidHorizontalRuleSeparator(format.Separator);

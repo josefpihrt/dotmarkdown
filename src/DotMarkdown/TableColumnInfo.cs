@@ -7,7 +7,7 @@ using DotMarkdown.Linq;
 namespace DotMarkdown
 {
     [DebuggerDisplay("{Alignment} {Width} IsWhiteSpace = {IsWhiteSpace}")]
-    public struct TableColumnInfo : IEquatable<TableColumnInfo>
+    public readonly struct TableColumnInfo : IEquatable<TableColumnInfo>
     {
         public TableColumnInfo(HorizontalAlignment alignment, int width, bool isWhiteSpace)
         {
@@ -87,12 +87,12 @@ namespace DotMarkdown
             return Hash.Combine((int)Alignment, Hash.Combine(IsWhiteSpace, Hash.Create(Width)));
         }
 
-        public static bool operator ==(TableColumnInfo info1, TableColumnInfo info2)
+        public static bool operator ==(in TableColumnInfo info1, in TableColumnInfo info2)
         {
             return info1.Equals(info2);
         }
 
-        public static bool operator !=(TableColumnInfo info1, TableColumnInfo info2)
+        public static bool operator !=(in TableColumnInfo info1, in TableColumnInfo info2)
         {
             return !(info1 == info2);
         }

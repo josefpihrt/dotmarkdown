@@ -2,16 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <IsPackable>false</IsPackable>
+    <OutputType>Exe</OutputType>
     <AssemblyName>DotMarkdown.TestConsole</AssemblyName>
     <RootNamespace>DotMarkdown.TestConsole</RootNamespace>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\global.ruleset</CodeAnalysisRuleSet>
-    <ApplicationIcon />
-    <OutputType>Exe</OutputType>
-    <StartupObject />
+    <LangVersion>7.2</LangVersion>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>

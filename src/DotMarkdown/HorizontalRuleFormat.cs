@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace DotMarkdown
 {
     [DebuggerDisplay("{HorizontalRuleStyle} {Count}{SeparatorDebuggerDisplay,nq}")]
-    public struct HorizontalRuleFormat : IEquatable<HorizontalRuleFormat>
+    public readonly struct HorizontalRuleFormat : IEquatable<HorizontalRuleFormat>
     {
         internal const HorizontalRuleStyle DefaultStyle = HorizontalRuleStyle.Hyphen;
         internal const int DefaultCount = 3;
@@ -81,12 +81,12 @@ namespace DotMarkdown
             return Hash.Combine((int)Style, Hash.Combine(Count, Hash.Create(Separator)));
         }
 
-        public static bool operator ==(HorizontalRuleFormat format1, HorizontalRuleFormat format2)
+        public static bool operator ==(in HorizontalRuleFormat format1, in HorizontalRuleFormat format2)
         {
             return format1.Equals(format2);
         }
 
-        public static bool operator !=(HorizontalRuleFormat format1, HorizontalRuleFormat format2)
+        public static bool operator !=(in HorizontalRuleFormat format1, in HorizontalRuleFormat format2)
         {
             return !(format1 == format2);
         }

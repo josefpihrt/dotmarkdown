@@ -491,7 +491,7 @@ namespace DotMarkdown.Linq
             return HorizontalRule(HorizontalRuleFormat.Default);
         }
 
-        public static MHorizontalRule HorizontalRule(HorizontalRuleFormat format)
+        public static MHorizontalRule HorizontalRule(in HorizontalRuleFormat format)
         {
             return new MHorizontalRule(format);
         }

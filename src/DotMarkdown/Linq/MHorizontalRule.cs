@@ -16,7 +16,7 @@ namespace DotMarkdown.Linq
             Separator = separator;
         }
 
-        public MHorizontalRule(HorizontalRuleFormat format)
+        public MHorizontalRule(in HorizontalRuleFormat format)
             : this(format.Style, format.Count, format.Separator)
         {
         }

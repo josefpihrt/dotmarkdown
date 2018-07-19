@@ -1339,7 +1339,7 @@ namespace DotMarkdown
         }
 
         [DebuggerDisplay("{DebuggerDisplay,nq}")]
-        private struct ElementInfo
+        private readonly struct ElementInfo
         {
             public ElementInfo(State state, int number)
             {

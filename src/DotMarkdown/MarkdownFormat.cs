@@ -335,7 +335,7 @@ namespace DotMarkdown
                 HorizontalRuleFormat);
         }
 
-        public MarkdownFormat WithHorizontalRuleFormat(HorizontalRuleFormat horizontalRuleFormat)
+        public MarkdownFormat WithHorizontalRuleFormat(in HorizontalRuleFormat horizontalRuleFormat)
         {
             return new MarkdownFormat(
                 BoldStyle,
