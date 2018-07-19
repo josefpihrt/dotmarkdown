@@ -167,32 +167,32 @@ namespace DotMarkdown
 
         public abstract void WriteEndHeading();
 
-        public virtual void WriteHeading1(string text)
+        public void WriteHeading1(string text)
         {
             WriteHeading(1, text);
         }
 
-        public virtual void WriteHeading2(string text)
+        public void WriteHeading2(string text)
         {
             WriteHeading(2, text);
         }
 
-        public virtual void WriteHeading3(string text)
+        public void WriteHeading3(string text)
         {
             WriteHeading(3, text);
         }
 
-        public virtual void WriteHeading4(string text)
+        public void WriteHeading4(string text)
         {
             WriteHeading(4, text);
         }
 
-        public virtual void WriteHeading5(string text)
+        public void WriteHeading5(string text)
         {
             WriteHeading(5, text);
         }
 
-        public virtual void WriteHeading6(string text)
+        public void WriteHeading6(string text)
         {
             WriteHeading(6, text);
         }
