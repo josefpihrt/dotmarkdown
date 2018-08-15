@@ -4,7 +4,7 @@ namespace DotMarkdown
 {
     // https://www.webpagefx.com/tools/emoji-cheat-sheet/
 
-    public static class Emojis
+    internal static class Emojis
     {
         public const string Bowtie = ":bowtie:";
         public const string Smile = ":smile:";
