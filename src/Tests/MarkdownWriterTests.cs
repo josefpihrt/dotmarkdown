@@ -437,15 +437,17 @@ namespace DotMarkdown.Tests
         {
             MarkdownWriter mw = CreateWriter();
 
-            const string text = "LinkText";
-            const string url = "LinkUrl";
-            const string title = "LinkTitle";
+            const string linkText = "LinkText";
+            const string linkUrl = "LinkUrl";
+            const string linkTitle = "LinkTitle";
 
-            MLink image = Link(text + Chars, url + CharsWithoutSpaces, title + Chars);
+            const string text = linkText + Chars;
+            const string url = linkUrl + CharsWithoutSpaces;
+            const string title = linkTitle + Chars;
 
-            string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]({url + CharsWithoutSpacesParenthesesEscaped} \"{title + CharsDoubleQuoteEscaped}\")";
+            string expected = $"[{linkText + CharsSquareBracketsBacktickLessThanEscaped}]({linkUrl + CharsWithoutSpacesParenthesesEscaped} \"{linkTitle + CharsDoubleQuoteEscaped}\")";
 
-            mw.WriteLink(image.Text, image.Url, image.Title);
+            mw.WriteLink(text, url, title);
 
             Assert.Equal(expected, mw.ToStringAndClear());
         }
@@ -455,14 +457,37 @@ namespace DotMarkdown.Tests
         {
             MarkdownWriter mw = CreateWriter();
 
-            const string text = "LinkText";
-            const string url = "LinkUrl";
+            const string linkText = "LinkText";
+            const string linkUrl = "LinkUrl";
 
-            MLink image = Link(text + Chars, url + CharsWithoutSpaces);
+            const string text = linkText + Chars;
+            const string url = linkUrl + CharsWithoutSpaces;
 
-            string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]({url + CharsWithoutSpacesParenthesesEscaped})";
+            string expected = $"[{linkText + CharsSquareBracketsBacktickLessThanEscaped}]({linkUrl + CharsWithoutSpacesParenthesesEscaped})";
 
-            mw.WriteLink(image.Text, image.Url);
+            mw.WriteLink(text, url);
+
+            Assert.Equal(expected, mw.ToStringAndClear());
+        }
+
+        [Fact]
+        public static void MarkdownWriter_WriteLink_TextWithContent()
+        {
+            MarkdownWriter mw = CreateWriter();
+
+            string expected = $"[**b** *i* ~~s~~ `c` {CharsSquareBracketsBacktickLessThanEscaped}](u{CharsWithoutSpacesParenthesesEscaped} \"t{CharsDoubleQuoteEscaped}\")";
+
+            mw.WriteStartLink();
+            mw.WriteBold("b");
+            mw.WriteString(" ");
+            mw.WriteItalic("i");
+            mw.WriteString(" ");
+            mw.WriteStrikethrough("s");
+            mw.WriteString(" ");
+            mw.WriteInlineCode("c");
+            mw.WriteString(" ");
+            mw.WriteString(Chars);
+            mw.WriteEndLink($"u{CharsWithoutSpaces}", $"t{Chars}");
 
             Assert.Equal(expected, mw.ToStringAndClear());
         }
@@ -476,11 +501,11 @@ namespace DotMarkdown.Tests
             const string url = "LinkUrl";
             const string title = "LinkTitle";
 
-            MLink image = Link(text + Chars, url + CharsWithoutSpaces, title + Chars);
+            MLink link = Link(text + Chars, url + CharsWithoutSpaces, title + Chars);
 
             string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]({url + CharsWithoutSpacesParenthesesEscaped} \"{title + CharsDoubleQuoteEscaped}\")";
 
-            Assert.Equal(expected, mw.Write2(image).ToStringAndClear());
+            Assert.Equal(expected, mw.Write2(link).ToStringAndClear());
         }
 
         [Fact]
@@ -491,11 +516,11 @@ namespace DotMarkdown.Tests
             const string text = "LinkText";
             const string url = "LinkUrl";
 
-            MLink image = Link(text + Chars, url + CharsWithoutSpaces);
+            MLink link = Link(text + Chars, url + CharsWithoutSpaces);
 
             string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]({url + CharsWithoutSpacesParenthesesEscaped})";
 
-            mw.Write(image);
+            mw.Write(link);
 
             Assert.Equal(expected, mw.ToStringAndClear());
         }

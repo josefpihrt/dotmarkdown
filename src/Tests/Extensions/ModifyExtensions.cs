@@ -87,7 +87,7 @@ namespace DotMarkdown.Tests
 
         public static MLink Modify(this MLink link)
         {
-            return new MLink(link.Text.Modify(), link.Url.Modify(), link.Title.Modify());
+            return new MLink(link.content.ToString().Modify(), link.Url.Modify(), link.Title.Modify());
         }
 
         public static MRaw Modify(this MRaw text)
@@ -111,7 +111,7 @@ namespace DotMarkdown.Tests
                 horizontalRuleFormat: x.HorizontalRuleFormat.Modify());
         }
 
-        public static HorizontalRuleFormat Modify(this HorizontalRuleFormat format)
+        public static HorizontalRuleFormat Modify(this in HorizontalRuleFormat format)
         {
             HorizontalRuleStyle style = format.Style;
 

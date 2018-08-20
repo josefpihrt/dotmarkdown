@@ -65,17 +65,17 @@ namespace DotMarkdown.Tests
         [Fact]
         public static void MLink_Constructor_AssignText()
         {
-            string text = LinkText();
-            var link = new MLink(text: text, url: LinkUrl(), title: LinkTitle());
+            string content = LinkText();
+            var link = new MLink(content: content, url: LinkUrl(), title: LinkTitle());
 
-            Assert.Equal(text, link.Text);
+            Assert.Equal(content, link.content);
         }
 
         [Fact]
         public static void MLink_Constructor_AssignUrl()
         {
             string url = LinkUrl();
-            var link = new MLink(text: LinkText(), url: url, title: LinkTitle());
+            var link = new MLink(content: LinkText(), url: url, title: LinkTitle());
 
             Assert.Equal(url, link.Url);
         }
@@ -84,9 +84,38 @@ namespace DotMarkdown.Tests
         public static void MLink_Constructor_AssignTitle()
         {
             string title = LinkTitle();
-            var link = new MLink(text: LinkText(), url: LinkUrl(), title: title);
+            var link = new MLink(content: LinkText(), url: LinkUrl(), title: title);
 
             Assert.Equal(title, link.Title);
+        }
+
+        [Fact]
+        public static void MLink_Content()
+        {
+            string url = LinkUrl();
+            string title = LinkTitle();
+
+            var link = new MLink(
+                content: new object[]
+                {
+                    MFactory.Bold("b"),
+                    " ",
+                    MFactory.Italic("i"),
+                    " ",
+                    MFactory.Strikethrough("s"),
+                    " ",
+                    MFactory.InlineCode("c"),
+                    " ",
+                    new MComment("cmt"),
+                    " ",
+                    MFactory.CharEntity(' '),
+                    " ",
+                    MFactory.EntityRef("amp"),
+                },
+                url: url,
+                title: title);
+
+            Assert.Equal($"[**b** *i* ~~s~~ `c` <!-- cmt --> &#x20; &amp;]({url} \"{title}\")", link.ToString());
         }
     }
 }

@@ -251,7 +251,19 @@ namespace DotMarkdown
 
         public abstract void WriteImage(string text, string url, string title = null);
 
-        public abstract void WriteLink(string text, string url, string title = null);
+        public abstract void WriteStartLink();
+
+        public abstract void WriteEndLink(string url, string title = null);
+
+        public virtual void WriteLink(string text, string url, string title = null)
+        {
+            if (text == null)
+                throw new ArgumentNullException(nameof(text));
+
+            WriteStartLink();
+            WriteString(text);
+            WriteEndLink(url, title);
+        }
 
         public void WriteLinkOrText(string text, string url = null, string title = null)
         {

@@ -410,9 +410,9 @@ namespace DotMarkdown.Linq
             return new MImage(other);
         }
 
-        public static MLink Link(string text, string url, string title = null)
+        public static MLink Link(object content, string url, string title = null)
         {
-            return new MLink(text, url, title);
+            return new MLink(content, url, title);
         }
 
         public static MLink Link(MLink other)

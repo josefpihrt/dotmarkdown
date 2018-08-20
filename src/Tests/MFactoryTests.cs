@@ -194,7 +194,7 @@ namespace DotMarkdown.Tests
 
             MLink link = MFactory.Link(text, url);
 
-            Assert.Equal(text, link.Text);
+            Assert.Equal(text, link.content);
             Assert.Equal(url, link.Url);
             Assert.Null(link.Title);
         }
@@ -208,7 +208,7 @@ namespace DotMarkdown.Tests
 
             MLink link = MFactory.Link(text, url, title);
 
-            Assert.Equal(text, link.Text);
+            Assert.Equal(text, link.content);
             Assert.Equal(url, link.Url);
             Assert.Equal(title, link.Title);
         }
