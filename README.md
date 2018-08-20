@@ -10,6 +10,10 @@
 * .NET Standard 1.3
 * .NET Framework 4.5
 
+## Documentation
+
+* [DotMarkdown API Reference](docs/api/README.md#_top)
+
 ## Usage 
 
 ### Commonly Used Types
