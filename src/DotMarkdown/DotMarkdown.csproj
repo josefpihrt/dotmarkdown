@@ -18,6 +18,10 @@
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\DotMarkdown.xml</DocumentationFile>
+  </PropertyGroup>
+
   <PropertyGroup>
     <PackageId>DotMarkdown</PackageId>
     <PackageVersion>0.1.0-rc</PackageVersion>
