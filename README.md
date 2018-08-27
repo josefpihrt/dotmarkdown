@@ -3,7 +3,7 @@
 ## Introduction 
 
 * DotMarkdown is Markdown framework for .NET 
-* The library is distributed via [NuGet](https://www.nuget.org/packages/DotMarkdown).
+* The library is distributed as [![NuGet](https://img.shields.io/nuget/v/DotMarkdown.svg)](https://nuget.org/packages/DotMarkdown).
 
 ## Supported Frameworks
 
