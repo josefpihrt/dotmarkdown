@@ -111,7 +111,7 @@ namespace DotMarkdown.Tests
                 horizontalRuleFormat: x.HorizontalRuleFormat.Modify());
         }
 
-        public static HorizontalRuleFormat Modify(this in HorizontalRuleFormat format)
+        public static HorizontalRuleFormat Modify(this HorizontalRuleFormat format)
         {
             HorizontalRuleStyle style = format.Style;
 
