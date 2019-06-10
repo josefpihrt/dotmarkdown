@@ -115,5 +115,6 @@ Console.WriteLine(document.ToString());
 
 * [Mastering Markdown](http://guides.github.com/features/mastering-markdown/)
 * [Markdown Cheatsheet](http://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+* [Markdown Guide](https://www.markdownguide.org)
 * [Daring Fireball: Markdown Syntax Documentation](http://daringfireball.net/projects/markdown/syntax)
 * [CommonMark Spec](http://spec.commonmark.org)
