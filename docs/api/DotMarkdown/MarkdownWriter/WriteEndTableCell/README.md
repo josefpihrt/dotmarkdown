@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MarkdownWriter\.WriteEndTableCell\(\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriter](../README.md#_top)
+**Containing Type**: [MarkdownWriter](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 

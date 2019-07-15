@@ -1,8 +1,8 @@
 # MInlineCode Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MInlineCode](../README.md#_top)
+**Containing Type**: [MInlineCode](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -13,17 +13,17 @@
 | [MInlineCode(MInlineCode)](#DotMarkdown_Linq_MInlineCode__ctor_DotMarkdown_Linq_MInlineCode_) | |
 | [MInlineCode(String)](#DotMarkdown_Linq_MInlineCode__ctor_System_String_) | |
 
-## MInlineCode\(MInlineCode\) <a name="DotMarkdown_Linq_MInlineCode__ctor_DotMarkdown_Linq_MInlineCode_"></a>
+## MInlineCode\(MInlineCode\) <a id="DotMarkdown_Linq_MInlineCode__ctor_DotMarkdown_Linq_MInlineCode_"></a>
 
 ```csharp
-public MInlineCode(MInlineCode other)
+public MInlineCode(DotMarkdown.Linq.MInlineCode other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MInlineCode](../README.md)
 
-## MInlineCode\(String\) <a name="DotMarkdown_Linq_MInlineCode__ctor_System_String_"></a>
+## MInlineCode\(String\) <a id="DotMarkdown_Linq_MInlineCode__ctor_System_String_"></a>
 
 ```csharp
 public MInlineCode(string text)
@@ -31,5 +31,4 @@ public MInlineCode(string text)
 
 ### Parameters
 
-#### text
-
+**text** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

@@ -1,22 +1,20 @@
-<a name="_top"></a>
-
 # MarkdownWriterSettings\.WithNewLineChars\(String\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriterSettings](../README.md#_top)
+**Containing Type**: [MarkdownWriterSettings](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MarkdownWriterSettings WithNewLineChars(string newLineChars)
+public DotMarkdown.MarkdownWriterSettings WithNewLineChars(string newLineChars)
 ```
 
 ### Parameters
 
-#### newLineChars
+**newLineChars** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
 ### Returns
 
-DotMarkdown\.[MarkdownWriterSettings](../README.md#_top)
+[MarkdownWriterSettings](../README.md)
 

@@ -1,20 +1,19 @@
 # HorizontalRuleFormat\(HorizontalRuleStyle, Int32, String\) Constructor
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[HorizontalRuleFormat](../README.md#_top)
+**Containing Type**: [HorizontalRuleFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public HorizontalRuleFormat(HorizontalRuleStyle style, int count, string separator)
+public HorizontalRuleFormat(DotMarkdown.HorizontalRuleStyle style, int count, string separator)
 ```
 
 ### Parameters
 
-#### style
+**style** &ensp; [HorizontalRuleStyle](../../HorizontalRuleStyle/README.md)
 
-#### count
+**count** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-#### separator
-
+**separator** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

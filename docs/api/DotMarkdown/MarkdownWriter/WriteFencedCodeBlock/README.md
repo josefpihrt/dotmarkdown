@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MarkdownWriter\.WriteFencedCodeBlock\(String, String\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriter](../README.md#_top)
+**Containing Type**: [MarkdownWriter](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -14,7 +12,6 @@ public abstract void WriteFencedCodeBlock(string text, string info = null)
 
 ### Parameters
 
-#### text
+**text** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### info
-
+**info** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

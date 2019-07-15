@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFencedCodeBlock\.Text Property
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFencedCodeBlock](../README.md#_top)
+**Containing Type**: [MFencedCodeBlock](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -14,5 +12,5 @@ public string Text { get; set; }
 
 ### Property Value
 
-System\.[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
+[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 

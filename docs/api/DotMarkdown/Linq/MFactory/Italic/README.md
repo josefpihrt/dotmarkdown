@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.Italic Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,55 +15,55 @@
 | [Italic(Object)](#DotMarkdown_Linq_MFactory_Italic_System_Object_) | |
 | [Italic(Object\[\])](#DotMarkdown_Linq_MFactory_Italic_System_Object___) | |
 
-## Italic\(\) <a name="DotMarkdown_Linq_MFactory_Italic"></a>
+## Italic\(\) <a id="DotMarkdown_Linq_MFactory_Italic"></a>
 
 ```csharp
-public static MItalic Italic()
+public static DotMarkdown.Linq.MItalic Italic()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MItalic](../../MItalic/README.md#_top)
+[MItalic](../../MItalic/README.md)
 
-## Italic\(MItalic\) <a name="DotMarkdown_Linq_MFactory_Italic_DotMarkdown_Linq_MItalic_"></a>
-
-```csharp
-public static MItalic Italic(MItalic other)
-```
-
-### Parameters
-
-#### other
-
-### Returns
-
-DotMarkdown\.Linq\.[MItalic](../../MItalic/README.md#_top)
-
-## Italic\(Object\) <a name="DotMarkdown_Linq_MFactory_Italic_System_Object_"></a>
+## Italic\(MItalic\) <a id="DotMarkdown_Linq_MFactory_Italic_DotMarkdown_Linq_MItalic_"></a>
 
 ```csharp
-public static MItalic Italic(object content)
+public static DotMarkdown.Linq.MItalic Italic(DotMarkdown.Linq.MItalic other)
 ```
 
 ### Parameters
 
-#### content
+**other** &ensp; [MItalic](../../MItalic/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MItalic](../../MItalic/README.md#_top)
+[MItalic](../../MItalic/README.md)
 
-## Italic\(Object\[\]\) <a name="DotMarkdown_Linq_MFactory_Italic_System_Object___"></a>
+## Italic\(Object\) <a id="DotMarkdown_Linq_MFactory_Italic_System_Object_"></a>
 
 ```csharp
-public static MItalic Italic(params object[] content)
+public static DotMarkdown.Linq.MItalic Italic(object content)
 ```
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MItalic](../../MItalic/README.md#_top)
+[MItalic](../../MItalic/README.md)
+
+## Italic\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Italic_System_Object___"></a>
+
+```csharp
+public static DotMarkdown.Linq.MItalic Italic(params object[] content)
+```
+
+### Parameters
+
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+
+### Returns
+
+[MItalic](../../MItalic/README.md)
 

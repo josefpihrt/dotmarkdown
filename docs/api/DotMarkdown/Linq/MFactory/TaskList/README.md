@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.TaskList Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,55 +15,55 @@
 | [TaskList(Object)](#DotMarkdown_Linq_MFactory_TaskList_System_Object_) | |
 | [TaskList(Object\[\])](#DotMarkdown_Linq_MFactory_TaskList_System_Object___) | |
 
-## TaskList\(\) <a name="DotMarkdown_Linq_MFactory_TaskList"></a>
+## TaskList\(\) <a id="DotMarkdown_Linq_MFactory_TaskList"></a>
 
 ```csharp
-public static MTaskList TaskList()
+public static DotMarkdown.Linq.MTaskList TaskList()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTaskList](../../MTaskList/README.md#_top)
+[MTaskList](../../MTaskList/README.md)
 
-## TaskList\(MTaskList\) <a name="DotMarkdown_Linq_MFactory_TaskList_DotMarkdown_Linq_MTaskList_"></a>
-
-```csharp
-public static MTaskList TaskList(MTaskList other)
-```
-
-### Parameters
-
-#### other
-
-### Returns
-
-DotMarkdown\.Linq\.[MTaskList](../../MTaskList/README.md#_top)
-
-## TaskList\(Object\) <a name="DotMarkdown_Linq_MFactory_TaskList_System_Object_"></a>
+## TaskList\(MTaskList\) <a id="DotMarkdown_Linq_MFactory_TaskList_DotMarkdown_Linq_MTaskList_"></a>
 
 ```csharp
-public static MTaskList TaskList(object content)
+public static DotMarkdown.Linq.MTaskList TaskList(DotMarkdown.Linq.MTaskList other)
 ```
 
 ### Parameters
 
-#### content
+**other** &ensp; [MTaskList](../../MTaskList/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTaskList](../../MTaskList/README.md#_top)
+[MTaskList](../../MTaskList/README.md)
 
-## TaskList\(Object\[\]\) <a name="DotMarkdown_Linq_MFactory_TaskList_System_Object___"></a>
+## TaskList\(Object\) <a id="DotMarkdown_Linq_MFactory_TaskList_System_Object_"></a>
 
 ```csharp
-public static MTaskList TaskList(params object[] content)
+public static DotMarkdown.Linq.MTaskList TaskList(object content)
 ```
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTaskList](../../MTaskList/README.md#_top)
+[MTaskList](../../MTaskList/README.md)
+
+## TaskList\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_TaskList_System_Object___"></a>
+
+```csharp
+public static DotMarkdown.Linq.MTaskList TaskList(params object[] content)
+```
+
+### Parameters
+
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+
+### Returns
+
+[MTaskList](../../MTaskList/README.md)
 

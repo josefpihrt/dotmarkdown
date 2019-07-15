@@ -1,8 +1,8 @@
 # MHeading Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MHeading](../README.md#_top)
+**Containing Type**: [MHeading](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -15,7 +15,7 @@
 | [MHeading(Int32, Object\[\])](#DotMarkdown_Linq_MHeading__ctor_System_Int32_System_Object___) | |
 | [MHeading(MHeading)](#DotMarkdown_Linq_MHeading__ctor_DotMarkdown_Linq_MHeading_) | |
 
-## MHeading\(Int32\) <a name="DotMarkdown_Linq_MHeading__ctor_System_Int32_"></a>
+## MHeading\(Int32\) <a id="DotMarkdown_Linq_MHeading__ctor_System_Int32_"></a>
 
 ```csharp
 public MHeading(int level)
@@ -23,9 +23,9 @@ public MHeading(int level)
 
 ### Parameters
 
-#### level
+**level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-## MHeading\(Int32, Object\) <a name="DotMarkdown_Linq_MHeading__ctor_System_Int32_System_Object_"></a>
+## MHeading\(Int32, Object\) <a id="DotMarkdown_Linq_MHeading__ctor_System_Int32_System_Object_"></a>
 
 ```csharp
 public MHeading(int level, object content)
@@ -33,11 +33,11 @@ public MHeading(int level, object content)
 
 ### Parameters
 
-#### level
+**level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
-## MHeading\(Int32, Object\[\]\) <a name="DotMarkdown_Linq_MHeading__ctor_System_Int32_System_Object___"></a>
+## MHeading\(Int32, Object\[\]\) <a id="DotMarkdown_Linq_MHeading__ctor_System_Int32_System_Object___"></a>
 
 ```csharp
 public MHeading(int level, params object[] content)
@@ -45,17 +45,16 @@ public MHeading(int level, params object[] content)
 
 ### Parameters
 
-#### level
+**level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
 
-## MHeading\(MHeading\) <a name="DotMarkdown_Linq_MHeading__ctor_DotMarkdown_Linq_MHeading_"></a>
+## MHeading\(MHeading\) <a id="DotMarkdown_Linq_MHeading__ctor_DotMarkdown_Linq_MHeading_"></a>
 
 ```csharp
-public MHeading(MHeading other)
+public MHeading(DotMarkdown.Linq.MHeading other)
 ```
 
 ### Parameters
 
-#### other
-
+**other** &ensp; [MHeading](../README.md)

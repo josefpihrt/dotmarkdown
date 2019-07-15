@@ -1,22 +1,20 @@
-<a name="_top"></a>
-
 # MarkdownWriterSettings\.WithCloseOutput\(Boolean\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriterSettings](../README.md#_top)
+**Containing Type**: [MarkdownWriterSettings](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MarkdownWriterSettings WithCloseOutput(bool closeOutput)
+public DotMarkdown.MarkdownWriterSettings WithCloseOutput(bool closeOutput)
 ```
 
 ### Parameters
 
-#### closeOutput
+**closeOutput** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 
 ### Returns
 
-DotMarkdown\.[MarkdownWriterSettings](../README.md#_top)
+[MarkdownWriterSettings](../README.md)
 

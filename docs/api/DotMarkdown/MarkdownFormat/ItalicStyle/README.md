@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.ItalicStyle Property
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public EmphasisStyle ItalicStyle { get; }
+public DotMarkdown.EmphasisStyle ItalicStyle { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[EmphasisStyle](../../EmphasisStyle/README.md#_top)
+[EmphasisStyle](../../EmphasisStyle/README.md)
 

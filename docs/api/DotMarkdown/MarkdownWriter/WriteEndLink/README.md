@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MarkdownWriter\.WriteEndLink\(String, String\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriter](../README.md#_top)
+**Containing Type**: [MarkdownWriter](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -14,7 +12,6 @@ public abstract void WriteEndLink(string url, string title = null)
 
 ### Parameters
 
-#### url
+**url** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### title
-
+**title** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

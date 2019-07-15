@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.OrderedList Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,55 +15,55 @@
 | [OrderedList(Object)](#DotMarkdown_Linq_MFactory_OrderedList_System_Object_) | |
 | [OrderedList(Object\[\])](#DotMarkdown_Linq_MFactory_OrderedList_System_Object___) | |
 
-## OrderedList\(\) <a name="DotMarkdown_Linq_MFactory_OrderedList"></a>
+## OrderedList\(\) <a id="DotMarkdown_Linq_MFactory_OrderedList"></a>
 
 ```csharp
-public static MOrderedList OrderedList()
+public static DotMarkdown.Linq.MOrderedList OrderedList()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MOrderedList](../../MOrderedList/README.md#_top)
+[MOrderedList](../../MOrderedList/README.md)
 
-## OrderedList\(MOrderedList\) <a name="DotMarkdown_Linq_MFactory_OrderedList_DotMarkdown_Linq_MOrderedList_"></a>
-
-```csharp
-public static MOrderedList OrderedList(MOrderedList other)
-```
-
-### Parameters
-
-#### other
-
-### Returns
-
-DotMarkdown\.Linq\.[MOrderedList](../../MOrderedList/README.md#_top)
-
-## OrderedList\(Object\) <a name="DotMarkdown_Linq_MFactory_OrderedList_System_Object_"></a>
+## OrderedList\(MOrderedList\) <a id="DotMarkdown_Linq_MFactory_OrderedList_DotMarkdown_Linq_MOrderedList_"></a>
 
 ```csharp
-public static MOrderedList OrderedList(object content)
+public static DotMarkdown.Linq.MOrderedList OrderedList(DotMarkdown.Linq.MOrderedList other)
 ```
 
 ### Parameters
 
-#### content
+**other** &ensp; [MOrderedList](../../MOrderedList/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MOrderedList](../../MOrderedList/README.md#_top)
+[MOrderedList](../../MOrderedList/README.md)
 
-## OrderedList\(Object\[\]\) <a name="DotMarkdown_Linq_MFactory_OrderedList_System_Object___"></a>
+## OrderedList\(Object\) <a id="DotMarkdown_Linq_MFactory_OrderedList_System_Object_"></a>
 
 ```csharp
-public static MOrderedList OrderedList(params object[] content)
+public static DotMarkdown.Linq.MOrderedList OrderedList(object content)
 ```
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MOrderedList](../../MOrderedList/README.md#_top)
+[MOrderedList](../../MOrderedList/README.md)
+
+## OrderedList\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_OrderedList_System_Object___"></a>
+
+```csharp
+public static DotMarkdown.Linq.MOrderedList OrderedList(params object[] content)
+```
+
+### Parameters
+
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+
+### Returns
+
+[MOrderedList](../../MOrderedList/README.md)
 

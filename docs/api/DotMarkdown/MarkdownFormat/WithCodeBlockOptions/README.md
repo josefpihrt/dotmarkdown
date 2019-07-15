@@ -1,22 +1,20 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.WithCodeBlockOptions\(CodeBlockOptions\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MarkdownFormat WithCodeBlockOptions(CodeBlockOptions codeBlockOptions)
+public DotMarkdown.MarkdownFormat WithCodeBlockOptions(DotMarkdown.CodeBlockOptions codeBlockOptions)
 ```
 
 ### Parameters
 
-#### codeBlockOptions
+**codeBlockOptions** &ensp; [CodeBlockOptions](../../CodeBlockOptions/README.md)
 
 ### Returns
 
-DotMarkdown\.[MarkdownFormat](../README.md#_top)
+[MarkdownFormat](../README.md)
 

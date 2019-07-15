@@ -1,8 +1,8 @@
 # MLabel Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MLabel](../README.md#_top)
+**Containing Type**: [MLabel](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -13,17 +13,17 @@
 | [MLabel(MLabel)](#DotMarkdown_Linq_MLabel__ctor_DotMarkdown_Linq_MLabel_) | |
 | [MLabel(String, String, String)](#DotMarkdown_Linq_MLabel__ctor_System_String_System_String_System_String_) | |
 
-## MLabel\(MLabel\) <a name="DotMarkdown_Linq_MLabel__ctor_DotMarkdown_Linq_MLabel_"></a>
+## MLabel\(MLabel\) <a id="DotMarkdown_Linq_MLabel__ctor_DotMarkdown_Linq_MLabel_"></a>
 
 ```csharp
-public MLabel(MLabel other)
+public MLabel(DotMarkdown.Linq.MLabel other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MLabel](../README.md)
 
-## MLabel\(String, String, String\) <a name="DotMarkdown_Linq_MLabel__ctor_System_String_System_String_System_String_"></a>
+## MLabel\(String, String, String\) <a id="DotMarkdown_Linq_MLabel__ctor_System_String_System_String_System_String_"></a>
 
 ```csharp
 public MLabel(string text, string url, string title = null)
@@ -31,9 +31,8 @@ public MLabel(string text, string url, string title = null)
 
 ### Parameters
 
-#### text
+**text** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### url
+**url** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### title
-
+**title** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # ITableAnalyzer Interface
 
-[Home](../../../README.md#_top) &#x2022; [Methods](#methods)
+[Home](../../../README.md) &#x2022; [Methods](#methods)
 
-**Namespace**: [DotMarkdown.Linq](../README.md#_top)
+**Namespace**: [DotMarkdown.Linq](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -16,5 +14,5 @@ public interface ITableAnalyzer
 
 | Method | Summary |
 | ------ | ------- |
-| [AnalyzeTable(IEnumerable\<MElement>)](AnalyzeTable/README.md#_top) | |
+| [AnalyzeTable(IEnumerable\<MElement>)](AnalyzeTable/README.md) | |
 

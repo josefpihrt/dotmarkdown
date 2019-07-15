@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.TableOptions Property
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public TableOptions TableOptions { get; }
+public DotMarkdown.TableOptions TableOptions { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[TableOptions](../../TableOptions/README.md#_top)
+[TableOptions](../../TableOptions/README.md)
 

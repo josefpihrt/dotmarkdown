@@ -1,22 +1,20 @@
-<a name="_top"></a>
-
 # TableColumnInfo\.WithIsWhiteSpace\(Boolean\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[TableColumnInfo](../README.md#_top)
+**Containing Type**: [TableColumnInfo](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public TableColumnInfo WithIsWhiteSpace(bool isWhiteSpace)
+public DotMarkdown.TableColumnInfo WithIsWhiteSpace(bool isWhiteSpace)
 ```
 
 ### Parameters
 
-#### isWhiteSpace
+**isWhiteSpace** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 
 ### Returns
 
-DotMarkdown\.[TableColumnInfo](../README.md#_top)
+[TableColumnInfo](../README.md)
 

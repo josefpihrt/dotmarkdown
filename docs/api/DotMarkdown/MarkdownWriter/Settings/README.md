@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MarkdownWriter\.Settings Property
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriter](../README.md#_top)
+**Containing Type**: [MarkdownWriter](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public virtual MarkdownWriterSettings Settings { get; }
+public virtual DotMarkdown.MarkdownWriterSettings Settings { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[MarkdownWriterSettings](../../MarkdownWriterSettings/README.md#_top)
+[MarkdownWriterSettings](../../MarkdownWriterSettings/README.md)
 

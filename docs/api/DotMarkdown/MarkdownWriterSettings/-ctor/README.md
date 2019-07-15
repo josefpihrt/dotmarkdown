@@ -1,22 +1,21 @@
 # MarkdownWriterSettings\(MarkdownFormat, String, NewLineHandling, Boolean\) Constructor
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriterSettings](../README.md#_top)
+**Containing Type**: [MarkdownWriterSettings](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MarkdownWriterSettings(MarkdownFormat format = null, string newLineChars = null, NewLineHandling newLineHandling = Replace, bool closeOutput = false)
+public MarkdownWriterSettings(DotMarkdown.MarkdownFormat format = null, string newLineChars = null, DotMarkdown.NewLineHandling newLineHandling = Replace, bool closeOutput = false)
 ```
 
 ### Parameters
 
-#### format
+**format** &ensp; [MarkdownFormat](../../MarkdownFormat/README.md)
 
-#### newLineChars
+**newLineChars** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### newLineHandling
+**newLineHandling** &ensp; [NewLineHandling](../../NewLineHandling/README.md)
 
-#### closeOutput
-
+**closeOutput** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)

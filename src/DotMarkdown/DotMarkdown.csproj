@@ -44,4 +44,6 @@ DotMarkdown.Linq.MFactory</Description>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
+  <Import Project="GenerateDocumentation.targets" />
+
 </Project>

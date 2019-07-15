@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MItalic\.Kind Property
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MItalic](../README.md#_top)
+**Containing Type**: [MItalic](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public override MarkdownKind Kind { get; }
+public override DotMarkdown.MarkdownKind Kind { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[MarkdownKind](../../../MarkdownKind/README.md#_top)
+[MarkdownKind](../../../MarkdownKind/README.md)
 

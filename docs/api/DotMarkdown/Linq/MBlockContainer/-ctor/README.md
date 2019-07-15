@@ -1,8 +1,8 @@
 # MBlockContainer Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MBlockContainer](../README.md#_top)
+**Containing Type**: [MBlockContainer](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -15,23 +15,23 @@
 | [MBlockContainer(Object)](#DotMarkdown_Linq_MBlockContainer__ctor_System_Object_) | |
 | [MBlockContainer(Object\[\])](#DotMarkdown_Linq_MBlockContainer__ctor_System_Object___) | |
 
-## MBlockContainer\(\) <a name="DotMarkdown_Linq_MBlockContainer__ctor"></a>
+## MBlockContainer\(\) <a id="DotMarkdown_Linq_MBlockContainer__ctor"></a>
 
 ```csharp
 protected MBlockContainer()
 ```
 
-## MBlockContainer\(MBlockContainer\) <a name="DotMarkdown_Linq_MBlockContainer__ctor_DotMarkdown_Linq_MBlockContainer_"></a>
+## MBlockContainer\(MBlockContainer\) <a id="DotMarkdown_Linq_MBlockContainer__ctor_DotMarkdown_Linq_MBlockContainer_"></a>
 
 ```csharp
-protected MBlockContainer(MBlockContainer other)
+protected MBlockContainer(DotMarkdown.Linq.MBlockContainer other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MBlockContainer](../README.md)
 
-## MBlockContainer\(Object\) <a name="DotMarkdown_Linq_MBlockContainer__ctor_System_Object_"></a>
+## MBlockContainer\(Object\) <a id="DotMarkdown_Linq_MBlockContainer__ctor_System_Object_"></a>
 
 ```csharp
 protected MBlockContainer(object content)
@@ -39,9 +39,9 @@ protected MBlockContainer(object content)
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
-## MBlockContainer\(Object\[\]\) <a name="DotMarkdown_Linq_MBlockContainer__ctor_System_Object___"></a>
+## MBlockContainer\(Object\[\]\) <a id="DotMarkdown_Linq_MBlockContainer__ctor_System_Object___"></a>
 
 ```csharp
 protected MBlockContainer(params object[] content)
@@ -49,5 +49,4 @@ protected MBlockContainer(params object[] content)
 
 ### Parameters
 
-#### content
-
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]

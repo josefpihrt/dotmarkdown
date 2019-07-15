@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MObject\.Parent Property
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MObject](../README.md#_top)
+**Containing Type**: [MObject](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MContainer Parent { get; }
+public DotMarkdown.Linq.MContainer Parent { get; internal set; }
 ```
 
 ### Property Value
 
-DotMarkdown\.Linq\.[MContainer](../../MContainer/README.md#_top)
+[MContainer](../../MContainer/README.md)
 

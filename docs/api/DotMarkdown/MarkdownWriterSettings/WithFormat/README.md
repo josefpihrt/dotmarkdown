@@ -1,22 +1,20 @@
-<a name="_top"></a>
-
 # MarkdownWriterSettings\.WithFormat\(MarkdownFormat\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriterSettings](../README.md#_top)
+**Containing Type**: [MarkdownWriterSettings](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MarkdownWriterSettings WithFormat(MarkdownFormat format)
+public DotMarkdown.MarkdownWriterSettings WithFormat(DotMarkdown.MarkdownFormat format)
 ```
 
 ### Parameters
 
-#### format
+**format** &ensp; [MarkdownFormat](../../MarkdownFormat/README.md)
 
 ### Returns
 
-DotMarkdown\.[MarkdownWriterSettings](../README.md#_top)
+[MarkdownWriterSettings](../README.md)
 

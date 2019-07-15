@@ -1,22 +1,20 @@
-<a name="_top"></a>
-
 # ITableAnalyzer\.AnalyzeTable\(IEnumerable\<MElement>\) Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[ITableAnalyzer](../README.md#_top)
+**Containing Type**: [ITableAnalyzer](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-IReadOnlyList<TableColumnInfo> AnalyzeTable(IEnumerable<MElement> rows)
+System.Collections.Generic.IReadOnlyList<DotMarkdown.TableColumnInfo> AnalyzeTable(System.Collections.Generic.IEnumerable<DotMarkdown.Linq.MElement> rows)
 ```
 
 ### Parameters
 
-#### rows
+**rows** &ensp; [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1)\<[MElement](../../MElement/README.md)>
 
 ### Returns
 
-System\.Collections\.Generic\.[IReadOnlyList](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlylist-1)\<DotMarkdown\.[TableColumnInfo](../../../TableColumnInfo/README.md#_top)>
+[IReadOnlyList](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlylist-1)\<[TableColumnInfo](../../../TableColumnInfo/README.md)>
 

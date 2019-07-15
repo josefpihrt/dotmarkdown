@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MElement\.ElementsAfterSelf\(\) Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MElement](../README.md#_top)
+**Containing Type**: [MElement](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public IEnumerable<MElement> ElementsAfterSelf()
+public System.Collections.Generic.IEnumerable<DotMarkdown.Linq.MElement> ElementsAfterSelf()
 ```
 
 ### Returns
 
-System\.Collections\.Generic\.[IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1)\<DotMarkdown\.Linq\.[MElement](../README.md#_top)>
+[IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1)\<[MElement](../README.md)>
 

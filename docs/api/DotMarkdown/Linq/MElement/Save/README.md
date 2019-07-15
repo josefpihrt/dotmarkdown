@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MElement\.Save Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MElement](../README.md#_top)
+**Containing Type**: [MElement](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,49 +15,48 @@
 | [Save(String, MarkdownFormat)](#DotMarkdown_Linq_MElement_Save_System_String_DotMarkdown_MarkdownFormat_) | |
 | [Save(TextWriter, MarkdownFormat)](#DotMarkdown_Linq_MElement_Save_System_IO_TextWriter_DotMarkdown_MarkdownFormat_) | |
 
-## Save\(MarkdownWriter\) <a name="DotMarkdown_Linq_MElement_Save_DotMarkdown_MarkdownWriter_"></a>
+## Save\(MarkdownWriter\) <a id="DotMarkdown_Linq_MElement_Save_DotMarkdown_MarkdownWriter_"></a>
 
 ```csharp
-public void Save(MarkdownWriter writer)
+public void Save(DotMarkdown.MarkdownWriter writer)
 ```
 
 ### Parameters
 
-#### writer
+**writer** &ensp; [MarkdownWriter](../../../MarkdownWriter/README.md)
 
-## Save\(Stream, MarkdownFormat\) <a name="DotMarkdown_Linq_MElement_Save_System_IO_Stream_DotMarkdown_MarkdownFormat_"></a>
+## Save\(Stream, MarkdownFormat\) <a id="DotMarkdown_Linq_MElement_Save_System_IO_Stream_DotMarkdown_MarkdownFormat_"></a>
 
 ```csharp
-public void Save(Stream stream, MarkdownFormat format = null)
+public void Save(System.IO.Stream stream, DotMarkdown.MarkdownFormat format = null)
 ```
 
 ### Parameters
 
-#### stream
+**stream** &ensp; [Stream](https://docs.microsoft.com/en-us/dotnet/api/system.io.stream)
 
-#### format
+**format** &ensp; [MarkdownFormat](../../../MarkdownFormat/README.md)
 
-## Save\(String, MarkdownFormat\) <a name="DotMarkdown_Linq_MElement_Save_System_String_DotMarkdown_MarkdownFormat_"></a>
+## Save\(String, MarkdownFormat\) <a id="DotMarkdown_Linq_MElement_Save_System_String_DotMarkdown_MarkdownFormat_"></a>
 
 ```csharp
-public void Save(string fileName, MarkdownFormat format = null)
+public void Save(string fileName, DotMarkdown.MarkdownFormat format = null)
 ```
 
 ### Parameters
 
-#### fileName
+**fileName** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### format
+**format** &ensp; [MarkdownFormat](../../../MarkdownFormat/README.md)
 
-## Save\(TextWriter, MarkdownFormat\) <a name="DotMarkdown_Linq_MElement_Save_System_IO_TextWriter_DotMarkdown_MarkdownFormat_"></a>
+## Save\(TextWriter, MarkdownFormat\) <a id="DotMarkdown_Linq_MElement_Save_System_IO_TextWriter_DotMarkdown_MarkdownFormat_"></a>
 
 ```csharp
-public void Save(TextWriter writer, MarkdownFormat format = null)
+public void Save(System.IO.TextWriter writer, DotMarkdown.MarkdownFormat format = null)
 ```
 
 ### Parameters
 
-#### writer
+**writer** &ensp; [TextWriter](https://docs.microsoft.com/en-us/dotnet/api/system.io.textwriter)
 
-#### format
-
+**format** &ensp; [MarkdownFormat](../../../MarkdownFormat/README.md)

@@ -1,20 +1,19 @@
 # TableColumnInfo\(HorizontalAlignment, Int32, Boolean\) Constructor
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[TableColumnInfo](../README.md#_top)
+**Containing Type**: [TableColumnInfo](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public TableColumnInfo(HorizontalAlignment alignment, int width, bool isWhiteSpace)
+public TableColumnInfo(DotMarkdown.HorizontalAlignment alignment, int width, bool isWhiteSpace)
 ```
 
 ### Parameters
 
-#### alignment
+**alignment** &ensp; [HorizontalAlignment](../../HorizontalAlignment/README.md)
 
-#### width
+**width** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-#### isWhiteSpace
-
+**isWhiteSpace** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)

@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MContainer\.FirstElement Property
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MContainer](../README.md#_top)
+**Containing Type**: [MContainer](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MElement FirstElement { get; }
+public DotMarkdown.Linq.MElement FirstElement { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.Linq\.[MElement](../../MElement/README.md#_top)
+[MElement](../../MElement/README.md)
 

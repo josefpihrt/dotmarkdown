@@ -1,26 +1,24 @@
-<a name="_top"></a>
-
 # MFactory\.LinkOrAutolink\(String, String, String\) Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public static MElement LinkOrAutolink(string text, string url, string title = null)
+public static DotMarkdown.Linq.MElement LinkOrAutolink(string text, string url, string title = null)
 ```
 
 ### Parameters
 
-#### text
+**text** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### url
+**url** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### title
+**title** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MElement](../../MElement/README.md#_top)
+[MElement](../../MElement/README.md)
 

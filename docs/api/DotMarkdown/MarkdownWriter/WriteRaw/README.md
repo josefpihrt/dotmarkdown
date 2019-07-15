@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MarkdownWriter\.WriteRaw\(String\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriter](../README.md#_top)
+**Containing Type**: [MarkdownWriter](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -14,5 +12,4 @@ public abstract void WriteRaw(string data)
 
 ### Parameters
 
-#### data
-
+**data** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

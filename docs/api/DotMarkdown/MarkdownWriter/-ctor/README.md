@@ -1,16 +1,15 @@
 # MarkdownWriter\(MarkdownWriterSettings\) Constructor
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriter](../README.md#_top)
+**Containing Type**: [MarkdownWriter](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-protected MarkdownWriter(MarkdownWriterSettings settings = null)
+protected MarkdownWriter(DotMarkdown.MarkdownWriterSettings settings = null)
 ```
 
 ### Parameters
 
-#### settings
-
+**settings** &ensp; [MarkdownWriterSettings](../../MarkdownWriterSettings/README.md)

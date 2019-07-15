@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.HorizontalRule Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -16,45 +14,45 @@
 | [HorizontalRule(HorizontalRuleFormat)](#DotMarkdown_Linq_MFactory_HorizontalRule_DotMarkdown_HorizontalRuleFormat__) | |
 | [HorizontalRule(HorizontalRuleStyle, Int32, String)](#DotMarkdown_Linq_MFactory_HorizontalRule_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_) | |
 
-## HorizontalRule\(\) <a name="DotMarkdown_Linq_MFactory_HorizontalRule"></a>
+## HorizontalRule\(\) <a id="DotMarkdown_Linq_MFactory_HorizontalRule"></a>
 
 ```csharp
-public static MHorizontalRule HorizontalRule()
+public static DotMarkdown.Linq.MHorizontalRule HorizontalRule()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MHorizontalRule](../../MHorizontalRule/README.md#_top)
+[MHorizontalRule](../../MHorizontalRule/README.md)
 
-## HorizontalRule\(HorizontalRuleFormat\) <a name="DotMarkdown_Linq_MFactory_HorizontalRule_DotMarkdown_HorizontalRuleFormat__"></a>
-
-```csharp
-public static MHorizontalRule HorizontalRule(in HorizontalRuleFormat format)
-```
-
-### Parameters
-
-#### format
-
-### Returns
-
-DotMarkdown\.Linq\.[MHorizontalRule](../../MHorizontalRule/README.md#_top)
-
-## HorizontalRule\(HorizontalRuleStyle, Int32, String\) <a name="DotMarkdown_Linq_MFactory_HorizontalRule_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_"></a>
+## HorizontalRule\(HorizontalRuleFormat\) <a id="DotMarkdown_Linq_MFactory_HorizontalRule_DotMarkdown_HorizontalRuleFormat__"></a>
 
 ```csharp
-public static MHorizontalRule HorizontalRule(HorizontalRuleStyle style, int count = 3, string separator = " ")
+public static DotMarkdown.Linq.MHorizontalRule HorizontalRule(in DotMarkdown.HorizontalRuleFormat format)
 ```
 
 ### Parameters
 
-#### style
-
-#### count
-
-#### separator
+**format** &ensp; [HorizontalRuleFormat](../../../HorizontalRuleFormat/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MHorizontalRule](../../MHorizontalRule/README.md#_top)
+[MHorizontalRule](../../MHorizontalRule/README.md)
+
+## HorizontalRule\(HorizontalRuleStyle, Int32, String\) <a id="DotMarkdown_Linq_MFactory_HorizontalRule_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_"></a>
+
+```csharp
+public static DotMarkdown.Linq.MHorizontalRule HorizontalRule(DotMarkdown.HorizontalRuleStyle style, int count = 3, string separator = " ")
+```
+
+### Parameters
+
+**style** &ensp; [HorizontalRuleStyle](../../../HorizontalRuleStyle/README.md)
+
+**count** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
+
+**separator** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
+
+### Returns
+
+[MHorizontalRule](../../MHorizontalRule/README.md)
 

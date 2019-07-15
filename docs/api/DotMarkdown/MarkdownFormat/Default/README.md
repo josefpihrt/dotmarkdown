@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.Default Property
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public static MarkdownFormat Default { get; }
+public static DotMarkdown.MarkdownFormat Default { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[MarkdownFormat](../README.md#_top)
+[MarkdownFormat](../README.md)
 

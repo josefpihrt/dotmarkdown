@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.TableRow Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,55 +15,55 @@
 | [TableRow(Object)](#DotMarkdown_Linq_MFactory_TableRow_System_Object_) | |
 | [TableRow(Object\[\])](#DotMarkdown_Linq_MFactory_TableRow_System_Object___) | |
 
-## TableRow\(\) <a name="DotMarkdown_Linq_MFactory_TableRow"></a>
+## TableRow\(\) <a id="DotMarkdown_Linq_MFactory_TableRow"></a>
 
 ```csharp
-public static MTableRow TableRow()
+public static DotMarkdown.Linq.MTableRow TableRow()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTableRow](../../MTableRow/README.md#_top)
+[MTableRow](../../MTableRow/README.md)
 
-## TableRow\(MTableRow\) <a name="DotMarkdown_Linq_MFactory_TableRow_DotMarkdown_Linq_MTableRow_"></a>
-
-```csharp
-public static MTableRow TableRow(MTableRow other)
-```
-
-### Parameters
-
-#### other
-
-### Returns
-
-DotMarkdown\.Linq\.[MTableRow](../../MTableRow/README.md#_top)
-
-## TableRow\(Object\) <a name="DotMarkdown_Linq_MFactory_TableRow_System_Object_"></a>
+## TableRow\(MTableRow\) <a id="DotMarkdown_Linq_MFactory_TableRow_DotMarkdown_Linq_MTableRow_"></a>
 
 ```csharp
-public static MTableRow TableRow(object content)
+public static DotMarkdown.Linq.MTableRow TableRow(DotMarkdown.Linq.MTableRow other)
 ```
 
 ### Parameters
 
-#### content
+**other** &ensp; [MTableRow](../../MTableRow/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTableRow](../../MTableRow/README.md#_top)
+[MTableRow](../../MTableRow/README.md)
 
-## TableRow\(Object\[\]\) <a name="DotMarkdown_Linq_MFactory_TableRow_System_Object___"></a>
+## TableRow\(Object\) <a id="DotMarkdown_Linq_MFactory_TableRow_System_Object_"></a>
 
 ```csharp
-public static MTableRow TableRow(params object[] content)
+public static DotMarkdown.Linq.MTableRow TableRow(object content)
 ```
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTableRow](../../MTableRow/README.md#_top)
+[MTableRow](../../MTableRow/README.md)
+
+## TableRow\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_TableRow_System_Object___"></a>
+
+```csharp
+public static DotMarkdown.Linq.MTableRow TableRow(params object[] content)
+```
+
+### Parameters
+
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+
+### Returns
+
+[MTableRow](../../MTableRow/README.md)
 

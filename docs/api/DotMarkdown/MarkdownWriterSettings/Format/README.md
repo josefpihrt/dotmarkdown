@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MarkdownWriterSettings\.Format Property
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriterSettings](../README.md#_top)
+**Containing Type**: [MarkdownWriterSettings](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MarkdownFormat Format { get; }
+public DotMarkdown.MarkdownFormat Format { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[MarkdownFormat](../../MarkdownFormat/README.md#_top)
+[MarkdownFormat](../../MarkdownFormat/README.md)
 

@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MCharEntity\.Value Property
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MCharEntity](../README.md#_top)
+**Containing Type**: [MCharEntity](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -14,5 +12,5 @@ public char Value { get; set; }
 
 ### Property Value
 
-System\.[Char](https://docs.microsoft.com/en-us/dotnet/api/system.char)
+[Char](https://docs.microsoft.com/en-us/dotnet/api/system.char)
 

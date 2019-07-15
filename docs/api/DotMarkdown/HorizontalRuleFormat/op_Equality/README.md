@@ -1,24 +1,22 @@
-<a name="_top"></a>
-
 # HorizontalRuleFormat\.Equality\(HorizontalRuleFormat, HorizontalRuleFormat\) Operator
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[HorizontalRuleFormat](../README.md#_top)
+**Containing Type**: [HorizontalRuleFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public static bool operator ==(in HorizontalRuleFormat format1, in HorizontalRuleFormat format2)
+public static bool operator ==(in DotMarkdown.HorizontalRuleFormat format1, in DotMarkdown.HorizontalRuleFormat format2)
 ```
 
 ### Parameters
 
-#### format1
+**format1** &ensp; [HorizontalRuleFormat](../README.md)
 
-#### format2
+**format2** &ensp; [HorizontalRuleFormat](../README.md)
 
 ### Returns
 
-System\.[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
+[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 

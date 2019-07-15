@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.BulletListStyle Property
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public BulletListStyle BulletListStyle { get; }
+public DotMarkdown.BulletListStyle BulletListStyle { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[BulletListStyle](../../BulletListStyle/README.md#_top)
+[BulletListStyle](../../BulletListStyle/README.md)
 

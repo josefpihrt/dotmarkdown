@@ -1,8 +1,8 @@
 # MTaskList Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MTaskList](../README.md#_top)
+**Containing Type**: [MTaskList](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -15,23 +15,23 @@
 | [MTaskList(Object)](#DotMarkdown_Linq_MTaskList__ctor_System_Object_) | |
 | [MTaskList(Object\[\])](#DotMarkdown_Linq_MTaskList__ctor_System_Object___) | |
 
-## MTaskList\(\) <a name="DotMarkdown_Linq_MTaskList__ctor"></a>
+## MTaskList\(\) <a id="DotMarkdown_Linq_MTaskList__ctor"></a>
 
 ```csharp
 public MTaskList()
 ```
 
-## MTaskList\(MTaskList\) <a name="DotMarkdown_Linq_MTaskList__ctor_DotMarkdown_Linq_MTaskList_"></a>
+## MTaskList\(MTaskList\) <a id="DotMarkdown_Linq_MTaskList__ctor_DotMarkdown_Linq_MTaskList_"></a>
 
 ```csharp
-public MTaskList(MTaskList other)
+public MTaskList(DotMarkdown.Linq.MTaskList other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MTaskList](../README.md)
 
-## MTaskList\(Object\) <a name="DotMarkdown_Linq_MTaskList__ctor_System_Object_"></a>
+## MTaskList\(Object\) <a id="DotMarkdown_Linq_MTaskList__ctor_System_Object_"></a>
 
 ```csharp
 public MTaskList(object content)
@@ -39,9 +39,9 @@ public MTaskList(object content)
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
-## MTaskList\(Object\[\]\) <a name="DotMarkdown_Linq_MTaskList__ctor_System_Object___"></a>
+## MTaskList\(Object\[\]\) <a id="DotMarkdown_Linq_MTaskList__ctor_System_Object___"></a>
 
 ```csharp
 public MTaskList(params object[] content)
@@ -49,5 +49,4 @@ public MTaskList(params object[] content)
 
 ### Parameters
 
-#### content
-
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]

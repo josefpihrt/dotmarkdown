@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MElement\.NextElement Property
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MElement](../README.md#_top)
+**Containing Type**: [MElement](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MElement NextElement { get; }
+public DotMarkdown.Linq.MElement NextElement { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.Linq\.[MElement](../README.md#_top)
+[MElement](../README.md)
 

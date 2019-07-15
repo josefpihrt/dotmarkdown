@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.TaskItem Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,63 +15,63 @@
 | [TaskItem(Boolean, Object\[\])](#DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_System_Object___) | |
 | [TaskItem(MTaskItem)](#DotMarkdown_Linq_MFactory_TaskItem_DotMarkdown_Linq_MTaskItem_) | |
 
-## TaskItem\(Boolean\) <a name="DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_"></a>
+## TaskItem\(Boolean\) <a id="DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_"></a>
 
 ```csharp
-public static MTaskItem TaskItem(bool isCompleted)
+public static DotMarkdown.Linq.MTaskItem TaskItem(bool isCompleted)
 ```
 
 ### Parameters
 
-#### isCompleted
+**isCompleted** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTaskItem](../../MTaskItem/README.md#_top)
+[MTaskItem](../../MTaskItem/README.md)
 
-## TaskItem\(Boolean, Object\) <a name="DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_System_Object_"></a>
+## TaskItem\(Boolean, Object\) <a id="DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_System_Object_"></a>
 
 ```csharp
-public static MTaskItem TaskItem(bool isCompleted, object content)
+public static DotMarkdown.Linq.MTaskItem TaskItem(bool isCompleted, object content)
 ```
 
 ### Parameters
 
-#### isCompleted
+**isCompleted** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTaskItem](../../MTaskItem/README.md#_top)
+[MTaskItem](../../MTaskItem/README.md)
 
-## TaskItem\(Boolean, Object\[\]\) <a name="DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_System_Object___"></a>
+## TaskItem\(Boolean, Object\[\]\) <a id="DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_System_Object___"></a>
 
 ```csharp
-public static MTaskItem TaskItem(bool isCompleted, params object[] content)
+public static DotMarkdown.Linq.MTaskItem TaskItem(bool isCompleted, params object[] content)
 ```
 
 ### Parameters
 
-#### isCompleted
+**isCompleted** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTaskItem](../../MTaskItem/README.md#_top)
+[MTaskItem](../../MTaskItem/README.md)
 
-## TaskItem\(MTaskItem\) <a name="DotMarkdown_Linq_MFactory_TaskItem_DotMarkdown_Linq_MTaskItem_"></a>
+## TaskItem\(MTaskItem\) <a id="DotMarkdown_Linq_MFactory_TaskItem_DotMarkdown_Linq_MTaskItem_"></a>
 
 ```csharp
-public static MTaskItem TaskItem(MTaskItem other)
+public static DotMarkdown.Linq.MTaskItem TaskItem(DotMarkdown.Linq.MTaskItem other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MTaskItem](../../MTaskItem/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTaskItem](../../MTaskItem/README.md#_top)
+[MTaskItem](../../MTaskItem/README.md)
 

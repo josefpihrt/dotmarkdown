@@ -1,8 +1,8 @@
 # MText Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MText](../README.md#_top)
+**Containing Type**: [MText](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -13,17 +13,17 @@
 | [MText(MText)](#DotMarkdown_Linq_MText__ctor_DotMarkdown_Linq_MText_) | |
 | [MText(String)](#DotMarkdown_Linq_MText__ctor_System_String_) | |
 
-## MText\(MText\) <a name="DotMarkdown_Linq_MText__ctor_DotMarkdown_Linq_MText_"></a>
+## MText\(MText\) <a id="DotMarkdown_Linq_MText__ctor_DotMarkdown_Linq_MText_"></a>
 
 ```csharp
-public MText(MText other)
+public MText(DotMarkdown.Linq.MText other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MText](../README.md)
 
-## MText\(String\) <a name="DotMarkdown_Linq_MText__ctor_System_String_"></a>
+## MText\(String\) <a id="DotMarkdown_Linq_MText__ctor_System_String_"></a>
 
 ```csharp
 public MText(string value)
@@ -31,5 +31,4 @@ public MText(string value)
 
 ### Parameters
 
-#### value
-
+**value** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.Document Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,55 +15,55 @@
 | [Document(Object)](#DotMarkdown_Linq_MFactory_Document_System_Object_) | |
 | [Document(Object\[\])](#DotMarkdown_Linq_MFactory_Document_System_Object___) | |
 
-## Document\(\) <a name="DotMarkdown_Linq_MFactory_Document"></a>
+## Document\(\) <a id="DotMarkdown_Linq_MFactory_Document"></a>
 
 ```csharp
-public static MDocument Document()
+public static DotMarkdown.Linq.MDocument Document()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MDocument](../../MDocument/README.md#_top)
+[MDocument](../../MDocument/README.md)
 
-## Document\(MDocument\) <a name="DotMarkdown_Linq_MFactory_Document_DotMarkdown_Linq_MDocument_"></a>
-
-```csharp
-public static MDocument Document(MDocument other)
-```
-
-### Parameters
-
-#### other
-
-### Returns
-
-DotMarkdown\.Linq\.[MDocument](../../MDocument/README.md#_top)
-
-## Document\(Object\) <a name="DotMarkdown_Linq_MFactory_Document_System_Object_"></a>
+## Document\(MDocument\) <a id="DotMarkdown_Linq_MFactory_Document_DotMarkdown_Linq_MDocument_"></a>
 
 ```csharp
-public static MDocument Document(object content)
+public static DotMarkdown.Linq.MDocument Document(DotMarkdown.Linq.MDocument other)
 ```
 
 ### Parameters
 
-#### content
+**other** &ensp; [MDocument](../../MDocument/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MDocument](../../MDocument/README.md#_top)
+[MDocument](../../MDocument/README.md)
 
-## Document\(Object\[\]\) <a name="DotMarkdown_Linq_MFactory_Document_System_Object___"></a>
+## Document\(Object\) <a id="DotMarkdown_Linq_MFactory_Document_System_Object_"></a>
 
 ```csharp
-public static MDocument Document(params object[] content)
+public static DotMarkdown.Linq.MDocument Document(object content)
 ```
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MDocument](../../MDocument/README.md#_top)
+[MDocument](../../MDocument/README.md)
+
+## Document\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Document_System_Object___"></a>
+
+```csharp
+public static DotMarkdown.Linq.MDocument Document(params object[] content)
+```
+
+### Parameters
+
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+
+### Returns
+
+[MDocument](../../MDocument/README.md)
 

@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MObject Class
 
-[Home](../../../README.md#_top) &#x2022; [Constructors](#constructors) &#x2022; [Properties](#properties) &#x2022; [Methods](#methods)
+[Home](../../../README.md) &#x2022; [Constructors](#constructors) &#x2022; [Properties](#properties) &#x2022; [Methods](#methods)
 
-**Namespace**: [DotMarkdown.Linq](../README.md#_top)
+**Namespace**: [DotMarkdown.Linq](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -18,21 +16,21 @@ public abstract class MObject
 
 ### Derived
 
-* DotMarkdown\.Linq\.[MElement](../MElement/README.md#_top)
+* [MElement](../MElement/README.md)
 
 ## Constructors
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MObject()](-ctor/README.md#_top) | |
+| [MObject()](-ctor/README.md) | |
 
 ## Properties
 
 | Property | Summary |
 | -------- | ------- |
-| [Document](Document/README.md#_top) | |
-| [Kind](Kind/README.md#_top) | |
-| [Parent](Parent/README.md#_top) | |
+| [Document](Document/README.md) | |
+| [Kind](Kind/README.md) | |
+| [Parent](Parent/README.md) | |
 
 ## Methods
 

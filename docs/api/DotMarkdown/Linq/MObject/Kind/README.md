@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MObject\.Kind Property
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MObject](../README.md#_top)
+**Containing Type**: [MObject](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public abstract MarkdownKind Kind { get; }
+public abstract DotMarkdown.MarkdownKind Kind { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[MarkdownKind](../../../MarkdownKind/README.md#_top)
+[MarkdownKind](../../../MarkdownKind/README.md)
 

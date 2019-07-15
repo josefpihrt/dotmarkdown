@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.HeadingOptions Property
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public HeadingOptions HeadingOptions { get; }
+public DotMarkdown.HeadingOptions HeadingOptions { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[HeadingOptions](../../HeadingOptions/README.md#_top)
+[HeadingOptions](../../HeadingOptions/README.md)
 

@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.Bold Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,55 +15,55 @@
 | [Bold(Object)](#DotMarkdown_Linq_MFactory_Bold_System_Object_) | |
 | [Bold(Object\[\])](#DotMarkdown_Linq_MFactory_Bold_System_Object___) | |
 
-## Bold\(\) <a name="DotMarkdown_Linq_MFactory_Bold"></a>
+## Bold\(\) <a id="DotMarkdown_Linq_MFactory_Bold"></a>
 
 ```csharp
-public static MBold Bold()
+public static DotMarkdown.Linq.MBold Bold()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MBold](../../MBold/README.md#_top)
+[MBold](../../MBold/README.md)
 
-## Bold\(MBold\) <a name="DotMarkdown_Linq_MFactory_Bold_DotMarkdown_Linq_MBold_"></a>
-
-```csharp
-public static MBold Bold(MBold other)
-```
-
-### Parameters
-
-#### other
-
-### Returns
-
-DotMarkdown\.Linq\.[MBold](../../MBold/README.md#_top)
-
-## Bold\(Object\) <a name="DotMarkdown_Linq_MFactory_Bold_System_Object_"></a>
+## Bold\(MBold\) <a id="DotMarkdown_Linq_MFactory_Bold_DotMarkdown_Linq_MBold_"></a>
 
 ```csharp
-public static MBold Bold(object content)
+public static DotMarkdown.Linq.MBold Bold(DotMarkdown.Linq.MBold other)
 ```
 
 ### Parameters
 
-#### content
+**other** &ensp; [MBold](../../MBold/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MBold](../../MBold/README.md#_top)
+[MBold](../../MBold/README.md)
 
-## Bold\(Object\[\]\) <a name="DotMarkdown_Linq_MFactory_Bold_System_Object___"></a>
+## Bold\(Object\) <a id="DotMarkdown_Linq_MFactory_Bold_System_Object_"></a>
 
 ```csharp
-public static MBold Bold(params object[] content)
+public static DotMarkdown.Linq.MBold Bold(object content)
 ```
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MBold](../../MBold/README.md#_top)
+[MBold](../../MBold/README.md)
+
+## Bold\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Bold_System_Object___"></a>
+
+```csharp
+public static DotMarkdown.Linq.MBold Bold(params object[] content)
+```
+
+### Parameters
+
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+
+### Returns
+
+[MBold](../../MBold/README.md)
 

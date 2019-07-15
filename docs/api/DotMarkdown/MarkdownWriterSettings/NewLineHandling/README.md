@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MarkdownWriterSettings\.NewLineHandling Property
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriterSettings](../README.md#_top)
+**Containing Type**: [MarkdownWriterSettings](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public NewLineHandling NewLineHandling { get; }
+public DotMarkdown.NewLineHandling NewLineHandling { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[NewLineHandling](../../NewLineHandling/README.md#_top)
+[NewLineHandling](../../NewLineHandling/README.md)
 

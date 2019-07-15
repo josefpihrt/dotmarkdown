@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MarkdownWriter\.WriteHeading\(Int32, String\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriter](../README.md#_top)
+**Containing Type**: [MarkdownWriter](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -14,7 +12,6 @@ public virtual void WriteHeading(int level, string text)
 
 ### Parameters
 
-#### level
+**level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-#### text
-
+**text** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

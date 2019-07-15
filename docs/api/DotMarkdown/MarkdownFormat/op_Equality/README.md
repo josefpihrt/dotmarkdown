@@ -1,24 +1,22 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.Equality\(MarkdownFormat, MarkdownFormat\) Operator
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public static bool operator ==(MarkdownFormat format1, MarkdownFormat format2)
+public static bool operator ==(DotMarkdown.MarkdownFormat format1, DotMarkdown.MarkdownFormat format2)
 ```
 
 ### Parameters
 
-#### format1
+**format1** &ensp; [MarkdownFormat](../README.md)
 
-#### format2
+**format2** &ensp; [MarkdownFormat](../README.md)
 
 ### Returns
 
-System\.[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
+[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 

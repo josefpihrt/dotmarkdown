@@ -1,8 +1,8 @@
 # MRaw Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MRaw](../README.md#_top)
+**Containing Type**: [MRaw](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -13,17 +13,17 @@
 | [MRaw(MRaw)](#DotMarkdown_Linq_MRaw__ctor_DotMarkdown_Linq_MRaw_) | |
 | [MRaw(String)](#DotMarkdown_Linq_MRaw__ctor_System_String_) | |
 
-## MRaw\(MRaw\) <a name="DotMarkdown_Linq_MRaw__ctor_DotMarkdown_Linq_MRaw_"></a>
+## MRaw\(MRaw\) <a id="DotMarkdown_Linq_MRaw__ctor_DotMarkdown_Linq_MRaw_"></a>
 
 ```csharp
-public MRaw(MRaw other)
+public MRaw(DotMarkdown.Linq.MRaw other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MRaw](../README.md)
 
-## MRaw\(String\) <a name="DotMarkdown_Linq_MRaw__ctor_System_String_"></a>
+## MRaw\(String\) <a id="DotMarkdown_Linq_MRaw__ctor_System_String_"></a>
 
 ```csharp
 public MRaw(string value)
@@ -31,5 +31,4 @@ public MRaw(string value)
 
 ### Parameters
 
-#### value
-
+**value** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

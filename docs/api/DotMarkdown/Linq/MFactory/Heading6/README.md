@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.Heading6 Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -16,41 +14,41 @@
 | [Heading6(Object)](#DotMarkdown_Linq_MFactory_Heading6_System_Object_) | |
 | [Heading6(Object\[\])](#DotMarkdown_Linq_MFactory_Heading6_System_Object___) | |
 
-## Heading6\(\) <a name="DotMarkdown_Linq_MFactory_Heading6"></a>
+## Heading6\(\) <a id="DotMarkdown_Linq_MFactory_Heading6"></a>
 
 ```csharp
-public static MHeading Heading6()
+public static DotMarkdown.Linq.MHeading Heading6()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MHeading](../../MHeading/README.md#_top)
+[MHeading](../../MHeading/README.md)
 
-## Heading6\(Object\) <a name="DotMarkdown_Linq_MFactory_Heading6_System_Object_"></a>
-
-```csharp
-public static MHeading Heading6(object content)
-```
-
-### Parameters
-
-#### content
-
-### Returns
-
-DotMarkdown\.Linq\.[MHeading](../../MHeading/README.md#_top)
-
-## Heading6\(Object\[\]\) <a name="DotMarkdown_Linq_MFactory_Heading6_System_Object___"></a>
+## Heading6\(Object\) <a id="DotMarkdown_Linq_MFactory_Heading6_System_Object_"></a>
 
 ```csharp
-public static MHeading Heading6(params object[] content)
+public static DotMarkdown.Linq.MHeading Heading6(object content)
 ```
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MHeading](../../MHeading/README.md#_top)
+[MHeading](../../MHeading/README.md)
+
+## Heading6\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Heading6_System_Object___"></a>
+
+```csharp
+public static DotMarkdown.Linq.MHeading Heading6(params object[] content)
+```
+
+### Parameters
+
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+
+### Returns
+
+[MHeading](../../MHeading/README.md)
 

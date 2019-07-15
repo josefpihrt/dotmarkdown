@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.Raw Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -15,31 +13,31 @@
 | [Raw(MRaw)](#DotMarkdown_Linq_MFactory_Raw_DotMarkdown_Linq_MRaw_) | |
 | [Raw(String)](#DotMarkdown_Linq_MFactory_Raw_System_String_) | |
 
-## Raw\(MRaw\) <a name="DotMarkdown_Linq_MFactory_Raw_DotMarkdown_Linq_MRaw_"></a>
+## Raw\(MRaw\) <a id="DotMarkdown_Linq_MFactory_Raw_DotMarkdown_Linq_MRaw_"></a>
 
 ```csharp
-public static MRaw Raw(MRaw other)
+public static DotMarkdown.Linq.MRaw Raw(DotMarkdown.Linq.MRaw other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MRaw](../../MRaw/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MRaw](../../MRaw/README.md#_top)
+[MRaw](../../MRaw/README.md)
 
-## Raw\(String\) <a name="DotMarkdown_Linq_MFactory_Raw_System_String_"></a>
+## Raw\(String\) <a id="DotMarkdown_Linq_MFactory_Raw_System_String_"></a>
 
 ```csharp
-public static MRaw Raw(string text)
+public static DotMarkdown.Linq.MRaw Raw(string text)
 ```
 
 ### Parameters
 
-#### text
+**text** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MRaw](../../MRaw/README.md#_top)
+[MRaw](../../MRaw/README.md)
 

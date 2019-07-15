@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MarkdownEscaper\.ShouldBeEscaped\(Char\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownEscaper](../README.md#_top)
+**Containing Type**: [MarkdownEscaper](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -14,9 +12,9 @@ public static bool ShouldBeEscaped(char value)
 
 ### Parameters
 
-#### value
+**value** &ensp; [Char](https://docs.microsoft.com/en-us/dotnet/api/system.char)
 
 ### Returns
 
-System\.[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
+[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 

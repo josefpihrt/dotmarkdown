@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.TableColumn Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,63 +15,63 @@
 | [TableColumn(HorizontalAlignment, Object\[\])](#DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_System_Object___) | |
 | [TableColumn(MTableColumn)](#DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_Linq_MTableColumn_) | |
 
-## TableColumn\(HorizontalAlignment\) <a name="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_"></a>
+## TableColumn\(HorizontalAlignment\) <a id="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_"></a>
 
 ```csharp
-public static MTableColumn TableColumn(HorizontalAlignment alignment)
+public static DotMarkdown.Linq.MTableColumn TableColumn(DotMarkdown.HorizontalAlignment alignment)
 ```
 
 ### Parameters
 
-#### alignment
+**alignment** &ensp; [HorizontalAlignment](../../../HorizontalAlignment/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTableColumn](../../MTableColumn/README.md#_top)
+[MTableColumn](../../MTableColumn/README.md)
 
-## TableColumn\(HorizontalAlignment, Object\) <a name="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_System_Object_"></a>
+## TableColumn\(HorizontalAlignment, Object\) <a id="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_System_Object_"></a>
 
 ```csharp
-public static MTableColumn TableColumn(HorizontalAlignment alignment, object content)
+public static DotMarkdown.Linq.MTableColumn TableColumn(DotMarkdown.HorizontalAlignment alignment, object content)
 ```
 
 ### Parameters
 
-#### alignment
+**alignment** &ensp; [HorizontalAlignment](../../../HorizontalAlignment/README.md)
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTableColumn](../../MTableColumn/README.md#_top)
+[MTableColumn](../../MTableColumn/README.md)
 
-## TableColumn\(HorizontalAlignment, Object\[\]\) <a name="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_System_Object___"></a>
+## TableColumn\(HorizontalAlignment, Object\[\]\) <a id="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_System_Object___"></a>
 
 ```csharp
-public static MTableColumn TableColumn(HorizontalAlignment alignment, params object[] content)
+public static DotMarkdown.Linq.MTableColumn TableColumn(DotMarkdown.HorizontalAlignment alignment, params object[] content)
 ```
 
 ### Parameters
 
-#### alignment
+**alignment** &ensp; [HorizontalAlignment](../../../HorizontalAlignment/README.md)
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTableColumn](../../MTableColumn/README.md#_top)
+[MTableColumn](../../MTableColumn/README.md)
 
-## TableColumn\(MTableColumn\) <a name="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_Linq_MTableColumn_"></a>
+## TableColumn\(MTableColumn\) <a id="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_Linq_MTableColumn_"></a>
 
 ```csharp
-public static MTableColumn TableColumn(MTableColumn other)
+public static DotMarkdown.Linq.MTableColumn TableColumn(DotMarkdown.Linq.MTableColumn other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MTableColumn](../../MTableColumn/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MTableColumn](../../MTableColumn/README.md#_top)
+[MTableColumn](../../MTableColumn/README.md)
 

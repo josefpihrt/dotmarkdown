@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MFactory\.SingleQuote\(\) Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public static MEntityRef SingleQuote()
+public static DotMarkdown.Linq.MEntityRef SingleQuote()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MEntityRef](../../MEntityRef/README.md#_top)
+[MEntityRef](../../MEntityRef/README.md)
 

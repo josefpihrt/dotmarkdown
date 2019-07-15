@@ -1,15 +1,12 @@
-<a name="_top"></a>
-
 # LanguageIdentifiers\.X86Assembly Field
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[LanguageIdentifiers](../README.md#_top)
+**Containing Type**: [LanguageIdentifiers](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
-## Summary
-
+\
 Identifier for x86 Assembly\.
 
 ```csharp
@@ -18,4 +15,5 @@ public const string X86Assembly = "x86asm"
 
 ### Field Value
 
-System\.[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
+[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
+

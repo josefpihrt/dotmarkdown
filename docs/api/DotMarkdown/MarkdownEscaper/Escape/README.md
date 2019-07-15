@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MarkdownEscaper\.Escape\(String, Func\<Char, Boolean>\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownEscaper](../README.md#_top)
+**Containing Type**: [MarkdownEscaper](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -14,11 +12,11 @@ public static string Escape(string value, Func<char, bool> shouldBeEscaped = nul
 
 ### Parameters
 
-#### value
+**value** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### shouldBeEscaped
+**shouldBeEscaped** &ensp; [Func](https://docs.microsoft.com/en-us/dotnet/api/system.func-2)\<[Char](https://docs.microsoft.com/en-us/dotnet/api/system.char), [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)>
 
 ### Returns
 
-System\.[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
+[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 

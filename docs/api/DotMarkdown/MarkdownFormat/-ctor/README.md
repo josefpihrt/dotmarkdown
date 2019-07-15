@@ -1,36 +1,35 @@
 # MarkdownFormat\(EmphasisStyle, EmphasisStyle, BulletListStyle, OrderedListStyle, HeadingStyle, HeadingOptions, TableOptions, CodeFenceStyle, CodeBlockOptions, CharEntityFormat, HorizontalRuleFormat?\) Constructor
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MarkdownFormat(EmphasisStyle boldStyle = Asterisk, EmphasisStyle italicStyle = Asterisk, BulletListStyle bulletListStyle = Asterisk, OrderedListStyle orderedListStyle = Dot, HeadingStyle headingStyle = NumberSign, HeadingOptions headingOptions = EmptyLineBeforeAndAfter, TableOptions tableOptions = FormatHeader | Padding | OuterDelimiter | EmptyLineBeforeAndAfter, CodeFenceStyle codeFenceStyle = Backtick, CodeBlockOptions codeBlockOptions = EmptyLineBeforeAndAfter, CharEntityFormat charEntityFormat = Hexadecimal, HorizontalRuleFormat? horizontalRuleFormat = null)
+public MarkdownFormat(DotMarkdown.EmphasisStyle boldStyle = Asterisk, DotMarkdown.EmphasisStyle italicStyle = Asterisk, DotMarkdown.BulletListStyle bulletListStyle = Asterisk, DotMarkdown.OrderedListStyle orderedListStyle = Dot, DotMarkdown.HeadingStyle headingStyle = NumberSign, DotMarkdown.HeadingOptions headingOptions = EmptyLineBeforeAndAfter, DotMarkdown.TableOptions tableOptions = FormatHeader | Padding | OuterDelimiter | EmptyLineBeforeAndAfter, DotMarkdown.CodeFenceStyle codeFenceStyle = Backtick, DotMarkdown.CodeBlockOptions codeBlockOptions = EmptyLineBeforeAndAfter, DotMarkdown.CharEntityFormat charEntityFormat = Hexadecimal, DotMarkdown.HorizontalRuleFormat? horizontalRuleFormat = null)
 ```
 
 ### Parameters
 
-#### boldStyle
+**boldStyle** &ensp; [EmphasisStyle](../../EmphasisStyle/README.md)
 
-#### italicStyle
+**italicStyle** &ensp; [EmphasisStyle](../../EmphasisStyle/README.md)
 
-#### bulletListStyle
+**bulletListStyle** &ensp; [BulletListStyle](../../BulletListStyle/README.md)
 
-#### orderedListStyle
+**orderedListStyle** &ensp; [OrderedListStyle](../../OrderedListStyle/README.md)
 
-#### headingStyle
+**headingStyle** &ensp; [HeadingStyle](../../HeadingStyle/README.md)
 
-#### headingOptions
+**headingOptions** &ensp; [HeadingOptions](../../HeadingOptions/README.md)
 
-#### tableOptions
+**tableOptions** &ensp; [TableOptions](../../TableOptions/README.md)
 
-#### codeFenceStyle
+**codeFenceStyle** &ensp; [CodeFenceStyle](../../CodeFenceStyle/README.md)
 
-#### codeBlockOptions
+**codeBlockOptions** &ensp; [CodeBlockOptions](../../CodeBlockOptions/README.md)
 
-#### charEntityFormat
+**charEntityFormat** &ensp; [CharEntityFormat](../../CharEntityFormat/README.md)
 
-#### horizontalRuleFormat
-
+**horizontalRuleFormat** &ensp; [HorizontalRuleFormat](../../HorizontalRuleFormat/README.md)?

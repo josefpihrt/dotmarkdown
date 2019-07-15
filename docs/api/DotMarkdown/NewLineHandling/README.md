@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # NewLineHandling Enum
 
-[Home](../../README.md#_top) &#x2022; [Fields](#fields)
+[Home](../../README.md) &#x2022; [Fields](#fields)
 
-**Namespace**: [DotMarkdown](../README.md#_top)
+**Namespace**: [DotMarkdown](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 

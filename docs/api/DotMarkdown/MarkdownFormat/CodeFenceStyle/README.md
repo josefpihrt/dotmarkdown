@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.CodeFenceStyle Property
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public CodeFenceStyle CodeFenceStyle { get; }
+public DotMarkdown.CodeFenceStyle CodeFenceStyle { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[CodeFenceStyle](../../CodeFenceStyle/README.md#_top)
+[CodeFenceStyle](../../CodeFenceStyle/README.md)
 

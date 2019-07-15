@@ -1,8 +1,8 @@
 # MComment Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MComment](../README.md#_top)
+**Containing Type**: [MComment](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -13,17 +13,17 @@
 | [MComment(MComment)](#DotMarkdown_Linq_MComment__ctor_DotMarkdown_Linq_MComment_) | |
 | [MComment(String)](#DotMarkdown_Linq_MComment__ctor_System_String_) | |
 
-## MComment\(MComment\) <a name="DotMarkdown_Linq_MComment__ctor_DotMarkdown_Linq_MComment_"></a>
+## MComment\(MComment\) <a id="DotMarkdown_Linq_MComment__ctor_DotMarkdown_Linq_MComment_"></a>
 
 ```csharp
-public MComment(MComment other)
+public MComment(DotMarkdown.Linq.MComment other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MComment](../README.md)
 
-## MComment\(String\) <a name="DotMarkdown_Linq_MComment__ctor_System_String_"></a>
+## MComment\(String\) <a id="DotMarkdown_Linq_MComment__ctor_System_String_"></a>
 
 ```csharp
 public MComment(string value)
@@ -31,5 +31,4 @@ public MComment(string value)
 
 ### Parameters
 
-#### value
-
+**value** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

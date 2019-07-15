@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MHorizontalRule\.Count Property
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MHorizontalRule](../README.md#_top)
+**Containing Type**: [MHorizontalRule](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -14,5 +12,5 @@ public int Count { get; set; }
 
 ### Property Value
 
-System\.[Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
+[Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 

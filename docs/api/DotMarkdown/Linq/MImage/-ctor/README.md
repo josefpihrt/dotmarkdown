@@ -1,8 +1,8 @@
 # MImage Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MImage](../README.md#_top)
+**Containing Type**: [MImage](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -13,17 +13,17 @@
 | [MImage(MImage)](#DotMarkdown_Linq_MImage__ctor_DotMarkdown_Linq_MImage_) | |
 | [MImage(String, String, String)](#DotMarkdown_Linq_MImage__ctor_System_String_System_String_System_String_) | |
 
-## MImage\(MImage\) <a name="DotMarkdown_Linq_MImage__ctor_DotMarkdown_Linq_MImage_"></a>
+## MImage\(MImage\) <a id="DotMarkdown_Linq_MImage__ctor_DotMarkdown_Linq_MImage_"></a>
 
 ```csharp
-public MImage(MImage other)
+public MImage(DotMarkdown.Linq.MImage other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MImage](../README.md)
 
-## MImage\(String, String, String\) <a name="DotMarkdown_Linq_MImage__ctor_System_String_System_String_System_String_"></a>
+## MImage\(String, String, String\) <a id="DotMarkdown_Linq_MImage__ctor_System_String_System_String_System_String_"></a>
 
 ```csharp
 public MImage(string text, string url, string title = null)
@@ -31,9 +31,8 @@ public MImage(string text, string url, string title = null)
 
 ### Parameters
 
-#### text
+**text** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### url
+**url** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### title
-
+**title** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

@@ -1,8 +1,8 @@
 # MIndentedCodeBlock Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MIndentedCodeBlock](../README.md#_top)
+**Containing Type**: [MIndentedCodeBlock](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -13,17 +13,17 @@
 | [MIndentedCodeBlock(MIndentedCodeBlock)](#DotMarkdown_Linq_MIndentedCodeBlock__ctor_DotMarkdown_Linq_MIndentedCodeBlock_) | |
 | [MIndentedCodeBlock(String)](#DotMarkdown_Linq_MIndentedCodeBlock__ctor_System_String_) | |
 
-## MIndentedCodeBlock\(MIndentedCodeBlock\) <a name="DotMarkdown_Linq_MIndentedCodeBlock__ctor_DotMarkdown_Linq_MIndentedCodeBlock_"></a>
+## MIndentedCodeBlock\(MIndentedCodeBlock\) <a id="DotMarkdown_Linq_MIndentedCodeBlock__ctor_DotMarkdown_Linq_MIndentedCodeBlock_"></a>
 
 ```csharp
-public MIndentedCodeBlock(MIndentedCodeBlock other)
+public MIndentedCodeBlock(DotMarkdown.Linq.MIndentedCodeBlock other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MIndentedCodeBlock](../README.md)
 
-## MIndentedCodeBlock\(String\) <a name="DotMarkdown_Linq_MIndentedCodeBlock__ctor_System_String_"></a>
+## MIndentedCodeBlock\(String\) <a id="DotMarkdown_Linq_MIndentedCodeBlock__ctor_System_String_"></a>
 
 ```csharp
 public MIndentedCodeBlock(string text)
@@ -31,5 +31,4 @@ public MIndentedCodeBlock(string text)
 
 ### Parameters
 
-#### text
-
+**text** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

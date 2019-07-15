@@ -1,22 +1,20 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.WithCharEntityFormat\(CharEntityFormat\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MarkdownFormat WithCharEntityFormat(CharEntityFormat charEntityFormat)
+public DotMarkdown.MarkdownFormat WithCharEntityFormat(DotMarkdown.CharEntityFormat charEntityFormat)
 ```
 
 ### Parameters
 
-#### charEntityFormat
+**charEntityFormat** &ensp; [CharEntityFormat](../../CharEntityFormat/README.md)
 
 ### Returns
 
-DotMarkdown\.[MarkdownFormat](../README.md#_top)
+[MarkdownFormat](../README.md)
 

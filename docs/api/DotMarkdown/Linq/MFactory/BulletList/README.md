@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.BulletList Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,55 +15,55 @@
 | [BulletList(Object)](#DotMarkdown_Linq_MFactory_BulletList_System_Object_) | |
 | [BulletList(Object\[\])](#DotMarkdown_Linq_MFactory_BulletList_System_Object___) | |
 
-## BulletList\(\) <a name="DotMarkdown_Linq_MFactory_BulletList"></a>
+## BulletList\(\) <a id="DotMarkdown_Linq_MFactory_BulletList"></a>
 
 ```csharp
-public static MBulletList BulletList()
+public static DotMarkdown.Linq.MBulletList BulletList()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MBulletList](../../MBulletList/README.md#_top)
+[MBulletList](../../MBulletList/README.md)
 
-## BulletList\(MBulletList\) <a name="DotMarkdown_Linq_MFactory_BulletList_DotMarkdown_Linq_MBulletList_"></a>
-
-```csharp
-public static MBulletList BulletList(MBulletList other)
-```
-
-### Parameters
-
-#### other
-
-### Returns
-
-DotMarkdown\.Linq\.[MBulletList](../../MBulletList/README.md#_top)
-
-## BulletList\(Object\) <a name="DotMarkdown_Linq_MFactory_BulletList_System_Object_"></a>
+## BulletList\(MBulletList\) <a id="DotMarkdown_Linq_MFactory_BulletList_DotMarkdown_Linq_MBulletList_"></a>
 
 ```csharp
-public static MBulletList BulletList(object content)
+public static DotMarkdown.Linq.MBulletList BulletList(DotMarkdown.Linq.MBulletList other)
 ```
 
 ### Parameters
 
-#### content
+**other** &ensp; [MBulletList](../../MBulletList/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MBulletList](../../MBulletList/README.md#_top)
+[MBulletList](../../MBulletList/README.md)
 
-## BulletList\(Object\[\]\) <a name="DotMarkdown_Linq_MFactory_BulletList_System_Object___"></a>
+## BulletList\(Object\) <a id="DotMarkdown_Linq_MFactory_BulletList_System_Object_"></a>
 
 ```csharp
-public static MBulletList BulletList(params object[] content)
+public static DotMarkdown.Linq.MBulletList BulletList(object content)
 ```
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MBulletList](../../MBulletList/README.md#_top)
+[MBulletList](../../MBulletList/README.md)
+
+## BulletList\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_BulletList_System_Object___"></a>
+
+```csharp
+public static DotMarkdown.Linq.MBulletList BulletList(params object[] content)
+```
+
+### Parameters
+
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+
+### Returns
+
+[MBulletList](../../MBulletList/README.md)
 

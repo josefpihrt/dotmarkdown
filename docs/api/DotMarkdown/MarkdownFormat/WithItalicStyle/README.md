@@ -1,22 +1,20 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.WithItalicStyle\(EmphasisStyle\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MarkdownFormat WithItalicStyle(EmphasisStyle italicStyle)
+public DotMarkdown.MarkdownFormat WithItalicStyle(DotMarkdown.EmphasisStyle italicStyle)
 ```
 
 ### Parameters
 
-#### italicStyle
+**italicStyle** &ensp; [EmphasisStyle](../../EmphasisStyle/README.md)
 
 ### Returns
 
-DotMarkdown\.[MarkdownFormat](../README.md#_top)
+[MarkdownFormat](../README.md)
 

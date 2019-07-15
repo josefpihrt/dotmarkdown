@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MFactory\.Ampersand\(\) Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public static MEntityRef Ampersand()
+public static DotMarkdown.Linq.MEntityRef Ampersand()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MEntityRef](../../MEntityRef/README.md#_top)
+[MEntityRef](../../MEntityRef/README.md)
 

@@ -1,8 +1,8 @@
 # MEntityRef Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MEntityRef](../README.md#_top)
+**Containing Type**: [MEntityRef](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -13,17 +13,17 @@
 | [MEntityRef(MEntityRef)](#DotMarkdown_Linq_MEntityRef__ctor_DotMarkdown_Linq_MEntityRef_) | |
 | [MEntityRef(String)](#DotMarkdown_Linq_MEntityRef__ctor_System_String_) | |
 
-## MEntityRef\(MEntityRef\) <a name="DotMarkdown_Linq_MEntityRef__ctor_DotMarkdown_Linq_MEntityRef_"></a>
+## MEntityRef\(MEntityRef\) <a id="DotMarkdown_Linq_MEntityRef__ctor_DotMarkdown_Linq_MEntityRef_"></a>
 
 ```csharp
-public MEntityRef(MEntityRef other)
+public MEntityRef(DotMarkdown.Linq.MEntityRef other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MEntityRef](../README.md)
 
-## MEntityRef\(String\) <a name="DotMarkdown_Linq_MEntityRef__ctor_System_String_"></a>
+## MEntityRef\(String\) <a id="DotMarkdown_Linq_MEntityRef__ctor_System_String_"></a>
 
 ```csharp
 public MEntityRef(string name)
@@ -31,5 +31,4 @@ public MEntityRef(string name)
 
 ### Parameters
 
-#### name
-
+**name** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

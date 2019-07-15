@@ -1,15 +1,13 @@
-<a name="_top"></a>
-
 # CodeBlockOptions Enum
 
-[Home](../../README.md#_top) &#x2022; [Fields](#fields)
+[Home](../../README.md) &#x2022; [Fields](#fields)
 
-**Namespace**: [DotMarkdown](../README.md#_top)
+**Namespace**: [DotMarkdown](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-[System.FlagsAttribute]
+[Flags]
 public enum CodeBlockOptions
 ```
 
@@ -19,7 +17,7 @@ public enum CodeBlockOptions
 
 ### Attributes
 
-* System\.[FlagsAttribute](https://docs.microsoft.com/en-us/dotnet/api/system.flagsattribute)
+* [FlagsAttribute](https://docs.microsoft.com/en-us/dotnet/api/system.flagsattribute)
 
 ## Fields
 

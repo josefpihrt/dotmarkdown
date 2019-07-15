@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.Image Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -15,35 +13,35 @@
 | [Image(MImage)](#DotMarkdown_Linq_MFactory_Image_DotMarkdown_Linq_MImage_) | |
 | [Image(String, String, String)](#DotMarkdown_Linq_MFactory_Image_System_String_System_String_System_String_) | |
 
-## Image\(MImage\) <a name="DotMarkdown_Linq_MFactory_Image_DotMarkdown_Linq_MImage_"></a>
+## Image\(MImage\) <a id="DotMarkdown_Linq_MFactory_Image_DotMarkdown_Linq_MImage_"></a>
 
 ```csharp
-public static MImage Image(MImage other)
+public static DotMarkdown.Linq.MImage Image(DotMarkdown.Linq.MImage other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MImage](../../MImage/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MImage](../../MImage/README.md#_top)
+[MImage](../../MImage/README.md)
 
-## Image\(String, String, String\) <a name="DotMarkdown_Linq_MFactory_Image_System_String_System_String_System_String_"></a>
+## Image\(String, String, String\) <a id="DotMarkdown_Linq_MFactory_Image_System_String_System_String_System_String_"></a>
 
 ```csharp
-public static MImage Image(string text, string url, string title = null)
+public static DotMarkdown.Linq.MImage Image(string text, string url, string title = null)
 ```
 
 ### Parameters
 
-#### text
+**text** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### url
+**url** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### title
+**title** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MImage](../../MImage/README.md#_top)
+[MImage](../../MImage/README.md)
 

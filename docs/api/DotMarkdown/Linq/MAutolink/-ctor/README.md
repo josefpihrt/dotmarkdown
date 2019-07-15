@@ -1,8 +1,8 @@
 # MAutolink Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MAutolink](../README.md#_top)
+**Containing Type**: [MAutolink](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -13,17 +13,17 @@
 | [MAutolink(MAutolink)](#DotMarkdown_Linq_MAutolink__ctor_DotMarkdown_Linq_MAutolink_) | |
 | [MAutolink(String)](#DotMarkdown_Linq_MAutolink__ctor_System_String_) | |
 
-## MAutolink\(MAutolink\) <a name="DotMarkdown_Linq_MAutolink__ctor_DotMarkdown_Linq_MAutolink_"></a>
+## MAutolink\(MAutolink\) <a id="DotMarkdown_Linq_MAutolink__ctor_DotMarkdown_Linq_MAutolink_"></a>
 
 ```csharp
-public MAutolink(MAutolink other)
+public MAutolink(DotMarkdown.Linq.MAutolink other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MAutolink](../README.md)
 
-## MAutolink\(String\) <a name="DotMarkdown_Linq_MAutolink__ctor_System_String_"></a>
+## MAutolink\(String\) <a id="DotMarkdown_Linq_MAutolink__ctor_System_String_"></a>
 
 ```csharp
 public MAutolink(string url)
@@ -31,5 +31,4 @@ public MAutolink(string url)
 
 ### Parameters
 
-#### url
-
+**url** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

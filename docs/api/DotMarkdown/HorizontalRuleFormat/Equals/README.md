@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # HorizontalRuleFormat\.Equals Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[HorizontalRuleFormat](../README.md#_top)
+**Containing Type**: [HorizontalRuleFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -15,25 +13,25 @@
 | [Equals(HorizontalRuleFormat)](#DotMarkdown_HorizontalRuleFormat_Equals_DotMarkdown_HorizontalRuleFormat_) |  \(Implements [IEquatable\<HorizontalRuleFormat>.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
 | [Equals(Object)](#DotMarkdown_HorizontalRuleFormat_Equals_System_Object_) |  \(Overrides [ValueType.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.valuetype.equals)\) |
 
-## Equals\(HorizontalRuleFormat\) <a name="DotMarkdown_HorizontalRuleFormat_Equals_DotMarkdown_HorizontalRuleFormat_"></a>
+## Equals\(HorizontalRuleFormat\) <a id="DotMarkdown_HorizontalRuleFormat_Equals_DotMarkdown_HorizontalRuleFormat_"></a>
 
 ```csharp
-public bool Equals(HorizontalRuleFormat other)
+public bool Equals(DotMarkdown.HorizontalRuleFormat other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [HorizontalRuleFormat](../README.md)
 
 ### Returns
 
-System\.[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
+[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 
 ### Implements
 
 * [IEquatable\<HorizontalRuleFormat>.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)
 
-## Equals\(Object\) <a name="DotMarkdown_HorizontalRuleFormat_Equals_System_Object_"></a>
+## Equals\(Object\) <a id="DotMarkdown_HorizontalRuleFormat_Equals_System_Object_"></a>
 
 ```csharp
 public override bool Equals(object obj)
@@ -41,9 +39,9 @@ public override bool Equals(object obj)
 
 ### Parameters
 
-#### obj
+**obj** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-System\.[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
+[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 

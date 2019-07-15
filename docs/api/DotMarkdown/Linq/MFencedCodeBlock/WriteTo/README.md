@@ -1,18 +1,15 @@
-<a name="_top"></a>
-
 # MFencedCodeBlock\.WriteTo\(MarkdownWriter\) Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFencedCodeBlock](../README.md#_top)
+**Containing Type**: [MFencedCodeBlock](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public override void WriteTo(MarkdownWriter writer)
+public override void WriteTo(DotMarkdown.MarkdownWriter writer)
 ```
 
 ### Parameters
 
-#### writer
-
+**writer** &ensp; [MarkdownWriter](../../../MarkdownWriter/README.md)

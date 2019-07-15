@@ -1,22 +1,20 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.WithOrderedListStyle\(OrderedListStyle\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MarkdownFormat WithOrderedListStyle(OrderedListStyle orderedListStyle)
+public DotMarkdown.MarkdownFormat WithOrderedListStyle(DotMarkdown.OrderedListStyle orderedListStyle)
 ```
 
 ### Parameters
 
-#### orderedListStyle
+**orderedListStyle** &ensp; [OrderedListStyle](../../OrderedListStyle/README.md)
 
 ### Returns
 
-DotMarkdown\.[MarkdownFormat](../README.md#_top)
+[MarkdownFormat](../README.md)
 

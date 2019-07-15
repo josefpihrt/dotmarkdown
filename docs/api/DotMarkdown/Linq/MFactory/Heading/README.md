@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.Heading Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,63 +15,63 @@
 | [Heading(Int32, Object\[\])](#DotMarkdown_Linq_MFactory_Heading_System_Int32_System_Object___) | |
 | [Heading(MHeading)](#DotMarkdown_Linq_MFactory_Heading_DotMarkdown_Linq_MHeading_) | |
 
-## Heading\(Int32\) <a name="DotMarkdown_Linq_MFactory_Heading_System_Int32_"></a>
+## Heading\(Int32\) <a id="DotMarkdown_Linq_MFactory_Heading_System_Int32_"></a>
 
 ```csharp
-public static MHeading Heading(int level)
+public static DotMarkdown.Linq.MHeading Heading(int level)
 ```
 
 ### Parameters
 
-#### level
+**level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MHeading](../../MHeading/README.md#_top)
+[MHeading](../../MHeading/README.md)
 
-## Heading\(Int32, Object\) <a name="DotMarkdown_Linq_MFactory_Heading_System_Int32_System_Object_"></a>
+## Heading\(Int32, Object\) <a id="DotMarkdown_Linq_MFactory_Heading_System_Int32_System_Object_"></a>
 
 ```csharp
-public static MHeading Heading(int level, object content)
+public static DotMarkdown.Linq.MHeading Heading(int level, object content)
 ```
 
 ### Parameters
 
-#### level
+**level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MHeading](../../MHeading/README.md#_top)
+[MHeading](../../MHeading/README.md)
 
-## Heading\(Int32, Object\[\]\) <a name="DotMarkdown_Linq_MFactory_Heading_System_Int32_System_Object___"></a>
+## Heading\(Int32, Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Heading_System_Int32_System_Object___"></a>
 
 ```csharp
-public static MHeading Heading(int level, params object[] content)
+public static DotMarkdown.Linq.MHeading Heading(int level, params object[] content)
 ```
 
 ### Parameters
 
-#### level
+**level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
 
 ### Returns
 
-DotMarkdown\.Linq\.[MHeading](../../MHeading/README.md#_top)
+[MHeading](../../MHeading/README.md)
 
-## Heading\(MHeading\) <a name="DotMarkdown_Linq_MFactory_Heading_DotMarkdown_Linq_MHeading_"></a>
+## Heading\(MHeading\) <a id="DotMarkdown_Linq_MFactory_Heading_DotMarkdown_Linq_MHeading_"></a>
 
 ```csharp
-public static MHeading Heading(MHeading other)
+public static DotMarkdown.Linq.MHeading Heading(DotMarkdown.Linq.MHeading other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MHeading](../../MHeading/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MHeading](../../MHeading/README.md#_top)
+[MHeading](../../MHeading/README.md)
 

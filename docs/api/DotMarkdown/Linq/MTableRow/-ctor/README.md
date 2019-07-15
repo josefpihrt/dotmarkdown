@@ -1,8 +1,8 @@
 # MTableRow Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MTableRow](../README.md#_top)
+**Containing Type**: [MTableRow](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -15,23 +15,23 @@
 | [MTableRow(Object)](#DotMarkdown_Linq_MTableRow__ctor_System_Object_) | |
 | [MTableRow(Object\[\])](#DotMarkdown_Linq_MTableRow__ctor_System_Object___) | |
 
-## MTableRow\(\) <a name="DotMarkdown_Linq_MTableRow__ctor"></a>
+## MTableRow\(\) <a id="DotMarkdown_Linq_MTableRow__ctor"></a>
 
 ```csharp
 public MTableRow()
 ```
 
-## MTableRow\(MTableRow\) <a name="DotMarkdown_Linq_MTableRow__ctor_DotMarkdown_Linq_MTableRow_"></a>
+## MTableRow\(MTableRow\) <a id="DotMarkdown_Linq_MTableRow__ctor_DotMarkdown_Linq_MTableRow_"></a>
 
 ```csharp
-public MTableRow(MTableRow other)
+public MTableRow(DotMarkdown.Linq.MTableRow other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MTableRow](../README.md)
 
-## MTableRow\(Object\) <a name="DotMarkdown_Linq_MTableRow__ctor_System_Object_"></a>
+## MTableRow\(Object\) <a id="DotMarkdown_Linq_MTableRow__ctor_System_Object_"></a>
 
 ```csharp
 public MTableRow(object content)
@@ -39,9 +39,9 @@ public MTableRow(object content)
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
-## MTableRow\(Object\[\]\) <a name="DotMarkdown_Linq_MTableRow__ctor_System_Object___"></a>
+## MTableRow\(Object\[\]\) <a id="DotMarkdown_Linq_MTableRow__ctor_System_Object___"></a>
 
 ```csharp
 public MTableRow(params object[] content)
@@ -49,5 +49,4 @@ public MTableRow(params object[] content)
 
 ### Parameters
 
-#### content
-
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]

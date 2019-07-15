@@ -1,18 +1,15 @@
-<a name="_top"></a>
-
 # MElement\.WriteTo\(MarkdownWriter\) Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MElement](../README.md#_top)
+**Containing Type**: [MElement](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public abstract void WriteTo(MarkdownWriter writer)
+public abstract void WriteTo(DotMarkdown.MarkdownWriter writer)
 ```
 
 ### Parameters
 
-#### writer
-
+**writer** &ensp; [MarkdownWriter](../../../MarkdownWriter/README.md)

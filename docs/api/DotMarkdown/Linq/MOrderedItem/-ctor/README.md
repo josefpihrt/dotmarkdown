@@ -1,8 +1,8 @@
 # MOrderedItem Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MOrderedItem](../README.md#_top)
+**Containing Type**: [MOrderedItem](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -15,7 +15,7 @@
 | [MOrderedItem(Int32, Object\[\])](#DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_System_Object___) | |
 | [MOrderedItem(MOrderedItem)](#DotMarkdown_Linq_MOrderedItem__ctor_DotMarkdown_Linq_MOrderedItem_) | |
 
-## MOrderedItem\(Int32\) <a name="DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_"></a>
+## MOrderedItem\(Int32\) <a id="DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_"></a>
 
 ```csharp
 public MOrderedItem(int number)
@@ -23,9 +23,9 @@ public MOrderedItem(int number)
 
 ### Parameters
 
-#### number
+**number** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-## MOrderedItem\(Int32, Object\) <a name="DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_System_Object_"></a>
+## MOrderedItem\(Int32, Object\) <a id="DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_System_Object_"></a>
 
 ```csharp
 public MOrderedItem(int number, object content)
@@ -33,11 +33,11 @@ public MOrderedItem(int number, object content)
 
 ### Parameters
 
-#### number
+**number** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
-## MOrderedItem\(Int32, Object\[\]\) <a name="DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_System_Object___"></a>
+## MOrderedItem\(Int32, Object\[\]\) <a id="DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_System_Object___"></a>
 
 ```csharp
 public MOrderedItem(int number, params object[] content)
@@ -45,17 +45,16 @@ public MOrderedItem(int number, params object[] content)
 
 ### Parameters
 
-#### number
+**number** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
 
-## MOrderedItem\(MOrderedItem\) <a name="DotMarkdown_Linq_MOrderedItem__ctor_DotMarkdown_Linq_MOrderedItem_"></a>
+## MOrderedItem\(MOrderedItem\) <a id="DotMarkdown_Linq_MOrderedItem__ctor_DotMarkdown_Linq_MOrderedItem_"></a>
 
 ```csharp
-public MOrderedItem(MOrderedItem other)
+public MOrderedItem(DotMarkdown.Linq.MOrderedItem other)
 ```
 
 ### Parameters
 
-#### other
-
+**other** &ensp; [MOrderedItem](../README.md)

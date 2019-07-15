@@ -1,8 +1,8 @@
 # MStrikethrough Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MStrikethrough](../README.md#_top)
+**Containing Type**: [MStrikethrough](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -15,23 +15,23 @@
 | [MStrikethrough(Object)](#DotMarkdown_Linq_MStrikethrough__ctor_System_Object_) | |
 | [MStrikethrough(Object\[\])](#DotMarkdown_Linq_MStrikethrough__ctor_System_Object___) | |
 
-## MStrikethrough\(\) <a name="DotMarkdown_Linq_MStrikethrough__ctor"></a>
+## MStrikethrough\(\) <a id="DotMarkdown_Linq_MStrikethrough__ctor"></a>
 
 ```csharp
 public MStrikethrough()
 ```
 
-## MStrikethrough\(MStrikethrough\) <a name="DotMarkdown_Linq_MStrikethrough__ctor_DotMarkdown_Linq_MStrikethrough_"></a>
+## MStrikethrough\(MStrikethrough\) <a id="DotMarkdown_Linq_MStrikethrough__ctor_DotMarkdown_Linq_MStrikethrough_"></a>
 
 ```csharp
-public MStrikethrough(MStrikethrough other)
+public MStrikethrough(DotMarkdown.Linq.MStrikethrough other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MStrikethrough](../README.md)
 
-## MStrikethrough\(Object\) <a name="DotMarkdown_Linq_MStrikethrough__ctor_System_Object_"></a>
+## MStrikethrough\(Object\) <a id="DotMarkdown_Linq_MStrikethrough__ctor_System_Object_"></a>
 
 ```csharp
 public MStrikethrough(object content)
@@ -39,9 +39,9 @@ public MStrikethrough(object content)
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
-## MStrikethrough\(Object\[\]\) <a name="DotMarkdown_Linq_MStrikethrough__ctor_System_Object___"></a>
+## MStrikethrough\(Object\[\]\) <a id="DotMarkdown_Linq_MStrikethrough__ctor_System_Object___"></a>
 
 ```csharp
 public MStrikethrough(params object[] content)
@@ -49,5 +49,4 @@ public MStrikethrough(params object[] content)
 
 ### Parameters
 
-#### content
-
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]

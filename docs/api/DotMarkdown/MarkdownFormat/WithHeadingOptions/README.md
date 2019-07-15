@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.WithHeadingOptions Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -15,31 +13,31 @@
 | [WithHeadingOptions(HeadingOptions)](#DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingOptions_) | |
 | [WithHeadingOptions(HeadingStyle)](#DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingStyle_) | |
 
-## WithHeadingOptions\(HeadingOptions\) <a name="DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingOptions_"></a>
+## WithHeadingOptions\(HeadingOptions\) <a id="DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingOptions_"></a>
 
 ```csharp
-public MarkdownFormat WithHeadingOptions(HeadingOptions headingOptions)
+public DotMarkdown.MarkdownFormat WithHeadingOptions(DotMarkdown.HeadingOptions headingOptions)
 ```
 
 ### Parameters
 
-#### headingOptions
+**headingOptions** &ensp; [HeadingOptions](../../HeadingOptions/README.md)
 
 ### Returns
 
-DotMarkdown\.[MarkdownFormat](../README.md#_top)
+[MarkdownFormat](../README.md)
 
-## WithHeadingOptions\(HeadingStyle\) <a name="DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingStyle_"></a>
+## WithHeadingOptions\(HeadingStyle\) <a id="DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingStyle_"></a>
 
 ```csharp
-public MarkdownFormat WithHeadingOptions(HeadingStyle headingStyle)
+public DotMarkdown.MarkdownFormat WithHeadingOptions(DotMarkdown.HeadingStyle headingStyle)
 ```
 
 ### Parameters
 
-#### headingStyle
+**headingStyle** &ensp; [HeadingStyle](../../HeadingStyle/README.md)
 
 ### Returns
 
-DotMarkdown\.[MarkdownFormat](../README.md#_top)
+[MarkdownFormat](../README.md)
 

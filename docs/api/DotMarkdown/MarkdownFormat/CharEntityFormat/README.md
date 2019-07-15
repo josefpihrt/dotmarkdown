@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.CharEntityFormat Property
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public CharEntityFormat CharEntityFormat { get; }
+public DotMarkdown.CharEntityFormat CharEntityFormat { get; }
 ```
 
 ### Property Value
 
-DotMarkdown\.[CharEntityFormat](../../CharEntityFormat/README.md#_top)
+[CharEntityFormat](../../CharEntityFormat/README.md)
 

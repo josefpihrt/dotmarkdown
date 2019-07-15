@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MarkdownWriter\.WriteHorizontalRule Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownWriter](../README.md#_top)
+**Containing Type**: [MarkdownWriter](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -16,33 +14,32 @@
 | [WriteHorizontalRule(HorizontalRuleFormat)](#DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleFormat__) | |
 | [WriteHorizontalRule(HorizontalRuleStyle, Int32, String)](#DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_) | |
 
-## WriteHorizontalRule\(\) <a name="DotMarkdown_MarkdownWriter_WriteHorizontalRule"></a>
+## WriteHorizontalRule\(\) <a id="DotMarkdown_MarkdownWriter_WriteHorizontalRule"></a>
 
 ```csharp
 public void WriteHorizontalRule()
 ```
 
-## WriteHorizontalRule\(HorizontalRuleFormat\) <a name="DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleFormat__"></a>
+## WriteHorizontalRule\(HorizontalRuleFormat\) <a id="DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleFormat__"></a>
 
 ```csharp
-public void WriteHorizontalRule(in HorizontalRuleFormat format)
+public void WriteHorizontalRule(in DotMarkdown.HorizontalRuleFormat format)
 ```
 
 ### Parameters
 
-#### format
+**format** &ensp; [HorizontalRuleFormat](../../HorizontalRuleFormat/README.md)
 
-## WriteHorizontalRule\(HorizontalRuleStyle, Int32, String\) <a name="DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_"></a>
+## WriteHorizontalRule\(HorizontalRuleStyle, Int32, String\) <a id="DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_"></a>
 
 ```csharp
-public abstract void WriteHorizontalRule(HorizontalRuleStyle style, int count = 3, string separator = " ")
+public abstract void WriteHorizontalRule(DotMarkdown.HorizontalRuleStyle style, int count = 3, string separator = " ")
 ```
 
 ### Parameters
 
-#### style
+**style** &ensp; [HorizontalRuleStyle](../../HorizontalRuleStyle/README.md)
 
-#### count
+**count** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-#### separator
-
+**separator** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

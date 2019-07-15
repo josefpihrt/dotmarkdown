@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.Equals Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -15,25 +13,25 @@
 | [Equals(MarkdownFormat)](#DotMarkdown_MarkdownFormat_Equals_DotMarkdown_MarkdownFormat_) |  \(Implements [IEquatable\<MarkdownFormat>.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
 | [Equals(Object)](#DotMarkdown_MarkdownFormat_Equals_System_Object_) |  \(Overrides [Object.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.object.equals)\) |
 
-## Equals\(MarkdownFormat\) <a name="DotMarkdown_MarkdownFormat_Equals_DotMarkdown_MarkdownFormat_"></a>
+## Equals\(MarkdownFormat\) <a id="DotMarkdown_MarkdownFormat_Equals_DotMarkdown_MarkdownFormat_"></a>
 
 ```csharp
-public bool Equals(MarkdownFormat other)
+public bool Equals(DotMarkdown.MarkdownFormat other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MarkdownFormat](../README.md)
 
 ### Returns
 
-System\.[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
+[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 
 ### Implements
 
 * [IEquatable\<MarkdownFormat>.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)
 
-## Equals\(Object\) <a name="DotMarkdown_MarkdownFormat_Equals_System_Object_"></a>
+## Equals\(Object\) <a id="DotMarkdown_MarkdownFormat_Equals_System_Object_"></a>
 
 ```csharp
 public override bool Equals(object obj)
@@ -41,9 +39,9 @@ public override bool Equals(object obj)
 
 ### Parameters
 
-#### obj
+**obj** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-System\.[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
+[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 

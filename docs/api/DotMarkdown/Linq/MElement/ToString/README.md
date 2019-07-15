@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MElement\.ToString Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MElement](../README.md#_top)
+**Containing Type**: [MElement](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -16,7 +14,7 @@
 | [ToString(MarkdownFormat)](#DotMarkdown_Linq_MElement_ToString_DotMarkdown_MarkdownFormat_) | |
 | [ToString(MarkdownWriterSettings)](#DotMarkdown_Linq_MElement_ToString_DotMarkdown_MarkdownWriterSettings_) | |
 
-## ToString\(\) <a name="DotMarkdown_Linq_MElement_ToString"></a>
+## ToString\(\) <a id="DotMarkdown_Linq_MElement_ToString"></a>
 
 ```csharp
 public override string ToString()
@@ -24,33 +22,33 @@ public override string ToString()
 
 ### Returns
 
-System\.[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
+[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-## ToString\(MarkdownFormat\) <a name="DotMarkdown_Linq_MElement_ToString_DotMarkdown_MarkdownFormat_"></a>
+## ToString\(MarkdownFormat\) <a id="DotMarkdown_Linq_MElement_ToString_DotMarkdown_MarkdownFormat_"></a>
 
 ```csharp
-public string ToString(MarkdownFormat format)
+public string ToString(DotMarkdown.MarkdownFormat format)
 ```
 
 ### Parameters
 
-#### format
+**format** &ensp; [MarkdownFormat](../../../MarkdownFormat/README.md)
 
 ### Returns
 
-System\.[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
+[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-## ToString\(MarkdownWriterSettings\) <a name="DotMarkdown_Linq_MElement_ToString_DotMarkdown_MarkdownWriterSettings_"></a>
+## ToString\(MarkdownWriterSettings\) <a id="DotMarkdown_Linq_MElement_ToString_DotMarkdown_MarkdownWriterSettings_"></a>
 
 ```csharp
-public string ToString(MarkdownWriterSettings settings)
+public string ToString(DotMarkdown.MarkdownWriterSettings settings)
 ```
 
 ### Parameters
 
-#### settings
+**settings** &ensp; [MarkdownWriterSettings](../../../MarkdownWriterSettings/README.md)
 
 ### Returns
 
-System\.[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
+[String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 

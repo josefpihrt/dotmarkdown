@@ -1,8 +1,8 @@
 # MLink Constructors
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MLink](../README.md#_top)
+**Containing Type**: [MLink](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -13,17 +13,17 @@
 | [MLink(MLink)](#DotMarkdown_Linq_MLink__ctor_DotMarkdown_Linq_MLink_) | |
 | [MLink(Object, String, String)](#DotMarkdown_Linq_MLink__ctor_System_Object_System_String_System_String_) | |
 
-## MLink\(MLink\) <a name="DotMarkdown_Linq_MLink__ctor_DotMarkdown_Linq_MLink_"></a>
+## MLink\(MLink\) <a id="DotMarkdown_Linq_MLink__ctor_DotMarkdown_Linq_MLink_"></a>
 
 ```csharp
-public MLink(MLink other)
+public MLink(DotMarkdown.Linq.MLink other)
 ```
 
 ### Parameters
 
-#### other
+**other** &ensp; [MLink](../README.md)
 
-## MLink\(Object, String, String\) <a name="DotMarkdown_Linq_MLink__ctor_System_Object_System_String_System_String_"></a>
+## MLink\(Object, String, String\) <a id="DotMarkdown_Linq_MLink__ctor_System_Object_System_String_System_String_"></a>
 
 ```csharp
 public MLink(object content, string url, string title = null)
@@ -31,9 +31,8 @@ public MLink(object content, string url, string title = null)
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
-#### url
+**url** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
-#### title
-
+**title** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)

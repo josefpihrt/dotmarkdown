@@ -1,18 +1,16 @@
-<a name="_top"></a>
-
 # MContainer\.Elements\(\) Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MContainer](../README.md#_top)
+**Containing Type**: [MContainer](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public IEnumerable<MElement> Elements()
+public System.Collections.Generic.IEnumerable<DotMarkdown.Linq.MElement> Elements()
 ```
 
 ### Returns
 
-System\.Collections\.Generic\.[IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1)\<DotMarkdown\.Linq\.[MElement](../../MElement/README.md#_top)>
+[IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1)\<[MElement](../../MElement/README.md)>
 

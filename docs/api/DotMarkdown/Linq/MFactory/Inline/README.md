@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MFactory\.Inline Method
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MFactory](../README.md#_top)
+**Containing Type**: [MFactory](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -17,55 +15,55 @@
 | [Inline(Object)](#DotMarkdown_Linq_MFactory_Inline_System_Object_) | |
 | [Inline(Object\[\])](#DotMarkdown_Linq_MFactory_Inline_System_Object___) | |
 
-## Inline\(\) <a name="DotMarkdown_Linq_MFactory_Inline"></a>
+## Inline\(\) <a id="DotMarkdown_Linq_MFactory_Inline"></a>
 
 ```csharp
-public static MInline Inline()
+public static DotMarkdown.Linq.MInline Inline()
 ```
 
 ### Returns
 
-DotMarkdown\.Linq\.[MInline](../../MInline/README.md#_top)
+[MInline](../../MInline/README.md)
 
-## Inline\(MInline\) <a name="DotMarkdown_Linq_MFactory_Inline_DotMarkdown_Linq_MInline_"></a>
-
-```csharp
-public static MInline Inline(MInline other)
-```
-
-### Parameters
-
-#### other
-
-### Returns
-
-DotMarkdown\.Linq\.[MInline](../../MInline/README.md#_top)
-
-## Inline\(Object\) <a name="DotMarkdown_Linq_MFactory_Inline_System_Object_"></a>
+## Inline\(MInline\) <a id="DotMarkdown_Linq_MFactory_Inline_DotMarkdown_Linq_MInline_"></a>
 
 ```csharp
-public static MInline Inline(object content)
+public static DotMarkdown.Linq.MInline Inline(DotMarkdown.Linq.MInline other)
 ```
 
 ### Parameters
 
-#### content
+**other** &ensp; [MInline](../../MInline/README.md)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MInline](../../MInline/README.md#_top)
+[MInline](../../MInline/README.md)
 
-## Inline\(Object\[\]\) <a name="DotMarkdown_Linq_MFactory_Inline_System_Object___"></a>
+## Inline\(Object\) <a id="DotMarkdown_Linq_MFactory_Inline_System_Object_"></a>
 
 ```csharp
-public static MInline Inline(params object[] content)
+public static DotMarkdown.Linq.MInline Inline(object content)
 ```
 
 ### Parameters
 
-#### content
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
 
 ### Returns
 
-DotMarkdown\.Linq\.[MInline](../../MInline/README.md#_top)
+[MInline](../../MInline/README.md)
+
+## Inline\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Inline_System_Object___"></a>
+
+```csharp
+public static DotMarkdown.Linq.MInline Inline(params object[] content)
+```
+
+### Parameters
+
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+
+### Returns
+
+[MInline](../../MInline/README.md)
 

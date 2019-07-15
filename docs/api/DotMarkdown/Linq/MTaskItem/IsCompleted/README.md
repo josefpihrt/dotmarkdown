@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MTaskItem\.IsCompleted Property
 
-[Home](../../../../README.md#_top)
+[Home](../../../../README.md)
 
-**Containing Type**: DotMarkdown\.Linq\.[MTaskItem](../README.md#_top)
+**Containing Type**: [MTaskItem](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -14,5 +12,5 @@ public bool IsCompleted { get; set; }
 
 ### Property Value
 
-System\.[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
+[Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 

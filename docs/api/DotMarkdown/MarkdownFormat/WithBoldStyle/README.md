@@ -1,22 +1,20 @@
-<a name="_top"></a>
-
 # MarkdownFormat\.WithBoldStyle\(EmphasisStyle\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[MarkdownFormat](../README.md#_top)
+**Containing Type**: [MarkdownFormat](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public MarkdownFormat WithBoldStyle(EmphasisStyle boldStyle)
+public DotMarkdown.MarkdownFormat WithBoldStyle(DotMarkdown.EmphasisStyle boldStyle)
 ```
 
 ### Parameters
 
-#### boldStyle
+**boldStyle** &ensp; [EmphasisStyle](../../EmphasisStyle/README.md)
 
 ### Returns
 
-DotMarkdown\.[MarkdownFormat](../README.md#_top)
+[MarkdownFormat](../README.md)
 

@@ -1,22 +1,20 @@
-<a name="_top"></a>
-
 # TableColumnInfo\.WithAlignment\(HorizontalAlignment\) Method
 
-[Home](../../../README.md#_top)
+[Home](../../../README.md)
 
-**Containing Type**: DotMarkdown\.[TableColumnInfo](../README.md#_top)
+**Containing Type**: [TableColumnInfo](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
 ```csharp
-public TableColumnInfo WithAlignment(HorizontalAlignment alignment)
+public DotMarkdown.TableColumnInfo WithAlignment(DotMarkdown.HorizontalAlignment alignment)
 ```
 
 ### Parameters
 
-#### alignment
+**alignment** &ensp; [HorizontalAlignment](../../HorizontalAlignment/README.md)
 
 ### Returns
 
-DotMarkdown\.[TableColumnInfo](../README.md#_top)
+[TableColumnInfo](../README.md)
 

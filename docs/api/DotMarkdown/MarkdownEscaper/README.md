@@ -1,10 +1,8 @@
-<a name="_top"></a>
-
 # MarkdownEscaper Class
 
-[Home](../../README.md#_top) &#x2022; [Methods](#methods)
+[Home](../../README.md) &#x2022; [Methods](#methods)
 
-**Namespace**: [DotMarkdown](../README.md#_top)
+**Namespace**: [DotMarkdown](../README.md)
 
 **Assembly**: DotMarkdown\.dll
 
@@ -16,6 +14,6 @@ public static class MarkdownEscaper
 
 | Method | Summary |
 | ------ | ------- |
-| [Escape(String, Func\<Char, Boolean>)](Escape/README.md#_top) | |
-| [ShouldBeEscaped(Char)](ShouldBeEscaped/README.md#_top) | |
+| [Escape(String, Func\<Char, Boolean>)](Escape/README.md) | |
+| [ShouldBeEscaped(Char)](ShouldBeEscaped/README.md) | |
 
