@@ -261,12 +261,6 @@ namespace DotMarkdown.Tests
             Assert.Throws<ArgumentOutOfRangeException>(() => mw.WriteHeading(level, Value));
         }
 
-        [Fact]
-        public static void MarkdownWriter_WriteHeading_Params()
-        {
-            MarkdownWriter mw = CreateWriter(new MarkdownFormat(headingOptions: HeadingOptions.None));
-        }
-
         [Theory]
         [InlineData(HeadingOptions.UnderlineHeading1)]
         [InlineData(HeadingOptions.Underline)]
@@ -789,7 +783,6 @@ namespace DotMarkdown.Tests
 
             char ch = CharEntityChar();
 
-            MCharEntity entity = CharEntity(ch);
             mw.WriteCharEntity(ch);
 
             Assert.Equal(syntax + ((int)ch).ToString(format, CultureInfo.InvariantCulture) + ";", mw.ToStringAndClear());
@@ -808,8 +801,6 @@ namespace DotMarkdown.Tests
             MCharEntity charEntity = CharEntity(ch);
 
             mw.Write(charEntity);
-
-            string s = ((int)ch).ToString(format, CultureInfo.InvariantCulture);
 
             Assert.Equal(syntax + ((int)ch).ToString(format, CultureInfo.InvariantCulture) + ";", mw.ToStringAndClear());
         }

@@ -160,7 +160,6 @@ namespace DotMarkdown.Tests
         {
             string text = LinkText();
             string url = LinkUrl();
-            string title = LinkTitle();
 
             MImage image = MFactory.Image(text, url);
 
@@ -176,9 +175,7 @@ namespace DotMarkdown.Tests
             string url = LinkUrl();
             string title = LinkTitle();
 
-            MImage image = MFactory.Image(text, url);
-
-            image = MFactory.Image(text, url, title);
+            MImage image = MFactory.Image(text, url, title);
 
             Assert.Equal(text, image.Text);
             Assert.Equal(url, image.Url);
@@ -190,7 +187,6 @@ namespace DotMarkdown.Tests
         {
             string text = LinkText();
             string url = LinkUrl();
-            string title = LinkTitle();
 
             MLink link = MFactory.Link(text, url);
 
@@ -226,7 +222,6 @@ namespace DotMarkdown.Tests
         public static void MFactory_LinkOrText_Text()
         {
             string text = LinkText();
-            string url = LinkUrl();
 
             Assert.IsType<MText>(MFactory.LinkOrText(text, url: ""));
             Assert.IsType<MText>(MFactory.LinkOrText(text, url: null));
@@ -254,7 +249,6 @@ namespace DotMarkdown.Tests
         [Fact]
         public static void MFactory_LinkOrAutolink_Autolink()
         {
-            string text = LinkText();
             string url = LinkUrl();
 
             Assert.IsType<MAutolink>(MFactory.LinkOrAutolink(text: "", url: url));
@@ -265,7 +259,6 @@ namespace DotMarkdown.Tests
         public static void MFactory_CodeBlock_DefaultValues()
         {
             string text = CodeBlockText();
-            string info = CodeBlockInfo();
 
             MFencedCodeBlock block = MFactory.FencedCodeBlock(text);
 

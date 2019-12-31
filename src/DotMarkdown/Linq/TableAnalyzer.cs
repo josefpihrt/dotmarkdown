@@ -24,11 +24,9 @@ namespace DotMarkdown.Linq
             MarkdownWriterSettings settings,
             MarkdownStringWriter writer)
         {
-            MElement header = null;
-
             var columns = new List<TableColumnInfo>();
 
-            header = en.Current;
+            MElement header = en.Current;
 
             if (header is MContainer container)
             {
@@ -85,7 +83,7 @@ namespace DotMarkdown.Linq
             int index = 0;
 
             bool isFirst = true;
-            bool isLast = false;
+            bool isLast;
 
             int i = 0;
 
@@ -110,8 +108,8 @@ namespace DotMarkdown.Linq
                             i++;
 
                             WriteHeaderCell(curr);
-                        }
-                        while (!isLast);
+
+                        } while (!isLast);
                     }
                 }
             }

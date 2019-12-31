@@ -17,13 +17,11 @@ namespace DotMarkdown
             if (string.IsNullOrEmpty(value))
                 return value;
 
-            StringBuilder sb = null;
-
             for (int i = 0; i < value.Length; i++)
             {
                 if (shouldBeEscaped(value[i]))
                 {
-                    sb = StringBuilderCache.GetInstance(value.Length);
+                    StringBuilder sb = StringBuilderCache.GetInstance(value.Length);
                     sb.Append(value, 0, i);
                     sb.Append(escapingChar);
                     sb.Append(value[i]);

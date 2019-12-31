@@ -47,7 +47,7 @@ namespace DotMarkdown.Tests
 
             var horizontalRule = new HorizontalRuleFormat(style, count, space);
 
-            var format = new MarkdownFormat();
+            var format = new MarkdownFormat(horizontalRuleFormat: horizontalRule);
 
             Assert.Equal(style, format.HorizontalRuleFormat.Style);
             Assert.Equal(count, format.HorizontalRuleFormat.Count);

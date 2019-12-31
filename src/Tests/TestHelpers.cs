@@ -269,7 +269,7 @@ namespace DotMarkdown.Tests
 
         public static char CharEntityChar()
         {
-            int value = 0;
+            int value;
 
             do
             {

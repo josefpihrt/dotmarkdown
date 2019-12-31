@@ -15,7 +15,7 @@ namespace DotMarkdown.Tests
 
         public static string ModifySpaces(this string value, int minValue, int maxValue)
         {
-            string newValue = null;
+            string newValue;
 
             do
             {
@@ -28,7 +28,7 @@ namespace DotMarkdown.Tests
 
         public static int Modify(this int value)
         {
-            int newValue = 0;
+            int newValue;
 
             do
             {
@@ -41,7 +41,7 @@ namespace DotMarkdown.Tests
 
         public static int Modify(this int value, int maxValue)
         {
-            int newValue = 0;
+            int newValue;
 
             do
             {
@@ -54,7 +54,7 @@ namespace DotMarkdown.Tests
 
         public static int Modify(this int value, int minValue, int maxValue)
         {
-            int newValue = 0;
+            int newValue;
 
             do
             {
@@ -113,7 +113,7 @@ namespace DotMarkdown.Tests
 
         public static HorizontalRuleFormat Modify(this in HorizontalRuleFormat format)
         {
-            HorizontalRuleStyle style = format.Style;
+            HorizontalRuleStyle style;
 
             do
             {
