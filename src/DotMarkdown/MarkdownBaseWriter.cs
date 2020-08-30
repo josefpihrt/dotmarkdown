@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text;
 
 namespace DotMarkdown
 {
@@ -1290,45 +1291,86 @@ namespace DotMarkdown
                 WriteRaw(data);
         }
 
-        protected void WriteIndentation()
+        protected string GetIndentation()
         {
+            if (!HasIndentation())
+                return "";
+
+            StringBuilder sb = StringBuilderCache.GetInstance();
+
             for (int i = 0; i < _stack.Count; i++)
             {
-                WriteIndentation(_stack[i].State, _stack[i].Number);
+                sb.Append(GetIndentation(_stack[i].State, _stack[i].Number));
             }
 
             if (_state == State.IndentedCodeBlock)
             {
-                this.WriteIndentation("    ");
+                sb.Append("    ");
             }
             else
             {
-                WriteIndentation(_state, _orderedItemNumber);
+                sb.Append(GetIndentation(_state, _orderedItemNumber));
             }
 
-            void WriteIndentation(State state, int orderedItemNumber)
+            return StringBuilderCache.GetStringAndFree(sb);
+
+            bool HasIndentation()
+            {
+                switch (_state)
+                {
+                    case State.BulletItem:
+                    case State.TaskItem:
+                    case State.OrderedItem:
+                    case State.BlockQuote:
+                    case State.IndentedCodeBlock:
+                        return true;
+                }
+
+                for (int i = 0; i < _stack.Count; i++)
+                {
+                    switch (_stack[i].State)
+                    {
+                        case State.BulletItem:
+                        case State.TaskItem:
+                        case State.OrderedItem:
+                        case State.BlockQuote:
+                            return true;
+                    }
+                }
+
+                return false;
+            }
+
+            string GetIndentation(State state, int orderedItemNumber)
             {
                 switch (state)
                 {
                     case State.BulletItem:
                     case State.TaskItem:
                         {
-                            this.WriteIndentation("  ");
-                            break;
+                            return "  ";
                         }
                     case State.OrderedItem:
                         {
                             int count = orderedItemNumber.GetDigitCount() + Format.OrderedItemStart.Length;
-                            this.WriteIndentation(TextUtility.GetSpaces(count));
-                            break;
+                            return TextUtility.GetSpaces(count);
                         }
                     case State.BlockQuote:
                         {
-                            this.WriteIndentation("> ");
-                            break;
+                            return "> ";
                         }
                 }
+
+                return null;
             }
+        }
+
+        private void WriteIndentation()
+        {
+            string indentation = GetIndentation();
+
+            if (indentation.Length > 0)
+                this.WriteIndentation(indentation);
         }
 
         protected abstract void WriteIndentation(string value);

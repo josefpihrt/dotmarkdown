@@ -55,6 +55,8 @@ namespace DotMarkdown
 
         public override void WriteString(string text)
         {
+            string indentation = null;
+
             try
             {
                 BeforeWriteString();
@@ -162,6 +164,14 @@ namespace DotMarkdown
                 ThrowIfClosed();
                 _sb.Append(NewLineChars);
             }
+
+            void WriteIndentation()
+            {
+                if (indentation == null)
+                    indentation = GetIndentation();
+
+                _sb.Append(indentation);
+            }
         }
 
         public override void WriteRaw(string data)
@@ -181,16 +191,7 @@ namespace DotMarkdown
 
         protected override void WriteIndentation(string value)
         {
-            try
-            {
-                ThrowIfClosed();
-                _sb.Append(value);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            _sb.Append(value);
         }
 
         protected override void WriteNewLineChars()
