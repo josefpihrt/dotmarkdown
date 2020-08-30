@@ -53,7 +53,7 @@ namespace DotMarkdown
             return new MarkdownTextWriter(output, settings);
         }
 
-        internal static MarkdownWriter Create(string fileName, MarkdownWriterSettings settings = null)
+        public static MarkdownWriter Create(string fileName, MarkdownWriterSettings settings = null)
         {
             if (settings == null
                 || object.ReferenceEquals(settings, MarkdownWriterSettings.Default))
