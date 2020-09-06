@@ -410,6 +410,16 @@ namespace DotMarkdown.Linq
             return new MImage(other);
         }
 
+        public static MLabel Label(string text, string url, string title = null)
+        {
+            return new MLabel(text, url, title);
+        }
+
+        public static MLabel Label(MLabel other)
+        {
+            return new MLabel(other);
+        }
+
         public static MLink Link(object content, string url, string title = null)
         {
             return new MLink(content, url, title);

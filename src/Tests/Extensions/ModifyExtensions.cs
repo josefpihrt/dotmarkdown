@@ -90,6 +90,11 @@ namespace DotMarkdown.Tests
             return new MLink(link.content.ToString().Modify(), link.Url.Modify(), link.Title.Modify());
         }
 
+        public static MLabel Modify(this MLabel label)
+        {
+            return new MLabel(label.Text.Modify(), label.Url.Modify(), label.Title.Modify());
+        }
+
         public static MRaw Modify(this MRaw text)
         {
             return new MRaw(text.Value.Modify());

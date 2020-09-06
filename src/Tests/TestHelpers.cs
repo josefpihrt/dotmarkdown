@@ -111,6 +111,11 @@ namespace DotMarkdown.Tests
             return new MLink(LinkText(), LinkUrl(), LinkTitle());
         }
 
+        public static MLabel CreateLabel()
+        {
+            return new MLabel(LinkText(), LinkUrl(), LinkTitle());
+        }
+
         public static string LinkText()
         {
             return StringValue();
