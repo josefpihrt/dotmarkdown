@@ -344,7 +344,7 @@ namespace DotMarkdown.Tests
         [Fact]
         public static void MFactory_HtmlEntity()
         {
-            var ch = (char)IntValue(1, 0xFFFF);
+            var ch = (char)IntValue(1, 0xD7FF);
 
             MCharEntity entity = MFactory.CharEntity(ch);
 

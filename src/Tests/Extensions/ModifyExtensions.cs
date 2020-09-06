@@ -244,7 +244,7 @@ namespace DotMarkdown.Tests
 
         public static MCharEntity Modify(this MCharEntity htmlEntity)
         {
-            return new MCharEntity((char)((int)htmlEntity.Value).Modify(1, 0xFFFF));
+            return new MCharEntity((char)((int)htmlEntity.Value).Modify(1, 0xD7FF));
         }
 
         public static CharEntityFormat Modify(this CharEntityFormat format)
