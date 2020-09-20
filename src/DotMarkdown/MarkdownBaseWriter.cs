@@ -71,7 +71,7 @@ namespace DotMarkdown
 
         protected internal abstract int Length { get; set; }
 
-        protected Func<char, bool> ShouldBeEscaped { get; set; } = MarkdownEscaper.ShouldBeEscaped;
+        protected Func<char, bool> ShouldBeEscaped { get; set; } = f => MarkdownEscaper.ShouldBeEscaped(f);
 
         protected char EscapingChar { get; set; } = '\\';
 
@@ -563,7 +563,7 @@ namespace DotMarkdown
                 WriteRaw("!");
                 WriteSquareBrackets(text);
                 WriteRaw("(");
-                WriteString(url, MarkdownEscaper.ShouldBeEscapedInLinkUrl);
+                WriteString(url, f => MarkdownEscaper.ShouldBeEscapedInLinkUrl(f));
                 WriteLinkTitle(title);
                 WriteRaw(")");
 
@@ -583,7 +583,7 @@ namespace DotMarkdown
                 Push(State.Link);
 
                 WriteRaw("[");
-                ShouldBeEscaped = MarkdownEscaper.ShouldBeEscapedInLinkText;
+                ShouldBeEscaped = f => MarkdownEscaper.ShouldBeEscapedInLinkText(f);
             }
             catch
             {
@@ -600,10 +600,10 @@ namespace DotMarkdown
 
                 ThrowIfCannotWriteEnd(State.Link);
 
-                ShouldBeEscaped = MarkdownEscaper.ShouldBeEscaped;
+                ShouldBeEscaped = f => MarkdownEscaper.ShouldBeEscaped(f);
                 WriteRaw("]");
                 WriteRaw("(");
-                WriteString(url, MarkdownEscaper.ShouldBeEscapedInLinkUrl);
+                WriteString(url, f => MarkdownEscaper.ShouldBeEscapedInLinkUrl(f));
                 WriteLinkTitle(title);
                 WriteRaw(")");
 
@@ -711,21 +711,21 @@ namespace DotMarkdown
 
             WriteRaw(" ");
             WriteRaw("\"");
-            WriteString(title, MarkdownEscaper.ShouldBeEscapedInLinkTitle);
+            WriteString(title, f => MarkdownEscaper.ShouldBeEscapedInLinkTitle(f));
             WriteRaw("\"");
         }
 
         private void WriteSquareBrackets(string text)
         {
             WriteRaw("[");
-            WriteString(text, MarkdownEscaper.ShouldBeEscapedInLinkText);
+            WriteString(text, f => MarkdownEscaper.ShouldBeEscapedInLinkText(f));
             WriteRaw("]");
         }
 
         private void WriteAngleBrackets(string text)
         {
             WriteRaw("<");
-            WriteString(text, MarkdownEscaper.ShouldBeEscapedInAngleBrackets);
+            WriteString(text, f => MarkdownEscaper.ShouldBeEscapedInAngleBrackets(f));
             WriteRaw(">");
         }
 
@@ -827,7 +827,7 @@ namespace DotMarkdown
 
                 WriteLineIfNecessary();
 
-                bool isFirst = true;
+                var isFirst = true;
 
                 string text = GetText();
 

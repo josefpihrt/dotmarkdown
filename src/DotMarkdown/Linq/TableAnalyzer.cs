@@ -82,7 +82,7 @@ namespace DotMarkdown.Linq
         {
             int index = 0;
 
-            bool isFirst = true;
+            var isFirst = true;
             bool isLast;
 
             int i = 0;

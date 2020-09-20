@@ -53,7 +53,7 @@ namespace DotMarkdown
             Debug.Assert(value != null);
 
             string indentation = null;
-            bool pendingIndentation = false;
+            var pendingIndentation = false;
             int offset = 0;
 
             while (true)

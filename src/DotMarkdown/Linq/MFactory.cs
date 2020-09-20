@@ -137,7 +137,7 @@ namespace DotMarkdown.Linq
 
             IEnumerable<object> GetContent()
             {
-                bool addSeparator = false;
+                var addSeparator = false;
 
                 foreach (object value in values)
                 {

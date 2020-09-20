@@ -52,12 +52,14 @@ namespace DotMarkdown.Tests
 
                 mw.WriteEndTable();
 
-                Assert.Equal(@"
+                Assert.Equal(
+                    @"
 |     | a   | b   |
 | --- | --- | --- |
 |   | c | d |
 
-", mw.ToString());
+",
+                    mw.ToString());
             }
         }
 
@@ -106,12 +108,14 @@ namespace DotMarkdown.Tests
 
                 mw.WriteEndTable();
 
-                Assert.Equal(@"
+                Assert.Equal(
+                    @"
 |     | aa  | bb  |
 | --- | --- | --- |
 |   | c | d |
 
-", mw.ToString());
+",
+                    mw.ToString());
             }
         }
 
@@ -160,12 +164,14 @@ namespace DotMarkdown.Tests
 
                 mw.WriteEndTable();
 
-                Assert.Equal(@"
+                Assert.Equal(
+                    @"
 |     | aaa | bbb |
 | --- | --- | --- |
 |   | c | d |
 
-", mw.ToString());
+",
+                    mw.ToString());
             }
         }
 
@@ -214,12 +220,14 @@ namespace DotMarkdown.Tests
 
                 mw.WriteEndTable();
 
-                Assert.Equal(@"
+                Assert.Equal(
+                    @"
 |      | aaaa | bbbb |
 | ---- | ---- | ---- |
 |   | c | d |
 
-", mw.ToString());
+",
+                    mw.ToString());
             }
         }
     }
