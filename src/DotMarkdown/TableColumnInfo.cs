@@ -78,8 +78,8 @@ namespace DotMarkdown
         public bool Equals(TableColumnInfo other)
         {
             return Alignment == other.Alignment
-                   && IsWhiteSpace == other.IsWhiteSpace
-                   && Width == other.Width;
+                && IsWhiteSpace == other.IsWhiteSpace
+                && Width == other.Width;
         }
 
         public override int GetHashCode()

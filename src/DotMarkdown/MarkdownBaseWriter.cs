@@ -1004,7 +1004,7 @@ namespace DotMarkdown
                         WriteRaw(" ");
                     }
                     else if (Format.FormatTableHeader
-                         && CurrentColumn.Alignment == HorizontalAlignment.Center)
+                        && CurrentColumn.Alignment == HorizontalAlignment.Center)
                     {
                         WriteRaw(" ");
                     }
@@ -1060,7 +1060,7 @@ namespace DotMarkdown
                         WriteRaw(" ");
                     }
                     else if (Format.FormatTableHeader
-                         && CurrentColumn.Alignment != HorizontalAlignment.Left)
+                        && CurrentColumn.Alignment != HorizontalAlignment.Left)
                     {
                         WriteRaw(" ");
                     }

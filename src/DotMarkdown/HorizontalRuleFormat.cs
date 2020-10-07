@@ -72,8 +72,8 @@ namespace DotMarkdown
         public bool Equals(HorizontalRuleFormat other)
         {
             return Style == other.Style
-                   && Count == other.Count
-                   && Separator == other.Separator;
+                && Count == other.Count
+                && Separator == other.Separator;
         }
 
         public override int GetHashCode()
