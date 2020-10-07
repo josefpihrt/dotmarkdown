@@ -1,12 +1,14 @@
 @echo off
 
-"C:\Program Files\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild" "..\DotMarkdown.sln" ^
+dotnet restore --force "..\DotMarkdown.sln"
+
+"C:\Program Files\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild" "..\DotMarkdown.sln" ^
  /t:Clean ^
  /p:Configuration=Debug ^
  /v:minimal ^
  /m
 
-"C:\Program Files\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild" "..\DotMarkdown.sln" ^
+"C:\Program Files\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild" "..\DotMarkdown.sln" ^
  /t:Clean,Build ^
  /p:Configuration=Release,TreatWarningsAsErrors=true,WarningsNotAsErrors=1591 ^
  /v:normal ^
