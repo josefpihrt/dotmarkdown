@@ -95,7 +95,7 @@ namespace DotMarkdown
 
                             if (ch == 10
                                 || ch == 13
-                                || ShouldBeEscaped((char)ch))
+                                || Escaper.ShouldBeEscaped((char)ch))
                             {
                                 break;
                             }
@@ -127,7 +127,7 @@ namespace DotMarkdown
                                     {
                                         case NewLineHandling.Replace:
                                             {
-                                                pDst = WriteNewLineUnsafe(pDst);
+                                                pDst = WriteRaw(NewLineChars, pDst);
                                                 break;
                                             }
                                         case NewLineHandling.None:
@@ -160,7 +160,7 @@ namespace DotMarkdown
                                                     pSrc++;
                                                 }
 
-                                                pDst = WriteNewLineUnsafe(pDst);
+                                                pDst = WriteRaw(NewLineChars, pDst);
                                                 break;
                                             }
                                         case NewLineHandling.None:
@@ -179,9 +179,16 @@ namespace DotMarkdown
 
                                     break;
                                 }
+                            case '>':
+                            case '<':
+                                {
+                                    string escapedChar = EscapeChar(ch);
+                                    pDst = WriteRaw(escapedChar, pDst);
+                                    break;
+                                }
                             default:
                                 {
-                                    *pDst = EscapingChar;
+                                    *pDst = MarkdownCharEscaper.DefaultEscapingChar;
                                     pDst++;
                                     Length++;
                                     *pDst = (char)ch;
@@ -200,12 +207,12 @@ namespace DotMarkdown
                     return (int)(pSrc - pSrcStart);
                 }
 
-                char* WriteNewLineUnsafe(char* pDst)
+                char* WriteRaw(string text, char* pDst)
                 {
                     fixed (char* pDstStart = _bufChars)
                     {
                         _bufPos = (int)(pDst - pDstStart);
-                        WriteRawUnsafe(NewLineChars);
+                        WriteRawUnsafe(text);
                         return pDstStart + _bufPos;
                     }
                 }

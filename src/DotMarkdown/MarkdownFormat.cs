@@ -21,7 +21,8 @@ namespace DotMarkdown
             CodeFenceStyle codeFenceStyle = CodeFenceStyle.Backtick,
             CodeBlockOptions codeBlockOptions = CodeBlockOptions.EmptyLineBeforeAndAfter,
             CharEntityFormat charEntityFormat = CharEntityFormat.Hexadecimal,
-            HorizontalRuleFormat? horizontalRuleFormat = null)
+            HorizontalRuleFormat? horizontalRuleFormat = null,
+            AngleBracketEscapeStyle angleBracketEscapeStyle = AngleBracketEscapeStyle.Backslash)
         {
             BoldStyle = boldStyle;
             ItalicStyle = italicStyle;
@@ -139,6 +140,8 @@ namespace DotMarkdown
             {
                 throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(HorizontalRuleStyle));
             }
+
+            AngleBracketEscapeStyle = angleBracketEscapeStyle;
         }
 
         public static MarkdownFormat Default { get; } = new MarkdownFormat();
@@ -225,6 +228,8 @@ namespace DotMarkdown
         internal bool CloseHeading => (HeadingOptions & HeadingOptions.Close) != 0;
 
         public CharEntityFormat CharEntityFormat { get; }
+
+        public AngleBracketEscapeStyle AngleBracketEscapeStyle { get; }
 
         public override bool Equals(object obj)
         {

@@ -71,15 +71,110 @@ namespace DotMarkdown
 
         protected internal abstract int Length { get; set; }
 
-        protected Func<char, bool> ShouldBeEscaped { get; set; } = f => MarkdownEscaper.ShouldBeEscaped(f);
-
-        protected char EscapingChar { get; set; } = '\\';
+        protected MarkdownCharEscaper Escaper { get; set; } = MarkdownCharEscaper.Default;
 
         private TableColumnInfo CurrentColumn => _tableColumns[_tableColumnIndex];
 
         private bool IsFirstColumn => _tableColumnIndex == 0;
 
         private bool IsLastColumn => _tableColumnIndex == _tableColumnCount - 1;
+
+        protected string EscapeChar(int ch)
+        {
+            switch (ch)
+            {
+                case '<':
+                    {
+                        switch (Format.AngleBracketEscapeStyle)
+                        {
+                            case AngleBracketEscapeStyle.CharEntity:
+                                {
+                                    switch (Format.CharEntityFormat)
+                                    {
+                                        case CharEntityFormat.Hexadecimal:
+                                            return "&#x3C;";
+                                        case CharEntityFormat.Decimal:
+                                            return "&#60;";
+                                        default:
+                                            throw new InvalidOperationException();
+                                    }
+                                }
+                            case AngleBracketEscapeStyle.EntityRef:
+                                {
+                                    return "&lt;";
+                                }
+                            default:
+                                {
+                                    return @"\<";
+                                }
+                        }
+                    }
+                case '>':
+                    {
+                        switch (Format.AngleBracketEscapeStyle)
+                        {
+                            case AngleBracketEscapeStyle.CharEntity:
+                                {
+                                    switch (Format.CharEntityFormat)
+                                    {
+                                        case CharEntityFormat.Hexadecimal:
+                                            return "&#x3E;";
+                                        case CharEntityFormat.Decimal:
+                                            return "&#62;";
+                                        default:
+                                            throw new InvalidOperationException();
+                                    }
+                                }
+                            case AngleBracketEscapeStyle.EntityRef:
+                                {
+                                    return "&gt;";
+                                }
+                            default:
+                                {
+                                    return @"\>";
+                                }
+                        }
+                    }
+                case '\\':
+                    return @"\\";
+                case '`':
+                    return @"\`";
+                case '*':
+                    return @"\*";
+                case '_':
+                    return @"\_";
+                case '{':
+                    return @"\{";
+                case '}':
+                    return @"\}";
+                case '[':
+                    return @"\[";
+                case ']':
+                    return @"\]";
+                case '(':
+                    return @"\(";
+                case ')':
+                    return @"\)";
+                case '#':
+                    return @"\#";
+                case '+':
+                    return @"\+";
+                case '-':
+                    return @"\-";
+                case '.':
+                    return @"\.";
+                case '!':
+                    return @"\!";
+                case '|':
+                    return @"\|";
+                case '~':
+                    return @"\~";
+                case '"':
+                    return @"\""";
+                default:
+                    throw new InvalidOperationException();
+            }
+        }
 
         private void Push(State state, int orderedItemNumber = 0)
         {
@@ -269,7 +364,7 @@ namespace DotMarkdown
                 if (text[0] == '`')
                     WriteRaw(" ");
 
-                WriteString(text, _ => false);
+                WriteString(text, MarkdownCharEscaper.NoEscape);
 
                 if (text[length - 1] == '`')
                     WriteRaw(" ");
@@ -563,7 +658,7 @@ namespace DotMarkdown
                 WriteRaw("!");
                 WriteSquareBrackets(text);
                 WriteRaw("(");
-                WriteString(url, f => MarkdownEscaper.ShouldBeEscapedInLinkUrl(f));
+                WriteString(url, MarkdownCharEscaper.LinkUrl);
                 WriteLinkTitle(title);
                 WriteRaw(")");
 
@@ -583,7 +678,7 @@ namespace DotMarkdown
                 Push(State.Link);
 
                 WriteRaw("[");
-                ShouldBeEscaped = f => MarkdownEscaper.ShouldBeEscapedInLinkText(f);
+                Escaper = MarkdownCharEscaper.LinkText;
             }
             catch
             {
@@ -600,10 +695,10 @@ namespace DotMarkdown
 
                 ThrowIfCannotWriteEnd(State.Link);
 
-                ShouldBeEscaped = f => MarkdownEscaper.ShouldBeEscaped(f);
+                Escaper = MarkdownCharEscaper.Default;
                 WriteRaw("]");
                 WriteRaw("(");
-                WriteString(url, f => MarkdownEscaper.ShouldBeEscapedInLinkUrl(f));
+                WriteString(url, MarkdownCharEscaper.LinkUrl);
                 WriteLinkTitle(title);
                 WriteRaw(")");
 
@@ -711,21 +806,21 @@ namespace DotMarkdown
 
             WriteRaw(" ");
             WriteRaw("\"");
-            WriteString(title, f => MarkdownEscaper.ShouldBeEscapedInLinkTitle(f));
+            WriteString(title, MarkdownCharEscaper.LinkTitle);
             WriteRaw("\"");
         }
 
         private void WriteSquareBrackets(string text)
         {
             WriteRaw("[");
-            WriteString(text, f => MarkdownEscaper.ShouldBeEscapedInLinkText(f));
+            WriteString(text, MarkdownCharEscaper.LinkText);
             WriteRaw("]");
         }
 
         private void WriteAngleBrackets(string text)
         {
             WriteRaw("<");
-            WriteString(text, f => MarkdownEscaper.ShouldBeEscapedInAngleBrackets(f));
+            WriteString(text, MarkdownCharEscaper.AngleBrackets);
             WriteRaw(">");
         }
 
@@ -735,7 +830,7 @@ namespace DotMarkdown
             {
                 Push(State.IndentedCodeBlock);
                 WriteLine(Format.EmptyLineBeforeCodeBlock);
-                WriteString(text, _ => false);
+                WriteString(text, MarkdownCharEscaper.NoEscape);
                 WriteLine();
                 WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
                 Pop(State.IndentedCodeBlock);
@@ -759,7 +854,7 @@ namespace DotMarkdown
                 WriteRaw(Format.CodeFence);
                 WriteRaw(info);
                 WriteLine();
-                WriteString(text, _ => false);
+                WriteString(text, MarkdownCharEscaper.NoEscape);
                 WriteLineIfNecessary();
                 WriteRaw(Format.CodeFence);
                 WriteLine();
@@ -1267,20 +1362,18 @@ namespace DotMarkdown
                 WriteIndentation();
         }
 
-        private void WriteString(string text, Func<char, bool> shouldBeEscaped, char escapingChar = '\\')
+        private void WriteString(string text, MarkdownCharEscaper escaper)
         {
-            Func<char, bool> tmp = ShouldBeEscaped;
+            MarkdownCharEscaper tmp = Escaper;
 
             try
             {
-                ShouldBeEscaped = shouldBeEscaped;
-                EscapingChar = escapingChar;
+                Escaper = escaper;
                 WriteString(text);
             }
             finally
             {
-                EscapingChar = '\\';
-                ShouldBeEscaped = tmp;
+                Escaper = tmp;
             }
         }
 

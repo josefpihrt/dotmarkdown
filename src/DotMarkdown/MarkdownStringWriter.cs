@@ -75,61 +75,83 @@ namespace DotMarkdown
                 {
                     char ch = text[i];
 
-                    if (ch == 10)
+                    switch (ch)
                     {
-                        OnBeforeWriteLine();
-
-                        if (NewLineHandling == NewLineHandling.Replace)
-                        {
-                            WriteRaw(text, prev, i - prev);
-                            WriteNewLine();
-                        }
-                        else if (NewLineHandling == NewLineHandling.None)
-                        {
-                            WriteRaw(text, prev, i + 1 - prev);
-                        }
-
-                        OnAfterWriteLine();
-                        WriteIndentation();
-                        prev = ++i;
-                    }
-                    else if (ch == 13)
-                    {
-                        OnBeforeWriteLine();
-
-                        if (i < length - 1
-                            && text[i + 1] == 10)
-                        {
-                            if (NewLineHandling == NewLineHandling.Replace)
+                        case '\n':
                             {
-                                WriteRaw(text, prev, i - prev);
-                                WriteNewLine();
+                                OnBeforeWriteLine();
+
+                                if (NewLineHandling == NewLineHandling.Replace)
+                                {
+                                    WriteSubstring(text, prev, i - prev);
+                                    WriteNewLine();
+                                }
+                                else if (NewLineHandling == NewLineHandling.None)
+                                {
+                                    WriteSubstring(text, prev, i + 1 - prev);
+                                }
+
+                                OnAfterWriteLine();
+                                WriteIndentation();
+                                prev = ++i;
+                                continue;
                             }
-                            else if (NewLineHandling == NewLineHandling.None)
+                        case '\r':
                             {
-                                WriteRaw(text, prev, i + 2 - prev);
+                                OnBeforeWriteLine();
+
+                                if (i < length - 1
+                                    && text[i + 1] == 10)
+                                {
+                                    if (NewLineHandling == NewLineHandling.Replace)
+                                    {
+                                        WriteSubstring(text, prev, i - prev);
+                                        WriteNewLine();
+                                    }
+                                    else if (NewLineHandling == NewLineHandling.None)
+                                    {
+                                        WriteSubstring(text, prev, i + 2 - prev);
+                                    }
+
+                                    i++;
+                                }
+                                else if (NewLineHandling == NewLineHandling.Replace)
+                                {
+                                    WriteSubstring(text, prev, i - prev);
+                                    WriteNewLine();
+                                }
+                                else if (NewLineHandling == NewLineHandling.None)
+                                {
+                                    WriteSubstring(text, prev, i + 1 - prev);
+                                }
+
+                                OnAfterWriteLine();
+                                WriteIndentation();
+                                prev = ++i;
+                                continue;
                             }
+                        case '<':
+                        case '>':
+                            {
+                                if (Escaper.ShouldBeEscaped(ch))
+                                {
+                                    WriteSubstring(text, prev, i - prev);
+                                    WriteString(EscapeChar(ch));
+                                    prev = ++i;
+                                }
+                                else
+                                {
+                                    i++;
+                                }
 
-                            i++;
-                        }
-                        else if (NewLineHandling == NewLineHandling.Replace)
-                        {
-                            WriteRaw(text, prev, i - prev);
-                            WriteNewLine();
-                        }
-                        else if (NewLineHandling == NewLineHandling.None)
-                        {
-                            WriteRaw(text, prev, i + 1 - prev);
-                        }
-
-                        OnAfterWriteLine();
-                        WriteIndentation();
-                        prev = ++i;
+                                continue;
+                            }
                     }
-                    else if (ShouldBeEscaped(ch))
+
+                    if (Escaper.ShouldBeEscaped(ch))
                     {
-                        WriteRaw(text, prev, i - prev);
-                        WriteChar(EscapingChar);
+                        WriteSubstring(text, prev, i - prev);
+                        WriteChar(MarkdownCharEscaper.DefaultEscapingChar);
                         WriteChar(ch);
                         prev = ++i;
                     }
@@ -139,7 +161,7 @@ namespace DotMarkdown
                     }
                 }
 
-                WriteRaw(text, prev, text.Length - prev);
+                WriteSubstring(text, prev, text.Length - prev);
             }
             catch
             {
@@ -147,7 +169,13 @@ namespace DotMarkdown
                 throw;
             }
 
-            void WriteRaw(string value, int startIndex, int count)
+            void WriteString(string value)
+            {
+                ThrowIfClosed();
+                _sb.Append(value);
+            }
+
+            void WriteSubstring(string value, int startIndex, int count)
             {
                 ThrowIfClosed();
                 _sb.Append(value, startIndex, count);
