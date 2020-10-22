@@ -5,8 +5,6 @@
     <OutputType>Exe</OutputType>
     <AssemblyName>DotMarkdown.TestConsole</AssemblyName>
     <RootNamespace>DotMarkdown.TestConsole</RootNamespace>
-    <CodeAnalysisRuleSet>..\..\global.ruleset</CodeAnalysisRuleSet>
-    <LangVersion>7.2</LangVersion>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

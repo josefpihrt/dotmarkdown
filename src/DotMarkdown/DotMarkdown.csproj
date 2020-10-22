@@ -8,14 +8,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.1.0.2</Version>
     <AssemblyName>DotMarkdown</AssemblyName>
     <RootNamespace>DotMarkdown</RootNamespace>
-    <CodeAnalysisRuleSet>..\..\global.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>DotMarkdown.snk</AssemblyOriginatorKeyFile>
-    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
