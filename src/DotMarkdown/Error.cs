@@ -17,7 +17,9 @@ namespace DotMarkdown
             if (value >= 0xD800
                 && value <= 0xDFFF)
             {
-                throw new ArgumentException("Character entity cannot be in the surrogate pair character range.", nameof(value));
+                throw new ArgumentException(
+                    "Character entity cannot be in the surrogate pair character range.",
+                    nameof(value));
             }
         }
 
@@ -48,13 +50,22 @@ namespace DotMarkdown
         public static void ThrowOnInvalidHorizontalRuleCount(int count)
         {
             if (!HorizontalRuleFormat.IsValidCount(count))
-                throw new ArgumentOutOfRangeException(nameof(count), count, "Number of characters in horizontal rule must be greater than or equal to 3.");
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(count),
+                    count,
+                    "Number of characters in horizontal rule must be greater than or equal to 3.");
+            }
         }
 
         public static void ThrowOnInvalidHorizontalRuleSeparator(string separator)
         {
             if (!HorizontalRuleFormat.IsValidSeparator(separator))
-                throw new ArgumentException("Horizontal rule separator must be empty or consists of space(s).", nameof(separator));
+            {
+                throw new ArgumentException(
+                    "Horizontal rule separator must be empty or consists of space(s).",
+                    nameof(separator));
+            }
         }
 
         public static void ThrowOnInvalidHeadingLevel(int level)
@@ -81,7 +92,12 @@ namespace DotMarkdown
         public static void ThrowOnInvalidItemNumber(int number)
         {
             if (number < 0)
-                throw new ArgumentOutOfRangeException(nameof(number), number, "Item number must be greater than or equal to 0.");
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(number),
+                    number,
+                    "Item number must be greater than or equal to 0.");
+            }
         }
 
         public static void ThrowOnInvalidUrl(string url)
@@ -100,7 +116,11 @@ namespace DotMarkdown
             for (int i = 0; i < value.Length; i++)
             {
                 if (char.IsWhiteSpace(value[i]))
-                    throw new ArgumentException("Link or image url cannot contain whitespace character(s).", (parameterName != null) ? nameof(parameterName) : nameof(value));
+                {
+                    throw new ArgumentException(
+                        "Link or image url cannot contain whitespace character(s).",
+                        (parameterName != null) ? nameof(parameterName) : nameof(value));
+                }
             }
         }
     }

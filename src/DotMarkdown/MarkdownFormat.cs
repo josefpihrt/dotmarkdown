@@ -14,7 +14,10 @@ namespace DotMarkdown
             OrderedListStyle orderedListStyle = OrderedListStyle.Dot,
             HeadingStyle headingStyle = HeadingStyle.NumberSign,
             HeadingOptions headingOptions = HeadingOptions.EmptyLineBeforeAndAfter,
-            TableOptions tableOptions = TableOptions.FormatHeader | TableOptions.OuterDelimiter | TableOptions.Padding | TableOptions.EmptyLineBeforeAndAfter,
+            TableOptions tableOptions = TableOptions.FormatHeader
+                | TableOptions.OuterDelimiter
+                | TableOptions.Padding
+                | TableOptions.EmptyLineBeforeAndAfter,
             CodeFenceStyle codeFenceStyle = CodeFenceStyle.Backtick,
             CodeBlockOptions codeBlockOptions = CodeBlockOptions.EmptyLineBeforeAndAfter,
             CharEntityFormat charEntityFormat = CharEntityFormat.Hexadecimal,

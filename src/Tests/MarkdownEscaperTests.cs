@@ -61,7 +61,9 @@ namespace DotMarkdown.Tests
         [InlineData("'", false)]
         public static void MarkdownEscaper_Escape_NoEscape(string value, bool shouldBeEscaped)
         {
-            Assert.Equal((shouldBeEscaped) ? "\\" + value : value, MarkdownEscaper.Escape(value, shouldBeEscaped: ch => false, escapingChar: '\\'));
+            Assert.Equal(
+                (shouldBeEscaped) ? "\\" + value : value,
+                MarkdownEscaper.Escape(value, shouldBeEscaped: ch => false, escapingChar: '\\'));
         }
 
         [Theory]

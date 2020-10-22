@@ -336,9 +336,15 @@ namespace DotMarkdown.Tests
         {
             MarkdownWriter mb = CreateWriter();
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => mb.Write(MFactory.HorizontalRule(style: HorizontalRuleStyle.Asterisk, count: count, separator: " ")));
-            Assert.Throws<ArgumentOutOfRangeException>(() => mb.Write(MFactory.HorizontalRule(style: HorizontalRuleStyle.Hyphen, count: count, separator: " ")));
-            Assert.Throws<ArgumentOutOfRangeException>(() => mb.Write(MFactory.HorizontalRule(style: HorizontalRuleStyle.Underscore, count: count, separator: " ")));
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => mb.Write(MFactory.HorizontalRule(style: HorizontalRuleStyle.Asterisk, count: count, separator: " ")));
+
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => mb.Write(MFactory.HorizontalRule(style: HorizontalRuleStyle.Hyphen, count: count, separator: " ")));
+
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => mb.Write(
+                    MFactory.HorizontalRule(style: HorizontalRuleStyle.Underscore, count: count, separator: " ")));
         }
 
         [Fact]

@@ -816,7 +816,10 @@ namespace DotMarkdown
             }
         }
 
-        public override void WriteHorizontalRule(HorizontalRuleStyle style, int count = HorizontalRuleFormat.DefaultCount, string separator = HorizontalRuleFormat.DefaultSeparator)
+        public override void WriteHorizontalRule(
+            HorizontalRuleStyle style,
+            int count = HorizontalRuleFormat.DefaultCount,
+            string separator = HorizontalRuleFormat.DefaultSeparator)
         {
             try
             {
@@ -886,7 +889,12 @@ namespace DotMarkdown
         private void WriteStartTable(IReadOnlyList<TableColumnInfo> columns, int columnCount)
         {
             if (columnCount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(columnCount), columnCount, "Table must have at least one column.");
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(columnCount),
+                    columnCount,
+                    "Table must have at least one column.");
+            }
 
             try
             {

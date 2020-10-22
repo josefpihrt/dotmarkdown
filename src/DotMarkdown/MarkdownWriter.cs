@@ -34,7 +34,10 @@ namespace DotMarkdown
             return Create(output, CultureInfo.InvariantCulture, settings);
         }
 
-        public static MarkdownWriter Create(StringBuilder output, IFormatProvider formatProvider, MarkdownWriterSettings settings = null)
+        public static MarkdownWriter Create(
+            StringBuilder output,
+            IFormatProvider formatProvider,
+            MarkdownWriterSettings settings = null)
         {
             if (output == null)
                 throw new ArgumentNullException(nameof(output));
@@ -310,7 +313,10 @@ namespace DotMarkdown
             WriteHorizontalRule(format.Style, format.Count, format.Separator);
         }
 
-        public abstract void WriteHorizontalRule(HorizontalRuleStyle style, int count = HorizontalRuleFormat.DefaultCount, string separator = HorizontalRuleFormat.DefaultSeparator);
+        public abstract void WriteHorizontalRule(
+            HorizontalRuleStyle style,
+            int count = HorizontalRuleFormat.DefaultCount,
+            string separator = HorizontalRuleFormat.DefaultSeparator);
 
         public abstract void WriteStartTable(int columnCount);
 

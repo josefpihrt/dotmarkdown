@@ -14,17 +14,21 @@ namespace DotMarkdown.Tests
 
         public const string CharsWithoutSpaces = @"!""#$%&')(*+,-./:;<=>?@][\^_`}{|~";
 
-        public const string CharsEscaped = @"\! "" \# $ % & ' \) \( \* \+ , \- \. / : ; \< = > ? @ \] \[ \\ ^ \_ \` \} \{ \| \~";
+        public const string CharsEscaped
+            = @"\! "" \# $ % & ' \) \( \* \+ , \- \. / : ; \< = > ? @ \] \[ \\ ^ \_ \` \} \{ \| \~";
 
-        public const string CharsSquareBracketsBacktickLessThanEscaped = @"! "" # $ % & ' ) ( * + , - . / : ; \< = > ? @ \] \[ \ ^ _ \` } { | ~";
+        public const string CharsSquareBracketsBacktickLessThanEscaped
+            = @"! "" # $ % & ' ) ( * + , - . / : ; \< = > ? @ \] \[ \ ^ _ \` } { | ~";
 
         public const string CharsWithoutSpacesParenthesesEscaped = @"!""#$%&'\)\(*+,-./:;<=>?@][\^_`}{|~";
 
         public const string CharsDoubleQuoteEscaped = @"! \"" # $ % & ' ) ( * + , - . / : ; < = > ? @ ] [ \ ^ _ ` } { | ~";
 
-        public const string CharsEnclosedWithBacktick = @"` ! "" # $ % & ' ) ( * + , - . / : ; < = > ? @ ] [ \ ^ _ } { | ~ `";
+        public const string CharsEnclosedWithBacktick
+            = @"` ! "" # $ % & ' ) ( * + , - . / : ; < = > ? @ ] [ \ ^ _ } { | ~ `";
 
-        public const string CharsEnclosedWithBacktickDoubled = @"`` ! "" # $ % & ' ) ( * + , - . / : ; < = > ? @ ] [ \ ^ _ } { | ~ ``";
+        public const string CharsEnclosedWithBacktickDoubled
+            = @"`` ! "" # $ % & ' ) ( * + , - . / : ; < = > ? @ ] [ \ ^ _ } { | ~ ``";
 
         public const string CharsWithoutBacktick = @"! "" # $ % & ' ) ( * + , - . / : ; < = > ? @ ] [ \ ^ _ } { | ~";
 

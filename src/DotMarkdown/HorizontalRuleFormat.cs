@@ -22,7 +22,8 @@ namespace DotMarkdown
             Separator = separator;
         }
 
-        public static HorizontalRuleFormat Default { get; } = new HorizontalRuleFormat(DefaultStyle, DefaultCount, DefaultSeparator);
+        public static HorizontalRuleFormat Default { get; }
+            = new HorizontalRuleFormat(DefaultStyle, DefaultCount, DefaultSeparator);
 
         public HorizontalRuleStyle Style { get; }
 
