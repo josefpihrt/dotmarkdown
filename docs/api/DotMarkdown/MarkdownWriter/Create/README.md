@@ -12,6 +12,7 @@
 | ------ | ------- |
 | [Create(Stream, Encoding, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_IO_Stream_System_Text_Encoding_DotMarkdown_MarkdownWriterSettings_) | |
 | [Create(Stream, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_IO_Stream_DotMarkdown_MarkdownWriterSettings_) | |
+| [Create(String, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_String_DotMarkdown_MarkdownWriterSettings_) | |
 | [Create(StringBuilder, IFormatProvider, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_Text_StringBuilder_System_IFormatProvider_DotMarkdown_MarkdownWriterSettings_) | |
 | [Create(StringBuilder, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_Text_StringBuilder_DotMarkdown_MarkdownWriterSettings_) | |
 | [Create(TextWriter, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_IO_TextWriter_DotMarkdown_MarkdownWriterSettings_) | |
@@ -43,6 +44,22 @@ public static DotMarkdown.MarkdownWriter Create(System.IO.Stream stream, DotMark
 ### Parameters
 
 **stream** &ensp; [Stream](https://docs.microsoft.com/en-us/dotnet/api/system.io.stream)
+
+**settings** &ensp; [MarkdownWriterSettings](../../MarkdownWriterSettings/README.md)
+
+### Returns
+
+[MarkdownWriter](../README.md)
+
+## Create\(String, MarkdownWriterSettings\) <a id="DotMarkdown_MarkdownWriter_Create_System_String_DotMarkdown_MarkdownWriterSettings_"></a>
+
+```csharp
+public static DotMarkdown.MarkdownWriter Create(string fileName, DotMarkdown.MarkdownWriterSettings settings = null)
+```
+
+### Parameters
+
+**fileName** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
 
 **settings** &ensp; [MarkdownWriterSettings](../../MarkdownWriterSettings/README.md)
 

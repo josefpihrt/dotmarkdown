@@ -1,4 +1,4 @@
-﻿assembly DotMarkdown, Version=0.1.0.2, Culture=neutral, PublicKeyToken=117de6512634d621
+﻿assembly DotMarkdown, Version=0.1.1.0, Culture=neutral, PublicKeyToken=117de6512634d621
 
 namespace DotMarkdown
 
@@ -166,8 +166,9 @@ namespace DotMarkdown
 
   public class MarkdownFormat : IEquatable<MarkdownFormat>
 
-    public MarkdownFormat(EmphasisStyle boldStyle = Asterisk, EmphasisStyle italicStyle = Asterisk, BulletListStyle bulletListStyle = Asterisk, OrderedListStyle orderedListStyle = Dot, HeadingStyle headingStyle = NumberSign, HeadingOptions headingOptions = EmptyLineBeforeAndAfter, TableOptions tableOptions = FormatHeader | Padding | OuterDelimiter | EmptyLineBeforeAndAfter, CodeFenceStyle codeFenceStyle = Backtick, CodeBlockOptions codeBlockOptions = EmptyLineBeforeAndAfter, CharEntityFormat charEntityFormat = Hexadecimal, HorizontalRuleFormat? horizontalRuleFormat = null);
+    public MarkdownFormat(EmphasisStyle boldStyle = Asterisk, EmphasisStyle italicStyle = Asterisk, BulletListStyle bulletListStyle = Asterisk, OrderedListStyle orderedListStyle = Dot, HeadingStyle headingStyle = NumberSign, HeadingOptions headingOptions = EmptyLineBeforeAndAfter, TableOptions tableOptions = FormatHeader | Padding | OuterDelimiter | EmptyLineBeforeAndAfter, CodeFenceStyle codeFenceStyle = Backtick, CodeBlockOptions codeBlockOptions = EmptyLineBeforeAndAfter, CharEntityFormat charEntityFormat = Hexadecimal, HorizontalRuleFormat? horizontalRuleFormat = null, AngleBracketEscapeStyle angleBracketEscapeStyle = Backslash);
 
+    public AngleBracketEscapeStyle AngleBracketEscapeStyle { get; }
     public EmphasisStyle BoldStyle { get; }
     public BulletListStyle BulletListStyle { get; }
     public CharEntityFormat CharEntityFormat { get; }
@@ -208,6 +209,7 @@ namespace DotMarkdown
     public abstract WriteState WriteState { get; }
 
     public virtual void Close();
+    public static MarkdownWriter Create(string fileName, MarkdownWriterSettings settings = null);
     public static MarkdownWriter Create(StringBuilder output, MarkdownWriterSettings settings = null);
     public static MarkdownWriter Create(TextWriter output, MarkdownWriterSettings settings = null);
     public static MarkdownWriter Create(Stream stream, MarkdownWriterSettings settings = null);
@@ -334,6 +336,12 @@ namespace DotMarkdown
 
     public static bool operator ==(in TableColumnInfo info1, in TableColumnInfo info2);
     public static bool operator !=(in TableColumnInfo info1, in TableColumnInfo info2);
+
+  public enum AngleBracketEscapeStyle
+
+    Backslash = 0,
+    CharEntity = 1,
+    EntityRef = 2,
 
   public enum BulletListStyle
 
@@ -677,6 +685,8 @@ namespace DotMarkdown.Linq
     public static MItalic Italic(MItalic other);
     public static MInline Join(object separator, params object[] values);
     public static MInline Join(object separator, IEnumerable<object> values);
+    public static MLabel Label(MLabel other);
+    public static MLabel Label(string text, string url, string title = null);
     public static MEntityRef LessThan();
     public static MLink Link(MLink other);
     public static MLink Link(object content, string url, string title = null);

@@ -1,6 +1,14 @@
 @echo off
 
-dotnet restore --force "..\DotMarkdown.sln"
+set _version=0.1.1
+
+orang replace "..\src" -e csproj -c "(?<=<PackageVersion>)\d+\.\d+\.\d+(?=</PackageVersion>)" -r "%_version%" -t m r
+echo.
+
+orang delete "..\src" -a d -n "bin|obj" e --content-only -t n -y su s
+echo.
+
+dotnet restore "..\DotMarkdown.sln" --force /p:Configuration=Release
 
 "C:\Program Files\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild" "..\DotMarkdown.sln" ^
  /t:Clean ^

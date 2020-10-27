@@ -22,12 +22,13 @@ public class MarkdownFormat : IEquatable<DotMarkdown.MarkdownFormat>
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MarkdownFormat(EmphasisStyle, EmphasisStyle, BulletListStyle, OrderedListStyle, HeadingStyle, HeadingOptions, TableOptions, CodeFenceStyle, CodeBlockOptions, CharEntityFormat, HorizontalRuleFormat?)](-ctor/README.md) | |
+| [MarkdownFormat(EmphasisStyle, EmphasisStyle, BulletListStyle, OrderedListStyle, HeadingStyle, HeadingOptions, TableOptions, CodeFenceStyle, CodeBlockOptions, CharEntityFormat, HorizontalRuleFormat?, AngleBracketEscapeStyle)](-ctor/README.md) | |
 
 ## Properties
 
 | Property | Summary |
 | -------- | ------- |
+| [AngleBracketEscapeStyle](AngleBracketEscapeStyle/README.md) | |
 | [BoldStyle](BoldStyle/README.md) | |
 | [BulletListStyle](BulletListStyle/README.md) | |
 | [CodeBlockOptions](CodeBlockOptions/README.md) | |

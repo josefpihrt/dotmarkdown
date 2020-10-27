@@ -89,6 +89,8 @@ public static class MFactory
 | [Italic(Object\[\])](Italic/README.md#DotMarkdown_Linq_MFactory_Italic_System_Object___) | |
 | [Join(Object, IEnumerable\<Object>)](Join/README.md#DotMarkdown_Linq_MFactory_Join_System_Object_System_Collections_Generic_IEnumerable_System_Object__) | |
 | [Join(Object, Object\[\])](Join/README.md#DotMarkdown_Linq_MFactory_Join_System_Object_System_Object___) | |
+| [Label(MLabel)](Label/README.md#DotMarkdown_Linq_MFactory_Label_DotMarkdown_Linq_MLabel_) | |
+| [Label(String, String, String)](Label/README.md#DotMarkdown_Linq_MFactory_Label_System_String_System_String_System_String_) | |
 | [LessThan()](LessThan/README.md) | |
 | [Link(MLink)](Link/README.md#DotMarkdown_Linq_MFactory_Link_DotMarkdown_Linq_MLink_) | |
 | [Link(Object, String, String)](Link/README.md#DotMarkdown_Linq_MFactory_Link_System_Object_System_String_System_String_) | |

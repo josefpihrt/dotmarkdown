@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'!='Release|AnyCPU'">
     <TargetFramework>netstandard1.3</TargetFramework>
-    <!--
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
-    -->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -14,12 +15,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\$(Configuration)\DotMarkdown.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\netstandard1.3\DotMarkdown.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
     <PackageId>DotMarkdown</PackageId>
-    <PackageVersion>0.1.0</PackageVersion>
+    <PackageVersion>0.1.1</PackageVersion>
     <Authors>Josef Pihrt</Authors>
     <Company></Company>
     <Description>DotMarkdown is Markdown framework for .NET
@@ -28,15 +29,17 @@ Commonly Used Types:
 DotMarkdown.MarkdownWriter
 DotMarkdown.MarkdownFormat
 DotMarkdown.Linq.MFactory</Description>
-    <Copyright>Copyright (c) 2017-2018 Josef Pihrt</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>http://github.com/JosefPihrt/DotMarkdown/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>http://github.com/JosefPihrt/DotMarkdown</PackageProjectUrl>
-    <PackageIconUrl>http://pihrt.net/images/DotMarkdown.ico</PackageIconUrl>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageTags>markdown;md;linq</PackageTags>
-    <RepositoryUrl>http://github.com/JosefPihrt/DotMarkdown.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/JosefPihrt/DotMarkdown.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\images\icon.png" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
 
 </Project>

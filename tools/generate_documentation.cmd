@@ -1,6 +1,6 @@
 @echo off
 
-set _roslynatorExe="..\..\roslynator\src\CommandLine\bin\Debug\net472\roslynator"
+set _roslynatorExe="..\..\roslynator\src\CommandLine\bin\Debug\net48\roslynator"
 set _msbuildPath="C:\Program Files\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin"
 set _msbuildProperties="Configuration=Release"
 set _rootDirectoryUrl="../../docs/api/"
@@ -17,7 +17,7 @@ set _rootDirectoryUrl="../../docs/api/"
 %_roslynatorExe% list-symbols "..\DotMarkdown.sln" ^
  --msbuild-path %_msbuildPath% ^
  --properties %_msbuildProperties% ^
- --projects DotMarkdown ^
+ --projects DotMarkdown(netstandard1.3) ^
  --visibility public ^
  --depth member ^
  --ignored-parts containing-namespace assembly-attributes ^

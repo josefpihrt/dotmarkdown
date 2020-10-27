@@ -39,6 +39,7 @@ public abstract class MarkdownWriter : IDisposable
 | [Close()](Close/README.md) | |
 | [Create(Stream, Encoding, MarkdownWriterSettings)](Create/README.md#DotMarkdown_MarkdownWriter_Create_System_IO_Stream_System_Text_Encoding_DotMarkdown_MarkdownWriterSettings_) | |
 | [Create(Stream, MarkdownWriterSettings)](Create/README.md#DotMarkdown_MarkdownWriter_Create_System_IO_Stream_DotMarkdown_MarkdownWriterSettings_) | |
+| [Create(String, MarkdownWriterSettings)](Create/README.md#DotMarkdown_MarkdownWriter_Create_System_String_DotMarkdown_MarkdownWriterSettings_) | |
 | [Create(StringBuilder, IFormatProvider, MarkdownWriterSettings)](Create/README.md#DotMarkdown_MarkdownWriter_Create_System_Text_StringBuilder_System_IFormatProvider_DotMarkdown_MarkdownWriterSettings_) | |
 | [Create(StringBuilder, MarkdownWriterSettings)](Create/README.md#DotMarkdown_MarkdownWriter_Create_System_Text_StringBuilder_DotMarkdown_MarkdownWriterSettings_) | |
 | [Create(TextWriter, MarkdownWriterSettings)](Create/README.md#DotMarkdown_MarkdownWriter_Create_System_IO_TextWriter_DotMarkdown_MarkdownWriterSettings_) | |

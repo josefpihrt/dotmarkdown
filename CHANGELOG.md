@@ -1,3 +1,9 @@
+## 0.1.1 (2020-10-27)
+
+* Add support for escaping angle brackets as `&lt;` and `&gt;` ([issue](https://github.com/JosefPihrt/DotMarkdown/issues/15))
+* Add methods `MFactory.Label`
+* Add overload `MarkdownWriter.Create(string, MarkdownWriterSettings)`
+
 ## 0.1.0 (2018-08-21)
 
 ### New API

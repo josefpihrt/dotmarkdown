@@ -65,6 +65,7 @@
 
 ### Enums
 
+* [AngleBracketEscapeStyle](DotMarkdown/AngleBracketEscapeStyle/README.md)
 * [BulletListStyle](DotMarkdown/BulletListStyle/README.md)
 * [CharEntityFormat](DotMarkdown/CharEntityFormat/README.md)
 * [CodeBlockOptions](DotMarkdown/CodeBlockOptions/README.md)

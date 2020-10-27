@@ -23,6 +23,7 @@
 
 | Enum | Summary |
 | ---- | ------- |
+| [AngleBracketEscapeStyle](AngleBracketEscapeStyle/README.md) | |
 | [BulletListStyle](BulletListStyle/README.md) | |
 | [CodeBlockOptions](CodeBlockOptions/README.md) | |
 | [CodeFenceStyle](CodeFenceStyle/README.md) | |
