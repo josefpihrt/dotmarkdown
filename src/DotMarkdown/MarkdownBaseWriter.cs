@@ -1086,6 +1086,12 @@ namespace DotMarkdown
 
                 _tableColumnIndex++;
 
+                if (_tableColumnIndex >= _tableColumnCount)
+                {
+                    throw new InvalidOperationException(
+                        $"Cannot write table cell value. Column at index {_tableColumnIndex} is not defined.");
+                }
+
                 if (IsFirstColumn)
                 {
                     if (Format.TableOuterDelimiter
