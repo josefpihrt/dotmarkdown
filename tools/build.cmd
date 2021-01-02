@@ -1,6 +1,8 @@
 @echo off
 
 set _version=0.1.1
+set _programFiles=%ProgramFiles(x86)%
+if not defined _programFiles set _programFiles=%ProgramFiles%
 
 orang replace "..\src" -e csproj -c "(?<=<PackageVersion>)\d+\.\d+\.\d+(?=</PackageVersion>)" -r "%_version%" -t m r
 echo.
@@ -10,13 +12,13 @@ echo.
 
 dotnet restore "..\DotMarkdown.sln" --force /p:Configuration=Release
 
-"C:\Program Files\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild" "..\DotMarkdown.sln" ^
+"%_programFiles%\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild" "..\DotMarkdown.sln" ^
  /t:Clean ^
  /p:Configuration=Debug ^
  /v:minimal ^
  /m
 
-"C:\Program Files\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild" "..\DotMarkdown.sln" ^
+"%_programFiles%\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild" "..\DotMarkdown.sln" ^
  /t:Clean,Build ^
  /p:Configuration=Release,TreatWarningsAsErrors=true,WarningsNotAsErrors=1591 ^
  /v:normal ^
