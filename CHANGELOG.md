@@ -1,3 +1,7 @@
+## Unreleased
+
+* Fix: Escape pipe inside inline code inside table ([issue](https://github.com/JosefPihrt/DotMarkdown/issues/16))
+
 ## 0.1.1 (2020-10-27)
 
 * Add support for escaping angle brackets as `&lt;` and `&gt;` ([issue](https://github.com/JosefPihrt/DotMarkdown/issues/15))

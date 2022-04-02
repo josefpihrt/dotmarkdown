@@ -364,7 +364,7 @@ namespace DotMarkdown
                 if (text[0] == '`')
                     WriteRaw(" ");
 
-                WriteString(text, MarkdownCharEscaper.NoEscape);
+                WriteString(text, (_tableColumnCount > 0) ? MarkdownCharEscaper.InlineCodeInsideTable : MarkdownCharEscaper.NoEscape);
 
                 if (text[length - 1] == '`')
                     WriteRaw(" ");

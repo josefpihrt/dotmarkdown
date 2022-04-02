@@ -230,5 +230,63 @@ namespace DotMarkdown.Tests
                     mw.ToString());
             }
         }
+
+        [Fact]
+        public static void TestTableWithInlineCode()
+        {
+            using (MarkdownWriter mw = MarkdownWriter.Create(new StringBuilder()))
+            {
+                mw.WriteLine();
+
+                mw.WriteStartTable(3);
+
+                mw.WriteStartTableRow();
+
+                mw.WriteStartTableCell();
+                mw.WriteString("    ");
+                mw.WriteEndTableCell();
+
+                mw.WriteStartTableCell();
+                mw.WriteString("a||a");
+                mw.WriteEndTableCell();
+
+                mw.WriteStartTableCell();
+                mw.WriteString("b");
+                mw.WriteInlineCode("b|b");
+                mw.WriteString("b");
+                mw.WriteEndTableCell();
+
+                mw.WriteEndTableRow();
+
+                mw.WriteTableHeaderSeparator();
+
+                mw.WriteStartTableRow();
+
+                mw.WriteStartTableCell();
+                mw.WriteString(" ");
+                mw.WriteEndTableCell();
+
+                mw.WriteStartTableCell();
+                mw.WriteString("c|c");
+                mw.WriteEndTableCell();
+
+                mw.WriteStartTableCell();
+                mw.WriteInlineCode("|");
+                mw.WriteEndTableCell();
+
+                mw.WriteEndTableRow();
+
+                mw.WriteEndTable();
+
+                Assert.Equal(
+                    @"
+|      | a\|\|a | b`b\|b`b |
+| ---- | ------ | -------- |
+|   | c\|c | `\|` |
+
+",
+                    mw.ToString());
+            }
+        }
     }
 }

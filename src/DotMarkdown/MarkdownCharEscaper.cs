@@ -16,6 +16,8 @@ namespace DotMarkdown
 
         public static MarkdownCharEscaper AngleBrackets { get; } = new AngleBracketsMarkdownEscaper();
 
+        public static MarkdownCharEscaper InlineCodeInsideTable { get; } = new InlineCodeInsideTableMarkdownEscaper();
+
         public static MarkdownCharEscaper NoEscape { get; } = new NoEscapeMarkdownEscaper();
 
         public abstract bool ShouldBeEscaped(char value);
@@ -109,6 +111,14 @@ namespace DotMarkdown
                     default:
                         return false;
                 }
+            }
+        }
+
+        private class InlineCodeInsideTableMarkdownEscaper : MarkdownCharEscaper
+        {
+            public override bool ShouldBeEscaped(char ch)
+            {
+                return ch == '|';
             }
         }
 
