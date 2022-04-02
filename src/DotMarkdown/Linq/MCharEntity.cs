@@ -18,7 +18,7 @@ namespace DotMarkdown.Linq
 
         public MCharEntity(MCharEntity other)
         {
-            if (other == null)
+            if (other is null)
                 throw new ArgumentNullException(nameof(other));
 
             _value = other.Value;

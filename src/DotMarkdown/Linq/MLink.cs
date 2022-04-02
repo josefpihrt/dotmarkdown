@@ -46,7 +46,7 @@ namespace DotMarkdown.Linq
             get { return _url; }
             set
             {
-                if (value == null)
+                if (value is null)
                     throw new ArgumentNullException(nameof(value));
 
                 Error.ThrowIfContainsWhitespace(value, nameof(value));

@@ -9,7 +9,7 @@ namespace DotMarkdown
     {
         None = 0,
         EmptyLineBefore = 1,
-        EmptyLineAfter = 2,
+        EmptyLineAfter = 1 << 1,
         EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter,
     }
 }

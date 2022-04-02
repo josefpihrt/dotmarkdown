@@ -27,7 +27,7 @@ namespace DotMarkdown.Linq
 
         protected MContainer(MContainer other)
         {
-            if (other == null)
+            if (other is null)
                 throw new ArgumentNullException(nameof(other));
 
             if (other.content is string)
@@ -38,14 +38,14 @@ namespace DotMarkdown.Linq
             {
                 var e = (MElement)other.content;
 
-                if (e != null)
+                if (e is not null)
                 {
                     do
                     {
                         e = e.next;
                         AppendElement(e.Clone());
-
-                    } while (e != other.content);
+                    }
+                    while (e != other.content);
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace DotMarkdown.Linq
 
         public bool IsEmpty
         {
-            get { return content == null; }
+            get { return content is null; }
         }
 
         public MElement FirstElement
@@ -66,7 +66,7 @@ namespace DotMarkdown.Linq
         {
             get
             {
-                if (content == null)
+                if (content is null)
                     return null;
 
                 if (content is MElement element)
@@ -104,14 +104,14 @@ namespace DotMarkdown.Linq
         {
             MElement e = LastElement;
 
-            if (e != null)
+            if (e is not null)
             {
                 do
                 {
                     e = e.next;
                     yield return e;
-
-                } while (e.Parent == this && e != content);
+                }
+                while (e.Parent == this && e != content);
             }
         }
 
@@ -143,7 +143,7 @@ namespace DotMarkdown.Linq
             {
                 MElement first = c?.FirstElement;
 
-                if (first != null)
+                if (first is not null)
                 {
                     e = first;
                 }
@@ -161,7 +161,7 @@ namespace DotMarkdown.Linq
                     e = e.next;
                 }
 
-                if (e != null)
+                if (e is not null)
                     yield return e;
 
                 c = e as MContainer;
@@ -193,7 +193,7 @@ namespace DotMarkdown.Linq
 
         public void RemoveAll()
         {
-            if (content == null)
+            if (content is null)
                 return;
 
             if (content is string)
@@ -212,15 +212,15 @@ namespace DotMarkdown.Linq
                 e.next = null;
 
                 e = n;
-
-            } while (e != content);
+            }
+            while (e != content);
 
             content = null;
         }
 
         public void Add(object content)
         {
-            if (content == null)
+            if (content is null)
                 return;
 
             if (content is MElement element)
@@ -263,7 +263,7 @@ namespace DotMarkdown.Linq
         {
             ValidateElement(e);
 
-            if (e.Parent != null)
+            if (e.Parent is not null)
             {
                 e = e.Clone();
             }
@@ -271,7 +271,7 @@ namespace DotMarkdown.Linq
             {
                 var p = this;
 
-                while (p.Parent != null)
+                while (p.Parent is not null)
                     p = p.Parent;
 
                 if (e == p)
@@ -288,7 +288,7 @@ namespace DotMarkdown.Linq
         {
             e.Parent = this;
 
-            if (content == null
+            if (content is null
                 || content is string)
             {
                 e.next = e;
@@ -307,7 +307,7 @@ namespace DotMarkdown.Linq
         {
             ValidateString(s);
 
-            if (content == null)
+            if (content is null)
             {
                 content = s;
             }

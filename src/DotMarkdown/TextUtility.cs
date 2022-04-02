@@ -8,7 +8,7 @@ namespace DotMarkdown
     {
         public static bool IsNullOrSpace(string s)
         {
-            if (s == null)
+            if (s is null)
                 return true;
 
             int length = s.Length;
@@ -32,7 +32,7 @@ namespace DotMarkdown
 
         public static bool IsAlphanumeric(string s)
         {
-            if (s == null)
+            if (s is null)
                 return false;
 
             int length = s.Length;

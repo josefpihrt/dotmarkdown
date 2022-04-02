@@ -17,7 +17,7 @@ namespace DotMarkdown.Linq
 
         public MComment(MComment other)
         {
-            if (other == null)
+            if (other is null)
                 throw new ArgumentNullException(nameof(other));
 
             _value = other.Value;

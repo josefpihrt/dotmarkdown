@@ -50,7 +50,7 @@ namespace DotMarkdown
 
         private unsafe void WriteStringUnsafe(string value)
         {
-            Debug.Assert(value != null);
+            Debug.Assert(value is not null);
 
             string indentation = null;
             var pendingIndentation = false;
@@ -199,8 +199,8 @@ namespace DotMarkdown
                         }
 
                         pSrc++;
-
-                    } while (!pendingIndentation);
+                    }
+                    while (!pendingIndentation);
 
                     _bufPos = (int)(pDst - pDstStart);
 
@@ -220,7 +220,7 @@ namespace DotMarkdown
 
             bool IsPendingIndentation()
             {
-                if (indentation == null)
+                if (indentation is null)
                     indentation = base.GetIndentation();
 
                 return indentation.Length > 0;
@@ -358,7 +358,7 @@ namespace DotMarkdown
             {
                 _noWrite = true;
 
-                if (_writer != null)
+                if (_writer is not null)
                 {
                     try
                     {

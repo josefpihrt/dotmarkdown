@@ -17,7 +17,7 @@ namespace DotMarkdown
         }
 
         internal static TableColumnInfo Default { get; }
-            = new TableColumnInfo(HorizontalAlignment.Left, 0, isWhiteSpace: true);
+            = new(HorizontalAlignment.Left, 0, isWhiteSpace: true);
 
         public HorizontalAlignment Alignment { get; }
 

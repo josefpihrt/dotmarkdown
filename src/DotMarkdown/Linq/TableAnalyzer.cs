@@ -111,8 +111,8 @@ namespace DotMarkdown.Linq
                             i++;
 
                             WriteHeaderCell(curr);
-
-                        } while (!isLast);
+                        }
+                        while (!isLast);
                     }
                 }
             }

@@ -8,7 +8,7 @@ namespace DotMarkdown.Tests
 {
     internal static class TestHelpers
     {
-        private static readonly Random _random = new Random();
+        private static readonly Random _random = new();
 
         public const string Chars = @"! "" # $ % & ' ) ( * + , - . / : ; < = > ? @ ] [ \ ^ _ ` } { | ~";
 
@@ -283,8 +283,8 @@ namespace DotMarkdown.Tests
             do
             {
                 value = IntValue(0, 0xFFFF);
-
-            } while (value >= 0xD800
+            }
+            while (value >= 0xD800
                 && value <= 0xDFFF);
 
             return (char)value;
@@ -302,7 +302,7 @@ namespace DotMarkdown.Tests
 
         public static MarkdownWriter CreateBuilderWithHtmlEntityFormat(CharEntityFormat? format)
         {
-            return CreateWriter((format != null) ? new MarkdownFormat(charEntityFormat: format.Value) : null);
+            return CreateWriter((format is not null) ? new MarkdownFormat(charEntityFormat: format.Value) : null);
         }
 
         public static MarkdownWriter CreateBuilderWithCodeBlockOptions(CodeBlockOptions options)
@@ -312,27 +312,27 @@ namespace DotMarkdown.Tests
 
         public static MarkdownWriter CreateBuilderWithCodeFenceOptions(CodeFenceStyle? style)
         {
-            return CreateWriter((style != null) ? new MarkdownFormat(codeFenceStyle: style.Value) : null);
+            return CreateWriter((style is not null) ? new MarkdownFormat(codeFenceStyle: style.Value) : null);
         }
 
         public static MarkdownWriter CreateBuilderWithBoldStyle(EmphasisStyle? boldStyle)
         {
-            return CreateWriter((boldStyle != null) ? new MarkdownFormat(boldStyle: boldStyle.Value) : null);
+            return CreateWriter((boldStyle is not null) ? new MarkdownFormat(boldStyle: boldStyle.Value) : null);
         }
 
         public static MarkdownWriter CreateBuilderWithItalicStyle(EmphasisStyle? italicStyle)
         {
-            return CreateWriter((italicStyle != null) ? new MarkdownFormat(italicStyle: italicStyle.Value) : null);
+            return CreateWriter((italicStyle is not null) ? new MarkdownFormat(italicStyle: italicStyle.Value) : null);
         }
 
         public static MarkdownWriter CreateBuilderWithHeadingOptions(HeadingOptions? headingOptions)
         {
-            return CreateWriter((headingOptions != null) ? new MarkdownFormat(headingOptions: headingOptions.Value) : null);
+            return CreateWriter((headingOptions is not null) ? new MarkdownFormat(headingOptions: headingOptions.Value) : null);
         }
 
         public static MarkdownWriter CreateBuilderWithBulletItemStyle(BulletListStyle? style)
         {
-            return CreateWriter((style != null) ? new MarkdownFormat(bulletListStyle: style.Value) : null);
+            return CreateWriter((style is not null) ? new MarkdownFormat(bulletListStyle: style.Value) : null);
         }
 
         public static MarkdownWriter CreateBuilder(StringBuilder sb, MarkdownFormat format = null)

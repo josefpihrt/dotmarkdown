@@ -17,7 +17,7 @@ namespace DotMarkdown.Linq
 
         public MAutolink(MAutolink other)
         {
-            if (other == null)
+            if (other is null)
                 throw new ArgumentNullException(nameof(other));
 
             _url = other.Url;
@@ -28,7 +28,7 @@ namespace DotMarkdown.Linq
             get { return _url; }
             set
             {
-                if (value == null)
+                if (value is null)
                     throw new ArgumentNullException(nameof(value));
 
                 Error.ThrowIfContainsWhitespace(value, nameof(value));

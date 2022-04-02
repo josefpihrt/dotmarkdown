@@ -15,7 +15,7 @@ namespace DotMarkdown.Linq
 
         public MInlineCode(MInlineCode other)
         {
-            if (other == null)
+            if (other is null)
                 throw new ArgumentNullException(nameof(other));
 
             Text = other.Text;

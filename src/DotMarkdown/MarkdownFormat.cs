@@ -113,7 +113,7 @@ namespace DotMarkdown
                 throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(CodeFenceStyle));
             }
 
-            if (horizontalRuleFormat != null)
+            if (horizontalRuleFormat is not null)
             {
                 Error.ThrowOnInvalidHorizontalRuleFormat(horizontalRuleFormat.Value);
 
@@ -144,9 +144,9 @@ namespace DotMarkdown
             AngleBracketEscapeStyle = angleBracketEscapeStyle;
         }
 
-        public static MarkdownFormat Default { get; } = new MarkdownFormat();
+        public static MarkdownFormat Default { get; } = new();
 
-        internal static MarkdownFormat Debugging { get; } = new MarkdownFormat(
+        internal static MarkdownFormat Debugging { get; } = new(
             Default.BoldStyle,
             Default.ItalicStyle,
             Default.BulletListStyle,
@@ -238,7 +238,7 @@ namespace DotMarkdown
 
         public bool Equals(MarkdownFormat other)
         {
-            return other != null
+            return other is not null
                 && BoldStyle == other.BoldStyle
                 && ItalicStyle == other.ItalicStyle
                 && BulletListStyle == other.BulletListStyle

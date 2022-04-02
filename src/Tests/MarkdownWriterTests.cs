@@ -363,8 +363,8 @@ namespace DotMarkdown.Tests
 
             MImage image = Image(text + Chars, url + CharsWithoutSpaces, title + Chars);
 
-            string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]" +
-                $"({url + CharsWithoutSpacesParenthesesEscaped} \"{title + CharsDoubleQuoteEscaped}\")";
+            string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+                + $"({url + CharsWithoutSpacesParenthesesEscaped} \"{title + CharsDoubleQuoteEscaped}\")";
 
             mw.WriteImage(image.Text, image.Url, image.Title);
 
@@ -381,8 +381,8 @@ namespace DotMarkdown.Tests
 
             MImage image = Image(text + Chars, url + CharsWithoutSpaces);
 
-            string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]" +
-                $"({url + CharsWithoutSpacesParenthesesEscaped})";
+            string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+                + $"({url + CharsWithoutSpacesParenthesesEscaped})";
 
             mw.WriteImage(image.Text, image.Url);
 
@@ -400,8 +400,8 @@ namespace DotMarkdown.Tests
 
             MImage image = Image(text + Chars, url + CharsWithoutSpaces, title + Chars);
 
-            string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]" +
-                $"({url + CharsWithoutSpacesParenthesesEscaped} \"{title + CharsDoubleQuoteEscaped}\")";
+            string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+                + $"({url + CharsWithoutSpacesParenthesesEscaped} \"{title + CharsDoubleQuoteEscaped}\")";
 
             mw.Write(image);
 
@@ -418,8 +418,8 @@ namespace DotMarkdown.Tests
 
             MImage image = Image(text + Chars, url + CharsWithoutSpaces);
 
-            string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]" +
-                $"({url + CharsWithoutSpacesParenthesesEscaped})";
+            string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+                + $"({url + CharsWithoutSpacesParenthesesEscaped})";
 
             mw.Write(image);
 
@@ -448,8 +448,8 @@ namespace DotMarkdown.Tests
             const string url = linkUrl + CharsWithoutSpaces;
             const string title = linkTitle + Chars;
 
-            string expected = $"[{linkText + CharsSquareBracketsBacktickLessThanEscaped}]" +
-                $"({linkUrl + CharsWithoutSpacesParenthesesEscaped} \"{linkTitle + CharsDoubleQuoteEscaped}\")";
+            string expected = $"[{linkText + CharsSquareBracketsBacktickLessThanEscaped}]"
+                + $"({linkUrl + CharsWithoutSpacesParenthesesEscaped} \"{linkTitle + CharsDoubleQuoteEscaped}\")";
 
             mw.WriteLink(text, url, title);
 
@@ -467,8 +467,8 @@ namespace DotMarkdown.Tests
             const string text = linkText + Chars;
             const string url = linkUrl + CharsWithoutSpaces;
 
-            string expected = $"[{linkText + CharsSquareBracketsBacktickLessThanEscaped}]" +
-                $"({linkUrl + CharsWithoutSpacesParenthesesEscaped})";
+            string expected = $"[{linkText + CharsSquareBracketsBacktickLessThanEscaped}]"
+                + $"({linkUrl + CharsWithoutSpacesParenthesesEscaped})";
 
             mw.WriteLink(text, url);
 
@@ -480,8 +480,8 @@ namespace DotMarkdown.Tests
         {
             MarkdownWriter mw = CreateWriter();
 
-            string expected = $"[**b** *i* ~~s~~ `c` {CharsSquareBracketsBacktickLessThanEscaped}]" +
-                $"(u{CharsWithoutSpacesParenthesesEscaped} \"t{CharsDoubleQuoteEscaped}\")";
+            string expected = $"[**b** *i* ~~s~~ `c` {CharsSquareBracketsBacktickLessThanEscaped}]"
+                + $"(u{CharsWithoutSpacesParenthesesEscaped} \"t{CharsDoubleQuoteEscaped}\")";
 
             mw.WriteStartLink();
             mw.WriteBold("b");
@@ -509,8 +509,8 @@ namespace DotMarkdown.Tests
 
             MLink link = Link(text + Chars, url + CharsWithoutSpaces, title + Chars);
 
-            string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]" +
-                $"({url + CharsWithoutSpacesParenthesesEscaped} \"{title + CharsDoubleQuoteEscaped}\")";
+            string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+                + $"({url + CharsWithoutSpacesParenthesesEscaped} \"{title + CharsDoubleQuoteEscaped}\")";
 
             Assert.Equal(expected, mw.Write2(link).ToStringAndClear());
         }
@@ -525,8 +525,8 @@ namespace DotMarkdown.Tests
 
             MLink link = Link(text + Chars, url + CharsWithoutSpaces);
 
-            string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]" +
-                $"({url + CharsWithoutSpacesParenthesesEscaped})";
+            string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+                + $"({url + CharsWithoutSpacesParenthesesEscaped})";
 
             mw.Write(link);
 

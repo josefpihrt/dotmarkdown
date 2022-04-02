@@ -18,7 +18,7 @@ namespace DotMarkdown.Linq
 
         public MFencedCodeBlock(MFencedCodeBlock other)
         {
-            if (other == null)
+            if (other is null)
                 throw new ArgumentNullException(nameof(other));
 
             Text = other.Text;

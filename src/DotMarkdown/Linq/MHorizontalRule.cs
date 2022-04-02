@@ -23,7 +23,7 @@ namespace DotMarkdown.Linq
 
         public MHorizontalRule(MHorizontalRule other)
         {
-            if (other == null)
+            if (other is null)
                 throw new ArgumentNullException(nameof(other));
 
             Style = other.Style;

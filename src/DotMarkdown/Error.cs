@@ -79,7 +79,7 @@ namespace DotMarkdown
 
         public static void ThrowOnInvalidEntityName(string name)
         {
-            if (name == null)
+            if (name is null)
                 throw new ArgumentNullException(nameof(name));
 
             if (name.Length == 0)
@@ -102,7 +102,7 @@ namespace DotMarkdown
 
         public static void ThrowOnInvalidUrl(string url)
         {
-            if (url == null)
+            if (url is null)
                 throw new ArgumentNullException(nameof(url));
 
             ThrowIfContainsWhitespace(url, nameof(url));
@@ -110,7 +110,7 @@ namespace DotMarkdown
 
         public static void ThrowIfContainsWhitespace(string value, string parameterName = null)
         {
-            if (value == null)
+            if (value is null)
                 return;
 
             for (int i = 0; i < value.Length; i++)
@@ -119,7 +119,7 @@ namespace DotMarkdown
                 {
                     throw new ArgumentException(
                         "Link or image url cannot contain whitespace character(s).",
-                        (parameterName != null) ? nameof(parameterName) : nameof(value));
+                        (parameterName is not null) ? nameof(parameterName) : nameof(value));
                 }
             }
         }

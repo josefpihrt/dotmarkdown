@@ -9,12 +9,12 @@ namespace DotMarkdown
     {
         None = 0,
         FormatHeader = 1,
-        FormatContent = 2,
+        FormatContent = 1 << 1,
         FormatHeaderAndContent = FormatHeader | FormatContent,
-        Padding = 4,
-        OuterDelimiter = 8,
-        EmptyLineBefore = 16,
-        EmptyLineAfter = 32,
+        Padding = 1 << 2,
+        OuterDelimiter = 1 << 3,
+        EmptyLineBefore = 1 << 4,
+        EmptyLineAfter = 1 << 5,
         EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter,
     }
 }

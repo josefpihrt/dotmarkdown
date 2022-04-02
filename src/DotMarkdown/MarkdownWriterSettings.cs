@@ -20,11 +20,11 @@ namespace DotMarkdown
             CloseOutput = closeOutput;
         }
 
-        public static MarkdownWriterSettings Default { get; } = new MarkdownWriterSettings();
+        public static MarkdownWriterSettings Default { get; } = new();
 
         internal static MarkdownWriterSettings DefaultCloseOutput { get; } = Default.WithCloseOutput(true);
 
-        internal static MarkdownWriterSettings Debugging { get; } = new MarkdownWriterSettings(MarkdownFormat.Debugging);
+        internal static MarkdownWriterSettings Debugging { get; } = new(MarkdownFormat.Debugging);
 
         public MarkdownFormat Format { get; }
 
@@ -56,7 +56,7 @@ namespace DotMarkdown
 
         internal static MarkdownWriterSettings From(MarkdownFormat format)
         {
-            if (format == null
+            if (format is null
                 || object.ReferenceEquals(format, MarkdownFormat.Default))
             {
                 return Default;

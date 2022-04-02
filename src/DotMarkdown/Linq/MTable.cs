@@ -34,7 +34,7 @@ namespace DotMarkdown.Linq
 
             IReadOnlyList<TableColumnInfo> columns = (writer as ITableAnalyzer)?.AnalyzeTable(rows);
 
-            if (columns != null)
+            if (columns is not null)
             {
                 writer.WriteStartTable(columns);
             }
@@ -42,7 +42,7 @@ namespace DotMarkdown.Linq
             {
                 MElement header = rows.FirstOrDefault();
 
-                if (header == null)
+                if (header is null)
                     return;
 
                 int columnCount = (header as MContainer)?.Elements().Count() ?? 1;

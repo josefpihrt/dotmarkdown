@@ -23,7 +23,7 @@ namespace DotMarkdown
         }
 
         public static HorizontalRuleFormat Default { get; }
-            = new HorizontalRuleFormat(DefaultStyle, DefaultCount, DefaultSeparator);
+            = new(DefaultStyle, DefaultCount, DefaultSeparator);
 
         public HorizontalRuleStyle Style { get; }
 
@@ -52,7 +52,7 @@ namespace DotMarkdown
 
         internal static bool IsValidSeparator(string separator)
         {
-            if (separator == null)
+            if (separator is null)
                 return true;
 
             for (int i = 0; i < separator.Length; i++)

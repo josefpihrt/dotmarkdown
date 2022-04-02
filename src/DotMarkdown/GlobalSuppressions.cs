@@ -11,4 +11,3 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1213:Remove unused member declaration.", Justification = "<Pending>", Scope = "member", Target = "~P:DotMarkdown.Linq.MFencedCodeBlock.InfoDebuggerDisplay")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1213:Remove unused member declaration.", Justification = "<Pending>", Scope = "member", Target = "~P:DotMarkdown.Linq.MLink.TitleDebuggerDisplay")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1213:Remove unused member declaration.", Justification = "<Pending>", Scope = "member", Target = "~P:DotMarkdown.HorizontalRuleFormat.SeparatorDebuggerDisplay")]
-

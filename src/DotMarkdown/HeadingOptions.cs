@@ -9,11 +9,11 @@ namespace DotMarkdown
     {
         None = 0,
         UnderlineHeading1 = 1,
-        UnderlineHeading2 = 2,
+        UnderlineHeading2 = 1 << 1,
         Underline = UnderlineHeading1 | UnderlineHeading2,
-        Close = 4,
-        EmptyLineBefore = 8,
-        EmptyLineAfter = 16,
+        Close = 1 << 2,
+        EmptyLineBefore = 1 << 3,
+        EmptyLineAfter = 1 << 4,
         EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter,
     }
 }

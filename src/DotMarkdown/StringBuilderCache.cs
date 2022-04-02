@@ -19,7 +19,7 @@ namespace DotMarkdown
             {
                 StringBuilder sb = _cachedInstance;
 
-                if (sb != null
+                if (sb is not null
                     && capacity <= sb.Capacity)
                 {
                     _cachedInstance = null;

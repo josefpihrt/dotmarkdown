@@ -30,7 +30,7 @@ namespace DotMarkdown.Linq
         public MOrderedItem(MOrderedItem other)
             : base(other)
         {
-            if (other == null)
+            if (other is null)
                 throw new ArgumentNullException(nameof(other));
 
             _number = other.Number;

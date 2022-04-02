@@ -39,10 +39,10 @@ namespace DotMarkdown
             IFormatProvider formatProvider,
             MarkdownWriterSettings settings = null)
         {
-            if (output == null)
+            if (output is null)
                 throw new ArgumentNullException(nameof(output));
 
-            if (formatProvider == null)
+            if (formatProvider is null)
                 throw new ArgumentNullException(nameof(formatProvider));
 
             return new MarkdownStringWriter(output, formatProvider, settings);
@@ -50,7 +50,7 @@ namespace DotMarkdown
 
         public static MarkdownWriter Create(TextWriter output, MarkdownWriterSettings settings = null)
         {
-            if (output == null)
+            if (output is null)
                 throw new ArgumentNullException(nameof(output));
 
             return new MarkdownTextWriter(output, settings);
@@ -58,7 +58,7 @@ namespace DotMarkdown
 
         public static MarkdownWriter Create(string fileName, MarkdownWriterSettings settings = null)
         {
-            if (settings == null
+            if (settings is null
                 || object.ReferenceEquals(settings, MarkdownWriterSettings.Default))
             {
                 settings = MarkdownWriterSettings.DefaultCloseOutput;
@@ -91,13 +91,13 @@ namespace DotMarkdown
 
         public static MarkdownWriter Create(Stream stream, Encoding encoding, MarkdownWriterSettings settings = null)
         {
-            if (stream == null)
+            if (stream is null)
                 throw new ArgumentNullException(nameof(stream));
 
-            if (encoding == null)
+            if (encoding is null)
                 throw new ArgumentNullException(nameof(encoding));
 
-            if (settings == null)
+            if (settings is null)
                 settings = MarkdownWriterSettings.Default;
 
             StreamWriter sw = null;
@@ -260,7 +260,7 @@ namespace DotMarkdown
 
         public virtual void WriteLink(string text, string url, string title = null)
         {
-            if (text == null)
+            if (text is null)
                 throw new ArgumentNullException(nameof(text));
 
             WriteStartLink();
@@ -373,7 +373,7 @@ namespace DotMarkdown
 
         internal void Write(object value)
         {
-            if (value == null)
+            if (value is null)
                 return;
 
             if (value is MElement element)

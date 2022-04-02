@@ -1,10 +1,9 @@
 @echo off
 
-set _programFiles=%ProgramFiles(x86)%
-if not defined _programFiles set _programFiles=%ProgramFiles%
+set _programFiles=%ProgramFiles%
 
 set _roslynatorPath=..\..\Roslynator\src
-set _visualStudioPath=%_programFiles%\Microsoft Visual Studio\2019\Community
+set _visualStudioPath=%_programFiles%\Microsoft Visual Studio\2022\Enterprise
 set _msbuildPath=%_visualStudioPath%\MSBuild\Current\Bin
 
 "%_msbuildPath%\msbuild" "%_roslynatorPath%\CommandLine.sln" /t:Build /p:Configuration=Debug /v:m /m

@@ -25,7 +25,7 @@ namespace DotMarkdown
         protected State _state;
         private int _orderedItemNumber;
 
-        private readonly Collection<ElementInfo> _stack = new Collection<ElementInfo>();
+        private readonly Collection<ElementInfo> _stack = new();
 
         protected MarkdownBaseWriter(MarkdownWriterSettings settings = null)
         {
@@ -344,7 +344,7 @@ namespace DotMarkdown
 
         public override void WriteInlineCode(string text)
         {
-            if (text == null)
+            if (text is null)
                 return;
 
             int length = text.Length;
@@ -648,7 +648,7 @@ namespace DotMarkdown
         {
             try
             {
-                if (text == null)
+                if (text is null)
                     throw new ArgumentNullException(nameof(text));
 
                 Error.ThrowOnInvalidUrl(url);
@@ -975,7 +975,7 @@ namespace DotMarkdown
 
         public override void WriteStartTable(IReadOnlyList<TableColumnInfo> columns)
         {
-            if (columns == null)
+            if (columns is null)
                 throw new ArgumentNullException(nameof(columns));
 
             WriteStartTable(columns, columns.Count);
@@ -997,10 +997,10 @@ namespace DotMarkdown
 
                 WriteLine(Format.EmptyLineBeforeTable);
 
-                if (_tableColumns == null)
+                if (_tableColumns is null)
                     _tableColumns = new List<TableColumnInfo>(columnCount);
 
-                if (columns != null)
+                if (columns is not null)
                 {
                     _tableColumns.AddRange(columns);
                 }
@@ -1522,7 +1522,7 @@ namespace DotMarkdown
                 _emptyLineStartPos = -1;
             }
 
-            void ThrowOnNewLineInTableCell()
+            static void ThrowOnNewLineInTableCell()
             {
                 throw new InvalidOperationException("Cannot write newline characters in a table cell.");
             }

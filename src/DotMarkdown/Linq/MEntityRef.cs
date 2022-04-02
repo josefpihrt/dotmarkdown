@@ -29,7 +29,7 @@ namespace DotMarkdown.Linq
 
         public MEntityRef(MEntityRef other)
         {
-            if (other == null)
+            if (other is null)
                 throw new ArgumentNullException(nameof(other));
 
             _name = other.Name;

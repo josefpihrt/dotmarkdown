@@ -15,7 +15,7 @@ namespace DotMarkdown.Linq
             {
                 var x = this;
 
-                while (x.Parent != null)
+                while (x.Parent is not null)
                     x = x.Parent;
 
                 return x as MDocument;

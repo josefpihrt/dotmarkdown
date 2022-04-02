@@ -17,7 +17,7 @@ namespace DotMarkdown.Linq
         {
             get
             {
-                return (Parent != null && Parent.content != this)
+                return (Parent is not null && Parent.content != this)
                     ? next
                     : null;
             }
@@ -27,7 +27,7 @@ namespace DotMarkdown.Linq
         {
             get
             {
-                if (Parent == null)
+                if (Parent is null)
                     return null;
 
                 MElement e = ((MElement)Parent.content).next;
@@ -102,7 +102,7 @@ namespace DotMarkdown.Linq
 
         public void Save(MarkdownWriter writer)
         {
-            if (writer == null)
+            if (writer is null)
                 throw new ArgumentNullException(nameof(writer));
 
             WriteTo(writer);
@@ -117,7 +117,7 @@ namespace DotMarkdown.Linq
         {
             var c = ((self) ? this : Parent) as MContainer;
 
-            while (c != null)
+            while (c is not null)
             {
                 yield return c;
 
@@ -129,7 +129,7 @@ namespace DotMarkdown.Linq
         {
             var e = this;
 
-            while (e.Parent != null
+            while (e.Parent is not null
                 && e.Parent.content != e)
             {
                 e = e.next;
@@ -140,7 +140,7 @@ namespace DotMarkdown.Linq
 
         public IEnumerable<MElement> ElementsBeforeSelf()
         {
-            if (Parent != null)
+            if (Parent is not null)
             {
                 var e = (MElement)Parent.content;
 
@@ -152,14 +152,14 @@ namespace DotMarkdown.Linq
                         break;
 
                     yield return e;
-
-                } while (Parent != null && Parent == e.Parent);
+                }
+                while (Parent is not null && Parent == e.Parent);
             }
         }
 
         public void Remove()
         {
-            if (Parent == null)
+            if (Parent is null)
                 throw new InvalidOperationException("Element has no parent.");
 
             Parent.RemoveElement(this);

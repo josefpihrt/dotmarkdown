@@ -8,4 +8,3 @@
 #pragma warning disable RCS0056
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1163:Unused parameter.", Justification = "<Pending>", Scope = "member", Target = "~M:DotMarkdown.Tests.MarkdownEscaperTests.MarkdownEscaper_Escape_NoEscape(System.String,System.Boolean)")]
-

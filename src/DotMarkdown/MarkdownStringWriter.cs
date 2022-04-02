@@ -195,7 +195,7 @@ namespace DotMarkdown
 
             void WriteIndentation()
             {
-                if (indentation == null)
+                if (indentation is null)
                     indentation = GetIndentation();
 
                 _sb.Append(indentation);

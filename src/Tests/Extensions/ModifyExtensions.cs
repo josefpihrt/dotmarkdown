@@ -20,8 +20,8 @@ namespace DotMarkdown.Tests
             do
             {
                 newValue = Spaces(minValue, maxValue);
-
-            } while (newValue == value);
+            }
+            while (newValue == value);
 
             return newValue;
         }
@@ -33,8 +33,8 @@ namespace DotMarkdown.Tests
             do
             {
                 newValue = IntValue();
-
-            } while (newValue == value);
+            }
+            while (newValue == value);
 
             return newValue;
         }
@@ -46,8 +46,8 @@ namespace DotMarkdown.Tests
             do
             {
                 newValue = IntValue(maxValue);
-
-            } while (newValue == value);
+            }
+            while (newValue == value);
 
             return newValue;
         }
@@ -59,8 +59,8 @@ namespace DotMarkdown.Tests
             do
             {
                 newValue = IntValue(minValue, maxValue);
-
-            } while (newValue == value);
+            }
+            while (newValue == value);
 
             return newValue;
         }
@@ -123,8 +123,8 @@ namespace DotMarkdown.Tests
             do
             {
                 style = HorizontalRuleStyle();
-
-            } while (style != format.Style);
+            }
+            while (style != format.Style);
 
             return new HorizontalRuleFormat(style, format.Count.Modify(3, 10), format.Separator + " ");
         }
