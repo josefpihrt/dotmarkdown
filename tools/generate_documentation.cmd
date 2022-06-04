@@ -10,14 +10,14 @@ set _rootDirectoryUrl="../../docs/api/"
 
 %_msbuildPath%\msbuild "..\..\Roslynator\src\CommandLine.sln" /t:Clean,Build /p:Configuration=Debug /v:m /m
 
-%_roslynatorExe% generate-doc "..\DotMarkdown.sln" ^
+%_roslynatorExe% generate-doc "..\src\DotMarkdown.sln" ^
  --msbuild-path %_msbuildPath% ^
  --properties %_msbuildProperties% ^
  --projects DotMarkdown ^
  -o "..\docs\api" ^
  -h "DotMarkdown API Reference"
 
-%_roslynatorExe% list-symbols "..\DotMarkdown.sln" ^
+%_roslynatorExe% list-symbols "..\src\DotMarkdown.sln" ^
  --msbuild-path %_msbuildPath% ^
  --properties %_msbuildProperties% ^
  --projects DotMarkdown(netstandard1.3) ^
