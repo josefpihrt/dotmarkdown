@@ -2,7 +2,7 @@ build-metadata-padding: 5
 mode: ContinuousDeployment
 
 branches:
-  main:
+  master:
     tag: beta
   pull-request:
     tag: alpha
