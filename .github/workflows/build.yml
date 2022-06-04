@@ -13,6 +13,7 @@ jobs:
     env:
       Configuration: Release
       TreatWarningsAsErrors: true
+      WarningsNotAsErrors: 1591
     defaults:
       run:
         working-directory: src
