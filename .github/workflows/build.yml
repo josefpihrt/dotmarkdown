@@ -34,9 +34,10 @@ jobs:
           echo "Version=$version" >> $GITHUB_ENV
           echo "::set-output name=version::${version}"
         working-directory: ./
+      - run: echo ${{ steps.version.outputs.version }}
       - run: dotnet restore --configfile nuget.config
       - run: dotnet format --no-restore --verify-no-changes
-      - run: dotnet build --no-restore
+      - run: dotnet build --no-restore /p:Version=${{ steps.version.outputs.version }},PackageVersion=${{ steps.version.outputs.version }}
       #- run: dotnet test --no-build
       - run: dotnet pack --no-build
       - run: ls DotMarkdown/bin/Release
@@ -56,7 +57,7 @@ jobs:
     needs: [build_packages]
     if: github.ref_type == 'branch' && startsWith(github.ref_name, '20/m')
     steps:
-      - run: echo ${{ github.ref_name }}
+      - run: echo ${{ github.ref_type }}
       - run: echo ${{ github.ref_name }}
 
   #release_packages:
