@@ -7,9 +7,9 @@ Write-Host
 orang delete "../src" -a d -n "bin|obj" e --content-only -t n -y su s
 Write-Host
 
-dotnet clean "../DotMarkdown.sln" -c Debug -v m /m
-dotnet clean "../DotMarkdown.sln" -c Release -v m /m
-dotnet build "../DotMarkdown.sln" -c Release -v n /p:TreatWarningsAsErrors=true,WarningsNotAsErrors=1591 /fl /m
+dotnet clean "../src/DotMarkdown.sln" -c Debug -v m /m
+dotnet clean "../src/DotMarkdown.sln" -c Release -v m /m
+dotnet build "../src/DotMarkdown.sln" -c Release -v n /p:TreatWarningsAsErrors=true,WarningsNotAsErrors=1591 /fl /m
 
 if(!$?) { Read-Host; Exit }
 

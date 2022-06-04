@@ -1,12 +1,16 @@
-#dotnet tool install -g roslynator.dotnet.cli
+$msbuildPath = ./vswhere.exe -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe
+$roslynatorExe="../../roslynator/src/CommandLine/bin/Debug/net48/roslynator"
 
-roslynator generate-doc "../DotMarkdown.sln" `
+dotnet restore "../../Roslynator/src/CommandLine.sln" -c Debug /p:RoslynatorCommandLine=true -v m
+& $msbuildPath "../../Roslynator/src/CommandLine.sln" /t:Build /p:Configuration=Debug,RoslynatorCommandLine=true /v:m /m
+
+& $roslynatorExe generate-doc "../src/DotMarkdown.sln" `
  --properties "Configuration=Release" `
- --projects DotMarkdown `
+ --projects "DotMarkdown(netstandard1.3)" `
  --heading "DotMarkdown API Reference" `
  -o "../docs/api"
 
-roslynator list-symbols "../DotMarkdown.sln" `
+& $roslynatorExe list-symbols "../src/DotMarkdown.sln" `
  --properties "Configuration=Release" `
  --projects "DotMarkdown(netstandard1.3)" `
  --visibility public `

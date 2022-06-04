@@ -1,4 +1,4 @@
-dotnet build "../DotMarkdown.sln" -c Debug /fl /m
+dotnet build "../src/DotMarkdown.sln" -c Debug /fl /m
 
 Write-Host "DONE"
 Read-Host

@@ -4,7 +4,7 @@ $roslynatorPath="../../roslynator/src"
 
 dotnet build "$roslynatorPath/CommandLine.sln" -c Debug -v m /m
 
-roslynator fix "../DotMarkdown.sln" `
+roslynator fix "../src/DotMarkdown.sln" `
  --analyzer-assemblies `
   "$roslynatorPath/Analyzers.CodeFixes/bin/Debug/netstandard2.0/Roslynator.CSharp.Analyzers.dll" `
   "$roslynatorPath/Analyzers.CodeFixes/bin/Debug/netstandard2.0/Roslynator.CSharp.Analyzers.CodeFixes.dll" `
