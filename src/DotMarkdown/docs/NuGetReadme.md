@@ -1,15 +1,11 @@
-# DotMarkdown <img align="left" width="48px" height="48px" src="http://pihrt.net/images/DotMarkdown.ico">
+# DotMarkdown
 
-DotMarkdown is a framework for creating markdown content in .NET.
+DotMarkdown is a framework for creating markdown content.
 
 ## Supported Frameworks
 
 * .NET Standard 1.3
 * .NET Framework 4.5
-
-## Documentation
-
-* [Reference documentation](https://github.com/josefpihrt/dotmarkdown/blob/master/docs/api/README.md#_top)
 
 ## Usage 
 
@@ -25,9 +21,7 @@ DotMarkdown is a framework for creating markdown content in .NET.
 ```csharp
 using System.Text;
 using DotMarkdown;
-```
 
-```csharp
 var sb = new StringBuilder();
 
 using (MarkdownWriter writer = MarkdownWriter.Create(sb))
@@ -44,13 +38,11 @@ using (MarkdownWriter writer = MarkdownWriter.Create(sb))
     writer.WriteHeading2("Indented Code Block");
     writer.WriteIndentedCodeBlock("string s = null;");
 }
+
+Console.WriteLine(sb.ToString());
 ```
 
 #### Output
-
-```csharp
-Console.WriteLine(sb.ToString());
-```
 
 ```
 # Markdown Sample
@@ -73,9 +65,7 @@ Console.WriteLine(sb.ToString());
 ```csharp
 using DotMarkdown.Linq;
 using static DotMarkdown.Linq.MFactory;
-```
 
-```csharp
 MDocument document = Document(
     Heading1("Markdown Sample"),
     Heading2("Bullet List"),
@@ -85,13 +75,11 @@ MDocument document = Document(
     HorizontalRule(),
     Heading2("IndentedCodeBlock"),
     IndentedCodeBlock("string s = null;"));
+
+Console.WriteLine(document.ToString());
 ```
 
 #### Output
-
-```csharp
-Console.WriteLine(document.ToString());
-```
 
 ```
 # Markdown Sample
