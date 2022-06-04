@@ -10,15 +10,15 @@ echo.
 orang delete "..\src" -a d -n "bin|obj" e --content-only -t n -y su s
 echo.
 
-dotnet restore "..\DotMarkdown.sln" --force /p:Configuration=Release
+dotnet restore "..\src\DotMarkdown.sln" --force /p:Configuration=Release
 
-"%_programFiles%\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild" "..\DotMarkdown.sln" ^
+"%_programFiles%\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild" "..\src\DotMarkdown.sln" ^
  /t:Clean ^
  /p:Configuration=Debug ^
  /v:minimal ^
  /m
 
-"%_programFiles%\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild" "..\DotMarkdown.sln" ^
+"%_programFiles%\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild" "..\src\DotMarkdown.sln" ^
  /t:Clean,Build ^
  /p:Configuration=Release,TreatWarningsAsErrors=true,WarningsNotAsErrors=1591 ^
  /v:normal ^
