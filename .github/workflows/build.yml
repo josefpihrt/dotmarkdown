@@ -39,11 +39,11 @@ jobs:
       - run: dotnet build --no-restore
       #- run: dotnet test --no-build
       - run: dotnet pack --no-build
-      - run: ls DotMarkdwon/bin/Release
+      - run: ls DotMarkdown/bin/Release
       - uses: actions/upload-artifact@v3
         with:
           name: nuget_packages
-          path: DotMarkdwon/bin/Release/*nupkg
+          path: src/DotMarkdown/bin/Release/*nupkg
 
   debug_print:
     runs-on: ubuntu-20.04
@@ -54,7 +54,7 @@ jobs:
   debug_print_2:
     runs-on: ubuntu-20.04
     needs: [build_packages]
-    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+    if: github.ref_type == 'branch' && startsWith(github.ref_name, '20/m')
     steps:
       - run: echo ${{ github.ref_name }}
       - run: echo ${{ github.ref_name }}
