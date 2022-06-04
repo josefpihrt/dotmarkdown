@@ -1,0 +1,72 @@
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+  pull_request:
+
+jobs:
+
+  build_packages:
+    runs-on: ubuntu-20.04
+    env:
+      Configuration: Release
+      TreatWarningsAsErrors: true
+    defaults:
+      run:
+        working-directory: src
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Update path
+        run: echo ":/github/home/.dotnet/tools" >> $GITHUB_PATH 
+      - run: dotnet tool install -g GitVersion.Tool --version 5.10.1 --ignore-failed-sources
+      - run: dotnet tool install -g dotnet-validate --version 0.0.1-preview.304
+      - name: Resolve version
+        id: version
+        run: |
+          version=$(dotnet-gitversion /showvariable SemVer)
+          echo "Version=$version" >> $GITHUB_ENV
+          echo "::set-output name=version::${version}"
+        working-directory: ./
+      - run: dotnet restore --configfile nuget.config
+      - run: dotnet format --no-restore --verify-no-changes
+      - run: dotnet build --no-restore
+      - run: dotnet test --no-build
+      - run: dotnet pack --no-build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: nuget_packages
+          path: src/DotMarkdwon/bin/Release/*nupkg
+
+  debug_print:
+    runs-on: ubuntu-20.04
+    steps:
+      - run: echo ${{ github.ref_type }}
+      - run: echo ${{ github.ref_name }}
+
+  debug_print_2:
+    runs-on: ubuntu-20.04
+    needs: [build_packages]
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+    steps:
+      - run: echo ${{ github.ref_name }}
+      - run: echo ${{ github.ref_name }}
+
+  #release_packages:
+  #  runs-on: ubuntu-20.04
+  #  needs: [build_packages]
+  #  if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+  #  env:
+  #    NUGET_API_KEY: ${{ secrets.NUGET_API_KEY_ }}
+  #  steps:
+  #    - uses: actions/download-artifact@v3
+  #      with:
+  #        name: nuget_packages
+  #        path: nuget_packages
+  #    - run: dotnet nuget push "*.nupkg" -k NUGET_API-KEY -s "https://api.nuget.org/v3/index.json"
+  #      working-directory: nuget_packages
