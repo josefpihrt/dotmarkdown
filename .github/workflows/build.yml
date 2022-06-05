@@ -49,16 +49,17 @@ jobs:
           name: nuget_packages
           path: src/DotMarkdown/bin/Release/*nupkg
 
-  #release_packages:
-  #  runs-on: ubuntu-20.04
-  #  needs: [build_packages]
-  #  if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
-  #  env:
-  #    NUGET_API_KEY: ${{ secrets.NUGET_API_KEY_ }}
-  #  steps:
-  #    - uses: actions/download-artifact@v3
-  #      with:
-  #        name: nuget_packages
-  #        path: nuget_packages
-  #    - run: dotnet nuget push "*.nupkg" -k NUGET_API-KEY -s "https://api.nuget.org/v3/index.json"
-  #      working-directory: nuget_packages
+  release_packages:
+    runs-on: ubuntu-20.04
+    needs: [build_packages]
+    #if: github.ref == 'refs/heads/master'
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+    env:
+      NUGET_API_KEY: ${{ secrets.DUMMY_NUGET_API_KEY }}
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: nuget_packages
+          path: nuget_packages
+      - run: dotnet nuget push "*.nupkg" -k NUGET_API_KEY -s "https://api.nuget.org/v3/index.json"
+        working-directory: nuget_packages
