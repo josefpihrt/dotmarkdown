@@ -1,4 +1,4 @@
-build-metadata-padding: 5
+build-metadata-padding: 4
 mode: ContinuousDeployment
 
 branches:
