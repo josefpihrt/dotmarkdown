@@ -32,7 +32,7 @@ namespace DotMarkdown.Tests
 
         public const string CharsWithoutBacktick = @"! "" # $ % & ' ) ( * + , - . / : ; < = > ? @ ] [ \ ^ _ } { | ~";
 
-        public const string NewLine = "\r\n";
+        public static readonly string NewLine = Environment.NewLine;
 
         public const string DefaultText = "Text";
 

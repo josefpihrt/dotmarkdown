@@ -24,7 +24,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Update path
-        run: echo ":/github/home/.dotnet/tools" >> $GITHUB_PATH 
+        run: echo ":/github/home/.dotnet/tools" >> $GITHUB_PATH
       - run: dotnet tool install -g GitVersion.Tool --version 5.10.1 --ignore-failed-sources
       - run: dotnet tool install -g dotnet-validate --version 0.0.1-preview.304
       - name: Resolve semantic version
