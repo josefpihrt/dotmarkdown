@@ -11,9 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add NuGet readme file ([#17](https://github.com/josefpihrt/dotmarkdown/pull/17)).
 - Add support for Source Link ([#18](https://github.com/josefpihrt/dotmarkdown/pull/18)).
+- Add CI/CD pipeline ([#20](https://github.com/josefpihrt/dotmarkdown/pull/20)).
 
 ### Changed
 
+- Change target framework from .NET 4.5 to .NET 4.6.2 ([#20](https://github.com/josefpihrt/dotmarkdown/pull/20)).
 - Migrate all scripts to PowerShell ([#19](https://github.com/josefpihrt/dotmarkdown/pull/19)).
 - Add editorconfig and remove ruleset.
 - Rename `master` to `main`.
