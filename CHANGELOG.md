@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Migrate all scripts to PowerShell ([#19](https://github.com/josefpihrt/dotmarkdown/pull/19)).
 - Add editorconfig and remove ruleset.
+- Rename `master` to `main`
 
 ### Fixed
 
