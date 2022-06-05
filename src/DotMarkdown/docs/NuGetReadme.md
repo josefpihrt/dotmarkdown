@@ -1,18 +1,11 @@
-# DotMarkdown <img align="left" width="48px" height="48px" src="http://pihrt.net/images/DotMarkdown.ico">
+# DotMarkdown
 
-## Introduction 
-
-* DotMarkdown is a framework for creating markdown content 
-* The library is distributed as [![NuGet](https://img.shields.io/nuget/v/DotMarkdown.svg)](https://nuget.org/packages/DotMarkdown).
+DotMarkdown is a framework for creating markdown content.
 
 ## Supported Frameworks
 
 * .NET Standard 1.3
 * .NET Framework 4.5
-
-## Documentation
-
-* [Reference documentation](https://github.com/josefpihrt/dotmarkdown/blob/master/docs/api/README.md#_top)
 
 ## Usage 
 
@@ -102,11 +95,3 @@ Console.WriteLine(document.ToString());
 
     string s = null;
 ```
-
-## Links
-
-* [Mastering Markdown](http://guides.github.com/features/mastering-markdown/)
-* [Markdown Cheatsheet](http://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-* [Markdown Guide](https://www.markdownguide.org)
-* [Daring Fireball: Markdown Syntax Documentation](http://daringfireball.net/projects/markdown/syntax)
-* [CommonMark Spec](http://spec.commonmark.org)
