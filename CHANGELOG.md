@@ -1,6 +1,30 @@
-## Unreleased
+# Changelog
 
-* Fix: Escape pipe inside inline code inside table ([issue](https://github.com/JosefPihrt/DotMarkdown/issues/16))
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+
+- Add NuGet readme file ([#17](https://github.com/josefpihrt/dotmarkdown/pull/17)).
+- Add support for Source Link ([#18](https://github.com/josefpihrt/dotmarkdown/pull/18)).
+
+### Changed
+
+- Migrate all scripts to PowerShell ([#19](https://github.com/josefpihrt/dotmarkdown/pull/19)).
+- Add editorconfig and remove ruleset.
+- Rename `master` to `main`.
+- Format changelog according to 'Keep a Changelog'.
+
+### Fixed
+
+- Escape pipe inside inline code inside table ([#16](https://github.com/josefpihrt/dotmarkdown/issues/16)).
+- Throw exception if number of row values exceeds number of columns.
+
+-----
 
 ## 0.1.1 (2020-10-27)
 
