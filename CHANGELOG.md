@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Change target framework from .NET 4.5 to .NET 4.6.2 ([#20](https://github.com/josefpihrt/dotmarkdown/pull/20)).
 - Migrate all scripts to PowerShell ([#19](https://github.com/josefpihrt/dotmarkdown/pull/19)).
 - Add editorconfig and remove ruleset.
-- Rename `master` to `main`
+- Rename `master` to `main`.
 - Format changelog according to 'Keep a Changelog'.
 
 ### Fixed
