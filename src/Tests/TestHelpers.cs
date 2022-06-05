@@ -32,7 +32,7 @@ namespace DotMarkdown.Tests
 
         public const string CharsWithoutBacktick = @"! "" # $ % & ' ) ( * + , - . / : ; < = > ? @ ] [ \ ^ _ } { | ~";
 
-        public static readonly string NewLine = Environment.NewLine;
+        public const string NewLine = "\n";
 
         public const string DefaultText = "Text";
 
@@ -337,7 +337,7 @@ namespace DotMarkdown.Tests
 
         public static MarkdownWriter CreateBuilder(StringBuilder sb, MarkdownFormat format = null)
         {
-            return MarkdownWriter.Create(sb, settings: MarkdownWriterSettings.From(format));
+            return MarkdownWriter.Create(sb, settings: new MarkdownWriterSettings(format, newLineChars: NewLine));
         }
 
         public static int IntValue()
