@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - main
     tags:
       - v*
   pull_request:
@@ -52,10 +52,9 @@ jobs:
   release_packages:
     runs-on: ubuntu-20.04
     needs: [build_packages]
-    #if: github.ref == 'refs/heads/master'
-    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+    if: github.ref == 'refs/heads/main' && github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
     env:
-      NUGET_API_KEY: ${{ secrets.DUMMY_NUGET_API_KEY }}
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
     steps:
       - uses: actions/download-artifact@v3
         with:
