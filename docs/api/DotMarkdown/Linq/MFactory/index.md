@@ -89,7 +89,7 @@ public static class MFactory
 | [Italic(MItalic)](Italic/index.md#DotMarkdown_Linq_MFactory_Italic_DotMarkdown_Linq_MItalic_) | |
 | [Italic(Object)](Italic/index.md#DotMarkdown_Linq_MFactory_Italic_System_Object_) | |
 | [Italic(Object\[\])](Italic/index.md#DotMarkdown_Linq_MFactory_Italic_System_Object___) | |
-| [Join(Object, IEnumerable&lt;Object>)](Join/index.md#DotMarkdown_Linq_MFactory_Join_System_Object_System_Collections_Generic_IEnumerable_System_Object__) | |
+| [Join(Object, IEnumerable&lt;Object&gt;)](Join/index.md#DotMarkdown_Linq_MFactory_Join_System_Object_System_Collections_Generic_IEnumerable_System_Object__) | |
 | [Join(Object, Object\[\])](Join/index.md#DotMarkdown_Linq_MFactory_Join_System_Object_System_Object___) | |
 | [Label(MLabel)](Label/index.md#DotMarkdown_Linq_MFactory_Label_DotMarkdown_Linq_MLabel_) | |
 | [Label(String, String, String)](Label/index.md#DotMarkdown_Linq_MFactory_Label_System_String_System_String_System_String_) | |

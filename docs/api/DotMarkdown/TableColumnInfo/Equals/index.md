@@ -13,7 +13,7 @@ sidebar_label: Equals
 | Method | Summary |
 | ------ | ------- |
 | [Equals(Object)](#DotMarkdown_TableColumnInfo_Equals_System_Object_) |  \(Overrides [ValueType.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.valuetype.equals)\) |
-| [Equals(TableColumnInfo)](#DotMarkdown_TableColumnInfo_Equals_DotMarkdown_TableColumnInfo_) |  \(Implements [IEquatable&lt;TableColumnInfo>.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
+| [Equals(TableColumnInfo)](#DotMarkdown_TableColumnInfo_Equals_DotMarkdown_TableColumnInfo_) |  \(Implements [IEquatable&lt;TableColumnInfo&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
 
 ## Equals\(Object\) <a id="DotMarkdown_TableColumnInfo_Equals_System_Object_"></a>
 
@@ -45,4 +45,4 @@ public bool Equals(DotMarkdown.TableColumnInfo other)
 
 ### Implements
 
-* [IEquatable&lt;TableColumnInfo>.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)
+* [IEquatable&lt;TableColumnInfo&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)

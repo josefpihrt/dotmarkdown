@@ -16,5 +16,5 @@ public interface ITableAnalyzer
 
 | Method | Summary |
 | ------ | ------- |
-| [AnalyzeTable(IEnumerable&lt;MElement>)](AnalyzeTable/index.md) | |
+| [AnalyzeTable(IEnumerable&lt;MElement&gt;)](AnalyzeTable/index.md) | |
 

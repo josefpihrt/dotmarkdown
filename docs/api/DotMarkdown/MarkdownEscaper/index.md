@@ -16,6 +16,6 @@ public static class MarkdownEscaper
 
 | Method | Summary |
 | ------ | ------- |
-| [Escape(String, Func&lt;Char, Boolean>)](Escape/index.md) | |
+| [Escape(String, Func&lt;Char, Boolean&gt;)](Escape/index.md) | |
 | [ShouldBeEscaped(Char)](ShouldBeEscaped/index.md) | |
 

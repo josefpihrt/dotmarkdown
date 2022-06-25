@@ -18,7 +18,7 @@ public class MarkdownFormat : IEquatable<DotMarkdown.MarkdownFormat>
 
 ### Implements
 
-* [IEquatable](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1)&lt;[MarkdownFormat](./index.md)>
+* [IEquatable](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1)&lt;[MarkdownFormat](./index.md)&gt;
 
 ## Constructors
 
@@ -48,7 +48,7 @@ public class MarkdownFormat : IEquatable<DotMarkdown.MarkdownFormat>
 
 | Method | Summary |
 | ------ | ------- |
-| [Equals(MarkdownFormat)](Equals/index.md#DotMarkdown_MarkdownFormat_Equals_DotMarkdown_MarkdownFormat_) |  \(Implements [IEquatable&lt;MarkdownFormat>.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
+| [Equals(MarkdownFormat)](Equals/index.md#DotMarkdown_MarkdownFormat_Equals_DotMarkdown_MarkdownFormat_) |  \(Implements [IEquatable&lt;MarkdownFormat&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
 | [Equals(Object)](Equals/index.md#DotMarkdown_MarkdownFormat_Equals_System_Object_) |  \(Overrides [Object.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.object.equals)\) |
 | [GetHashCode()](GetHashCode/index.md) |  \(Overrides [Object.GetHashCode](https://docs.microsoft.com/en-us/dotnet/api/system.object.gethashcode)\) |
 | [GetType()](https://docs.microsoft.com/en-us/dotnet/api/system.object.gettype) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |

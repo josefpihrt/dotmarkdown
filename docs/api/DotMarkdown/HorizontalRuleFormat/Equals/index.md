@@ -12,7 +12,7 @@ sidebar_label: Equals
 
 | Method | Summary |
 | ------ | ------- |
-| [Equals(HorizontalRuleFormat)](#DotMarkdown_HorizontalRuleFormat_Equals_DotMarkdown_HorizontalRuleFormat_) |  \(Implements [IEquatable&lt;HorizontalRuleFormat>.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
+| [Equals(HorizontalRuleFormat)](#DotMarkdown_HorizontalRuleFormat_Equals_DotMarkdown_HorizontalRuleFormat_) |  \(Implements [IEquatable&lt;HorizontalRuleFormat&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
 | [Equals(Object)](#DotMarkdown_HorizontalRuleFormat_Equals_System_Object_) |  \(Overrides [ValueType.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.valuetype.equals)\) |
 
 ## Equals\(HorizontalRuleFormat\) <a id="DotMarkdown_HorizontalRuleFormat_Equals_DotMarkdown_HorizontalRuleFormat_"></a>
@@ -31,7 +31,7 @@ public bool Equals(DotMarkdown.HorizontalRuleFormat other)
 
 ### Implements
 
-* [IEquatable&lt;HorizontalRuleFormat>.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)
+* [IEquatable&lt;HorizontalRuleFormat&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)
 
 ## Equals\(Object\) <a id="DotMarkdown_HorizontalRuleFormat_Equals_System_Object_"></a>
 

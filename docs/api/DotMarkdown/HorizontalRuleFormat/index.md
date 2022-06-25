@@ -18,7 +18,7 @@ public readonly struct HorizontalRuleFormat : IEquatable<DotMarkdown.HorizontalR
 
 ### Implements
 
-* [IEquatable](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1)&lt;[HorizontalRuleFormat](./index.md)>
+* [IEquatable](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1)&lt;[HorizontalRuleFormat](./index.md)&gt;
 
 ## Constructors
 
@@ -40,7 +40,7 @@ public readonly struct HorizontalRuleFormat : IEquatable<DotMarkdown.HorizontalR
 
 | Method | Summary |
 | ------ | ------- |
-| [Equals(HorizontalRuleFormat)](Equals/index.md#DotMarkdown_HorizontalRuleFormat_Equals_DotMarkdown_HorizontalRuleFormat_) |  \(Implements [IEquatable&lt;HorizontalRuleFormat>.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
+| [Equals(HorizontalRuleFormat)](Equals/index.md#DotMarkdown_HorizontalRuleFormat_Equals_DotMarkdown_HorizontalRuleFormat_) |  \(Implements [IEquatable&lt;HorizontalRuleFormat&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
 | [Equals(Object)](Equals/index.md#DotMarkdown_HorizontalRuleFormat_Equals_System_Object_) |  \(Overrides [ValueType.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.valuetype.equals)\) |
 | [GetHashCode()](GetHashCode/index.md) |  \(Overrides [ValueType.GetHashCode](https://docs.microsoft.com/en-us/dotnet/api/system.valuetype.gethashcode)\) |
 | [GetType()](https://docs.microsoft.com/en-us/dotnet/api/system.object.gettype) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |

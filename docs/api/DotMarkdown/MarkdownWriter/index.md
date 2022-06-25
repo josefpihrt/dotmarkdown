@@ -106,7 +106,7 @@ public abstract class MarkdownWriter : IDisposable
 | [WriteStartOrderedItem(Int32)](WriteStartOrderedItem/index.md) | |
 | [WriteStartStrikethrough()](WriteStartStrikethrough/index.md) | |
 | [WriteStartTable(Int32)](WriteStartTable/index.md#DotMarkdown_MarkdownWriter_WriteStartTable_System_Int32_) | |
-| [WriteStartTable(IReadOnlyList&lt;TableColumnInfo>)](WriteStartTable/index.md#DotMarkdown_MarkdownWriter_WriteStartTable_System_Collections_Generic_IReadOnlyList_DotMarkdown_TableColumnInfo__) | |
+| [WriteStartTable(IReadOnlyList&lt;TableColumnInfo&gt;)](WriteStartTable/index.md#DotMarkdown_MarkdownWriter_WriteStartTable_System_Collections_Generic_IReadOnlyList_DotMarkdown_TableColumnInfo__) | |
 | [WriteStartTableCell()](WriteStartTableCell/index.md) | |
 | [WriteStartTableRow()](WriteStartTableRow/index.md) | |
 | [WriteStartTaskItem(Boolean)](WriteStartTaskItem/index.md) | |

@@ -2,7 +2,7 @@
 sidebar_label: AnalyzeTable
 ---
 
-# ITableAnalyzer\.AnalyzeTable\(IEnumerable&lt;MElement>\) Method
+# ITableAnalyzer\.AnalyzeTable\(IEnumerable&lt;MElement&gt;\) Method
 
 **Containing Type**: [ITableAnalyzer](../index.md)
 
@@ -14,9 +14,9 @@ System.Collections.Generic.IReadOnlyList<DotMarkdown.TableColumnInfo> AnalyzeTab
 
 ### Parameters
 
-**rows** &ensp; [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1)&lt;[MElement](../../MElement/index.md)>
+**rows** &ensp; [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1)&lt;[MElement](../../MElement/index.md)&gt;
 
 ### Returns
 
-[IReadOnlyList](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlylist-1)&lt;[TableColumnInfo](../../../TableColumnInfo/index.md)>
+[IReadOnlyList](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlylist-1)&lt;[TableColumnInfo](../../../TableColumnInfo/index.md)&gt;
 
