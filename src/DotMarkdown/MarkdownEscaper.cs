@@ -75,6 +75,7 @@ namespace DotMarkdown
                 case '.':
                 case '!':
                 case '<':
+                case '>':
                 case '|':
                 case '~':
                     return true;
@@ -91,6 +92,7 @@ namespace DotMarkdown
                 case ']':
                 case '`':
                 case '<':
+                case '>':
                     return true;
                 default:
                     return false;
