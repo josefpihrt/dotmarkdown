@@ -46,7 +46,7 @@ jobs:
   release_packages:
     runs-on: ubuntu-20.04
     needs: [build_packages]
-    if: github.ref == 'refs/heads/main' && github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+    if: github.ref_type == 'tag'
     env:
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
     steps:
