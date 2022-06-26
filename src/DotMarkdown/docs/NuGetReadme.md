@@ -1,6 +1,6 @@
 # DotMarkdown
 
-DotMarkdown is a framework for creating markdown content.
+DotMarkdown enables to conveniently create markdown content from the code.
 
 ## Supported Frameworks
 
