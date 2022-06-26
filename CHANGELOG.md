@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Escape both less than sign greater than sign ([#23](https://github.com/josefpihrt/dotmarkdown/pull/23)).
+- Escape both less than sign and greater than sign in the context where previously only latter was escaped ([#23](https://github.com/josefpihrt/dotmarkdown/pull/23)).
 - Change target framework from .NET 4.5 to .NET 4.6.2 ([#20](https://github.com/josefpihrt/dotmarkdown/pull/20)).
 - Migrate all scripts to PowerShell ([#19](https://github.com/josefpihrt/dotmarkdown/pull/19)).
 - Add editorconfig and remove ruleset.
