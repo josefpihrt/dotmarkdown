@@ -7,7 +7,7 @@ dotnet restore "../../Roslynator/src/CommandLine.sln" /p:Configuration=Debug,Ros
 & $roslynatorExe generate-doc "../src/DotMarkdown.sln" `
  --properties "Configuration=Release" `
  --projects "DotMarkdown(netstandard1.3)" `
- --heading "DotMarkdown Overview" `
+ --heading "DotMarkdown Reference" `
  -o "../docs/api" `
  --target docusaurus `
  --group-by-common-namespace `

@@ -1,9 +1,9 @@
 ---
 sidebar_position: 0
-sidebar_label: DotMarkdown Overview
+sidebar_label: DotMarkdown Reference
 ---
 
-# DotMarkdown Overview
+# DotMarkdown Reference
 
 ## Types
 
