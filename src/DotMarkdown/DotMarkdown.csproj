@@ -35,7 +35,7 @@
     <PackageVersion>0.2.0</PackageVersion>
     <Authors>Josef Pihrt</Authors>
     <Company></Company>
-    <Description>DotMarkdown is a framework for creating markdown content
+    <Description>DotMarkdown enables to conveniently create markdown content from the code.
 
 Commonly Used Types:
 DotMarkdown.MarkdownWriter
