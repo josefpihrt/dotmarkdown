@@ -15,10 +15,10 @@ namespace DotMarkdown.Tests
         public const string CharsWithoutSpaces = @"!""#$%&')(*+,-./:;<=>?@][\^_`}{|~";
 
         public const string CharsEscaped
-            = @"\! "" \# $ % & ' \) \( \* \+ , \- \. / : ; \< = > ? @ \] \[ \\ ^ \_ \` \} \{ \| \~";
+            = @"\! "" \# $ % & ' \) \( \* \+ , \- \. / : ; \< = \> ? @ \] \[ \\ ^ \_ \` \} \{ \| \~";
 
         public const string CharsSquareBracketsBacktickLessThanEscaped
-            = @"! "" # $ % & ' ) ( * + , - . / : ; \< = > ? @ \] \[ \ ^ _ \` } { | ~";
+            = @"! "" # $ % & ' ) ( * + , - . / : ; \< = \> ? @ \] \[ \ ^ _ \` } { | ~";
 
         public const string CharsWithoutSpacesParenthesesEscaped = @"!""#$%&'\)\(*+,-./:;<=>?@][\^_`}{|~";
 
