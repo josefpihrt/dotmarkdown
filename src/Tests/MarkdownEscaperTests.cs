@@ -31,7 +31,7 @@ namespace DotMarkdown.Tests
         [InlineData(".", true)]
         [InlineData("!", true)]
         [InlineData("<", true)]
-        [InlineData(">", false)]
+        [InlineData(">", true)]
         [InlineData("\"", false)]
         [InlineData("'", false)]
         public static void MarkdownEscaper_Escape_SingleChar(string value, bool shouldBeEscaped)
@@ -83,7 +83,7 @@ namespace DotMarkdown.Tests
         [InlineData('.', true)]
         [InlineData('!', true)]
         [InlineData('<', true)]
-        [InlineData('>', false)]
+        [InlineData('>', true)]
         [InlineData('"', false)]
         [InlineData('\'', false)]
         public static void MarkdownEscaper_ShouldBeEscaped(char ch, bool shouldBeEscaped)
@@ -108,7 +108,7 @@ namespace DotMarkdown.Tests
         [InlineData('.', false)]
         [InlineData('!', false)]
         [InlineData('<', true)]
-        [InlineData('>', false)]
+        [InlineData('>', true)]
         [InlineData('"', false)]
         [InlineData('\'', false)]
         public static void MarkdownEscaper_ShouldBeEscapedInLinkText(char ch, bool shouldBeEscaped)

@@ -1,10 +1,6 @@
 #dotnet tool install -g orang.dotnet.cli
 
-$version=0.1.1
-
-orang replace "../src" -e csproj -c "(?<=<PackageVersion>)\d+\.\d+\.\d+(?=</PackageVersion>)" -r "$version" -t m r
-Write-Host
-orang delete "../src" -a d -n "bin|obj" e --content-only -t n -y su s
+orang delete "../src" -a d -n "bin|obj" e --content-only -t n -u -p s --align-columns
 Write-Host
 
 dotnet clean "../src/DotMarkdown.sln" -c Debug -v m /m
