@@ -3,50 +3,49 @@
 using System;
 using System.Diagnostics;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+[DebuggerDisplay("{Kind} {Url,nq}")]
+public class MAutolink : MElement
 {
-    [DebuggerDisplay("{Kind} {Url,nq}")]
-    public class MAutolink : MElement
+    private string _url;
+
+    public MAutolink(string url)
     {
-        private string _url;
+        Url = url;
+    }
 
-        public MAutolink(string url)
+    public MAutolink(MAutolink other)
+    {
+        if (other is null)
+            throw new ArgumentNullException(nameof(other));
+
+        _url = other.Url;
+    }
+
+    public string Url
+    {
+        get { return _url; }
+        set
         {
-            Url = url;
+            if (value is null)
+                throw new ArgumentNullException(nameof(value));
+
+            Error.ThrowIfContainsWhitespace(value, nameof(value));
+
+            _url = value;
         }
+    }
 
-        public MAutolink(MAutolink other)
-        {
-            if (other is null)
-                throw new ArgumentNullException(nameof(other));
+    public override MarkdownKind Kind => MarkdownKind.Autolink;
 
-            _url = other.Url;
-        }
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        writer.WriteAutolink(Url);
+    }
 
-        public string Url
-        {
-            get { return _url; }
-            set
-            {
-                if (value is null)
-                    throw new ArgumentNullException(nameof(value));
-
-                Error.ThrowIfContainsWhitespace(value, nameof(value));
-
-                _url = value;
-            }
-        }
-
-        public override MarkdownKind Kind => MarkdownKind.Autolink;
-
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            writer.WriteAutolink(Url);
-        }
-
-        internal override MElement Clone()
-        {
-            return new MAutolink(this);
-        }
+    internal override MElement Clone()
+    {
+        return new MAutolink(this);
     }
 }

@@ -2,26 +2,25 @@
 
 using System.Diagnostics;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+[DebuggerDisplay("{Kind}")]
+public abstract class MObject
 {
-    [DebuggerDisplay("{Kind}")]
-    public abstract class MObject
+    public abstract MarkdownKind Kind { get; }
+
+    public MDocument Document
     {
-        public abstract MarkdownKind Kind { get; }
-
-        public MDocument Document
+        get
         {
-            get
-            {
-                var x = this;
+            var x = this;
 
-                while (x.Parent is not null)
-                    x = x.Parent;
+            while (x.Parent is not null)
+                x = x.Parent;
 
-                return x as MDocument;
-            }
+            return x as MDocument;
         }
-
-        public MContainer Parent { get; internal set; }
     }
+
+    public MContainer Parent { get; internal set; }
 }

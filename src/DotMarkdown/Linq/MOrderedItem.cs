@@ -3,61 +3,60 @@
 using System;
 using System.Diagnostics;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+[DebuggerDisplay("{Kind} {Number} {ToStringDebuggerDisplay(),nq}")]
+public class MOrderedItem : MBlockContainer
 {
-    [DebuggerDisplay("{Kind} {Number} {ToStringDebuggerDisplay(),nq}")]
-    public class MOrderedItem : MBlockContainer
+    private int _number;
+
+    public MOrderedItem(int number)
     {
-        private int _number;
+        Number = number;
+    }
 
-        public MOrderedItem(int number)
+    public MOrderedItem(int number, object content)
+        : base(content)
+    {
+        Number = number;
+    }
+
+    public MOrderedItem(int number, params object[] content)
+        : base(content)
+    {
+        Number = number;
+    }
+
+    public MOrderedItem(MOrderedItem other)
+        : base(other)
+    {
+        if (other is null)
+            throw new ArgumentNullException(nameof(other));
+
+        _number = other.Number;
+    }
+
+    public int Number
+    {
+        get { return _number; }
+        set
         {
-            Number = number;
+            Error.ThrowOnInvalidItemNumber(value);
+            _number = value;
         }
+    }
 
-        public MOrderedItem(int number, object content)
-            : base(content)
-        {
-            Number = number;
-        }
+    public override MarkdownKind Kind => MarkdownKind.OrderedItem;
 
-        public MOrderedItem(int number, params object[] content)
-            : base(content)
-        {
-            Number = number;
-        }
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        writer.WriteStartOrderedItem(Number);
+        WriteContentTo(writer);
+        writer.WriteEndOrderedItem();
+    }
 
-        public MOrderedItem(MOrderedItem other)
-            : base(other)
-        {
-            if (other is null)
-                throw new ArgumentNullException(nameof(other));
-
-            _number = other.Number;
-        }
-
-        public int Number
-        {
-            get { return _number; }
-            set
-            {
-                Error.ThrowOnInvalidItemNumber(value);
-                _number = value;
-            }
-        }
-
-        public override MarkdownKind Kind => MarkdownKind.OrderedItem;
-
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            writer.WriteStartOrderedItem(Number);
-            WriteContentTo(writer);
-            writer.WriteEndOrderedItem();
-        }
-
-        internal override MElement Clone()
-        {
-            return new MOrderedItem(this);
-        }
+    internal override MElement Clone()
+    {
+        return new MOrderedItem(this);
     }
 }

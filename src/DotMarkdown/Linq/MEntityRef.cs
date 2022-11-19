@@ -3,64 +3,63 @@
 using System;
 using System.Diagnostics;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+[DebuggerDisplay("{Kind} {Name}")]
+public class MEntityRef : MElement
 {
-    [DebuggerDisplay("{Kind} {Name}")]
-    public class MEntityRef : MElement
+    private string _name;
+
+    public MEntityRef(string name)
+        : this(name, isTrustedName: false)
     {
-        private string _name;
+    }
 
-        public MEntityRef(string name)
-            : this(name, isTrustedName: false)
+    private MEntityRef(string name, bool isTrustedName)
+    {
+        if (isTrustedName)
         {
+            _name = name;
         }
-
-        private MEntityRef(string name, bool isTrustedName)
+        else
         {
-            if (isTrustedName)
-            {
-                _name = name;
-            }
-            else
-            {
-                Name = name;
-            }
+            Name = name;
         }
+    }
 
-        public MEntityRef(MEntityRef other)
+    public MEntityRef(MEntityRef other)
+    {
+        if (other is null)
+            throw new ArgumentNullException(nameof(other));
+
+        _name = other.Name;
+    }
+
+    public string Name
+    {
+        get { return _name; }
+        set
         {
-            if (other is null)
-                throw new ArgumentNullException(nameof(other));
+            Error.ThrowOnInvalidEntityName(value);
 
-            _name = other.Name;
+            _name = value;
         }
+    }
 
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                Error.ThrowOnInvalidEntityName(value);
+    public override MarkdownKind Kind => MarkdownKind.EntityRef;
 
-                _name = value;
-            }
-        }
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        writer.WriteEntityRef(Name);
+    }
 
-        public override MarkdownKind Kind => MarkdownKind.EntityRef;
+    internal override MElement Clone()
+    {
+        return new MEntityRef(this);
+    }
 
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            writer.WriteEntityRef(Name);
-        }
-
-        internal override MElement Clone()
-        {
-            return new MEntityRef(this);
-        }
-
-        internal static MEntityRef CreateTrusted(string name)
-        {
-            return new MEntityRef(name, isTrustedName: true);
-        }
+    internal static MEntityRef CreateTrusted(string name)
+    {
+        return new MEntityRef(name, isTrustedName: true);
     }
 }

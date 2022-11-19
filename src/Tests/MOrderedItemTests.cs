@@ -6,42 +6,41 @@ using static DotMarkdown.Tests.TestHelpers;
 
 #pragma warning disable CS1718
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MOrderedItemTests
 {
-    public static class MOrderedItemTests
+    [Fact]
+    public static void MOrderedItem_Equals()
     {
-        [Fact]
-        public static void MOrderedItem_Equals()
-        {
-            MOrderedItem item = CreateOrderedListItem();
+        MOrderedItem item = CreateOrderedListItem();
 
-            Assert.True(item.Equals((object)item));
-        }
+        Assert.True(item.Equals((object)item));
+    }
 
-        [Fact]
-        public static void MOrderedItem_GetHashCode_Equal()
-        {
-            MOrderedItem item = CreateOrderedListItem();
+    [Fact]
+    public static void MOrderedItem_GetHashCode_Equal()
+    {
+        MOrderedItem item = CreateOrderedListItem();
 
-            Assert.Equal(item.GetHashCode(), item.GetHashCode());
-        }
+        Assert.Equal(item.GetHashCode(), item.GetHashCode());
+    }
 
-        [Fact]
-        public static void MOrderedItem_OperatorEquals()
-        {
-            MOrderedItem item = CreateOrderedListItem();
-            MOrderedItem item2 = item;
+    [Fact]
+    public static void MOrderedItem_OperatorEquals()
+    {
+        MOrderedItem item = CreateOrderedListItem();
+        MOrderedItem item2 = item;
 
-            Assert.True(item == item2);
-        }
+        Assert.True(item == item2);
+    }
 
-        [Fact]
-        public static void MOrderedItem_Constructor_AssignNumber()
-        {
-            int number = OrderedListItemNumber();
-            var item = new MOrderedItem(number: number, content: StringValue());
+    [Fact]
+    public static void MOrderedItem_Constructor_AssignNumber()
+    {
+        int number = OrderedListItemNumber();
+        var item = new MOrderedItem(number: number, content: StringValue());
 
-            Assert.Equal(number, item.Number);
-        }
+        Assert.Equal(number, item.Number);
     }
 }

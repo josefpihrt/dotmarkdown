@@ -1,69 +1,68 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+public class MBulletList : MList
 {
-    public class MBulletList : MList
+    public MBulletList()
     {
-        public MBulletList()
+    }
+
+    public MBulletList(object content)
+        : base(content)
+    {
+    }
+
+    public MBulletList(params object[] content)
+        : base(content)
+    {
+    }
+
+    public MBulletList(MBulletList other)
+        : base(other)
+    {
+    }
+
+    public override MarkdownKind Kind => MarkdownKind.BulletList;
+
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        if (content is string s)
         {
+            writer.WriteBulletItem(s);
         }
-
-        public MBulletList(object content)
-            : base(content)
+        else
         {
-        }
-
-        public MBulletList(params object[] content)
-            : base(content)
-        {
-        }
-
-        public MBulletList(MBulletList other)
-            : base(other)
-        {
-        }
-
-        public override MarkdownKind Kind => MarkdownKind.BulletList;
-
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            if (content is string s)
+            foreach (MElement element in Elements())
             {
-                writer.WriteBulletItem(s);
-            }
-            else
-            {
-                foreach (MElement element in Elements())
+                writer.WriteStartBulletItem();
+
+                if (element is MBulletItem item)
                 {
-                    writer.WriteStartBulletItem();
-
-                    if (element is MBulletItem item)
-                    {
-                        item.WriteContentTo(writer);
-                    }
-                    else
-                    {
-                        writer.Write(element);
-                    }
-
-                    writer.WriteEndBulletItem();
+                    item.WriteContentTo(writer);
+                }
+                else
+                {
+                    writer.Write(element);
                 }
 
-                writer.WriteLine();
+                writer.WriteEndBulletItem();
             }
-        }
 
-        internal override void ValidateElement(MElement element)
-        {
-            if (element.Kind == MarkdownKind.BulletItem)
-                return;
-
-            base.ValidateElement(element);
+            writer.WriteLine();
         }
+    }
 
-        internal override MElement Clone()
-        {
-            return new MBulletList(this);
-        }
+    internal override void ValidateElement(MElement element)
+    {
+        if (element.Kind == MarkdownKind.BulletItem)
+            return;
+
+        base.ValidateElement(element);
+    }
+
+    internal override MElement Clone()
+    {
+        return new MBulletList(this);
     }
 }

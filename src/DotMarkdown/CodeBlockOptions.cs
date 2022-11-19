@@ -2,14 +2,13 @@
 
 using System;
 
-namespace DotMarkdown
+namespace DotMarkdown;
+
+[Flags]
+public enum CodeBlockOptions
 {
-    [Flags]
-    public enum CodeBlockOptions
-    {
-        None = 0,
-        EmptyLineBefore = 1,
-        EmptyLineAfter = 1 << 1,
-        EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter,
-    }
+    None = 0,
+    EmptyLineBefore = 1,
+    EmptyLineAfter = 1 << 1,
+    EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter,
 }

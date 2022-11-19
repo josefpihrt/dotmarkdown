@@ -2,59 +2,58 @@
 
 using System.Diagnostics;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+[DebuggerDisplay("{Kind} {Level} {ToStringDebuggerDisplay(),nq}")]
+public class MHeading : MContainer
 {
-    [DebuggerDisplay("{Kind} {Level} {ToStringDebuggerDisplay(),nq}")]
-    public class MHeading : MContainer
+    private int _level;
+
+    public MHeading(int level)
     {
-        private int _level;
+        Level = level;
+    }
 
-        public MHeading(int level)
+    public MHeading(int level, object content)
+        : base(content)
+    {
+        Level = level;
+    }
+
+    public MHeading(int level, params object[] content)
+        : base(content)
+    {
+        Level = level;
+    }
+
+    public MHeading(MHeading other)
+        : base(other)
+    {
+        _level = other.Level;
+    }
+
+    public int Level
+    {
+        get { return _level; }
+        set
         {
-            Level = level;
+            Error.ThrowOnInvalidHeadingLevel(value);
+
+            _level = value;
         }
+    }
 
-        public MHeading(int level, object content)
-            : base(content)
-        {
-            Level = level;
-        }
+    public override MarkdownKind Kind => MarkdownKind.Heading;
 
-        public MHeading(int level, params object[] content)
-            : base(content)
-        {
-            Level = level;
-        }
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        writer.WriteStartHeading(Level);
+        WriteContentTo(writer);
+        writer.WriteEndHeading();
+    }
 
-        public MHeading(MHeading other)
-            : base(other)
-        {
-            _level = other.Level;
-        }
-
-        public int Level
-        {
-            get { return _level; }
-            set
-            {
-                Error.ThrowOnInvalidHeadingLevel(value);
-
-                _level = value;
-            }
-        }
-
-        public override MarkdownKind Kind => MarkdownKind.Heading;
-
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            writer.WriteStartHeading(Level);
-            WriteContentTo(writer);
-            writer.WriteEndHeading();
-        }
-
-        internal override MElement Clone()
-        {
-            return new MHeading(this);
-        }
+    internal override MElement Clone()
+    {
+        return new MHeading(this);
     }
 }

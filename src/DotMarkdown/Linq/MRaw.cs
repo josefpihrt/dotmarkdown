@@ -3,42 +3,41 @@
 using System;
 using System.Diagnostics;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+[DebuggerDisplay("{Kind} {Value,nq}")]
+public class MRaw : MElement
 {
-    [DebuggerDisplay("{Kind} {Value,nq}")]
-    public class MRaw : MElement
+    private string _value;
+
+    public MRaw(string value)
     {
-        private string _value;
+        Value = value;
+    }
 
-        public MRaw(string value)
-        {
-            Value = value;
-        }
+    public MRaw(MRaw other)
+    {
+        if (other is null)
+            throw new ArgumentNullException(nameof(other));
 
-        public MRaw(MRaw other)
-        {
-            if (other is null)
-                throw new ArgumentNullException(nameof(other));
+        _value = other.Value;
+    }
 
-            _value = other.Value;
-        }
+    public string Value
+    {
+        get { return _value; }
+        set { _value = value ?? throw new ArgumentNullException(nameof(value)); }
+    }
 
-        public string Value
-        {
-            get { return _value; }
-            set { _value = value ?? throw new ArgumentNullException(nameof(value)); }
-        }
+    public override MarkdownKind Kind => MarkdownKind.Raw;
 
-        public override MarkdownKind Kind => MarkdownKind.Raw;
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        writer.WriteRaw(Value);
+    }
 
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            writer.WriteRaw(Value);
-        }
-
-        internal override MElement Clone()
-        {
-            return new MRaw(this);
-        }
+    internal override MElement Clone()
+    {
+        return new MRaw(this);
     }
 }

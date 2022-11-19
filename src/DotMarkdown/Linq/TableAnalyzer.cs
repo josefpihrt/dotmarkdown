@@ -3,132 +3,131 @@
 using System;
 using System.Collections.Generic;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+internal static class TableAnalyzer
 {
-    internal static class TableAnalyzer
+    public static List<TableColumnInfo> Analyze(
+        IEnumerable<MElement> rows,
+        MarkdownWriterSettings settings,
+        IFormatProvider formatProvider)
     {
-        public static List<TableColumnInfo> Analyze(
-            IEnumerable<MElement> rows,
-            MarkdownWriterSettings settings,
-            IFormatProvider formatProvider)
+        using (IEnumerator<MElement> en = rows.GetEnumerator())
         {
-            using (IEnumerator<MElement> en = rows.GetEnumerator())
-            {
-                if (!en.MoveNext())
-                    return null;
+            if (!en.MoveNext())
+                return null;
 
-                using (var writer = new MarkdownStringWriter(formatProvider: formatProvider, settings: settings))
-                    return Analyze(en, settings, writer);
-            }
+            using (var writer = new MarkdownStringWriter(formatProvider: formatProvider, settings: settings))
+                return Analyze(en, settings, writer);
+        }
+    }
+
+    private static List<TableColumnInfo> Analyze(
+        IEnumerator<MElement> en,
+        MarkdownWriterSettings settings,
+        MarkdownStringWriter writer)
+    {
+        var columns = new List<TableColumnInfo>();
+
+        MElement header = en.Current;
+
+        if (header is MContainer container)
+        {
+            WriteHeaderCells(container, settings, writer, columns);
+        }
+        else
+        {
+            writer.Write(header);
+            columns.Add(TableColumnInfo.Create(header, writer));
         }
 
-        private static List<TableColumnInfo> Analyze(
-            IEnumerator<MElement> en,
-            MarkdownWriterSettings settings,
-            MarkdownStringWriter writer)
+        if (settings.Format.FormatTableContent)
         {
-            var columns = new List<TableColumnInfo>();
+            int index = writer.Length;
 
-            MElement header = en.Current;
-
-            if (header is MContainer container)
+            while (en.MoveNext())
             {
-                WriteHeaderCells(container, settings, writer, columns);
-            }
-            else
-            {
-                writer.Write(header);
-                columns.Add(TableColumnInfo.Create(header, writer));
-            }
+                int columnCount = columns.Count;
 
-            if (settings.Format.FormatTableContent)
-            {
-                int index = writer.Length;
+                MElement row = en.Current;
 
-                while (en.MoveNext())
+                if (row is MContainer rowContainer)
                 {
-                    int columnCount = columns.Count;
-
-                    MElement row = en.Current;
-
-                    if (row is MContainer rowContainer)
+                    int i = 0;
+                    foreach (MElement cell in rowContainer.Elements())
                     {
-                        int i = 0;
-                        foreach (MElement cell in rowContainer.Elements())
-                        {
-                            writer.Write(cell);
-                            columns[i] = columns[i].UpdateWidthIfGreater(writer.Length - index);
-                            index = writer.Length;
-                            i++;
-
-                            if (i == columnCount)
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        writer.Write(row);
-                        columns[0] = columns[0].UpdateWidthIfGreater(writer.Length - index);
+                        writer.Write(cell);
+                        columns[i] = columns[i].UpdateWidthIfGreater(writer.Length - index);
                         index = writer.Length;
+                        i++;
+
+                        if (i == columnCount)
+                            break;
                     }
                 }
+                else
+                {
+                    writer.Write(row);
+                    columns[0] = columns[0].UpdateWidthIfGreater(writer.Length - index);
+                    index = writer.Length;
+                }
             }
-
-            return columns;
         }
 
-        private static void WriteHeaderCells(
-            MContainer header,
-            MarkdownWriterSettings settings,
-            MarkdownStringWriter writer,
-            List<TableColumnInfo> columns)
+        return columns;
+    }
+
+    private static void WriteHeaderCells(
+        MContainer header,
+        MarkdownWriterSettings settings,
+        MarkdownStringWriter writer,
+        List<TableColumnInfo> columns)
+    {
+        int index = 0;
+
+        var isFirst = true;
+        bool isLast;
+
+        int i = 0;
+
+        using (IEnumerator<MElement> en = header.Elements().GetEnumerator())
         {
-            int index = 0;
-
-            var isFirst = true;
-            bool isLast;
-
-            int i = 0;
-
-            using (IEnumerator<MElement> en = header.Elements().GetEnumerator())
+            if (en.MoveNext())
             {
-                if (en.MoveNext())
+                MElement curr = en.Current;
+
+                isLast = !en.MoveNext();
+
+                WriteHeaderCell(curr);
+
+                if (!isLast)
                 {
-                    MElement curr = en.Current;
+                    isFirst = false;
 
-                    isLast = !en.MoveNext();
-
-                    WriteHeaderCell(curr);
-
-                    if (!isLast)
+                    do
                     {
-                        isFirst = false;
+                        curr = en.Current;
+                        isLast = !en.MoveNext();
+                        i++;
 
-                        do
-                        {
-                            curr = en.Current;
-                            isLast = !en.MoveNext();
-                            i++;
-
-                            WriteHeaderCell(curr);
-                        }
-                        while (!isLast);
+                        WriteHeaderCell(curr);
                     }
+                    while (!isLast);
                 }
             }
+        }
 
-            void WriteHeaderCell(MElement cellContent)
+        void WriteHeaderCell(MElement cellContent)
+        {
+            if (isFirst
+                || isLast
+                || settings.Format.FormatTableHeader)
             {
-                if (isFirst
-                    || isLast
-                    || settings.Format.FormatTableHeader)
-                {
-                    writer.Write(cellContent);
-                }
-
-                columns.Add(TableColumnInfo.Create(cellContent, writer, index));
-                index = writer.Length;
+                writer.Write(cellContent);
             }
+
+            columns.Add(TableColumnInfo.Create(cellContent, writer, index));
+            index = writer.Length;
         }
     }
 }
