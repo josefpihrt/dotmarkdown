@@ -6,42 +6,41 @@ using static DotMarkdown.Tests.TestHelpers;
 
 #pragma warning disable CS1718
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MTableColumnTests
 {
-    public static class MTableColumnTests
+    [Fact]
+    public static void MTableColumn_Equals()
     {
-        [Fact]
-        public static void MTableColumn_Equals()
-        {
-            MTableColumn column = CreateTableColumn();
+        MTableColumn column = CreateTableColumn();
 
-            Assert.True(column.Equals((object)column));
-        }
+        Assert.True(column.Equals((object)column));
+    }
 
-        [Fact]
-        public static void MTableColumn_GetHashCode_Equal()
-        {
-            MTableColumn column = CreateTableColumn();
+    [Fact]
+    public static void MTableColumn_GetHashCode_Equal()
+    {
+        MTableColumn column = CreateTableColumn();
 
-            Assert.Equal(column.GetHashCode(), column.GetHashCode());
-        }
+        Assert.Equal(column.GetHashCode(), column.GetHashCode());
+    }
 
-        [Fact]
-        public static void MTableColumn_OperatorEquals()
-        {
-            MTableColumn column = CreateTableColumn();
-            MTableColumn column2 = column;
+    [Fact]
+    public static void MTableColumn_OperatorEquals()
+    {
+        MTableColumn column = CreateTableColumn();
+        MTableColumn column2 = column;
 
-            Assert.True(column == column2);
-        }
+        Assert.True(column == column2);
+    }
 
-        [Fact]
-        public static void MTableColumn_Constructor_AssignAlignment()
-        {
-            HorizontalAlignment alignment = TableColumnAlignment();
-            var column = new MTableColumn(alignment: alignment, content: StringValue());
+    [Fact]
+    public static void MTableColumn_Constructor_AssignAlignment()
+    {
+        HorizontalAlignment alignment = TableColumnAlignment();
+        var column = new MTableColumn(alignment: alignment, content: StringValue());
 
-            Assert.Equal(alignment, column.Alignment);
-        }
+        Assert.Equal(alignment, column.Alignment);
     }
 }

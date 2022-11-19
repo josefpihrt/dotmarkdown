@@ -6,52 +6,51 @@ using static DotMarkdown.Tests.TestHelpers;
 
 #pragma warning disable CS1718
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MHeadingTests
 {
-    public static class MHeadingTests
+    [Fact]
+    public static void MHeading_Equals()
     {
-        [Fact]
-        public static void MHeading_Equals()
-        {
-            MHeading heading = CreateHeading();
+        MHeading heading = CreateHeading();
 
-            Assert.True(heading.Equals((object)heading));
-        }
+        Assert.True(heading.Equals((object)heading));
+    }
 
-        [Fact]
-        public static void MHeading_GetHashCode_Equal()
-        {
-            MHeading heading = CreateHeading();
+    [Fact]
+    public static void MHeading_GetHashCode_Equal()
+    {
+        MHeading heading = CreateHeading();
 
-            Assert.Equal(heading.GetHashCode(), heading.GetHashCode());
-        }
+        Assert.Equal(heading.GetHashCode(), heading.GetHashCode());
+    }
 
-        [Fact]
-        public static void MHeading_OperatorEquals()
-        {
-            MHeading heading = CreateHeading();
-            MHeading heading2 = heading;
+    [Fact]
+    public static void MHeading_OperatorEquals()
+    {
+        MHeading heading = CreateHeading();
+        MHeading heading2 = heading;
 
-            Assert.True(heading == heading2);
-        }
+        Assert.True(heading == heading2);
+    }
 
-        [Fact]
-        public static void MHeading_Constructor_AssignText()
-        {
-            string text = HeadingText();
-            var heading = new MHeading(level: HeadingLevel(), content: text);
+    [Fact]
+    public static void MHeading_Constructor_AssignText()
+    {
+        string text = HeadingText();
+        var heading = new MHeading(level: HeadingLevel(), content: text);
 
-            Assert.Equal(text, heading.content);
-        }
+        Assert.Equal(text, heading.content);
+    }
 
-        [Fact]
-        public static void MHeading_Constructor_AssignLevel()
-        {
-            int level = HeadingLevel();
+    [Fact]
+    public static void MHeading_Constructor_AssignLevel()
+    {
+        int level = HeadingLevel();
 
-            var heading = new MHeading(level: level, content: HeadingText());
+        var heading = new MHeading(level: level, content: HeadingText());
 
-            Assert.Equal(level, heading.Level);
-        }
+        Assert.Equal(level, heading.Level);
     }
 }

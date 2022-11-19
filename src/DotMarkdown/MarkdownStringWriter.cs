@@ -6,81 +6,103 @@ using System.Globalization;
 using System.Text;
 using DotMarkdown.Linq;
 
-namespace DotMarkdown
+namespace DotMarkdown;
+
+internal class MarkdownStringWriter : MarkdownBaseWriter, ITableAnalyzer
 {
-    internal class MarkdownStringWriter : MarkdownBaseWriter, ITableAnalyzer
+    private readonly StringBuilder _sb;
+    private readonly IFormatProvider _formatProvider;
+    private bool _isOpen;
+
+    public MarkdownStringWriter(MarkdownWriterSettings settings = null)
+        : this(new StringBuilder(), settings)
     {
-        private readonly StringBuilder _sb;
-        private readonly IFormatProvider _formatProvider;
-        private bool _isOpen;
+    }
 
-        public MarkdownStringWriter(MarkdownWriterSettings settings = null)
-            : this(new StringBuilder(), settings)
+    public MarkdownStringWriter(StringBuilder sb, MarkdownWriterSettings settings = null)
+        : this(sb, CultureInfo.CurrentCulture, settings)
+    {
+    }
+
+    public MarkdownStringWriter(IFormatProvider formatProvider, MarkdownWriterSettings settings = null)
+        : this(new StringBuilder(), formatProvider, settings)
+    {
+    }
+
+    public MarkdownStringWriter(StringBuilder sb, IFormatProvider formatProvider, MarkdownWriterSettings settings = null)
+        : base(settings)
+    {
+        _sb = sb ?? throw new ArgumentNullException(nameof(sb));
+        _formatProvider = formatProvider;
+        _isOpen = true;
+    }
+
+    protected internal virtual StringBuilder GetStringBuilder()
+    {
+        return _sb;
+    }
+
+    public virtual IFormatProvider FormatProvider
+    {
+        get { return _formatProvider ?? CultureInfo.CurrentCulture; }
+    }
+
+    protected internal override int Length
+    {
+        get { return _sb.Length; }
+        set { _sb.Length = value; }
+    }
+
+    public override void WriteString(string text)
+    {
+        string indentation = null;
+
+        try
         {
-        }
+            BeforeWriteString();
 
-        public MarkdownStringWriter(StringBuilder sb, MarkdownWriterSettings settings = null)
-            : this(sb, CultureInfo.CurrentCulture, settings)
-        {
-        }
+            ThrowIfClosed();
 
-        public MarkdownStringWriter(IFormatProvider formatProvider, MarkdownWriterSettings settings = null)
-            : this(new StringBuilder(), formatProvider, settings)
-        {
-        }
+            if (string.IsNullOrEmpty(text))
+                return;
 
-        public MarkdownStringWriter(StringBuilder sb, IFormatProvider formatProvider, MarkdownWriterSettings settings = null)
-            : base(settings)
-        {
-            _sb = sb ?? throw new ArgumentNullException(nameof(sb));
-            _formatProvider = formatProvider;
-            _isOpen = true;
-        }
+            int length = text.Length;
 
-        protected internal virtual StringBuilder GetStringBuilder()
-        {
-            return _sb;
-        }
+            int prev = 0;
 
-        public virtual IFormatProvider FormatProvider
-        {
-            get { return _formatProvider ?? CultureInfo.CurrentCulture; }
-        }
-
-        protected internal override int Length
-        {
-            get { return _sb.Length; }
-            set { _sb.Length = value; }
-        }
-
-        public override void WriteString(string text)
-        {
-            string indentation = null;
-
-            try
+            int i = 0;
+            while (i < length)
             {
-                BeforeWriteString();
+                char ch = text[i];
 
-                ThrowIfClosed();
-
-                if (string.IsNullOrEmpty(text))
-                    return;
-
-                int length = text.Length;
-
-                int prev = 0;
-
-                int i = 0;
-                while (i < length)
+                switch (ch)
                 {
-                    char ch = text[i];
+                    case '\n':
+                        {
+                            OnBeforeWriteLine();
 
-                    switch (ch)
-                    {
-                        case '\n':
+                            if (NewLineHandling == NewLineHandling.Replace)
                             {
-                                OnBeforeWriteLine();
+                                WriteSubstring(text, prev, i - prev);
+                                WriteNewLine();
+                            }
+                            else if (NewLineHandling == NewLineHandling.None)
+                            {
+                                WriteSubstring(text, prev, i + 1 - prev);
+                            }
 
+                            OnAfterWriteLine();
+                            WriteIndentation();
+                            prev = ++i;
+                            continue;
+                        }
+                    case '\r':
+                        {
+                            OnBeforeWriteLine();
+
+                            if (i < length - 1
+                                && text[i + 1] == 10)
+                            {
                                 if (NewLineHandling == NewLineHandling.Replace)
                                 {
                                     WriteSubstring(text, prev, i - prev);
@@ -88,195 +110,172 @@ namespace DotMarkdown
                                 }
                                 else if (NewLineHandling == NewLineHandling.None)
                                 {
-                                    WriteSubstring(text, prev, i + 1 - prev);
+                                    WriteSubstring(text, prev, i + 2 - prev);
                                 }
 
-                                OnAfterWriteLine();
-                                WriteIndentation();
-                                prev = ++i;
-                                continue;
+                                i++;
                             }
-                        case '\r':
+                            else if (NewLineHandling == NewLineHandling.Replace)
                             {
-                                OnBeforeWriteLine();
-
-                                if (i < length - 1
-                                    && text[i + 1] == 10)
-                                {
-                                    if (NewLineHandling == NewLineHandling.Replace)
-                                    {
-                                        WriteSubstring(text, prev, i - prev);
-                                        WriteNewLine();
-                                    }
-                                    else if (NewLineHandling == NewLineHandling.None)
-                                    {
-                                        WriteSubstring(text, prev, i + 2 - prev);
-                                    }
-
-                                    i++;
-                                }
-                                else if (NewLineHandling == NewLineHandling.Replace)
-                                {
-                                    WriteSubstring(text, prev, i - prev);
-                                    WriteNewLine();
-                                }
-                                else if (NewLineHandling == NewLineHandling.None)
-                                {
-                                    WriteSubstring(text, prev, i + 1 - prev);
-                                }
-
-                                OnAfterWriteLine();
-                                WriteIndentation();
-                                prev = ++i;
-                                continue;
+                                WriteSubstring(text, prev, i - prev);
+                                WriteNewLine();
                             }
-                        case '<':
-                        case '>':
+                            else if (NewLineHandling == NewLineHandling.None)
                             {
-                                if (Escaper.ShouldBeEscaped(ch))
-                                {
-                                    WriteSubstring(text, prev, i - prev);
-                                    WriteString(EscapeChar(ch));
-                                    prev = ++i;
-                                }
-                                else
-                                {
-                                    i++;
-                                }
-
-                                continue;
+                                WriteSubstring(text, prev, i + 1 - prev);
                             }
-                    }
 
-                    if (Escaper.ShouldBeEscaped(ch))
-                    {
-                        WriteSubstring(text, prev, i - prev);
-                        WriteChar(MarkdownCharEscaper.DefaultEscapingChar);
-                        WriteChar(ch);
-                        prev = ++i;
-                    }
-                    else
-                    {
-                        i++;
-                    }
+                            OnAfterWriteLine();
+                            WriteIndentation();
+                            prev = ++i;
+                            continue;
+                        }
+                    case '<':
+                    case '>':
+                        {
+                            if (Escaper.ShouldBeEscaped(ch))
+                            {
+                                WriteSubstring(text, prev, i - prev);
+                                WriteString(EscapeChar(ch));
+                                prev = ++i;
+                            }
+                            else
+                            {
+                                i++;
+                            }
+
+                            continue;
+                        }
                 }
 
-                WriteSubstring(text, prev, text.Length - prev);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-
-            void WriteString(string value)
-            {
-                ThrowIfClosed();
-                _sb.Append(value);
-            }
-
-            void WriteSubstring(string value, int startIndex, int count)
-            {
-                ThrowIfClosed();
-                _sb.Append(value, startIndex, count);
+                if (Escaper.ShouldBeEscaped(ch))
+                {
+                    WriteSubstring(text, prev, i - prev);
+                    WriteChar(MarkdownCharEscaper.DefaultEscapingChar);
+                    WriteChar(ch);
+                    prev = ++i;
+                }
+                else
+                {
+                    i++;
+                }
             }
 
-            void WriteChar(char ch)
-            {
-                ThrowIfClosed();
-                _sb.Append(ch);
-            }
-
-            void WriteNewLine()
-            {
-                ThrowIfClosed();
-                _sb.Append(NewLineChars);
-            }
-
-            void WriteIndentation()
-            {
-                if (indentation is null)
-                    indentation = GetIndentation();
-
-                _sb.Append(indentation);
-            }
+            WriteSubstring(text, prev, text.Length - prev);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
         }
 
-        public override void WriteRaw(string data)
+        void WriteString(string value)
         {
-            try
-            {
-                BeforeWriteRaw();
-                ThrowIfClosed();
-                _sb.Append(data);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        protected override void WriteIndentation(string value)
-        {
+            ThrowIfClosed();
             _sb.Append(value);
         }
 
-        protected override void WriteNewLineChars()
+        void WriteSubstring(string value, int startIndex, int count)
+        {
+            ThrowIfClosed();
+            _sb.Append(value, startIndex, count);
+        }
+
+        void WriteChar(char ch)
+        {
+            ThrowIfClosed();
+            _sb.Append(ch);
+        }
+
+        void WriteNewLine()
         {
             ThrowIfClosed();
             _sb.Append(NewLineChars);
         }
 
-        public override void WriteValue(int value)
+        void WriteIndentation()
         {
-            WriteString(value.ToString(FormatProvider));
-        }
+            if (indentation is null)
+                indentation = GetIndentation();
 
-        public override void WriteValue(long value)
-        {
-            WriteString(value.ToString(FormatProvider));
+            _sb.Append(indentation);
         }
+    }
 
-        public override void WriteValue(float value)
+    public override void WriteRaw(string data)
+    {
+        try
         {
-            WriteString(value.ToString(FormatProvider));
+            BeforeWriteRaw();
+            ThrowIfClosed();
+            _sb.Append(data);
         }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
 
-        public override void WriteValue(double value)
-        {
-            WriteString(value.ToString(FormatProvider));
-        }
+    protected override void WriteIndentation(string value)
+    {
+        _sb.Append(value);
+    }
 
-        public override void WriteValue(decimal value)
-        {
-            WriteString(value.ToString(FormatProvider));
-        }
+    protected override void WriteNewLineChars()
+    {
+        ThrowIfClosed();
+        _sb.Append(NewLineChars);
+    }
 
-        public override string ToString()
-        {
-            return _sb.ToString();
-        }
+    public override void WriteValue(int value)
+    {
+        WriteString(value.ToString(FormatProvider));
+    }
 
-        public override void Flush()
-        {
-        }
+    public override void WriteValue(long value)
+    {
+        WriteString(value.ToString(FormatProvider));
+    }
 
-        public override void Close()
-        {
-            if (Settings.CloseOutput)
-                _isOpen = false;
-        }
+    public override void WriteValue(float value)
+    {
+        WriteString(value.ToString(FormatProvider));
+    }
 
-        private void ThrowIfClosed()
-        {
-            if (!_isOpen)
-                throw new ObjectDisposedException(null, "Cannot write to a closed writer.");
-        }
+    public override void WriteValue(double value)
+    {
+        WriteString(value.ToString(FormatProvider));
+    }
 
-        public IReadOnlyList<TableColumnInfo> AnalyzeTable(IEnumerable<MElement> rows)
-        {
-            return TableAnalyzer.Analyze(rows, Settings, FormatProvider)?.AsReadOnly();
-        }
+    public override void WriteValue(decimal value)
+    {
+        WriteString(value.ToString(FormatProvider));
+    }
+
+    public override string ToString()
+    {
+        return _sb.ToString();
+    }
+
+    public override void Flush()
+    {
+    }
+
+    public override void Close()
+    {
+        if (Settings.CloseOutput)
+            _isOpen = false;
+    }
+
+    private void ThrowIfClosed()
+    {
+        if (!_isOpen)
+            throw new ObjectDisposedException(null, "Cannot write to a closed writer.");
+    }
+
+    public IReadOnlyList<TableColumnInfo> AnalyzeTable(IEnumerable<MElement> rows)
+    {
+        return TableAnalyzer.Analyze(rows, Settings, FormatProvider)?.AsReadOnly();
     }
 }

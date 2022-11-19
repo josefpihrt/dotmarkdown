@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-namespace DotMarkdown
+namespace DotMarkdown;
+
+public enum CharEntityFormat
 {
-    public enum CharEntityFormat
-    {
-        Hexadecimal = 0,
-        Decimal = 1,
-    }
+    Hexadecimal = 0,
+    Decimal = 1,
 }

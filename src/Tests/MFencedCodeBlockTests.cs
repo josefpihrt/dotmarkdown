@@ -4,78 +4,77 @@ using DotMarkdown.Linq;
 using Xunit;
 using static DotMarkdown.Tests.TestHelpers;
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MFencedCodeBlockTests
 {
-    public static class MFencedCodeBlockTests
+    [Fact]
+    public static void MFencedCodeBlock_Equals()
     {
-        [Fact]
-        public static void MFencedCodeBlock_Equals()
-        {
-            MFencedCodeBlock block = CreateCodeBlock();
+        MFencedCodeBlock block = CreateCodeBlock();
 
-            Assert.True(block.Equals((object)block));
-        }
+        Assert.True(block.Equals((object)block));
+    }
 
-        [Fact]
-        public static void MFencedCodeBlock_NotEquals()
-        {
-            MFencedCodeBlock block = CreateCodeBlock();
-            MFencedCodeBlock block2 = block.Modify();
+    [Fact]
+    public static void MFencedCodeBlock_NotEquals()
+    {
+        MFencedCodeBlock block = CreateCodeBlock();
+        MFencedCodeBlock block2 = block.Modify();
 
-            Assert.False(block.Equals((object)block2));
-        }
+        Assert.False(block.Equals((object)block2));
+    }
 
-        [Fact]
-        public static void MFencedCodeBlock_GetHashCode_Equal()
-        {
-            MFencedCodeBlock block = CreateCodeBlock();
+    [Fact]
+    public static void MFencedCodeBlock_GetHashCode_Equal()
+    {
+        MFencedCodeBlock block = CreateCodeBlock();
 
-            Assert.Equal(block.GetHashCode(), block.GetHashCode());
-        }
+        Assert.Equal(block.GetHashCode(), block.GetHashCode());
+    }
 
-        [Fact]
-        public static void MFencedCodeBlock_GetHashCode_NotEqual()
-        {
-            MFencedCodeBlock block = CreateCodeBlock();
-            MFencedCodeBlock block2 = block.Modify();
+    [Fact]
+    public static void MFencedCodeBlock_GetHashCode_NotEqual()
+    {
+        MFencedCodeBlock block = CreateCodeBlock();
+        MFencedCodeBlock block2 = block.Modify();
 
-            Assert.NotEqual(block.GetHashCode(), block2.GetHashCode());
-        }
+        Assert.NotEqual(block.GetHashCode(), block2.GetHashCode());
+    }
 
-        [Fact]
-        public static void MFencedCodeBlock_OperatorEquals()
-        {
-            MFencedCodeBlock block = CreateCodeBlock();
-            MFencedCodeBlock block2 = block;
+    [Fact]
+    public static void MFencedCodeBlock_OperatorEquals()
+    {
+        MFencedCodeBlock block = CreateCodeBlock();
+        MFencedCodeBlock block2 = block;
 
-            Assert.True(block == block2);
-        }
+        Assert.True(block == block2);
+    }
 
-        [Fact]
-        public static void MFencedCodeBlock_OperatorNotEquals()
-        {
-            MFencedCodeBlock block = CreateCodeBlock();
-            MFencedCodeBlock block2 = block.Modify();
+    [Fact]
+    public static void MFencedCodeBlock_OperatorNotEquals()
+    {
+        MFencedCodeBlock block = CreateCodeBlock();
+        MFencedCodeBlock block2 = block.Modify();
 
-            Assert.True(block != block2);
-        }
+        Assert.True(block != block2);
+    }
 
-        [Fact]
-        public static void MFencedCodeBlock_Constructor_AssignText()
-        {
-            string text = CodeBlockText();
-            var block = new MFencedCodeBlock(text: text, info: CodeBlockInfo());
+    [Fact]
+    public static void MFencedCodeBlock_Constructor_AssignText()
+    {
+        string text = CodeBlockText();
+        var block = new MFencedCodeBlock(text: text, info: CodeBlockInfo());
 
-            Assert.Equal(text, block.Text);
-        }
+        Assert.Equal(text, block.Text);
+    }
 
-        [Fact]
-        public static void MFencedCodeBlock_Constructor_AssignInfo()
-        {
-            string info = CodeBlockInfo();
-            var block = new MFencedCodeBlock(text: CodeBlockText(), info: info);
+    [Fact]
+    public static void MFencedCodeBlock_Constructor_AssignInfo()
+    {
+        string info = CodeBlockInfo();
+        var block = new MFencedCodeBlock(text: CodeBlockText(), info: info);
 
-            Assert.Equal(info, block.Info);
-        }
+        Assert.Equal(info, block.Info);
     }
 }

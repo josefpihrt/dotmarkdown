@@ -3,36 +3,35 @@
 using System;
 using System.Diagnostics;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+[DebuggerDisplay("{Kind} {Text, nq}")]
+public class MInlineCode : MElement
 {
-    [DebuggerDisplay("{Kind} {Text, nq}")]
-    public class MInlineCode : MElement
+    public MInlineCode(string text)
     {
-        public MInlineCode(string text)
-        {
-            Text = text;
-        }
+        Text = text;
+    }
 
-        public MInlineCode(MInlineCode other)
-        {
-            if (other is null)
-                throw new ArgumentNullException(nameof(other));
+    public MInlineCode(MInlineCode other)
+    {
+        if (other is null)
+            throw new ArgumentNullException(nameof(other));
 
-            Text = other.Text;
-        }
+        Text = other.Text;
+    }
 
-        public string Text { get; }
+    public string Text { get; }
 
-        public override MarkdownKind Kind => MarkdownKind.InlineCode;
+    public override MarkdownKind Kind => MarkdownKind.InlineCode;
 
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            writer.WriteInlineCode(Text);
-        }
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        writer.WriteInlineCode(Text);
+    }
 
-        internal override MElement Clone()
-        {
-            return new MInlineCode(this);
-        }
+    internal override MElement Clone()
+    {
+        return new MInlineCode(this);
     }
 }

@@ -6,33 +6,32 @@ using static DotMarkdown.Tests.TestHelpers;
 
 #pragma warning disable CS1718
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MBlockQuoteTests
 {
-    public static class MBlockQuoteTests
+    [Fact]
+    public static void MBlockQuote_Equals()
     {
-        [Fact]
-        public static void MBlockQuote_Equals()
-        {
-            MBlockQuote blockQuote = CreateBlockQuote();
+        MBlockQuote blockQuote = CreateBlockQuote();
 
-            Assert.True(blockQuote.Equals((object)blockQuote));
-        }
+        Assert.True(blockQuote.Equals((object)blockQuote));
+    }
 
-        [Fact]
-        public static void MBlockQuote_GetHashCode_Equal()
-        {
-            MBlockQuote blockQuote = CreateBlockQuote();
+    [Fact]
+    public static void MBlockQuote_GetHashCode_Equal()
+    {
+        MBlockQuote blockQuote = CreateBlockQuote();
 
-            Assert.Equal(blockQuote.GetHashCode(), blockQuote.GetHashCode());
-        }
+        Assert.Equal(blockQuote.GetHashCode(), blockQuote.GetHashCode());
+    }
 
-        [Fact]
-        public static void MBlockQuote_OperatorEquals()
-        {
-            MBlockQuote blockQuote = CreateBlockQuote();
-            MBlockQuote blockQuote2 = blockQuote;
+    [Fact]
+    public static void MBlockQuote_OperatorEquals()
+    {
+        MBlockQuote blockQuote = CreateBlockQuote();
+        MBlockQuote blockQuote2 = blockQuote;
 
-            Assert.True(blockQuote == blockQuote2);
-        }
+        Assert.True(blockQuote == blockQuote2);
     }
 }

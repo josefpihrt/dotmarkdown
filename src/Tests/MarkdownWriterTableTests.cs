@@ -3,290 +3,289 @@
 using System.Text;
 using Xunit;
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MarkdownWriterTableTests
 {
-    public static class MarkdownWriterTableTests
+    [Fact]
+    public static void TestTableHeaderWithSingleCharacter()
     {
-        [Fact]
-        public static void TestTableHeaderWithSingleCharacter()
+        using (MarkdownWriter mw = MarkdownWriter.Create(new StringBuilder()))
         {
-            using (MarkdownWriter mw = MarkdownWriter.Create(new StringBuilder()))
-            {
-                mw.WriteLine();
+            mw.WriteLine();
 
-                mw.WriteStartTable(3);
+            mw.WriteStartTable(3);
 
-                mw.WriteStartTableRow();
+            mw.WriteStartTableRow();
 
-                mw.WriteStartTableCell();
-                mw.WriteString(" ");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString(" ");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("a");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("a");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("b");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("b");
+            mw.WriteEndTableCell();
 
-                mw.WriteEndTableRow();
+            mw.WriteEndTableRow();
 
-                mw.WriteTableHeaderSeparator();
+            mw.WriteTableHeaderSeparator();
 
-                mw.WriteStartTableRow();
+            mw.WriteStartTableRow();
 
-                mw.WriteStartTableCell();
-                mw.WriteString(" ");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString(" ");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("c");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("c");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("d");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("d");
+            mw.WriteEndTableCell();
 
-                mw.WriteEndTableRow();
+            mw.WriteEndTableRow();
 
-                mw.WriteEndTable();
+            mw.WriteEndTable();
 
-                Assert.Equal(
-                    @"
+            Assert.Equal(
+                @"
 |     | a   | b   |
 | --- | --- | --- |
 |   | c | d |
 
 ",
-                    mw.ToString());
-            }
+                mw.ToString());
         }
+    }
 
-        [Fact]
-        public static void TestTableHeaderWithTwoCharacter()
+    [Fact]
+    public static void TestTableHeaderWithTwoCharacter()
+    {
+        using (MarkdownWriter mw = MarkdownWriter.Create(new StringBuilder()))
         {
-            using (MarkdownWriter mw = MarkdownWriter.Create(new StringBuilder()))
-            {
-                mw.WriteLine();
+            mw.WriteLine();
 
-                mw.WriteStartTable(3);
+            mw.WriteStartTable(3);
 
-                mw.WriteStartTableRow();
+            mw.WriteStartTableRow();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("  ");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("  ");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("aa");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("aa");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("bb");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("bb");
+            mw.WriteEndTableCell();
 
-                mw.WriteEndTableRow();
+            mw.WriteEndTableRow();
 
-                mw.WriteTableHeaderSeparator();
+            mw.WriteTableHeaderSeparator();
 
-                mw.WriteStartTableRow();
+            mw.WriteStartTableRow();
 
-                mw.WriteStartTableCell();
-                mw.WriteString(" ");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString(" ");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("c");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("c");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("d");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("d");
+            mw.WriteEndTableCell();
 
-                mw.WriteEndTableRow();
+            mw.WriteEndTableRow();
 
-                mw.WriteEndTable();
+            mw.WriteEndTable();
 
-                Assert.Equal(
-                    @"
+            Assert.Equal(
+                @"
 |     | aa  | bb  |
 | --- | --- | --- |
 |   | c | d |
 
 ",
-                    mw.ToString());
-            }
+                mw.ToString());
         }
+    }
 
-        [Fact]
-        public static void TestTableHeaderWithThreeCharacter()
+    [Fact]
+    public static void TestTableHeaderWithThreeCharacter()
+    {
+        using (MarkdownWriter mw = MarkdownWriter.Create(new StringBuilder()))
         {
-            using (MarkdownWriter mw = MarkdownWriter.Create(new StringBuilder()))
-            {
-                mw.WriteLine();
+            mw.WriteLine();
 
-                mw.WriteStartTable(3);
+            mw.WriteStartTable(3);
 
-                mw.WriteStartTableRow();
+            mw.WriteStartTableRow();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("   ");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("   ");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("aaa");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("aaa");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("bbb");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("bbb");
+            mw.WriteEndTableCell();
 
-                mw.WriteEndTableRow();
+            mw.WriteEndTableRow();
 
-                mw.WriteTableHeaderSeparator();
+            mw.WriteTableHeaderSeparator();
 
-                mw.WriteStartTableRow();
+            mw.WriteStartTableRow();
 
-                mw.WriteStartTableCell();
-                mw.WriteString(" ");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString(" ");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("c");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("c");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("d");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("d");
+            mw.WriteEndTableCell();
 
-                mw.WriteEndTableRow();
+            mw.WriteEndTableRow();
 
-                mw.WriteEndTable();
+            mw.WriteEndTable();
 
-                Assert.Equal(
-                    @"
+            Assert.Equal(
+                @"
 |     | aaa | bbb |
 | --- | --- | --- |
 |   | c | d |
 
 ",
-                    mw.ToString());
-            }
+                mw.ToString());
         }
+    }
 
-        [Fact]
-        public static void TestTableHeaderWithFourCharacter()
+    [Fact]
+    public static void TestTableHeaderWithFourCharacter()
+    {
+        using (MarkdownWriter mw = MarkdownWriter.Create(new StringBuilder()))
         {
-            using (MarkdownWriter mw = MarkdownWriter.Create(new StringBuilder()))
-            {
-                mw.WriteLine();
+            mw.WriteLine();
 
-                mw.WriteStartTable(3);
+            mw.WriteStartTable(3);
 
-                mw.WriteStartTableRow();
+            mw.WriteStartTableRow();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("    ");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("    ");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("aaaa");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("aaaa");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("bbbb");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("bbbb");
+            mw.WriteEndTableCell();
 
-                mw.WriteEndTableRow();
+            mw.WriteEndTableRow();
 
-                mw.WriteTableHeaderSeparator();
+            mw.WriteTableHeaderSeparator();
 
-                mw.WriteStartTableRow();
+            mw.WriteStartTableRow();
 
-                mw.WriteStartTableCell();
-                mw.WriteString(" ");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString(" ");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("c");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("c");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("d");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("d");
+            mw.WriteEndTableCell();
 
-                mw.WriteEndTableRow();
+            mw.WriteEndTableRow();
 
-                mw.WriteEndTable();
+            mw.WriteEndTable();
 
-                Assert.Equal(
-                    @"
+            Assert.Equal(
+                @"
 |      | aaaa | bbbb |
 | ---- | ---- | ---- |
 |   | c | d |
 
 ",
-                    mw.ToString());
-            }
+                mw.ToString());
         }
+    }
 
-        [Fact]
-        public static void TestTableWithInlineCode()
+    [Fact]
+    public static void TestTableWithInlineCode()
+    {
+        using (MarkdownWriter mw = MarkdownWriter.Create(new StringBuilder()))
         {
-            using (MarkdownWriter mw = MarkdownWriter.Create(new StringBuilder()))
-            {
-                mw.WriteLine();
+            mw.WriteLine();
 
-                mw.WriteStartTable(3);
+            mw.WriteStartTable(3);
 
-                mw.WriteStartTableRow();
+            mw.WriteStartTableRow();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("    ");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("    ");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("a||a");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("a||a");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("b");
-                mw.WriteInlineCode("b|b");
-                mw.WriteString("b");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("b");
+            mw.WriteInlineCode("b|b");
+            mw.WriteString("b");
+            mw.WriteEndTableCell();
 
-                mw.WriteEndTableRow();
+            mw.WriteEndTableRow();
 
-                mw.WriteTableHeaderSeparator();
+            mw.WriteTableHeaderSeparator();
 
-                mw.WriteStartTableRow();
+            mw.WriteStartTableRow();
 
-                mw.WriteStartTableCell();
-                mw.WriteString(" ");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString(" ");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteString("c|c");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteString("c|c");
+            mw.WriteEndTableCell();
 
-                mw.WriteStartTableCell();
-                mw.WriteInlineCode("|");
-                mw.WriteEndTableCell();
+            mw.WriteStartTableCell();
+            mw.WriteInlineCode("|");
+            mw.WriteEndTableCell();
 
-                mw.WriteEndTableRow();
+            mw.WriteEndTableRow();
 
-                mw.WriteEndTable();
+            mw.WriteEndTable();
 
-                Assert.Equal(
-                    @"
+            Assert.Equal(
+                @"
 |      | a\|\|a | b`b\|b`b |
 | ---- | ------ | -------- |
 |   | c\|c | `\|` |
 
 ",
-                    mw.ToString());
-            }
+                mw.ToString());
         }
     }
 }

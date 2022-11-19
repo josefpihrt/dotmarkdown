@@ -2,48 +2,47 @@
 
 using System.Diagnostics;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+[DebuggerDisplay("{Kind} {ToStringDebuggerDisplay(),nq}")]
+public class MTaskItem : MBlockContainer
 {
-    [DebuggerDisplay("{Kind} {ToStringDebuggerDisplay(),nq}")]
-    public class MTaskItem : MBlockContainer
+    public MTaskItem(bool isCompleted)
     {
-        public MTaskItem(bool isCompleted)
-        {
-            IsCompleted = isCompleted;
-        }
+        IsCompleted = isCompleted;
+    }
 
-        public MTaskItem(bool isCompleted, object content)
-            : base(content)
-        {
-            IsCompleted = isCompleted;
-        }
+    public MTaskItem(bool isCompleted, object content)
+        : base(content)
+    {
+        IsCompleted = isCompleted;
+    }
 
-        public MTaskItem(bool isCompleted, params object[] content)
-            : base(content)
-        {
-            IsCompleted = isCompleted;
-        }
+    public MTaskItem(bool isCompleted, params object[] content)
+        : base(content)
+    {
+        IsCompleted = isCompleted;
+    }
 
-        public MTaskItem(MTaskItem other)
-            : base(other)
-        {
-            IsCompleted = other.IsCompleted;
-        }
+    public MTaskItem(MTaskItem other)
+        : base(other)
+    {
+        IsCompleted = other.IsCompleted;
+    }
 
-        public bool IsCompleted { get; set; }
+    public bool IsCompleted { get; set; }
 
-        public override MarkdownKind Kind => MarkdownKind.TaskItem;
+    public override MarkdownKind Kind => MarkdownKind.TaskItem;
 
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            writer.WriteStartTaskItem(IsCompleted);
-            WriteContentTo(writer);
-            writer.WriteEndTaskItem();
-        }
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        writer.WriteStartTaskItem(IsCompleted);
+        WriteContentTo(writer);
+        writer.WriteEndTaskItem();
+    }
 
-        internal override MElement Clone()
-        {
-            return new MTaskItem(this);
-        }
+    internal override MElement Clone()
+    {
+        return new MTaskItem(this);
     }
 }

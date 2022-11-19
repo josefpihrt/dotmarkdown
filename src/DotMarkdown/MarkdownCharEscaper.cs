@@ -1,132 +1,131 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-namespace DotMarkdown
+namespace DotMarkdown;
+
+internal abstract class MarkdownCharEscaper
 {
-    internal abstract class MarkdownCharEscaper
+    public static char DefaultEscapingChar { get; } = '\\';
+
+    public static MarkdownCharEscaper Default { get; } = new DefaultMarkdownEscaper();
+
+    public static MarkdownCharEscaper LinkText { get; } = new LinkTextMarkdownEscaper();
+
+    public static MarkdownCharEscaper LinkUrl { get; } = new LinkUrlMarkdownEscaper();
+
+    public static MarkdownCharEscaper LinkTitle { get; } = new LinkTitleMarkdownEscaper();
+
+    public static MarkdownCharEscaper AngleBrackets { get; } = new AngleBracketsMarkdownEscaper();
+
+    public static MarkdownCharEscaper InlineCodeInsideTable { get; } = new InlineCodeInsideTableMarkdownEscaper();
+
+    public static MarkdownCharEscaper NoEscape { get; } = new NoEscapeMarkdownEscaper();
+
+    public abstract bool ShouldBeEscaped(char value);
+
+    private class DefaultMarkdownEscaper : MarkdownCharEscaper
     {
-        public static char DefaultEscapingChar { get; } = '\\';
-
-        public static MarkdownCharEscaper Default { get; } = new DefaultMarkdownEscaper();
-
-        public static MarkdownCharEscaper LinkText { get; } = new LinkTextMarkdownEscaper();
-
-        public static MarkdownCharEscaper LinkUrl { get; } = new LinkUrlMarkdownEscaper();
-
-        public static MarkdownCharEscaper LinkTitle { get; } = new LinkTitleMarkdownEscaper();
-
-        public static MarkdownCharEscaper AngleBrackets { get; } = new AngleBracketsMarkdownEscaper();
-
-        public static MarkdownCharEscaper InlineCodeInsideTable { get; } = new InlineCodeInsideTableMarkdownEscaper();
-
-        public static MarkdownCharEscaper NoEscape { get; } = new NoEscapeMarkdownEscaper();
-
-        public abstract bool ShouldBeEscaped(char value);
-
-        private class DefaultMarkdownEscaper : MarkdownCharEscaper
+        public override bool ShouldBeEscaped(char value)
         {
-            public override bool ShouldBeEscaped(char value)
+            switch (value)
             {
-                switch (value)
-                {
-                    case '\\':
-                    case '`':
-                    case '*':
-                    case '_':
-                    case '{':
-                    case '}':
-                    case '[':
-                    case ']':
-                    case '(':
-                    case ')':
-                    case '#':
-                    case '+':
-                    case '-':
-                    case '.':
-                    case '!':
-                    case '<':
-                    case '>':
-                    case '|':
-                    case '~':
-                        return true;
-                    default:
-                        return false;
-                }
+                case '\\':
+                case '`':
+                case '*':
+                case '_':
+                case '{':
+                case '}':
+                case '[':
+                case ']':
+                case '(':
+                case ')':
+                case '#':
+                case '+':
+                case '-':
+                case '.':
+                case '!':
+                case '<':
+                case '>':
+                case '|':
+                case '~':
+                    return true;
+                default:
+                    return false;
             }
         }
+    }
 
-        private class LinkTextMarkdownEscaper : MarkdownCharEscaper
+    private class LinkTextMarkdownEscaper : MarkdownCharEscaper
+    {
+        public override bool ShouldBeEscaped(char ch)
         {
-            public override bool ShouldBeEscaped(char ch)
+            switch (ch)
             {
-                switch (ch)
-                {
-                    case '[':
-                    case ']':
-                    case '`':
-                    case '<':
-                    case '>':
-                        return true;
-                    default:
-                        return false;
-                }
+                case '[':
+                case ']':
+                case '`':
+                case '<':
+                case '>':
+                    return true;
+                default:
+                    return false;
             }
         }
+    }
 
-        private class LinkUrlMarkdownEscaper : MarkdownCharEscaper
+    private class LinkUrlMarkdownEscaper : MarkdownCharEscaper
+    {
+        public override bool ShouldBeEscaped(char ch)
         {
-            public override bool ShouldBeEscaped(char ch)
+            switch (ch)
             {
-                switch (ch)
-                {
-                    case '(':
-                    case ')':
-                        return true;
-                    default:
-                        return false;
-                }
+                case '(':
+                case ')':
+                    return true;
+                default:
+                    return false;
             }
         }
+    }
 
-        private class LinkTitleMarkdownEscaper : MarkdownCharEscaper
+    private class LinkTitleMarkdownEscaper : MarkdownCharEscaper
+    {
+        public override bool ShouldBeEscaped(char ch)
         {
-            public override bool ShouldBeEscaped(char ch)
+            switch (ch)
             {
-                switch (ch)
-                {
-                    case '"':
-                        return true;
-                    default:
-                        return false;
-                }
+                case '"':
+                    return true;
+                default:
+                    return false;
             }
         }
+    }
 
-        private class AngleBracketsMarkdownEscaper : MarkdownCharEscaper
+    private class AngleBracketsMarkdownEscaper : MarkdownCharEscaper
+    {
+        public override bool ShouldBeEscaped(char ch)
         {
-            public override bool ShouldBeEscaped(char ch)
+            switch (ch)
             {
-                switch (ch)
-                {
-                    case '<':
-                    case '>':
-                        return true;
-                    default:
-                        return false;
-                }
+                case '<':
+                case '>':
+                    return true;
+                default:
+                    return false;
             }
         }
+    }
 
-        private class InlineCodeInsideTableMarkdownEscaper : MarkdownCharEscaper
+    private class InlineCodeInsideTableMarkdownEscaper : MarkdownCharEscaper
+    {
+        public override bool ShouldBeEscaped(char ch)
         {
-            public override bool ShouldBeEscaped(char ch)
-            {
-                return ch == '|';
-            }
+            return ch == '|';
         }
+    }
 
-        private class NoEscapeMarkdownEscaper : MarkdownCharEscaper
-        {
-            public override bool ShouldBeEscaped(char ch) => false;
-        }
+    private class NoEscapeMarkdownEscaper : MarkdownCharEscaper
+    {
+        public override bool ShouldBeEscaped(char ch) => false;
     }
 }

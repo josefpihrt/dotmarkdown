@@ -2,73 +2,72 @@
 
 using System;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+public class MLink : MContainer
 {
-    public class MLink : MContainer
+    private string _url;
+
+    public MLink(object content, string url, string title = null)
+        : base(content)
     {
-        private string _url;
+        Url = url;
+        Title = title;
+    }
 
-        public MLink(object content, string url, string title = null)
-            : base(content)
+    public MLink(MLink other)
+        : base(other)
+    {
+        _url = other.Url;
+        Title = other.Title;
+    }
+
+    internal override void ValidateElement(MElement element)
+    {
+        switch (element.Kind)
         {
-            Url = url;
-            Title = title;
+            case MarkdownKind.Text:
+            case MarkdownKind.Raw:
+            case MarkdownKind.InlineCode:
+            case MarkdownKind.CharEntity:
+            case MarkdownKind.EntityRef:
+            case MarkdownKind.Comment:
+            case MarkdownKind.Bold:
+            case MarkdownKind.Italic:
+            case MarkdownKind.Strikethrough:
+                return;
         }
 
-        public MLink(MLink other)
-            : base(other)
+        Error.InvalidContent(this, element);
+    }
+
+    public string Url
+    {
+        get { return _url; }
+        set
         {
-            _url = other.Url;
-            Title = other.Title;
+            if (value is null)
+                throw new ArgumentNullException(nameof(value));
+
+            Error.ThrowIfContainsWhitespace(value, nameof(value));
+
+            _url = value;
         }
+    }
 
-        internal override void ValidateElement(MElement element)
-        {
-            switch (element.Kind)
-            {
-                case MarkdownKind.Text:
-                case MarkdownKind.Raw:
-                case MarkdownKind.InlineCode:
-                case MarkdownKind.CharEntity:
-                case MarkdownKind.EntityRef:
-                case MarkdownKind.Comment:
-                case MarkdownKind.Bold:
-                case MarkdownKind.Italic:
-                case MarkdownKind.Strikethrough:
-                    return;
-            }
+    public string Title { get; set; }
 
-            Error.InvalidContent(this, element);
-        }
+    public override MarkdownKind Kind => MarkdownKind.Link;
 
-        public string Url
-        {
-            get { return _url; }
-            set
-            {
-                if (value is null)
-                    throw new ArgumentNullException(nameof(value));
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        writer.WriteStartLink();
+        WriteContentTo(writer);
+        writer.WriteEndLink(Url, Title);
+    }
 
-                Error.ThrowIfContainsWhitespace(value, nameof(value));
-
-                _url = value;
-            }
-        }
-
-        public string Title { get; set; }
-
-        public override MarkdownKind Kind => MarkdownKind.Link;
-
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            writer.WriteStartLink();
-            WriteContentTo(writer);
-            writer.WriteEndLink(Url, Title);
-        }
-
-        internal override MElement Clone()
-        {
-            return new MLink(this);
-        }
+    internal override MElement Clone()
+    {
+        return new MLink(this);
     }
 }

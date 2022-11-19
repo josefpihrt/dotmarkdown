@@ -6,259 +6,83 @@ using System.Diagnostics;
 using System.IO;
 using DotMarkdown.Linq;
 
-namespace DotMarkdown
+namespace DotMarkdown;
+
+internal class MarkdownTextWriter : MarkdownBaseWriter, ITableAnalyzer
 {
-    internal class MarkdownTextWriter : MarkdownBaseWriter, ITableAnalyzer
+    private const int BufferSize = 1024 * 6;
+    private const int BufferOverflow = 32;
+
+    private TextWriter _writer;
+    private bool _noWrite;
+
+    private readonly char[] _bufChars;
+    private int _bufPos;
+    private readonly int _bufLen = BufferSize;
+
+    public MarkdownTextWriter(TextWriter writer, MarkdownWriterSettings settings = null)
+        : base(settings)
     {
-        private const int BufferSize = 1024 * 6;
-        private const int BufferOverflow = 32;
+        _writer = writer ?? throw new ArgumentNullException(nameof(writer));
 
-        private TextWriter _writer;
-        private bool _noWrite;
+        _bufChars = new char[_bufLen + BufferOverflow];
+    }
 
-        private readonly char[] _bufChars;
-        private int _bufPos;
-        private readonly int _bufLen = BufferSize;
+    protected internal override int Length { get; set; }
 
-        public MarkdownTextWriter(TextWriter writer, MarkdownWriterSettings settings = null)
-            : base(settings)
+    public override void WriteString(string text)
+    {
+        try
         {
-            _writer = writer ?? throw new ArgumentNullException(nameof(writer));
+            BeforeWriteString();
 
-            _bufChars = new char[_bufLen + BufferOverflow];
+            if (string.IsNullOrEmpty(text))
+                return;
+
+            WriteStringUnsafe(text);
         }
-
-        protected internal override int Length { get; set; }
-
-        public override void WriteString(string text)
+        catch
         {
-            try
-            {
-                BeforeWriteString();
-
-                if (string.IsNullOrEmpty(text))
-                    return;
-
-                WriteStringUnsafe(text);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            _state = State.Error;
+            throw;
         }
+    }
 
-        private unsafe void WriteStringUnsafe(string value)
+    private unsafe void WriteStringUnsafe(string value)
+    {
+        Debug.Assert(value is not null);
+
+        string indentation = null;
+        var pendingIndentation = false;
+        int offset = 0;
+
+        while (true)
         {
-            Debug.Assert(value is not null);
-
-            string indentation = null;
-            var pendingIndentation = false;
-            int offset = 0;
-
-            while (true)
+            fixed (char* pSrcStart = value)
             {
-                fixed (char* pSrcStart = value)
-                {
-                    offset += WriteStringUnsafe(pSrcStart + offset, pSrcStart + value.Length);
-                }
-
-                if (pendingIndentation)
-                {
-                    WriteRawUnsafe(indentation);
-                    pendingIndentation = false;
-                }
-                else
-                {
-                    break;
-                }
+                offset += WriteStringUnsafe(pSrcStart + offset, pSrcStart + value.Length);
             }
 
-            int WriteStringUnsafe(char* pSrcStart, char* pSrcEnd)
+            if (pendingIndentation)
             {
-                fixed (char* pDstStart = _bufChars)
-                {
-                    char* pDst = pDstStart + _bufPos;
-                    char* pSrc = pSrcStart;
-
-                    int ch = 0;
-                    do
-                    {
-                        char* pDstEnd = pDst + (pSrcEnd - pSrc);
-
-                        if (pDstEnd > pDstStart + _bufLen)
-                            pDstEnd = pDstStart + _bufLen;
-
-                        while (pDst < pDstEnd)
-                        {
-                            ch = *pSrc;
-
-                            if (ch == 10
-                                || ch == 13
-                                || Escaper.ShouldBeEscaped((char)ch))
-                            {
-                                break;
-                            }
-
-                            pSrc++;
-                            *pDst = (char)ch;
-                            pDst++;
-                            Length++;
-                        }
-
-                        if (pSrc >= pSrcEnd)
-                            break;
-
-                        if (pDst >= pDstEnd)
-                        {
-                            _bufPos = (int)(pDst - pDstStart);
-                            FlushBuffer();
-                            pDst = pDstStart;
-                            continue;
-                        }
-
-                        switch (ch)
-                        {
-                            case (char)10:
-                                {
-                                    OnBeforeWriteLine();
-
-                                    switch (NewLineHandling)
-                                    {
-                                        case NewLineHandling.Replace:
-                                            {
-                                                pDst = WriteRaw(NewLineChars, pDst);
-                                                break;
-                                            }
-                                        case NewLineHandling.None:
-                                            {
-                                                *pDst = (char)ch;
-                                                pDst++;
-                                                Length++;
-                                                break;
-                                            }
-                                    }
-
-                                    OnAfterWriteLine();
-
-                                    if (IsPendingIndentation())
-                                        pendingIndentation = true;
-
-                                    break;
-                                }
-                            case (char)13:
-                                {
-                                    OnBeforeWriteLine();
-
-                                    switch (NewLineHandling)
-                                    {
-                                        case NewLineHandling.Replace:
-                                            {
-                                                if (pSrc < pSrcEnd
-                                                    && pSrc[1] == '\n')
-                                                {
-                                                    pSrc++;
-                                                }
-
-                                                pDst = WriteRaw(NewLineChars, pDst);
-                                                break;
-                                            }
-                                        case NewLineHandling.None:
-                                            {
-                                                *pDst = (char)ch;
-                                                pDst++;
-                                                Length++;
-                                                break;
-                                            }
-                                    }
-
-                                    OnAfterWriteLine();
-
-                                    if (IsPendingIndentation())
-                                        pendingIndentation = true;
-
-                                    break;
-                                }
-                            case '>':
-                            case '<':
-                                {
-                                    string escapedChar = EscapeChar(ch);
-                                    pDst = WriteRaw(escapedChar, pDst);
-                                    break;
-                                }
-                            default:
-                                {
-                                    *pDst = MarkdownCharEscaper.DefaultEscapingChar;
-                                    pDst++;
-                                    Length++;
-                                    *pDst = (char)ch;
-                                    pDst++;
-                                    Length++;
-                                    break;
-                                }
-                        }
-
-                        pSrc++;
-                    }
-                    while (!pendingIndentation);
-
-                    _bufPos = (int)(pDst - pDstStart);
-
-                    return (int)(pSrc - pSrcStart);
-                }
-
-                char* WriteRaw(string text, char* pDst)
-                {
-                    fixed (char* pDstStart = _bufChars)
-                    {
-                        _bufPos = (int)(pDst - pDstStart);
-                        WriteRawUnsafe(text);
-                        return pDstStart + _bufPos;
-                    }
-                }
+                WriteRawUnsafe(indentation);
+                pendingIndentation = false;
             }
-
-            bool IsPendingIndentation()
+            else
             {
-                if (indentation is null)
-                    indentation = base.GetIndentation();
-
-                return indentation.Length > 0;
+                break;
             }
         }
 
-        public override void WriteRaw(string data)
-        {
-            try
-            {
-                BeforeWriteRaw();
-
-                if (!string.IsNullOrEmpty(data))
-                    WriteRawUnsafe(data);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        private unsafe void WriteRawUnsafe(string s)
-        {
-            fixed (char* pSrcStart = s)
-            {
-                WriteRawUnsafe(pSrcStart, pSrcStart + s.Length);
-            }
-        }
-
-        private unsafe void WriteRawUnsafe(char* pSrcStart, char* pSrcEnd)
+        int WriteStringUnsafe(char* pSrcStart, char* pSrcEnd)
         {
             fixed (char* pDstStart = _bufChars)
             {
                 char* pDst = pDstStart + _bufPos;
                 char* pSrc = pSrcStart;
 
-                while (true)
+                int ch = 0;
+                do
                 {
                     char* pDstEnd = pDst + (pSrcEnd - pSrc);
 
@@ -267,8 +91,17 @@ namespace DotMarkdown
 
                     while (pDst < pDstEnd)
                     {
-                        *pDst = *pSrc;
+                        ch = *pSrc;
+
+                        if (ch == 10
+                            || ch == 13
+                            || Escaper.ShouldBeEscaped((char)ch))
+                        {
+                            break;
+                        }
+
                         pSrc++;
+                        *pDst = (char)ch;
                         pDst++;
                         Length++;
                     }
@@ -281,108 +114,274 @@ namespace DotMarkdown
                         _bufPos = (int)(pDst - pDstStart);
                         FlushBuffer();
                         pDst = pDstStart;
+                        continue;
                     }
+
+                    switch (ch)
+                    {
+                        case (char)10:
+                            {
+                                OnBeforeWriteLine();
+
+                                switch (NewLineHandling)
+                                {
+                                    case NewLineHandling.Replace:
+                                        {
+                                            pDst = WriteRaw(NewLineChars, pDst);
+                                            break;
+                                        }
+                                    case NewLineHandling.None:
+                                        {
+                                            *pDst = (char)ch;
+                                            pDst++;
+                                            Length++;
+                                            break;
+                                        }
+                                }
+
+                                OnAfterWriteLine();
+
+                                if (IsPendingIndentation())
+                                    pendingIndentation = true;
+
+                                break;
+                            }
+                        case (char)13:
+                            {
+                                OnBeforeWriteLine();
+
+                                switch (NewLineHandling)
+                                {
+                                    case NewLineHandling.Replace:
+                                        {
+                                            if (pSrc < pSrcEnd
+                                                && pSrc[1] == '\n')
+                                            {
+                                                pSrc++;
+                                            }
+
+                                            pDst = WriteRaw(NewLineChars, pDst);
+                                            break;
+                                        }
+                                    case NewLineHandling.None:
+                                        {
+                                            *pDst = (char)ch;
+                                            pDst++;
+                                            Length++;
+                                            break;
+                                        }
+                                }
+
+                                OnAfterWriteLine();
+
+                                if (IsPendingIndentation())
+                                    pendingIndentation = true;
+
+                                break;
+                            }
+                        case '>':
+                        case '<':
+                            {
+                                string escapedChar = EscapeChar(ch);
+                                pDst = WriteRaw(escapedChar, pDst);
+                                break;
+                            }
+                        default:
+                            {
+                                *pDst = MarkdownCharEscaper.DefaultEscapingChar;
+                                pDst++;
+                                Length++;
+                                *pDst = (char)ch;
+                                pDst++;
+                                Length++;
+                                break;
+                            }
+                    }
+
+                    pSrc++;
                 }
+                while (!pendingIndentation);
 
                 _bufPos = (int)(pDst - pDstStart);
+
+                return (int)(pSrc - pSrcStart);
+            }
+
+            char* WriteRaw(string text, char* pDst)
+            {
+                fixed (char* pDstStart = _bufChars)
+                {
+                    _bufPos = (int)(pDst - pDstStart);
+                    WriteRawUnsafe(text);
+                    return pDstStart + _bufPos;
+                }
             }
         }
 
-        protected override void WriteNewLineChars()
+        bool IsPendingIndentation()
         {
-            WriteRawUnsafe(NewLineChars);
-        }
+            if (indentation is null)
+                indentation = base.GetIndentation();
 
-        protected override void WriteIndentation(string value)
+            return indentation.Length > 0;
+        }
+    }
+
+    public override void WriteRaw(string data)
+    {
+        try
         {
-            WriteRawUnsafe(value);
-        }
+            BeforeWriteRaw();
 
-        public override void WriteValue(int value)
+            if (!string.IsNullOrEmpty(data))
+                WriteRawUnsafe(data);
+        }
+        catch
         {
-            WriteString(value.ToString(_writer.FormatProvider));
+            _state = State.Error;
+            throw;
         }
+    }
 
-        public override void WriteValue(long value)
+    private unsafe void WriteRawUnsafe(string s)
+    {
+        fixed (char* pSrcStart = s)
         {
-            WriteString(value.ToString(_writer.FormatProvider));
+            WriteRawUnsafe(pSrcStart, pSrcStart + s.Length);
         }
+    }
 
-        public override void WriteValue(float value)
+    private unsafe void WriteRawUnsafe(char* pSrcStart, char* pSrcEnd)
+    {
+        fixed (char* pDstStart = _bufChars)
         {
-            WriteString(value.ToString(_writer.FormatProvider));
-        }
+            char* pDst = pDstStart + _bufPos;
+            char* pSrc = pSrcStart;
 
-        public override void WriteValue(double value)
+            while (true)
+            {
+                char* pDstEnd = pDst + (pSrcEnd - pSrc);
+
+                if (pDstEnd > pDstStart + _bufLen)
+                    pDstEnd = pDstStart + _bufLen;
+
+                while (pDst < pDstEnd)
+                {
+                    *pDst = *pSrc;
+                    pSrc++;
+                    pDst++;
+                    Length++;
+                }
+
+                if (pSrc >= pSrcEnd)
+                    break;
+
+                if (pDst >= pDstEnd)
+                {
+                    _bufPos = (int)(pDst - pDstStart);
+                    FlushBuffer();
+                    pDst = pDstStart;
+                }
+            }
+
+            _bufPos = (int)(pDst - pDstStart);
+        }
+    }
+
+    protected override void WriteNewLineChars()
+    {
+        WriteRawUnsafe(NewLineChars);
+    }
+
+    protected override void WriteIndentation(string value)
+    {
+        WriteRawUnsafe(value);
+    }
+
+    public override void WriteValue(int value)
+    {
+        WriteString(value.ToString(_writer.FormatProvider));
+    }
+
+    public override void WriteValue(long value)
+    {
+        WriteString(value.ToString(_writer.FormatProvider));
+    }
+
+    public override void WriteValue(float value)
+    {
+        WriteString(value.ToString(_writer.FormatProvider));
+    }
+
+    public override void WriteValue(double value)
+    {
+        WriteString(value.ToString(_writer.FormatProvider));
+    }
+
+    public override void WriteValue(decimal value)
+    {
+        WriteString(value.ToString(_writer.FormatProvider));
+    }
+
+    public override void Flush()
+    {
+        FlushBuffer();
+
+        _writer?.Flush();
+    }
+
+    protected virtual void FlushBuffer()
+    {
+        try
         {
-            WriteString(value.ToString(_writer.FormatProvider));
+            if (!_noWrite)
+                _writer.Write(_bufChars, 0, _bufPos);
         }
-
-        public override void WriteValue(decimal value)
+        catch
         {
-            WriteString(value.ToString(_writer.FormatProvider));
+            _noWrite = true;
+            throw;
         }
+        finally
+        {
+            _bufPos = 0;
+        }
+    }
 
-        public override void Flush()
+    public override void Close()
+    {
+        try
         {
             FlushBuffer();
-
-            _writer?.Flush();
         }
-
-        protected virtual void FlushBuffer()
+        finally
         {
-            try
-            {
-                if (!_noWrite)
-                    _writer.Write(_bufChars, 0, _bufPos);
-            }
-            catch
-            {
-                _noWrite = true;
-                throw;
-            }
-            finally
-            {
-                _bufPos = 0;
-            }
-        }
+            _noWrite = true;
 
-        public override void Close()
-        {
-            try
+            if (_writer is not null)
             {
-                FlushBuffer();
-            }
-            finally
-            {
-                _noWrite = true;
-
-                if (_writer is not null)
+                try
+                {
+                    _writer.Flush();
+                }
+                finally
                 {
                     try
                     {
-                        _writer.Flush();
+                        if (Settings.CloseOutput)
+                            _writer.Dispose();
                     }
                     finally
                     {
-                        try
-                        {
-                            if (Settings.CloseOutput)
-                                _writer.Dispose();
-                        }
-                        finally
-                        {
-                            _writer = null;
-                        }
+                        _writer = null;
                     }
                 }
             }
         }
+    }
 
-        public IReadOnlyList<TableColumnInfo> AnalyzeTable(IEnumerable<MElement> rows)
-        {
-            return TableAnalyzer.Analyze(rows, Settings, _writer.FormatProvider)?.AsReadOnly();
-        }
+    public IReadOnlyList<TableColumnInfo> AnalyzeTable(IEnumerable<MElement> rows)
+    {
+        return TableAnalyzer.Analyze(rows, Settings, _writer.FormatProvider)?.AsReadOnly();
     }
 }

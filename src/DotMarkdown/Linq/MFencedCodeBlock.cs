@@ -3,53 +3,52 @@
 using System.Diagnostics;
 using System;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+[DebuggerDisplay("{Kind}{InfoDebuggerDisplay,nq} {Text,nq}")]
+public class MFencedCodeBlock : MElement
 {
-    [DebuggerDisplay("{Kind}{InfoDebuggerDisplay,nq} {Text,nq}")]
-    public class MFencedCodeBlock : MElement
+    private string _info;
+
+    public MFencedCodeBlock(string text, string info = null)
     {
-        private string _info;
+        Text = text;
+        Info = info;
+    }
 
-        public MFencedCodeBlock(string text, string info = null)
+    public MFencedCodeBlock(MFencedCodeBlock other)
+    {
+        if (other is null)
+            throw new ArgumentNullException(nameof(other));
+
+        Text = other.Text;
+        _info = other.Info;
+    }
+
+    public string Text { get; set; }
+
+    public string Info
+    {
+        get { return _info; }
+        set
         {
-            Text = text;
-            Info = info;
+            Error.ThrowOnInvalidFencedCodeBlockInfo(value);
+
+            _info = value;
         }
+    }
 
-        public MFencedCodeBlock(MFencedCodeBlock other)
-        {
-            if (other is null)
-                throw new ArgumentNullException(nameof(other));
+    public override MarkdownKind Kind => MarkdownKind.FencedCodeBlock;
 
-            Text = other.Text;
-            _info = other.Info;
-        }
+    private string InfoDebuggerDisplay => (!string.IsNullOrEmpty(Info)) ? " " + Info : "";
 
-        public string Text { get; set; }
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        writer.WriteFencedCodeBlock(Text, Info);
+    }
 
-        public string Info
-        {
-            get { return _info; }
-            set
-            {
-                Error.ThrowOnInvalidFencedCodeBlockInfo(value);
-
-                _info = value;
-            }
-        }
-
-        public override MarkdownKind Kind => MarkdownKind.FencedCodeBlock;
-
-        private string InfoDebuggerDisplay => (!string.IsNullOrEmpty(Info)) ? " " + Info : "";
-
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            writer.WriteFencedCodeBlock(Text, Info);
-        }
-
-        internal override MElement Clone()
-        {
-            return new MFencedCodeBlock(this);
-        }
+    internal override MElement Clone()
+    {
+        return new MFencedCodeBlock(this);
     }
 }

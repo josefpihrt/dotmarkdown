@@ -6,42 +6,41 @@ using static DotMarkdown.Tests.TestHelpers;
 
 #pragma warning disable CS1718
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MTaskItemTests
 {
-    public static class MTaskItemTests
+    [Fact]
+    public static void MTaskItem_Equals()
     {
-        [Fact]
-        public static void MTaskItem_Equals()
-        {
-            MTaskItem item = CreateTaskListItem();
+        MTaskItem item = CreateTaskListItem();
 
-            Assert.True(item.Equals((object)item));
-        }
+        Assert.True(item.Equals((object)item));
+    }
 
-        [Fact]
-        public static void MTaskItem_GetHashCode_Equal()
-        {
-            MTaskItem item = CreateTaskListItem();
+    [Fact]
+    public static void MTaskItem_GetHashCode_Equal()
+    {
+        MTaskItem item = CreateTaskListItem();
 
-            Assert.Equal(item.GetHashCode(), item.GetHashCode());
-        }
+        Assert.Equal(item.GetHashCode(), item.GetHashCode());
+    }
 
-        [Fact]
-        public static void MTaskItem_OperatorEquals()
-        {
-            MTaskItem item = CreateTaskListItem();
-            MTaskItem item2 = item;
+    [Fact]
+    public static void MTaskItem_OperatorEquals()
+    {
+        MTaskItem item = CreateTaskListItem();
+        MTaskItem item2 = item;
 
-            Assert.True(item == item2);
-        }
+        Assert.True(item == item2);
+    }
 
-        [Fact]
-        public static void MTaskItem_Constructor_AssignIsCompleted()
-        {
-            bool isCompleted = TaskListItemIsCompleted();
-            var item = new MTaskItem(isCompleted: isCompleted, content: StringValue());
+    [Fact]
+    public static void MTaskItem_Constructor_AssignIsCompleted()
+    {
+        bool isCompleted = TaskListItemIsCompleted();
+        var item = new MTaskItem(isCompleted: isCompleted, content: StringValue());
 
-            Assert.Equal(isCompleted, item.IsCompleted);
-        }
+        Assert.Equal(isCompleted, item.IsCompleted);
     }
 }

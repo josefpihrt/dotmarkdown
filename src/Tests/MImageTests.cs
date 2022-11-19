@@ -6,87 +6,86 @@ using static DotMarkdown.Tests.TestHelpers;
 
 #pragma warning disable CS1718
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MImageTests
 {
-    public static class MImageTests
+    [Fact]
+    public static void MImage_Equals()
     {
-        [Fact]
-        public static void MImage_Equals()
-        {
-            MImage image = CreateImage();
+        MImage image = CreateImage();
 
-            Assert.True(image.Equals((object)image));
-        }
+        Assert.True(image.Equals((object)image));
+    }
 
-        [Fact]
-        public static void MImage_NotEquals()
-        {
-            MImage image = CreateImage();
-            MImage image2 = image.Modify();
+    [Fact]
+    public static void MImage_NotEquals()
+    {
+        MImage image = CreateImage();
+        MImage image2 = image.Modify();
 
-            Assert.False(image.Equals((object)image2));
-        }
+        Assert.False(image.Equals((object)image2));
+    }
 
-        [Fact]
-        public static void MImage_GetHashCode_Equal()
-        {
-            MImage image = CreateImage();
+    [Fact]
+    public static void MImage_GetHashCode_Equal()
+    {
+        MImage image = CreateImage();
 
-            Assert.Equal(image.GetHashCode(), image.GetHashCode());
-        }
+        Assert.Equal(image.GetHashCode(), image.GetHashCode());
+    }
 
-        [Fact]
-        public static void MImage_GetHashCode_NotEqual()
-        {
-            MImage image = CreateImage();
-            MImage image2 = image.Modify();
+    [Fact]
+    public static void MImage_GetHashCode_NotEqual()
+    {
+        MImage image = CreateImage();
+        MImage image2 = image.Modify();
 
-            Assert.NotEqual(image.GetHashCode(), image2.GetHashCode());
-        }
+        Assert.NotEqual(image.GetHashCode(), image2.GetHashCode());
+    }
 
-        [Fact]
-        public static void MImage_OperatorEquals()
-        {
-            MImage image = CreateImage();
-            MImage image2 = image;
+    [Fact]
+    public static void MImage_OperatorEquals()
+    {
+        MImage image = CreateImage();
+        MImage image2 = image;
 
-            Assert.True(image == image2);
-        }
+        Assert.True(image == image2);
+    }
 
-        [Fact]
-        public static void MImage_OperatorNotEquals()
-        {
-            MImage image = CreateImage();
-            MImage image2 = image.Modify();
+    [Fact]
+    public static void MImage_OperatorNotEquals()
+    {
+        MImage image = CreateImage();
+        MImage image2 = image.Modify();
 
-            Assert.True(image != image2);
-        }
+        Assert.True(image != image2);
+    }
 
-        [Fact]
-        public static void MImage_Constructor_AssignText()
-        {
-            string text = LinkText();
-            var image = new MImage(text: text, url: LinkUrl(), title: LinkTitle());
+    [Fact]
+    public static void MImage_Constructor_AssignText()
+    {
+        string text = LinkText();
+        var image = new MImage(text: text, url: LinkUrl(), title: LinkTitle());
 
-            Assert.Equal(text, image.Text);
-        }
+        Assert.Equal(text, image.Text);
+    }
 
-        [Fact]
-        public static void MImage_Constructor_AssignUrl()
-        {
-            string url = LinkUrl();
-            var image = new MImage(text: LinkText(), url: url, title: LinkTitle());
+    [Fact]
+    public static void MImage_Constructor_AssignUrl()
+    {
+        string url = LinkUrl();
+        var image = new MImage(text: LinkText(), url: url, title: LinkTitle());
 
-            Assert.Equal(url, image.Url);
-        }
+        Assert.Equal(url, image.Url);
+    }
 
-        [Fact]
-        public static void MImage_Constructor_AssignTitle()
-        {
-            string title = LinkTitle();
-            var image = new MImage(text: LinkText(), url: LinkUrl(), title: title);
+    [Fact]
+    public static void MImage_Constructor_AssignTitle()
+    {
+        string title = LinkTitle();
+        var image = new MImage(text: LinkText(), url: LinkUrl(), title: title);
 
-            Assert.Equal(title, image.Title);
-        }
+        Assert.Equal(title, image.Title);
     }
 }
