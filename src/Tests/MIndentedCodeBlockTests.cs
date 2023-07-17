@@ -4,69 +4,68 @@ using DotMarkdown.Linq;
 using Xunit;
 using static DotMarkdown.Tests.TestHelpers;
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MIndentedCodeBlockTests
 {
-    public static class MIndentedCodeBlockTests
+    [Fact]
+    public static void MIndentedCodeBlock_Equals()
     {
-        [Fact]
-        public static void MIndentedCodeBlock_Equals()
-        {
-            MIndentedCodeBlock block = CreateIndentedCodeBlock();
+        MIndentedCodeBlock block = CreateIndentedCodeBlock();
 
-            Assert.True(block.Equals((object)block));
-        }
+        Assert.True(block.Equals((object)block));
+    }
 
-        [Fact]
-        public static void MIndentedCodeBlock_NotEquals()
-        {
-            MIndentedCodeBlock block = CreateIndentedCodeBlock();
-            MIndentedCodeBlock block2 = block.Modify();
+    [Fact]
+    public static void MIndentedCodeBlock_NotEquals()
+    {
+        MIndentedCodeBlock block = CreateIndentedCodeBlock();
+        MIndentedCodeBlock block2 = block.Modify();
 
-            Assert.False(block.Equals((object)block2));
-        }
+        Assert.False(block.Equals((object)block2));
+    }
 
-        [Fact]
-        public static void MIndentedCodeBlock_GetHashCode_Equal()
-        {
-            MIndentedCodeBlock block = CreateIndentedCodeBlock();
+    [Fact]
+    public static void MIndentedCodeBlock_GetHashCode_Equal()
+    {
+        MIndentedCodeBlock block = CreateIndentedCodeBlock();
 
-            Assert.Equal(block.GetHashCode(), block.GetHashCode());
-        }
+        Assert.Equal(block.GetHashCode(), block.GetHashCode());
+    }
 
-        [Fact]
-        public static void MIndentedCodeBlock_GetHashCode_NotEqual()
-        {
-            MIndentedCodeBlock block = CreateIndentedCodeBlock();
-            MIndentedCodeBlock block2 = block.Modify();
+    [Fact]
+    public static void MIndentedCodeBlock_GetHashCode_NotEqual()
+    {
+        MIndentedCodeBlock block = CreateIndentedCodeBlock();
+        MIndentedCodeBlock block2 = block.Modify();
 
-            Assert.NotEqual(block.GetHashCode(), block2.GetHashCode());
-        }
+        Assert.NotEqual(block.GetHashCode(), block2.GetHashCode());
+    }
 
-        [Fact]
-        public static void MIndentedCodeBlock_OperatorEquals()
-        {
-            MIndentedCodeBlock block = CreateIndentedCodeBlock();
-            MIndentedCodeBlock block2 = block;
+    [Fact]
+    public static void MIndentedCodeBlock_OperatorEquals()
+    {
+        MIndentedCodeBlock block = CreateIndentedCodeBlock();
+        MIndentedCodeBlock block2 = block;
 
-            Assert.True(block == block2);
-        }
+        Assert.True(block == block2);
+    }
 
-        [Fact]
-        public static void MIndentedCodeBlock_OperatorNotEquals()
-        {
-            MIndentedCodeBlock block = CreateIndentedCodeBlock();
-            MIndentedCodeBlock block2 = block.Modify();
+    [Fact]
+    public static void MIndentedCodeBlock_OperatorNotEquals()
+    {
+        MIndentedCodeBlock block = CreateIndentedCodeBlock();
+        MIndentedCodeBlock block2 = block.Modify();
 
-            Assert.True(block != block2);
-        }
+        Assert.True(block != block2);
+    }
 
-        [Fact]
-        public static void MIndentedCodeBlock_Constructor_AssignText()
-        {
-            string text = IndentedCodeBlockText();
-            var block = new MIndentedCodeBlock(text: text);
+    [Fact]
+    public static void MIndentedCodeBlock_Constructor_AssignText()
+    {
+        string text = IndentedCodeBlockText();
+        var block = new MIndentedCodeBlock(text: text);
 
-            Assert.Equal(text, block.Text);
-        }
+        Assert.Equal(text, block.Text);
     }
 }

@@ -2,10 +2,9 @@
 
 using System.Collections.Generic;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+public interface ITableAnalyzer
 {
-    public interface ITableAnalyzer
-    {
-        IReadOnlyList<TableColumnInfo> AnalyzeTable(IEnumerable<MElement> rows);
-    }
+    IReadOnlyList<TableColumnInfo> AnalyzeTable(IEnumerable<MElement> rows);
 }

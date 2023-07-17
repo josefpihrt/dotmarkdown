@@ -7,1095 +7,1220 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 
-namespace DotMarkdown
+namespace DotMarkdown;
+
+internal abstract class MarkdownBaseWriter : MarkdownWriter
 {
-    internal abstract class MarkdownBaseWriter : MarkdownWriter
+    private int _lineStartPos;
+    private int _emptyLineStartPos = -1;
+
+    private int _headingLevel = -1;
+
+    private List<TableColumnInfo> _tableColumns;
+    private int _tableColumnCount = -1;
+    private int _tableRowIndex = -1;
+    private int _tableColumnIndex = -1;
+    private int _tableCellPos = -1;
+
+    protected State _state;
+    private int _orderedItemNumber;
+
+    private readonly Collection<ElementInfo> _stack = new();
+
+    protected MarkdownBaseWriter(MarkdownWriterSettings settings = null)
     {
-        private int _lineStartPos;
-        private int _emptyLineStartPos = -1;
+        Settings = settings ?? MarkdownWriterSettings.Default;
+    }
 
-        private int _headingLevel = -1;
-
-        private List<TableColumnInfo> _tableColumns;
-        private int _tableColumnCount = -1;
-        private int _tableRowIndex = -1;
-        private int _tableColumnIndex = -1;
-        private int _tableCellPos = -1;
-
-        protected State _state;
-        private int _orderedItemNumber;
-
-        private readonly Collection<ElementInfo> _stack = new();
-
-        protected MarkdownBaseWriter(MarkdownWriterSettings settings = null)
+    public override WriteState WriteState
+    {
+        get
         {
-            Settings = settings ?? MarkdownWriterSettings.Default;
+            switch (_state)
+            {
+                case State.Start:
+                    return WriteState.Start;
+                case State.SimpleElement:
+                case State.IndentedCodeBlock:
+                case State.FencedCodeBlock:
+                case State.HorizontalRule:
+                case State.Heading:
+                case State.Bold:
+                case State.Italic:
+                case State.Strikethrough:
+                case State.Table:
+                case State.TableRow:
+                case State.TableCell:
+                case State.BlockQuote:
+                case State.BulletItem:
+                case State.OrderedItem:
+                case State.TaskItem:
+                case State.Document:
+                    return WriteState.Content;
+                case State.Closed:
+                    return WriteState.Closed;
+                case State.Error:
+                    return WriteState.Error;
+                default:
+                    throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(_state));
+            }
+        }
+    }
+
+    public override MarkdownWriterSettings Settings { get; }
+
+    protected internal abstract int Length { get; set; }
+
+    protected MarkdownCharEscaper Escaper { get; set; } = MarkdownCharEscaper.Default;
+
+    private TableColumnInfo CurrentColumn => _tableColumns[_tableColumnIndex];
+
+    private bool IsFirstColumn => _tableColumnIndex == 0;
+
+    private bool IsLastColumn => _tableColumnIndex == _tableColumnCount - 1;
+
+    protected string EscapeChar(int ch)
+    {
+        switch (ch)
+        {
+            case '<':
+                {
+                    switch (Format.AngleBracketEscapeStyle)
+                    {
+                        case AngleBracketEscapeStyle.CharEntity:
+                            {
+                                switch (Format.CharEntityFormat)
+                                {
+                                    case CharEntityFormat.Hexadecimal:
+                                        return "&#x3C;";
+                                    case CharEntityFormat.Decimal:
+                                        return "&#60;";
+                                    default:
+                                        throw new InvalidOperationException();
+                                }
+                            }
+                        case AngleBracketEscapeStyle.EntityRef:
+                            {
+                                return "&lt;";
+                            }
+                        default:
+                            {
+                                return @"\<";
+                            }
+                    }
+                }
+            case '>':
+                {
+                    switch (Format.AngleBracketEscapeStyle)
+                    {
+                        case AngleBracketEscapeStyle.CharEntity:
+                            {
+                                switch (Format.CharEntityFormat)
+                                {
+                                    case CharEntityFormat.Hexadecimal:
+                                        return "&#x3E;";
+                                    case CharEntityFormat.Decimal:
+                                        return "&#62;";
+                                    default:
+                                        throw new InvalidOperationException();
+                                }
+                            }
+                        case AngleBracketEscapeStyle.EntityRef:
+                            {
+                                return "&gt;";
+                            }
+                        default:
+                            {
+                                return @"\>";
+                            }
+                    }
+                }
+            case '\\':
+                return @"\\";
+            case '`':
+                return @"\`";
+            case '*':
+                return @"\*";
+            case '_':
+                return @"\_";
+            case '{':
+                return @"\{";
+            case '}':
+                return @"\}";
+            case '[':
+                return @"\[";
+            case ']':
+                return @"\]";
+            case '(':
+                return @"\(";
+            case ')':
+                return @"\)";
+            case '#':
+                return @"\#";
+            case '+':
+                return @"\+";
+            case '-':
+                return @"\-";
+            case '.':
+                return @"\.";
+            case '!':
+                return @"\!";
+            case '|':
+                return @"\|";
+            case '~':
+                return @"\~";
+            case '"':
+                return @"\""";
+            default:
+                throw new InvalidOperationException();
+        }
+    }
+
+    private void Push(State state, int orderedItemNumber = 0)
+    {
+        if (_state == State.Closed)
+            throw new InvalidOperationException("Cannot write to a closed writer.");
+
+        if (_state == State.Error)
+            throw new InvalidOperationException("Cannot write to a writer in error state.");
+
+        State newState = _stateTable[((int)_state * 16) + (int)state - 1];
+
+        if (newState == State.Error)
+            throw new InvalidOperationException($"Cannot write '{state}' when state is '{_state}'.");
+
+        _stack.Add(new ElementInfo((_state == State.Start) ? State.Document : _state, orderedItemNumber));
+        _state = newState;
+        _orderedItemNumber = orderedItemNumber;
+    }
+
+    private void Pop(State state)
+    {
+        int count = _stack.Count;
+
+        if (count == 0)
+            throw new InvalidOperationException($"Cannot close '{state}' when state is '{_state}'.");
+
+        if (_state != state)
+            throw new InvalidOperationException($"Cannot close '{state}' when state is '{_state}'.");
+
+        ElementInfo info = _stack[count - 1];
+        _state = info.State;
+        _orderedItemNumber = info.Number;
+        _stack.RemoveAt(count - 1);
+    }
+
+    private void ThrowIfCannotWriteEnd(State state)
+    {
+        if (state != _state)
+            throw new InvalidOperationException($"Cannot close '{state}' when state is '{_state}'.");
+    }
+
+    public override void WriteStartBold()
+    {
+        try
+        {
+            Push(State.Bold);
+            WriteRaw(Format.BoldDelimiter);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteEndBold()
+    {
+        try
+        {
+            ThrowIfCannotWriteEnd(State.Bold);
+            WriteRaw(Format.BoldDelimiter);
+            Pop(State.Bold);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteBold(string text)
+    {
+        try
+        {
+            base.WriteBold(text);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteStartItalic()
+    {
+        try
+        {
+            Push(State.Italic);
+            WriteRaw(Format.ItalicDelimiter);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteEndItalic()
+    {
+        try
+        {
+            ThrowIfCannotWriteEnd(State.Italic);
+            WriteRaw(Format.ItalicDelimiter);
+            Pop(State.Italic);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteItalic(string text)
+    {
+        try
+        {
+            base.WriteItalic(text);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteStartStrikethrough()
+    {
+        try
+        {
+            Push(State.Strikethrough);
+            WriteRaw("~~");
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteEndStrikethrough()
+    {
+        try
+        {
+            ThrowIfCannotWriteEnd(State.Strikethrough);
+            WriteRaw("~~");
+            Pop(State.Strikethrough);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteStrikethrough(string text)
+    {
+        try
+        {
+            base.WriteStrikethrough(text);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteInlineCode(string text)
+    {
+        if (text is null)
+            return;
+
+        int length = text.Length;
+
+        if (length == 0)
+            return;
+
+        try
+        {
+            Push(State.SimpleElement);
+
+            int backtickLength = GetBacktickLength();
+
+            for (int i = 0; i < backtickLength; i++)
+                WriteRaw("`");
+
+            if (text[0] == '`')
+                WriteRaw(" ");
+
+            WriteString(text, (_tableColumnCount > 0) ? MarkdownCharEscaper.InlineCodeInsideTable : MarkdownCharEscaper.NoEscape);
+
+            if (text[length - 1] == '`')
+                WriteRaw(" ");
+
+            for (int i = 0; i < backtickLength; i++)
+                WriteRaw("`");
+
+            Pop(State.SimpleElement);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
         }
 
-        public override WriteState WriteState
+        int GetBacktickLength()
         {
-            get
+            int minLength = 0;
+            int maxLength = 0;
+
+            for (int i = 0; i < length; i++)
             {
-                switch (_state)
+                if (text[i] == '`')
                 {
-                    case State.Start:
-                        return WriteState.Start;
-                    case State.SimpleElement:
-                    case State.IndentedCodeBlock:
-                    case State.FencedCodeBlock:
-                    case State.HorizontalRule:
-                    case State.Heading:
-                    case State.Bold:
-                    case State.Italic:
-                    case State.Strikethrough:
-                    case State.Table:
-                    case State.TableRow:
-                    case State.TableCell:
-                    case State.BlockQuote:
-                    case State.BulletItem:
-                    case State.OrderedItem:
-                    case State.TaskItem:
-                    case State.Document:
-                        return WriteState.Content;
-                    case State.Closed:
-                        return WriteState.Closed;
-                    case State.Error:
-                        return WriteState.Error;
-                    default:
-                        throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(_state));
+                    i++;
+
+                    int len = 1;
+
+                    while (i < length
+                        && text[i] == '`')
+                    {
+                        len++;
+                        i++;
+                    }
+
+                    if (minLength == 0)
+                    {
+                        minLength = len;
+                        maxLength = len;
+                    }
+                    else if (len < minLength)
+                    {
+                        minLength = len;
+                    }
+                    else if (len > maxLength)
+                    {
+                        maxLength = len;
+                    }
                 }
             }
+
+            if (minLength == 1)
+            {
+                return maxLength + 1;
+            }
+            else
+            {
+                return 1;
+            }
         }
+    }
 
-        public override MarkdownWriterSettings Settings { get; }
-
-        protected internal abstract int Length { get; set; }
-
-        protected MarkdownCharEscaper Escaper { get; set; } = MarkdownCharEscaper.Default;
-
-        private TableColumnInfo CurrentColumn => _tableColumns[_tableColumnIndex];
-
-        private bool IsFirstColumn => _tableColumnIndex == 0;
-
-        private bool IsLastColumn => _tableColumnIndex == _tableColumnCount - 1;
-
-        protected string EscapeChar(int ch)
+    public override void WriteStartHeading(int level)
+    {
+        try
         {
-            switch (ch)
+            Error.ThrowOnInvalidHeadingLevel(level);
+
+            Push(State.Heading);
+
+            _headingLevel = level;
+
+            bool underline = (level == 1 && Format.UnderlineHeading1)
+                || (level == 2 && Format.UnderlineHeading2);
+
+            WriteLine(Format.EmptyLineBeforeHeading);
+
+            if (!underline)
             {
-                case '<':
-                    {
-                        switch (Format.AngleBracketEscapeStyle)
-                        {
-                            case AngleBracketEscapeStyle.CharEntity:
-                                {
-                                    switch (Format.CharEntityFormat)
-                                    {
-                                        case CharEntityFormat.Hexadecimal:
-                                            return "&#x3C;";
-                                        case CharEntityFormat.Decimal:
-                                            return "&#60;";
-                                        default:
-                                            throw new InvalidOperationException();
-                                    }
-                                }
-                            case AngleBracketEscapeStyle.EntityRef:
-                                {
-                                    return "&lt;";
-                                }
-                            default:
-                                {
-                                    return @"\<";
-                                }
-                        }
-                    }
-                case '>':
-                    {
-                        switch (Format.AngleBracketEscapeStyle)
-                        {
-                            case AngleBracketEscapeStyle.CharEntity:
-                                {
-                                    switch (Format.CharEntityFormat)
-                                    {
-                                        case CharEntityFormat.Hexadecimal:
-                                            return "&#x3E;";
-                                        case CharEntityFormat.Decimal:
-                                            return "&#62;";
-                                        default:
-                                            throw new InvalidOperationException();
-                                    }
-                                }
-                            case AngleBracketEscapeStyle.EntityRef:
-                                {
-                                    return "&gt;";
-                                }
-                            default:
-                                {
-                                    return @"\>";
-                                }
-                        }
-                    }
-                case '\\':
-                    return @"\\";
-                case '`':
-                    return @"\`";
-                case '*':
-                    return @"\*";
-                case '_':
-                    return @"\_";
-                case '{':
-                    return @"\{";
-                case '}':
-                    return @"\}";
-                case '[':
-                    return @"\[";
-                case ']':
-                    return @"\]";
-                case '(':
-                    return @"\(";
-                case ')':
-                    return @"\)";
-                case '#':
-                    return @"\#";
-                case '+':
-                    return @"\+";
-                case '-':
-                    return @"\-";
-                case '.':
-                    return @"\.";
-                case '!':
-                    return @"\!";
-                case '|':
-                    return @"\|";
-                case '~':
-                    return @"\~";
-                case '"':
-                    return @"\""";
-                default:
-                    throw new InvalidOperationException();
+                WriteRaw(Format.HeadingStart, level);
+                WriteRaw(" ");
             }
         }
-
-        private void Push(State state, int orderedItemNumber = 0)
+        catch
         {
-            if (_state == State.Closed)
-                throw new InvalidOperationException("Cannot write to a closed writer.");
-
-            if (_state == State.Error)
-                throw new InvalidOperationException("Cannot write to a writer in error state.");
-
-            State newState = _stateTable[((int)_state * 16) + (int)state - 1];
-
-            if (newState == State.Error)
-                throw new InvalidOperationException($"Cannot write '{state}' when state is '{_state}'.");
-
-            _stack.Add(new ElementInfo((_state == State.Start) ? State.Document : _state, orderedItemNumber));
-            _state = newState;
-            _orderedItemNumber = orderedItemNumber;
+            _state = State.Error;
+            throw;
         }
+    }
 
-        private void Pop(State state)
+    public override void WriteEndHeading()
+    {
+        try
         {
-            int count = _stack.Count;
+            ThrowIfCannotWriteEnd(State.Heading);
 
-            if (count == 0)
-                throw new InvalidOperationException($"Cannot close '{state}' when state is '{_state}'.");
+            int level = _headingLevel;
+            _headingLevel = -1;
 
-            if (_state != state)
-                throw new InvalidOperationException($"Cannot close '{state}' when state is '{_state}'.");
+            bool underline = (level == 1 && Format.UnderlineHeading1)
+                || (level == 2 && Format.UnderlineHeading2);
 
-            ElementInfo info = _stack[count - 1];
-            _state = info.State;
-            _orderedItemNumber = info.Number;
-            _stack.RemoveAt(count - 1);
+            if (!underline
+                && Format.CloseHeading)
+            {
+                WriteRaw(" ");
+                WriteRaw(Format.HeadingStart, level);
+            }
+
+            int length = Length - _lineStartPos;
+
+            WriteLineIfNecessary();
+
+            if (underline)
+            {
+                WriteRaw((level == 1) ? "=" : "-", length);
+                WriteLine();
+            }
+
+            WriteEmptyLineIf(Format.EmptyLineAfterHeading);
+            Pop(State.Heading);
         }
-
-        private void ThrowIfCannotWriteEnd(State state)
+        catch
         {
-            if (state != _state)
-                throw new InvalidOperationException($"Cannot close '{state}' when state is '{_state}'.");
+            _state = State.Error;
+            throw;
         }
+    }
 
-        public override void WriteStartBold()
+    public override void WriteHeading(int level, string text)
+    {
+        try
         {
-            try
-            {
-                Push(State.Bold);
-                WriteRaw(Format.BoldDelimiter);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            base.WriteHeading(level, text);
         }
-
-        public override void WriteEndBold()
+        catch
         {
-            try
-            {
-                ThrowIfCannotWriteEnd(State.Bold);
-                WriteRaw(Format.BoldDelimiter);
-                Pop(State.Bold);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            _state = State.Error;
+            throw;
         }
+    }
 
-        public override void WriteBold(string text)
+    public override void WriteStartBulletItem()
+    {
+        try
         {
-            try
-            {
-                base.WriteBold(text);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            WriteLineIfNecessary();
+            WriteRaw(Format.BulletItemStart);
+            Push(State.BulletItem);
         }
-
-        public override void WriteStartItalic()
+        catch
         {
-            try
-            {
-                Push(State.Italic);
-                WriteRaw(Format.ItalicDelimiter);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            _state = State.Error;
+            throw;
         }
+    }
 
-        public override void WriteEndItalic()
+    public override void WriteEndBulletItem()
+    {
+        try
         {
-            try
-            {
-                ThrowIfCannotWriteEnd(State.Italic);
-                WriteRaw(Format.ItalicDelimiter);
-                Pop(State.Italic);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            Pop(State.BulletItem);
+            WriteLineIfNecessary();
         }
-
-        public override void WriteItalic(string text)
+        catch
         {
-            try
-            {
-                base.WriteItalic(text);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            _state = State.Error;
+            throw;
         }
+    }
 
-        public override void WriteStartStrikethrough()
+    public override void WriteBulletItem(string text)
+    {
+        try
         {
-            try
-            {
-                Push(State.Strikethrough);
-                WriteRaw("~~");
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            base.WriteBulletItem(text);
         }
-
-        public override void WriteEndStrikethrough()
+        catch
         {
-            try
-            {
-                ThrowIfCannotWriteEnd(State.Strikethrough);
-                WriteRaw("~~");
-                Pop(State.Strikethrough);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            _state = State.Error;
+            throw;
         }
+    }
 
-        public override void WriteStrikethrough(string text)
+    public override void WriteStartOrderedItem(int number)
+    {
+        try
         {
-            try
-            {
-                base.WriteStrikethrough(text);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            Error.ThrowOnInvalidItemNumber(number);
+            WriteLineIfNecessary();
+            WriteValue(number);
+            WriteRaw(Format.OrderedItemStart);
+            Push(State.OrderedItem, number);
         }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
 
-        public override void WriteInlineCode(string text)
+    public override void WriteEndOrderedItem()
+    {
+        try
+        {
+            Pop(State.OrderedItem);
+            WriteLineIfNecessary();
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteOrderedItem(int number, string text)
+    {
+        try
+        {
+            base.WriteOrderedItem(number, text);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteStartTaskItem(bool isCompleted = false)
+    {
+        try
+        {
+            WriteLineIfNecessary();
+
+            if (isCompleted)
+            {
+                WriteRaw("- [x] ");
+            }
+            else
+            {
+                WriteRaw("- [ ] ");
+            }
+
+            Push(State.TaskItem);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteEndTaskItem()
+    {
+        try
+        {
+            Pop(State.TaskItem);
+            WriteLineIfNecessary();
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteTaskItem(string text, bool isCompleted = false)
+    {
+        try
+        {
+            base.WriteTaskItem(text, isCompleted);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteImage(string text, string url, string title = null)
+    {
+        try
         {
             if (text is null)
-                return;
+                throw new ArgumentNullException(nameof(text));
 
-            int length = text.Length;
+            Error.ThrowOnInvalidUrl(url);
 
-            if (length == 0)
-                return;
+            Push(State.SimpleElement);
 
-            try
-            {
-                Push(State.SimpleElement);
-
-                int backtickLength = GetBacktickLength();
-
-                for (int i = 0; i < backtickLength; i++)
-                    WriteRaw("`");
-
-                if (text[0] == '`')
-                    WriteRaw(" ");
-
-                WriteString(text, (_tableColumnCount > 0) ? MarkdownCharEscaper.InlineCodeInsideTable : MarkdownCharEscaper.NoEscape);
-
-                if (text[length - 1] == '`')
-                    WriteRaw(" ");
-
-                for (int i = 0; i < backtickLength; i++)
-                    WriteRaw("`");
-
-                Pop(State.SimpleElement);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-
-            int GetBacktickLength()
-            {
-                int minLength = 0;
-                int maxLength = 0;
-
-                for (int i = 0; i < length; i++)
-                {
-                    if (text[i] == '`')
-                    {
-                        i++;
-
-                        int len = 1;
-
-                        while (i < length
-                            && text[i] == '`')
-                        {
-                            len++;
-                            i++;
-                        }
-
-                        if (minLength == 0)
-                        {
-                            minLength = len;
-                            maxLength = len;
-                        }
-                        else if (len < minLength)
-                        {
-                            minLength = len;
-                        }
-                        else if (len > maxLength)
-                        {
-                            maxLength = len;
-                        }
-                    }
-                }
-
-                if (minLength == 1)
-                {
-                    return maxLength + 1;
-                }
-                else
-                {
-                    return 1;
-                }
-            }
-        }
-
-        public override void WriteStartHeading(int level)
-        {
-            try
-            {
-                Error.ThrowOnInvalidHeadingLevel(level);
-
-                Push(State.Heading);
-
-                _headingLevel = level;
-
-                bool underline = (level == 1 && Format.UnderlineHeading1)
-                    || (level == 2 && Format.UnderlineHeading2);
-
-                WriteLine(Format.EmptyLineBeforeHeading);
-
-                if (!underline)
-                {
-                    WriteRaw(Format.HeadingStart, level);
-                    WriteRaw(" ");
-                }
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteEndHeading()
-        {
-            try
-            {
-                ThrowIfCannotWriteEnd(State.Heading);
-
-                int level = _headingLevel;
-                _headingLevel = -1;
-
-                bool underline = (level == 1 && Format.UnderlineHeading1)
-                    || (level == 2 && Format.UnderlineHeading2);
-
-                if (!underline
-                    && Format.CloseHeading)
-                {
-                    WriteRaw(" ");
-                    WriteRaw(Format.HeadingStart, level);
-                }
-
-                int length = Length - _lineStartPos;
-
-                WriteLineIfNecessary();
-
-                if (underline)
-                {
-                    WriteRaw((level == 1) ? "=" : "-", length);
-                    WriteLine();
-                }
-
-                WriteEmptyLineIf(Format.EmptyLineAfterHeading);
-                Pop(State.Heading);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteHeading(int level, string text)
-        {
-            try
-            {
-                base.WriteHeading(level, text);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteStartBulletItem()
-        {
-            try
-            {
-                WriteLineIfNecessary();
-                WriteRaw(Format.BulletItemStart);
-                Push(State.BulletItem);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteEndBulletItem()
-        {
-            try
-            {
-                Pop(State.BulletItem);
-                WriteLineIfNecessary();
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteBulletItem(string text)
-        {
-            try
-            {
-                base.WriteBulletItem(text);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteStartOrderedItem(int number)
-        {
-            try
-            {
-                Error.ThrowOnInvalidItemNumber(number);
-                WriteLineIfNecessary();
-                WriteValue(number);
-                WriteRaw(Format.OrderedItemStart);
-                Push(State.OrderedItem, number);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteEndOrderedItem()
-        {
-            try
-            {
-                Pop(State.OrderedItem);
-                WriteLineIfNecessary();
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteOrderedItem(int number, string text)
-        {
-            try
-            {
-                base.WriteOrderedItem(number, text);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteStartTaskItem(bool isCompleted = false)
-        {
-            try
-            {
-                WriteLineIfNecessary();
-
-                if (isCompleted)
-                {
-                    WriteRaw("- [x] ");
-                }
-                else
-                {
-                    WriteRaw("- [ ] ");
-                }
-
-                Push(State.TaskItem);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteEndTaskItem()
-        {
-            try
-            {
-                Pop(State.TaskItem);
-                WriteLineIfNecessary();
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteTaskItem(string text, bool isCompleted = false)
-        {
-            try
-            {
-                base.WriteTaskItem(text, isCompleted);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteImage(string text, string url, string title = null)
-        {
-            try
-            {
-                if (text is null)
-                    throw new ArgumentNullException(nameof(text));
-
-                Error.ThrowOnInvalidUrl(url);
-
-                Push(State.SimpleElement);
-
-                WriteRaw("!");
-                WriteSquareBrackets(text);
-                WriteRaw("(");
-                WriteString(url, MarkdownCharEscaper.LinkUrl);
-                WriteLinkTitle(title);
-                WriteRaw(")");
-
-                Pop(State.SimpleElement);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteStartLink()
-        {
-            try
-            {
-                Push(State.Link);
-
-                WriteRaw("[");
-                Escaper = MarkdownCharEscaper.LinkText;
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteEndLink(string url, string title = null)
-        {
-            try
-            {
-                Error.ThrowOnInvalidUrl(url);
-
-                ThrowIfCannotWriteEnd(State.Link);
-
-                Escaper = MarkdownCharEscaper.Default;
-                WriteRaw("]");
-                WriteRaw("(");
-                WriteString(url, MarkdownCharEscaper.LinkUrl);
-                WriteLinkTitle(title);
-                WriteRaw(")");
-
-                Pop(State.Link);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteLink(string text, string url, string title = null)
-        {
-            try
-            {
-                base.WriteLink(text, url, title);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteAutolink(string url)
-        {
-            try
-            {
-                Error.ThrowOnInvalidUrl(url);
-                Push(State.SimpleElement);
-                WriteAngleBrackets(url);
-                Pop(State.SimpleElement);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteImageReference(string text, string label)
-        {
-            try
-            {
-                Push(State.SimpleElement);
-                WriteRaw("!");
-                WriteLinkReferenceCore(text, label);
-                Pop(State.SimpleElement);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteLinkReference(string text, string label = null)
-        {
-            try
-            {
-                Push(State.SimpleElement);
-                WriteLinkReferenceCore(text, label);
-                Pop(State.SimpleElement);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        private void WriteLinkReferenceCore(string text, string label = null)
-        {
+            WriteRaw("!");
             WriteSquareBrackets(text);
-            WriteSquareBrackets(label);
+            WriteRaw("(");
+            WriteString(url, MarkdownCharEscaper.LinkUrl);
+            WriteLinkTitle(title);
+            WriteRaw(")");
+
+            Pop(State.SimpleElement);
         }
-
-        public override void WriteLabel(string label, string url, string title = null)
+        catch
         {
-            try
-            {
-                Error.ThrowOnInvalidUrl(url);
-
-                Push(State.SimpleElement);
-                WriteLineIfNecessary();
-                WriteSquareBrackets(label);
-                WriteRaw(": ");
-                WriteAngleBrackets(url);
-                WriteLinkTitle(title);
-                WriteLineIfNecessary();
-                Pop(State.SimpleElement);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            _state = State.Error;
+            throw;
         }
+    }
 
-        private void WriteLinkTitle(string title)
+    public override void WriteStartLink()
+    {
+        try
         {
-            if (string.IsNullOrEmpty(title))
-                return;
+            Push(State.Link);
 
-            WriteRaw(" ");
-            WriteRaw("\"");
-            WriteString(title, MarkdownCharEscaper.LinkTitle);
-            WriteRaw("\"");
-        }
-
-        private void WriteSquareBrackets(string text)
-        {
             WriteRaw("[");
-            WriteString(text, MarkdownCharEscaper.LinkText);
+            Escaper = MarkdownCharEscaper.LinkText;
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteEndLink(string url, string title = null)
+    {
+        try
+        {
+            Error.ThrowOnInvalidUrl(url);
+
+            ThrowIfCannotWriteEnd(State.Link);
+
+            Escaper = MarkdownCharEscaper.Default;
             WriteRaw("]");
+            WriteRaw("(");
+            WriteString(url, MarkdownCharEscaper.LinkUrl);
+            WriteLinkTitle(title);
+            WriteRaw(")");
+
+            Pop(State.Link);
         }
-
-        private void WriteAngleBrackets(string text)
+        catch
         {
-            WriteRaw("<");
-            WriteString(text, MarkdownCharEscaper.AngleBrackets);
-            WriteRaw(">");
+            _state = State.Error;
+            throw;
         }
+    }
 
-        public override void WriteIndentedCodeBlock(string text)
+    public override void WriteLink(string text, string url, string title = null)
+    {
+        try
         {
-            try
-            {
-                Push(State.IndentedCodeBlock);
-                WriteLine(Format.EmptyLineBeforeCodeBlock);
-                WriteString(text, MarkdownCharEscaper.NoEscape);
-                WriteLine();
-                WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
-                Pop(State.IndentedCodeBlock);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            base.WriteLink(text, url, title);
         }
-
-        public override void WriteFencedCodeBlock(string text, string info = null)
+        catch
         {
-            try
-            {
-                Error.ThrowOnInvalidFencedCodeBlockInfo(info);
-
-                Push(State.FencedCodeBlock);
-
-                WriteLine(Format.EmptyLineBeforeCodeBlock);
-                WriteRaw(Format.CodeFence);
-                WriteRaw(info);
-                WriteLine();
-                WriteString(text, MarkdownCharEscaper.NoEscape);
-                WriteLineIfNecessary();
-                WriteRaw(Format.CodeFence);
-                WriteLine();
-                WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
-
-                Pop(State.FencedCodeBlock);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            _state = State.Error;
+            throw;
         }
+    }
 
-        public override void WriteStartBlockQuote()
+    public override void WriteAutolink(string url)
+    {
+        try
         {
-            try
-            {
-                Push(State.BlockQuote);
-                WriteLineIfNecessary();
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            Error.ThrowOnInvalidUrl(url);
+            Push(State.SimpleElement);
+            WriteAngleBrackets(url);
+            Pop(State.SimpleElement);
         }
-
-        public override void WriteEndBlockQuote()
+        catch
         {
-            try
-            {
-                ThrowIfCannotWriteEnd(State.BlockQuote);
-                WriteLineIfNecessary();
-                Pop(State.BlockQuote);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            _state = State.Error;
+            throw;
         }
+    }
 
-        public override void WriteBlockQuote(string text)
+    public override void WriteImageReference(string text, string label)
+    {
+        try
         {
-            try
-            {
-                base.WriteBlockQuote(text);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            Push(State.SimpleElement);
+            WriteRaw("!");
+            WriteLinkReferenceCore(text, label);
+            Pop(State.SimpleElement);
         }
-
-        public override void WriteHorizontalRule(
-            HorizontalRuleStyle style,
-            int count = HorizontalRuleFormat.DefaultCount,
-            string separator = HorizontalRuleFormat.DefaultSeparator)
+        catch
         {
-            try
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteLinkReference(string text, string label = null)
+    {
+        try
+        {
+            Push(State.SimpleElement);
+            WriteLinkReferenceCore(text, label);
+            Pop(State.SimpleElement);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    private void WriteLinkReferenceCore(string text, string label = null)
+    {
+        WriteSquareBrackets(text);
+        WriteSquareBrackets(label);
+    }
+
+    public override void WriteLabel(string label, string url, string title = null)
+    {
+        try
+        {
+            Error.ThrowOnInvalidUrl(url);
+
+            Push(State.SimpleElement);
+            WriteLineIfNecessary();
+            WriteSquareBrackets(label);
+            WriteRaw(": ");
+            WriteAngleBrackets(url);
+            WriteLinkTitle(title);
+            WriteLineIfNecessary();
+            Pop(State.SimpleElement);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    private void WriteLinkTitle(string title)
+    {
+        if (string.IsNullOrEmpty(title))
+            return;
+
+        WriteRaw(" ");
+        WriteRaw("\"");
+        WriteString(title, MarkdownCharEscaper.LinkTitle);
+        WriteRaw("\"");
+    }
+
+    private void WriteSquareBrackets(string text)
+    {
+        WriteRaw("[");
+        WriteString(text, MarkdownCharEscaper.LinkText);
+        WriteRaw("]");
+    }
+
+    private void WriteAngleBrackets(string text)
+    {
+        WriteRaw("<");
+        WriteString(text, MarkdownCharEscaper.AngleBrackets);
+        WriteRaw(">");
+    }
+
+    public override void WriteIndentedCodeBlock(string text)
+    {
+        try
+        {
+            Push(State.IndentedCodeBlock);
+            WriteLine(Format.EmptyLineBeforeCodeBlock);
+            WriteString(text, MarkdownCharEscaper.NoEscape);
+            WriteLine();
+            WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
+            Pop(State.IndentedCodeBlock);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteFencedCodeBlock(string text, string info = null)
+    {
+        try
+        {
+            Error.ThrowOnInvalidFencedCodeBlockInfo(info);
+
+            Push(State.FencedCodeBlock);
+
+            WriteLine(Format.EmptyLineBeforeCodeBlock);
+            WriteRaw(Format.CodeFence);
+            WriteRaw(info);
+            WriteLine();
+            WriteString(text, MarkdownCharEscaper.NoEscape);
+            WriteLineIfNecessary();
+            WriteRaw(Format.CodeFence);
+            WriteLine();
+            WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
+
+            Pop(State.FencedCodeBlock);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteStartBlockQuote()
+    {
+        try
+        {
+            Push(State.BlockQuote);
+            WriteLineIfNecessary();
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteEndBlockQuote()
+    {
+        try
+        {
+            ThrowIfCannotWriteEnd(State.BlockQuote);
+            WriteLineIfNecessary();
+            Pop(State.BlockQuote);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteBlockQuote(string text)
+    {
+        try
+        {
+            base.WriteBlockQuote(text);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteHorizontalRule(
+        HorizontalRuleStyle style,
+        int count = HorizontalRuleFormat.DefaultCount,
+        string separator = HorizontalRuleFormat.DefaultSeparator)
+    {
+        try
+        {
+            Error.ThrowOnInvalidHorizontalRuleCount(count);
+            Error.ThrowOnInvalidHorizontalRuleSeparator(separator);
+
+            Push(State.HorizontalRule);
+
+            WriteLineIfNecessary();
+
+            var isFirst = true;
+
+            string text = GetText();
+
+            for (int i = 0; i < count; i++)
             {
-                Error.ThrowOnInvalidHorizontalRuleCount(count);
-                Error.ThrowOnInvalidHorizontalRuleSeparator(separator);
-
-                Push(State.HorizontalRule);
-
-                WriteLineIfNecessary();
-
-                var isFirst = true;
-
-                string text = GetText();
-
-                for (int i = 0; i < count; i++)
+                if (isFirst)
                 {
-                    if (isFirst)
-                    {
-                        isFirst = false;
-                    }
-                    else
-                    {
-                        WriteRaw(separator);
-                    }
-
-                    WriteRaw(text);
-                }
-
-                WriteLine();
-                Pop(State.HorizontalRule);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-
-            string GetText()
-            {
-                switch (style)
-                {
-                    case HorizontalRuleStyle.Hyphen:
-                        return "-";
-                    case HorizontalRuleStyle.Underscore:
-                        return "_";
-                    case HorizontalRuleStyle.Asterisk:
-                        return "*";
-                    default:
-                        throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(style));
-                }
-            }
-        }
-
-        public override void WriteStartTable(int columnCount)
-        {
-            WriteStartTable(null, columnCount);
-        }
-
-        public override void WriteStartTable(IReadOnlyList<TableColumnInfo> columns)
-        {
-            if (columns is null)
-                throw new ArgumentNullException(nameof(columns));
-
-            WriteStartTable(columns, columns.Count);
-        }
-
-        private void WriteStartTable(IReadOnlyList<TableColumnInfo> columns, int columnCount)
-        {
-            if (columnCount <= 0)
-            {
-                throw new ArgumentOutOfRangeException(
-                    nameof(columnCount),
-                    columnCount,
-                    "Table must have at least one column.");
-            }
-
-            try
-            {
-                Push(State.Table);
-
-                WriteLine(Format.EmptyLineBeforeTable);
-
-                if (_tableColumns is null)
-                    _tableColumns = new List<TableColumnInfo>(columnCount);
-
-                if (columns is not null)
-                {
-                    _tableColumns.AddRange(columns);
+                    isFirst = false;
                 }
                 else
                 {
-                    for (int i = 0; i < columnCount; i++)
-                    {
-                        _tableColumns.Add(new TableColumnInfo(HorizontalAlignment.Left, width: 0, isWhiteSpace: true));
-                    }
+                    WriteRaw(separator);
                 }
 
-                _tableColumnCount = columnCount;
+                WriteRaw(text);
             }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+
+            WriteLine();
+            Pop(State.HorizontalRule);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
         }
 
-        public override void WriteEndTable()
+        string GetText()
         {
-            try
+            switch (style)
             {
-                ThrowIfCannotWriteEnd(State.Table);
-                _tableRowIndex = -1;
-                _tableColumns.Clear();
-                _tableColumnCount = -1;
-                WriteEmptyLineIf(Format.EmptyLineAfterTable);
-                Pop(State.Table);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
+                case HorizontalRuleStyle.Hyphen:
+                    return "-";
+                case HorizontalRuleStyle.Underscore:
+                    return "_";
+                case HorizontalRuleStyle.Asterisk:
+                    return "*";
+                default:
+                    throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(style));
             }
         }
+    }
 
-        public override void WriteStartTableRow()
+    public override void WriteStartTable(int columnCount)
+    {
+        WriteStartTable(null, columnCount);
+    }
+
+    public override void WriteStartTable(IReadOnlyList<TableColumnInfo> columns)
+    {
+        if (columns is null)
+            throw new ArgumentNullException(nameof(columns));
+
+        WriteStartTable(columns, columns.Count);
+    }
+
+    private void WriteStartTable(IReadOnlyList<TableColumnInfo> columns, int columnCount)
+    {
+        if (columnCount <= 0)
         {
-            try
-            {
-                Push(State.TableRow);
-                _tableRowIndex++;
-                _tableColumnIndex = -1;
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            throw new ArgumentOutOfRangeException(
+                nameof(columnCount),
+                columnCount,
+                "Table must have at least one column.");
         }
 
-        public override void WriteEndTableRow()
+        try
         {
-            try
-            {
-                ThrowIfCannotWriteEnd(State.TableRow);
+            Push(State.Table);
 
+            WriteLine(Format.EmptyLineBeforeTable);
+
+            if (_tableColumns is null)
+                _tableColumns = new List<TableColumnInfo>(columnCount);
+
+            if (columns is not null)
+            {
+                _tableColumns.AddRange(columns);
+            }
+            else
+            {
+                for (int i = 0; i < columnCount; i++)
+                {
+                    _tableColumns.Add(new TableColumnInfo(HorizontalAlignment.Left, width: 0, isWhiteSpace: true));
+                }
+            }
+
+            _tableColumnCount = columnCount;
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteEndTable()
+    {
+        try
+        {
+            ThrowIfCannotWriteEnd(State.Table);
+            _tableRowIndex = -1;
+            _tableColumns.Clear();
+            _tableColumnCount = -1;
+            WriteEmptyLineIf(Format.EmptyLineAfterTable);
+            Pop(State.Table);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteStartTableRow()
+    {
+        try
+        {
+            Push(State.TableRow);
+            _tableRowIndex++;
+            _tableColumnIndex = -1;
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteEndTableRow()
+    {
+        try
+        {
+            ThrowIfCannotWriteEnd(State.TableRow);
+
+            if (Format.TableOuterDelimiter
+                || (_tableRowIndex == 0 && CurrentColumn.IsWhiteSpace))
+            {
+                WriteTableColumnSeparator();
+            }
+
+            WriteLine();
+            _tableColumnIndex = -1;
+
+            Pop(State.TableRow);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteStartTableCell()
+    {
+        try
+        {
+            Push(State.TableCell);
+
+            _tableColumnIndex++;
+
+            if (_tableColumnIndex >= _tableColumnCount)
+            {
+                throw new InvalidOperationException(
+                    $"Cannot write table cell value. Column at index {_tableColumnIndex} is not defined.");
+            }
+
+            if (IsFirstColumn)
+            {
                 if (Format.TableOuterDelimiter
-                    || (_tableRowIndex == 0 && CurrentColumn.IsWhiteSpace))
+                    || _tableColumnCount == 1
+                    || CurrentColumn.IsWhiteSpace)
                 {
                     WriteTableColumnSeparator();
                 }
-
-                WriteLine();
-                _tableColumnIndex = -1;
-
-                Pop(State.TableRow);
             }
-            catch
+            else
             {
-                _state = State.Error;
-                throw;
+                WriteTableColumnSeparator();
             }
-        }
 
-        public override void WriteStartTableCell()
-        {
-            try
+            if (_tableRowIndex == 0)
             {
-                Push(State.TableCell);
-
-                _tableColumnIndex++;
-
-                if (_tableColumnIndex >= _tableColumnCount)
+                if (Format.TablePadding)
                 {
-                    throw new InvalidOperationException(
-                        $"Cannot write table cell value. Column at index {_tableColumnIndex} is not defined.");
+                    WriteRaw(" ");
                 }
+                else if (Format.FormatTableHeader
+                    && CurrentColumn.Alignment == HorizontalAlignment.Center)
+                {
+                    WriteRaw(" ");
+                }
+            }
+            else if (Format.TablePadding)
+            {
+                WriteRaw(" ");
+            }
+
+            _tableCellPos = Length;
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteEndTableCell()
+    {
+        try
+        {
+            ThrowIfCannotWriteEnd(State.TableCell);
+
+            int width = Length - _tableCellPos;
+
+            TableColumnInfo currentColumn = CurrentColumn;
+
+            if (currentColumn.Width == 0
+                && width > 0)
+            {
+                _tableColumns[_tableColumnIndex] = currentColumn.WithWidth(width);
+            }
+
+            if (Format.TableOuterDelimiter
+                || !IsLastColumn)
+            {
+                if (_tableRowIndex == 0)
+                {
+                    if (Format.FormatTableHeader)
+                        WritePadRight(width);
+                }
+                else if (Format.FormatTableContent)
+                {
+                    WritePadRight(width);
+                }
+            }
+
+            if (_tableRowIndex == 0)
+            {
+                if (Format.TablePadding)
+                {
+                    WriteRaw(" ");
+                }
+                else if (Format.FormatTableHeader
+                    && CurrentColumn.Alignment != HorizontalAlignment.Left)
+                {
+                    WriteRaw(" ");
+                }
+            }
+            else if (Format.TablePadding)
+            {
+                if (width > 0)
+                    WriteRaw(" ");
+            }
+
+            _tableCellPos = -1;
+            Pop(State.TableCell);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteTableCell(string text)
+    {
+        try
+        {
+            base.WriteTableCell(text);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteTableHeaderSeparator()
+    {
+        try
+        {
+            WriteLineIfNecessary();
+
+            WriteStartTableRow();
+
+            int count = _tableColumnCount;
+
+            for (int i = 0; i < count; i++)
+            {
+                _tableColumnIndex = i;
 
                 if (IsFirstColumn)
                 {
                     if (Format.TableOuterDelimiter
-                        || _tableColumnCount == 1
+                        || IsLastColumn
                         || CurrentColumn.IsWhiteSpace)
                     {
                         WriteTableColumnSeparator();
@@ -1106,846 +1231,720 @@ namespace DotMarkdown
                     WriteTableColumnSeparator();
                 }
 
-                if (_tableRowIndex == 0)
+                if (CurrentColumn.Alignment == HorizontalAlignment.Center)
                 {
-                    if (Format.TablePadding)
-                    {
-                        WriteRaw(" ");
-                    }
-                    else if (Format.FormatTableHeader
-                        && CurrentColumn.Alignment == HorizontalAlignment.Center)
-                    {
-                        WriteRaw(" ");
-                    }
+                    WriteRaw(":");
                 }
                 else if (Format.TablePadding)
                 {
                     WriteRaw(" ");
                 }
 
-                _tableCellPos = Length;
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
+                WriteRaw("---");
 
-        public override void WriteEndTableCell()
-        {
-            try
-            {
-                ThrowIfCannotWriteEnd(State.TableCell);
+                if (Format.FormatTableHeader)
+                    WritePadRight(3, "-");
 
-                int width = Length - _tableCellPos;
-
-                TableColumnInfo currentColumn = CurrentColumn;
-
-                if (currentColumn.Width == 0
-                    && width > 0)
+                if (CurrentColumn.Alignment != HorizontalAlignment.Left)
                 {
-                    _tableColumns[_tableColumnIndex] = currentColumn.WithWidth(width);
-                }
-
-                if (Format.TableOuterDelimiter
-                    || !IsLastColumn)
-                {
-                    if (_tableRowIndex == 0)
-                    {
-                        if (Format.FormatTableHeader)
-                            WritePadRight(width);
-                    }
-                    else if (Format.FormatTableContent)
-                    {
-                        WritePadRight(width);
-                    }
-                }
-
-                if (_tableRowIndex == 0)
-                {
-                    if (Format.TablePadding)
-                    {
-                        WriteRaw(" ");
-                    }
-                    else if (Format.FormatTableHeader
-                        && CurrentColumn.Alignment != HorizontalAlignment.Left)
-                    {
-                        WriteRaw(" ");
-                    }
+                    WriteRaw(":");
                 }
                 else if (Format.TablePadding)
                 {
-                    if (width > 0)
-                        WriteRaw(" ");
+                    WriteRaw(" ");
                 }
+            }
 
-                _tableCellPos = -1;
-                Pop(State.TableCell);
-            }
-            catch
+            WriteEndTableRow();
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    private void WriteTableColumnSeparator()
+    {
+        WriteRaw("|");
+    }
+
+    private void WritePadRight(int width, string padding = " ")
+    {
+        int totalWidth = Math.Max(CurrentColumn.Width, Math.Max(width, 3));
+
+        WriteRaw(padding, totalWidth - width);
+    }
+
+    public override void WriteCharEntity(char value)
+    {
+        try
+        {
+            Error.ThrowOnInvalidCharEntity(value);
+
+            Push(State.SimpleElement);
+            WriteRaw("&#");
+
+            if (Format.CharEntityFormat == CharEntityFormat.Hexadecimal)
             {
-                _state = State.Error;
-                throw;
+                WriteRaw("x");
+                WriteRaw(((int)value).ToString("X", CultureInfo.InvariantCulture));
             }
+            else if (Format.CharEntityFormat == CharEntityFormat.Decimal)
+            {
+                WriteRaw(((int)value).ToString(CultureInfo.InvariantCulture));
+            }
+            else
+            {
+                throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(Format.CharEntityFormat));
+            }
+
+            WriteRaw(";");
+            Pop(State.SimpleElement);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteEntityRef(string name)
+    {
+        try
+        {
+            Push(State.SimpleElement);
+            WriteRaw("&");
+            WriteRaw(name);
+            WriteRaw(";");
+            Pop(State.SimpleElement);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public override void WriteComment(string text)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                if (text.IndexOf("--", StringComparison.Ordinal) >= 0)
+                    throw new ArgumentException("XML comment text cannot contain '--'.");
+
+                if (text[text.Length - 1] == '-')
+                    throw new ArgumentException("Last character of XML comment text cannot be '-'.");
+            }
+
+            Push(State.SimpleElement);
+            WriteRaw("<!-- ");
+            WriteRaw(text);
+            WriteRaw(" -->");
+            Pop(State.SimpleElement);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    public void BeforeWriteString()
+    {
+        if (_state == State.Table
+            || _state == State.TableRow)
+        {
+            throw new InvalidOperationException($"Cannot write text in state '{_state}'.");
+        }
+        else if (_state == State.Start)
+        {
+            _state = State.Document;
         }
 
-        public override void WriteTableCell(string text)
+        if (_lineStartPos == Length)
+            WriteIndentation();
+    }
+
+    private void WriteString(string text, MarkdownCharEscaper escaper)
+    {
+        MarkdownCharEscaper tmp = Escaper;
+
+        try
         {
-            try
-            {
-                base.WriteTableCell(text);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            Escaper = escaper;
+            WriteString(text);
+        }
+        finally
+        {
+            Escaper = tmp;
+        }
+    }
+
+    public void BeforeWriteRaw()
+    {
+        if (_state == State.Start)
+            _state = State.Document;
+
+        if (_lineStartPos == Length)
+            WriteIndentation();
+    }
+
+    private void WriteRaw(string data, int repeatCount)
+    {
+        for (int i = 0; i < repeatCount; i++)
+            WriteRaw(data);
+    }
+
+    protected string GetIndentation()
+    {
+        if (!HasIndentation())
+            return "";
+
+        StringBuilder sb = StringBuilderCache.GetInstance();
+
+        for (int i = 0; i < _stack.Count; i++)
+        {
+            sb.Append(GetIndentation(_stack[i].State, _stack[i].Number));
         }
 
-        public override void WriteTableHeaderSeparator()
+        if (_state == State.IndentedCodeBlock)
         {
-            try
-            {
-                WriteLineIfNecessary();
-
-                WriteStartTableRow();
-
-                int count = _tableColumnCount;
-
-                for (int i = 0; i < count; i++)
-                {
-                    _tableColumnIndex = i;
-
-                    if (IsFirstColumn)
-                    {
-                        if (Format.TableOuterDelimiter
-                            || IsLastColumn
-                            || CurrentColumn.IsWhiteSpace)
-                        {
-                            WriteTableColumnSeparator();
-                        }
-                    }
-                    else
-                    {
-                        WriteTableColumnSeparator();
-                    }
-
-                    if (CurrentColumn.Alignment == HorizontalAlignment.Center)
-                    {
-                        WriteRaw(":");
-                    }
-                    else if (Format.TablePadding)
-                    {
-                        WriteRaw(" ");
-                    }
-
-                    WriteRaw("---");
-
-                    if (Format.FormatTableHeader)
-                        WritePadRight(3, "-");
-
-                    if (CurrentColumn.Alignment != HorizontalAlignment.Left)
-                    {
-                        WriteRaw(":");
-                    }
-                    else if (Format.TablePadding)
-                    {
-                        WriteRaw(" ");
-                    }
-                }
-
-                WriteEndTableRow();
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            sb.Append("    ");
+        }
+        else
+        {
+            sb.Append(GetIndentation(_state, _orderedItemNumber));
         }
 
-        private void WriteTableColumnSeparator()
+        return StringBuilderCache.GetStringAndFree(sb);
+
+        bool HasIndentation()
         {
-            WriteRaw("|");
-        }
-
-        private void WritePadRight(int width, string padding = " ")
-        {
-            int totalWidth = Math.Max(CurrentColumn.Width, Math.Max(width, 3));
-
-            WriteRaw(padding, totalWidth - width);
-        }
-
-        public override void WriteCharEntity(char value)
-        {
-            try
+            switch (_state)
             {
-                Error.ThrowOnInvalidCharEntity(value);
-
-                Push(State.SimpleElement);
-                WriteRaw("&#");
-
-                if (Format.CharEntityFormat == CharEntityFormat.Hexadecimal)
-                {
-                    WriteRaw("x");
-                    WriteRaw(((int)value).ToString("X", CultureInfo.InvariantCulture));
-                }
-                else if (Format.CharEntityFormat == CharEntityFormat.Decimal)
-                {
-                    WriteRaw(((int)value).ToString(CultureInfo.InvariantCulture));
-                }
-                else
-                {
-                    throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(Format.CharEntityFormat));
-                }
-
-                WriteRaw(";");
-                Pop(State.SimpleElement);
+                case State.BulletItem:
+                case State.TaskItem:
+                case State.OrderedItem:
+                case State.BlockQuote:
+                case State.IndentedCodeBlock:
+                    return true;
             }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteEntityRef(string name)
-        {
-            try
-            {
-                Push(State.SimpleElement);
-                WriteRaw("&");
-                WriteRaw(name);
-                WriteRaw(";");
-                Pop(State.SimpleElement);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public override void WriteComment(string text)
-        {
-            try
-            {
-                if (!string.IsNullOrEmpty(text))
-                {
-                    if (text.IndexOf("--", StringComparison.Ordinal) >= 0)
-                        throw new ArgumentException("XML comment text cannot contain '--'.");
-
-                    if (text[text.Length - 1] == '-')
-                        throw new ArgumentException("Last character of XML comment text cannot be '-'.");
-                }
-
-                Push(State.SimpleElement);
-                WriteRaw("<!-- ");
-                WriteRaw(text);
-                WriteRaw(" -->");
-                Pop(State.SimpleElement);
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
-        }
-
-        public void BeforeWriteString()
-        {
-            if (_state == State.Table
-                || _state == State.TableRow)
-            {
-                throw new InvalidOperationException($"Cannot write text in state '{_state}'.");
-            }
-            else if (_state == State.Start)
-            {
-                _state = State.Document;
-            }
-
-            if (_lineStartPos == Length)
-                WriteIndentation();
-        }
-
-        private void WriteString(string text, MarkdownCharEscaper escaper)
-        {
-            MarkdownCharEscaper tmp = Escaper;
-
-            try
-            {
-                Escaper = escaper;
-                WriteString(text);
-            }
-            finally
-            {
-                Escaper = tmp;
-            }
-        }
-
-        public void BeforeWriteRaw()
-        {
-            if (_state == State.Start)
-                _state = State.Document;
-
-            if (_lineStartPos == Length)
-                WriteIndentation();
-        }
-
-        private void WriteRaw(string data, int repeatCount)
-        {
-            for (int i = 0; i < repeatCount; i++)
-                WriteRaw(data);
-        }
-
-        protected string GetIndentation()
-        {
-            if (!HasIndentation())
-                return "";
-
-            StringBuilder sb = StringBuilderCache.GetInstance();
 
             for (int i = 0; i < _stack.Count; i++)
             {
-                sb.Append(GetIndentation(_stack[i].State, _stack[i].Number));
-            }
-
-            if (_state == State.IndentedCodeBlock)
-            {
-                sb.Append("    ");
-            }
-            else
-            {
-                sb.Append(GetIndentation(_state, _orderedItemNumber));
-            }
-
-            return StringBuilderCache.GetStringAndFree(sb);
-
-            bool HasIndentation()
-            {
-                switch (_state)
+                switch (_stack[i].State)
                 {
                     case State.BulletItem:
                     case State.TaskItem:
                     case State.OrderedItem:
                     case State.BlockQuote:
-                    case State.IndentedCodeBlock:
                         return true;
                 }
+            }
 
-                for (int i = 0; i < _stack.Count; i++)
+            return false;
+        }
+
+        string GetIndentation(State state, int orderedItemNumber)
+        {
+            switch (state)
+            {
+                case State.BulletItem:
+                case State.TaskItem:
+                    {
+                        return "  ";
+                    }
+                case State.OrderedItem:
+                    {
+                        int count = orderedItemNumber.GetDigitCount() + Format.OrderedItemStart.Length;
+                        return TextUtility.GetSpaces(count);
+                    }
+                case State.BlockQuote:
+                    {
+                        return "> ";
+                    }
+            }
+
+            return null;
+        }
+    }
+
+    private void WriteIndentation()
+    {
+        string indentation = GetIndentation();
+
+        if (indentation.Length > 0)
+            this.WriteIndentation(indentation);
+    }
+
+    protected abstract void WriteIndentation(string value);
+
+    protected abstract void WriteNewLineChars();
+
+    protected void OnBeforeWriteLine()
+    {
+        if (_tableColumnCount > 0)
+        {
+            if (_state == State.TableCell)
+                ThrowOnNewLineInTableCell();
+
+            if (_state != State.Table
+                || _state != State.TableRow)
+            {
+                for (int i = _stack.Count - 1; i >= 0; i--)
                 {
                     switch (_stack[i].State)
                     {
-                        case State.BulletItem:
-                        case State.TaskItem:
-                        case State.OrderedItem:
-                        case State.BlockQuote:
-                            return true;
-                    }
-                }
-
-                return false;
-            }
-
-            string GetIndentation(State state, int orderedItemNumber)
-            {
-                switch (state)
-                {
-                    case State.BulletItem:
-                    case State.TaskItem:
-                        {
-                            return "  ";
-                        }
-                    case State.OrderedItem:
-                        {
-                            int count = orderedItemNumber.GetDigitCount() + Format.OrderedItemStart.Length;
-                            return TextUtility.GetSpaces(count);
-                        }
-                    case State.BlockQuote:
-                        {
-                            return "> ";
-                        }
-                }
-
-                return null;
-            }
-        }
-
-        private void WriteIndentation()
-        {
-            string indentation = GetIndentation();
-
-            if (indentation.Length > 0)
-                this.WriteIndentation(indentation);
-        }
-
-        protected abstract void WriteIndentation(string value);
-
-        protected abstract void WriteNewLineChars();
-
-        protected void OnBeforeWriteLine()
-        {
-            if (_tableColumnCount > 0)
-            {
-                if (_state == State.TableCell)
-                    ThrowOnNewLineInTableCell();
-
-                if (_state != State.Table
-                    || _state != State.TableRow)
-                {
-                    for (int i = _stack.Count - 1; i >= 0; i--)
-                    {
-                        switch (_stack[i].State)
-                        {
-                            case State.Table:
-                            case State.TableRow:
-                                {
-                                    break;
-                                }
-                            case State.TableCell:
-                                {
-                                    ThrowOnNewLineInTableCell();
-                                    break;
-                                }
-                        }
+                        case State.Table:
+                        case State.TableRow:
+                            {
+                                break;
+                            }
+                        case State.TableCell:
+                            {
+                                ThrowOnNewLineInTableCell();
+                                break;
+                            }
                     }
                 }
             }
-
-            if (_lineStartPos == Length)
-            {
-                _emptyLineStartPos = _lineStartPos;
-            }
-            else
-            {
-                _emptyLineStartPos = -1;
-            }
-
-            static void ThrowOnNewLineInTableCell()
-            {
-                throw new InvalidOperationException("Cannot write newline characters in a table cell.");
-            }
         }
 
-        protected void OnAfterWriteLine()
+        if (_lineStartPos == Length)
         {
-            if (_emptyLineStartPos == _lineStartPos)
-                _emptyLineStartPos = Length;
-
-            _lineStartPos = Length;
+            _emptyLineStartPos = _lineStartPos;
         }
-
-        public override void WriteLine()
+        else
         {
-            try
-            {
-                OnBeforeWriteLine();
-                WriteNewLineChars();
-                OnAfterWriteLine();
-            }
-            catch
-            {
-                _state = State.Error;
-                throw;
-            }
+            _emptyLineStartPos = -1;
         }
 
-        internal void WriteLineIfNecessary()
+        static void ThrowOnNewLineInTableCell()
+        {
+            throw new InvalidOperationException("Cannot write newline characters in a table cell.");
+        }
+    }
+
+    protected void OnAfterWriteLine()
+    {
+        if (_emptyLineStartPos == _lineStartPos)
+            _emptyLineStartPos = Length;
+
+        _lineStartPos = Length;
+    }
+
+    public override void WriteLine()
+    {
+        try
+        {
+            OnBeforeWriteLine();
+            WriteNewLineChars();
+            OnAfterWriteLine();
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    internal void WriteLineIfNecessary()
+    {
+        if (_lineStartPos != Length)
+            WriteLine();
+    }
+
+    private void WriteEmptyLineIf(bool condition)
+    {
+        if (condition
+            && Length > 0)
+        {
+            WriteLine();
+        }
+    }
+
+    private void WriteLine(bool addEmptyLine)
+    {
+        if (_emptyLineStartPos != Length)
         {
             if (_lineStartPos != Length)
                 WriteLine();
+
+            WriteEmptyLineIf(addEmptyLine);
         }
-
-        private void WriteEmptyLineIf(bool condition)
-        {
-            if (condition
-                && Length > 0)
-            {
-                WriteLine();
-            }
-        }
-
-        private void WriteLine(bool addEmptyLine)
-        {
-            if (_emptyLineStartPos != Length)
-            {
-                if (_lineStartPos != Length)
-                    WriteLine();
-
-                WriteEmptyLineIf(addEmptyLine);
-            }
-        }
-
-        protected enum State
-        {
-            Start = 0,
-            SimpleElement = 1,
-            FencedCodeBlock = 2,
-            IndentedCodeBlock = 3,
-            HorizontalRule = 4,
-            Heading = 5,
-            Bold = 6,
-            Italic = 7,
-            Strikethrough = 8,
-            Link = 9,
-            Table = 10,
-            TableRow = 11,
-            TableCell = 12,
-            BulletItem = 13,
-            OrderedItem = 14,
-            TaskItem = 15,
-            BlockQuote = 16,
-            Document = 17,
-            Closed = 18,
-            Error = 19
-        }
-
-        [DebuggerDisplay("{DebuggerDisplay,nq}")]
-        private readonly struct ElementInfo
-        {
-            public ElementInfo(State state, int number)
-            {
-                State = state;
-                Number = number;
-            }
-
-            public State State { get; }
-
-            public int Number { get; }
-
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            private string DebuggerDisplay
-            {
-                get { return $"{State} {Number}"; }
-            }
-        }
-
-        private static readonly State[] _stateTable =
-        {
-            /* State.Start */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.FencedCodeBlock,
-            /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
-            /* State.HorizontalRule    */ State.HorizontalRule,
-            /* State.Heading           */ State.Heading,
-            /* State.Bold              */ State.Bold,
-            /* State.Italic            */ State.Italic,
-            /* State.Strikethrough     */ State.Strikethrough,
-            /* State.Link              */ State.Link,
-            /* State.Table             */ State.Table,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.BulletItem,
-            /* State.OrderedItem       */ State.OrderedItem,
-            /* State.TaskItem          */ State.TaskItem,
-            /* State.BlockQuote        */ State.BlockQuote,
-
-            /* State.SimpleElement */
-            /* State.SimpleElement     */ State.Error,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Error,
-            /* State.Italic            */ State.Error,
-            /* State.Strikethrough     */ State.Error,
-            /* State.Link              */ State.Error,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.FencedCodeBlock */
-            /* State.SimpleElement     */ State.Error,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Error,
-            /* State.Italic            */ State.Error,
-            /* State.Strikethrough     */ State.Error,
-            /* State.Link              */ State.Error,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.IndentedCodeBlock */
-            /* State.SimpleElement     */ State.Error,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Error,
-            /* State.Italic            */ State.Error,
-            /* State.Strikethrough     */ State.Error,
-            /* State.Link              */ State.Error,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.HorizontalRule */
-            /* State.SimpleElement     */ State.Error,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Error,
-            /* State.Italic            */ State.Error,
-            /* State.Strikethrough     */ State.Error,
-            /* State.Link              */ State.Error,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.Heading */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Bold,
-            /* State.Italic            */ State.Italic,
-            /* State.Strikethrough     */ State.Strikethrough,
-            /* State.Link              */ State.Link,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.Bold */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Error,
-            /* State.Italic            */ State.Italic,
-            /* State.Strikethrough     */ State.Strikethrough,
-            /* State.Link              */ State.Link,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.Italic */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Bold,
-            /* State.Italic            */ State.Error,
-            /* State.Strikethrough     */ State.Strikethrough,
-            /* State.Link              */ State.Link,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.Strikethrough */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Bold,
-            /* State.Italic            */ State.Italic,
-            /* State.Strikethrough     */ State.Error,
-            /* State.Link              */ State.Link,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.Link */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Bold,
-            /* State.Italic            */ State.Italic,
-            /* State.Strikethrough     */ State.Strikethrough,
-            /* State.Link              */ State.Error,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.Table */
-            /* State.SimpleElement     */ State.Error,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Error,
-            /* State.Italic            */ State.Error,
-            /* State.Strikethrough     */ State.Error,
-            /* State.Link              */ State.Error,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.TableRow,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.TableRow */
-            /* State.SimpleElement     */ State.Error,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Error,
-            /* State.Italic            */ State.Error,
-            /* State.Strikethrough     */ State.Error,
-            /* State.Link              */ State.Error,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.TableCell,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.TableCell */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.Error,
-            /* State.IndentedCodeBlock */ State.Error,
-            /* State.HorizontalRule    */ State.Error,
-            /* State.Heading           */ State.Error,
-            /* State.Bold              */ State.Bold,
-            /* State.Italic            */ State.Italic,
-            /* State.Strikethrough     */ State.Strikethrough,
-            /* State.Link              */ State.Link,
-            /* State.Table             */ State.Error,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.Error,
-            /* State.OrderedItem       */ State.Error,
-            /* State.TaskItem          */ State.Error,
-            /* State.BlockQuote        */ State.Error,
-
-            /* State.BulletItem */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.FencedCodeBlock,
-            /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
-            /* State.HorizontalRule    */ State.HorizontalRule,
-            /* State.Heading           */ State.Heading,
-            /* State.Bold              */ State.Bold,
-            /* State.Italic            */ State.Italic,
-            /* State.Strikethrough     */ State.Strikethrough,
-            /* State.Link              */ State.Link,
-            /* State.Table             */ State.Table,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.BulletItem,
-            /* State.OrderedItem       */ State.OrderedItem,
-            /* State.TaskItem          */ State.TaskItem,
-            /* State.BlockQuote        */ State.BlockQuote,
-
-            /* State.OrderedItem */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.FencedCodeBlock,
-            /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
-            /* State.HorizontalRule    */ State.HorizontalRule,
-            /* State.Heading           */ State.Heading,
-            /* State.Bold              */ State.Bold,
-            /* State.Italic            */ State.Italic,
-            /* State.Strikethrough     */ State.Strikethrough,
-            /* State.Link              */ State.Link,
-            /* State.Table             */ State.Table,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.BulletItem,
-            /* State.OrderedItem       */ State.OrderedItem,
-            /* State.TaskItem          */ State.TaskItem,
-            /* State.BlockQuote        */ State.BlockQuote,
-
-            /* State.TaskItem */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.FencedCodeBlock,
-            /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
-            /* State.HorizontalRule    */ State.HorizontalRule,
-            /* State.Heading           */ State.Heading,
-            /* State.Bold              */ State.Bold,
-            /* State.Italic            */ State.Italic,
-            /* State.Strikethrough     */ State.Strikethrough,
-            /* State.Link              */ State.Link,
-            /* State.Table             */ State.Table,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.BulletItem,
-            /* State.OrderedItem       */ State.OrderedItem,
-            /* State.TaskItem          */ State.TaskItem,
-            /* State.BlockQuote        */ State.BlockQuote,
-
-            /* State.BlockQuote */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.FencedCodeBlock,
-            /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
-            /* State.HorizontalRule    */ State.HorizontalRule,
-            /* State.Heading           */ State.Heading,
-            /* State.Bold              */ State.Bold,
-            /* State.Italic            */ State.Italic,
-            /* State.Strikethrough     */ State.Strikethrough,
-            /* State.Link              */ State.Link,
-            /* State.Table             */ State.Table,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.BulletItem,
-            /* State.OrderedItem       */ State.OrderedItem,
-            /* State.TaskItem          */ State.TaskItem,
-            /* State.BlockQuote        */ State.BlockQuote,
-
-            /* State.Document */
-            /* State.SimpleElement     */ State.SimpleElement,
-            /* State.FencedCodeBlock   */ State.FencedCodeBlock,
-            /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
-            /* State.HorizontalRule    */ State.HorizontalRule,
-            /* State.Heading           */ State.Heading,
-            /* State.Bold              */ State.Bold,
-            /* State.Italic            */ State.Italic,
-            /* State.Strikethrough     */ State.Strikethrough,
-            /* State.Link              */ State.Link,
-            /* State.Table             */ State.Table,
-            /* State.TableRow          */ State.Error,
-            /* State.TableCell         */ State.Error,
-            /* State.BulletItem        */ State.BulletItem,
-            /* State.OrderedItem       */ State.OrderedItem,
-            /* State.TaskItem          */ State.TaskItem,
-            /* State.BlockQuote        */ State.BlockQuote
-        };
     }
+
+    protected enum State
+    {
+        Start = 0,
+        SimpleElement = 1,
+        FencedCodeBlock = 2,
+        IndentedCodeBlock = 3,
+        HorizontalRule = 4,
+        Heading = 5,
+        Bold = 6,
+        Italic = 7,
+        Strikethrough = 8,
+        Link = 9,
+        Table = 10,
+        TableRow = 11,
+        TableCell = 12,
+        BulletItem = 13,
+        OrderedItem = 14,
+        TaskItem = 15,
+        BlockQuote = 16,
+        Document = 17,
+        Closed = 18,
+        Error = 19
+    }
+
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
+    private readonly struct ElementInfo
+    {
+        public ElementInfo(State state, int number)
+        {
+            State = state;
+            Number = number;
+        }
+
+        public State State { get; }
+
+        public int Number { get; }
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private string DebuggerDisplay
+        {
+            get { return $"{State} {Number}"; }
+        }
+    }
+
+    private static readonly State[] _stateTable =
+    {
+        /* State.Start */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
+        /* State.HorizontalRule    */ State.HorizontalRule,
+        /* State.Heading           */ State.Heading,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Table,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.BulletItem,
+        /* State.OrderedItem       */ State.OrderedItem,
+        /* State.TaskItem          */ State.TaskItem,
+        /* State.BlockQuote        */ State.BlockQuote,
+
+        /* State.SimpleElement */
+        /* State.SimpleElement     */ State.Error,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Error,
+        /* State.Italic            */ State.Error,
+        /* State.Strikethrough     */ State.Error,
+        /* State.Link              */ State.Error,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.FencedCodeBlock */
+        /* State.SimpleElement     */ State.Error,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Error,
+        /* State.Italic            */ State.Error,
+        /* State.Strikethrough     */ State.Error,
+        /* State.Link              */ State.Error,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.IndentedCodeBlock */
+        /* State.SimpleElement     */ State.Error,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Error,
+        /* State.Italic            */ State.Error,
+        /* State.Strikethrough     */ State.Error,
+        /* State.Link              */ State.Error,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.HorizontalRule */
+        /* State.SimpleElement     */ State.Error,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Error,
+        /* State.Italic            */ State.Error,
+        /* State.Strikethrough     */ State.Error,
+        /* State.Link              */ State.Error,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.Heading */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.Bold */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Error,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.Italic */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Error,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.Strikethrough */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Error,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.Link */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Error,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.Table */
+        /* State.SimpleElement     */ State.Error,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Error,
+        /* State.Italic            */ State.Error,
+        /* State.Strikethrough     */ State.Error,
+        /* State.Link              */ State.Error,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.TableRow,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.TableRow */
+        /* State.SimpleElement     */ State.Error,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Error,
+        /* State.Italic            */ State.Error,
+        /* State.Strikethrough     */ State.Error,
+        /* State.Link              */ State.Error,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.TableCell,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.TableCell */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.Error,
+        /* State.IndentedCodeBlock */ State.Error,
+        /* State.HorizontalRule    */ State.Error,
+        /* State.Heading           */ State.Error,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Error,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.Error,
+        /* State.OrderedItem       */ State.Error,
+        /* State.TaskItem          */ State.Error,
+        /* State.BlockQuote        */ State.Error,
+
+        /* State.BulletItem */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
+        /* State.HorizontalRule    */ State.HorizontalRule,
+        /* State.Heading           */ State.Heading,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Table,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.BulletItem,
+        /* State.OrderedItem       */ State.OrderedItem,
+        /* State.TaskItem          */ State.TaskItem,
+        /* State.BlockQuote        */ State.BlockQuote,
+
+        /* State.OrderedItem */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
+        /* State.HorizontalRule    */ State.HorizontalRule,
+        /* State.Heading           */ State.Heading,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Table,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.BulletItem,
+        /* State.OrderedItem       */ State.OrderedItem,
+        /* State.TaskItem          */ State.TaskItem,
+        /* State.BlockQuote        */ State.BlockQuote,
+
+        /* State.TaskItem */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
+        /* State.HorizontalRule    */ State.HorizontalRule,
+        /* State.Heading           */ State.Heading,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Table,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.BulletItem,
+        /* State.OrderedItem       */ State.OrderedItem,
+        /* State.TaskItem          */ State.TaskItem,
+        /* State.BlockQuote        */ State.BlockQuote,
+
+        /* State.BlockQuote */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
+        /* State.HorizontalRule    */ State.HorizontalRule,
+        /* State.Heading           */ State.Heading,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Table,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.BulletItem,
+        /* State.OrderedItem       */ State.OrderedItem,
+        /* State.TaskItem          */ State.TaskItem,
+        /* State.BlockQuote        */ State.BlockQuote,
+
+        /* State.Document */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
+        /* State.HorizontalRule    */ State.HorizontalRule,
+        /* State.Heading           */ State.Heading,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Table,
+        /* State.TableRow          */ State.Error,
+        /* State.TableCell         */ State.Error,
+        /* State.BulletItem        */ State.BulletItem,
+        /* State.OrderedItem       */ State.OrderedItem,
+        /* State.TaskItem          */ State.TaskItem,
+        /* State.BlockQuote        */ State.BlockQuote
+    };
 }

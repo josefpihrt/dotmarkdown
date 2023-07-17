@@ -3,135 +3,134 @@
 using System;
 using System.Text;
 
-namespace DotMarkdown
+namespace DotMarkdown;
+
+public static class MarkdownEscaper
 {
-    public static class MarkdownEscaper
+    public static string Escape(string value, Func<char, bool> shouldBeEscaped = null)
     {
-        public static string Escape(string value, Func<char, bool> shouldBeEscaped = null)
-        {
-            return Escape(value, shouldBeEscaped ?? ShouldBeEscaped, escapingChar: '\\');
-        }
+        return Escape(value, shouldBeEscaped ?? ShouldBeEscaped, escapingChar: '\\');
+    }
 
-        internal static string Escape(string value, Func<char, bool> shouldBeEscaped, char escapingChar)
-        {
-            if (string.IsNullOrEmpty(value))
-                return value;
-
-            for (int i = 0; i < value.Length; i++)
-            {
-                if (shouldBeEscaped(value[i]))
-                {
-                    StringBuilder sb = StringBuilderCache.GetInstance(value.Length);
-                    sb.Append(value, 0, i);
-                    sb.Append(escapingChar);
-                    sb.Append(value[i]);
-
-                    i++;
-                    int lastIndex = i;
-
-                    while (i < value.Length)
-                    {
-                        if (shouldBeEscaped(value[i]))
-                        {
-                            sb.Append(value, lastIndex, i - lastIndex);
-                            sb.Append(escapingChar);
-                            sb.Append(value[i]);
-
-                            i++;
-                            lastIndex = i;
-                        }
-                        else
-                        {
-                            i++;
-                        }
-                    }
-
-                    sb.Append(value, lastIndex, value.Length - lastIndex);
-
-                    return StringBuilderCache.GetStringAndFree(sb);
-                }
-            }
-
+    internal static string Escape(string value, Func<char, bool> shouldBeEscaped, char escapingChar)
+    {
+        if (string.IsNullOrEmpty(value))
             return value;
-        }
 
-        public static bool ShouldBeEscaped(char value)
+        for (int i = 0; i < value.Length; i++)
         {
-            switch (value)
+            if (shouldBeEscaped(value[i]))
             {
-                case '\\':
-                case '`':
-                case '*':
-                case '_':
-                case '{':
-                case '}':
-                case '[':
-                case ']':
-                case '(':
-                case ')':
-                case '#':
-                case '+':
-                case '-':
-                case '.':
-                case '!':
-                case '<':
-                case '>':
-                case '|':
-                case '~':
-                    return true;
-                default:
-                    return false;
+                StringBuilder sb = StringBuilderCache.GetInstance(value.Length);
+                sb.Append(value, 0, i);
+                sb.Append(escapingChar);
+                sb.Append(value[i]);
+
+                i++;
+                int lastIndex = i;
+
+                while (i < value.Length)
+                {
+                    if (shouldBeEscaped(value[i]))
+                    {
+                        sb.Append(value, lastIndex, i - lastIndex);
+                        sb.Append(escapingChar);
+                        sb.Append(value[i]);
+
+                        i++;
+                        lastIndex = i;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+
+                sb.Append(value, lastIndex, value.Length - lastIndex);
+
+                return StringBuilderCache.GetStringAndFree(sb);
             }
         }
 
-        internal static bool ShouldBeEscapedInLinkText(char ch)
-        {
-            switch (ch)
-            {
-                case '[':
-                case ']':
-                case '`':
-                case '<':
-                case '>':
-                    return true;
-                default:
-                    return false;
-            }
-        }
+        return value;
+    }
 
-        internal static bool ShouldBeEscapedInLinkUrl(char ch)
+    public static bool ShouldBeEscaped(char value)
+    {
+        switch (value)
         {
-            switch (ch)
-            {
-                case '(':
-                case ')':
-                    return true;
-                default:
-                    return false;
-            }
+            case '\\':
+            case '`':
+            case '*':
+            case '_':
+            case '{':
+            case '}':
+            case '[':
+            case ']':
+            case '(':
+            case ')':
+            case '#':
+            case '+':
+            case '-':
+            case '.':
+            case '!':
+            case '<':
+            case '>':
+            case '|':
+            case '~':
+                return true;
+            default:
+                return false;
         }
+    }
 
-        internal static bool ShouldBeEscapedInLinkTitle(char ch)
+    internal static bool ShouldBeEscapedInLinkText(char ch)
+    {
+        switch (ch)
         {
-            switch (ch)
-            {
-                case '"':
-                    return true;
-                default:
-                    return false;
-            }
+            case '[':
+            case ']':
+            case '`':
+            case '<':
+            case '>':
+                return true;
+            default:
+                return false;
         }
+    }
 
-        internal static bool ShouldBeEscapedInAngleBrackets(char ch)
+    internal static bool ShouldBeEscapedInLinkUrl(char ch)
+    {
+        switch (ch)
         {
-            switch (ch)
-            {
-                case '<':
-                case '>':
-                    return true;
-                default:
-                    return false;
-            }
+            case '(':
+            case ')':
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    internal static bool ShouldBeEscapedInLinkTitle(char ch)
+    {
+        switch (ch)
+        {
+            case '"':
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    internal static bool ShouldBeEscapedInAngleBrackets(char ch)
+    {
+        switch (ch)
+        {
+            case '<':
+            case '>':
+                return true;
+            default:
+                return false;
         }
     }
 }

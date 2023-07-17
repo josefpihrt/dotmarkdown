@@ -6,42 +6,41 @@ using static DotMarkdown.Tests.TestHelpers;
 
 #pragma warning disable CS1718
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MTextTests
 {
-    public static class MTextTests
+    [Fact]
+    public static void MText_Equals()
     {
-        [Fact]
-        public static void MText_Equals()
-        {
-            MText markdownText = CreateMarkdownText();
+        MText markdownText = CreateMarkdownText();
 
-            Assert.True(markdownText.Equals((object)markdownText));
-        }
+        Assert.True(markdownText.Equals((object)markdownText));
+    }
 
-        [Fact]
-        public static void MText_GetHashCode_Equal()
-        {
-            MText markdownText = CreateMarkdownText();
+    [Fact]
+    public static void MText_GetHashCode_Equal()
+    {
+        MText markdownText = CreateMarkdownText();
 
-            Assert.Equal(markdownText.GetHashCode(), markdownText.GetHashCode());
-        }
+        Assert.Equal(markdownText.GetHashCode(), markdownText.GetHashCode());
+    }
 
-        [Fact]
-        public static void MText_OperatorEquals()
-        {
-            MText markdownText = CreateMarkdownText();
-            MText markdownText2 = markdownText;
+    [Fact]
+    public static void MText_OperatorEquals()
+    {
+        MText markdownText = CreateMarkdownText();
+        MText markdownText2 = markdownText;
 
-            Assert.True(markdownText == markdownText2);
-        }
+        Assert.True(markdownText == markdownText2);
+    }
 
-        [Fact]
-        public static void MText_Constructor_AssignText()
-        {
-            string text = MarkdownTextText();
-            var markdownText = new MText(value: text);
+    [Fact]
+    public static void MText_Constructor_AssignText()
+    {
+        string text = MarkdownTextText();
+        var markdownText = new MText(value: text);
 
-            Assert.Equal(text, markdownText.Value);
-        }
+        Assert.Equal(text, markdownText.Value);
     }
 }

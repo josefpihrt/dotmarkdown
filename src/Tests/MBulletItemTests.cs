@@ -6,33 +6,32 @@ using static DotMarkdown.Tests.TestHelpers;
 
 #pragma warning disable CS1718
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MBulletItemTests
 {
-    public static class MBulletItemTests
+    [Fact]
+    public static void MBulletItem_Equals()
     {
-        [Fact]
-        public static void MBulletItem_Equals()
-        {
-            MBulletItem item = CreateListItem();
+        MBulletItem item = CreateListItem();
 
-            Assert.True(item.Equals((object)item));
-        }
+        Assert.True(item.Equals((object)item));
+    }
 
-        [Fact]
-        public static void MBulletItem_GetHashCode_Equal()
-        {
-            MBulletItem item = CreateListItem();
+    [Fact]
+    public static void MBulletItem_GetHashCode_Equal()
+    {
+        MBulletItem item = CreateListItem();
 
-            Assert.Equal(item.GetHashCode(), item.GetHashCode());
-        }
+        Assert.Equal(item.GetHashCode(), item.GetHashCode());
+    }
 
-        [Fact]
-        public static void MBulletItem_OperatorEquals()
-        {
-            MBulletItem item = CreateListItem();
-            MBulletItem item2 = item;
+    [Fact]
+    public static void MBulletItem_OperatorEquals()
+    {
+        MBulletItem item = CreateListItem();
+        MBulletItem item2 = item;
 
-            Assert.True(item == item2);
-        }
+        Assert.True(item == item2);
     }
 }

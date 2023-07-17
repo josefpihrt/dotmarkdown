@@ -3,93 +3,92 @@
 using System;
 using System.Diagnostics;
 
-namespace DotMarkdown
+namespace DotMarkdown;
+
+[DebuggerDisplay("{HorizontalRuleStyle} {Count}{SeparatorDebuggerDisplay,nq}")]
+public readonly struct HorizontalRuleFormat : IEquatable<HorizontalRuleFormat>
 {
-    [DebuggerDisplay("{HorizontalRuleStyle} {Count}{SeparatorDebuggerDisplay,nq}")]
-    public readonly struct HorizontalRuleFormat : IEquatable<HorizontalRuleFormat>
+    internal const HorizontalRuleStyle DefaultStyle = HorizontalRuleStyle.Hyphen;
+    internal const int DefaultCount = 3;
+    internal const string DefaultSeparator = " ";
+
+    public HorizontalRuleFormat(HorizontalRuleStyle style, int count, string separator)
     {
-        internal const HorizontalRuleStyle DefaultStyle = HorizontalRuleStyle.Hyphen;
-        internal const int DefaultCount = 3;
-        internal const string DefaultSeparator = " ";
+        Error.ThrowOnInvalidHorizontalRuleCount(count);
+        Error.ThrowOnInvalidHorizontalRuleSeparator(separator);
 
-        public HorizontalRuleFormat(HorizontalRuleStyle style, int count, string separator)
+        Style = style;
+        Count = count;
+        Separator = separator;
+    }
+
+    public static HorizontalRuleFormat Default { get; }
+        = new(DefaultStyle, DefaultCount, DefaultSeparator);
+
+    public HorizontalRuleStyle Style { get; }
+
+    public int Count { get; }
+
+    public string Separator { get; }
+
+    private string SeparatorDebuggerDisplay
+    {
+        get { return (!string.IsNullOrEmpty(Separator)) ? $" {nameof(Separator)} = \"{Separator}\"" : ""; }
+    }
+
+    public bool IsValid
+    {
+        get
         {
-            Error.ThrowOnInvalidHorizontalRuleCount(count);
-            Error.ThrowOnInvalidHorizontalRuleSeparator(separator);
-
-            Style = style;
-            Count = count;
-            Separator = separator;
+            return IsValidCount(Count)
+                && IsValidSeparator(Separator);
         }
+    }
 
-        public static HorizontalRuleFormat Default { get; }
-            = new(DefaultStyle, DefaultCount, DefaultSeparator);
+    internal static bool IsValidCount(int count)
+    {
+        return count >= 3;
+    }
 
-        public HorizontalRuleStyle Style { get; }
-
-        public int Count { get; }
-
-        public string Separator { get; }
-
-        private string SeparatorDebuggerDisplay
-        {
-            get { return (!string.IsNullOrEmpty(Separator)) ? $" {nameof(Separator)} = \"{Separator}\"" : ""; }
-        }
-
-        public bool IsValid
-        {
-            get
-            {
-                return IsValidCount(Count)
-                    && IsValidSeparator(Separator);
-            }
-        }
-
-        internal static bool IsValidCount(int count)
-        {
-            return count >= 3;
-        }
-
-        internal static bool IsValidSeparator(string separator)
-        {
-            if (separator is null)
-                return true;
-
-            for (int i = 0; i < separator.Length; i++)
-            {
-                if (separator[i] != ' ')
-                    return false;
-            }
-
+    internal static bool IsValidSeparator(string separator)
+    {
+        if (separator is null)
             return true;
+
+        for (int i = 0; i < separator.Length; i++)
+        {
+            if (separator[i] != ' ')
+                return false;
         }
 
-        public override bool Equals(object obj)
-        {
-            return (obj is HorizontalRuleFormat other)
-                && Equals(other);
-        }
+        return true;
+    }
 
-        public bool Equals(HorizontalRuleFormat other)
-        {
-            return Style == other.Style
-                && Count == other.Count
-                && Separator == other.Separator;
-        }
+    public override bool Equals(object obj)
+    {
+        return (obj is HorizontalRuleFormat other)
+            && Equals(other);
+    }
 
-        public override int GetHashCode()
-        {
-            return Hash.Combine((int)Style, Hash.Combine(Count, Hash.Create(Separator)));
-        }
+    public bool Equals(HorizontalRuleFormat other)
+    {
+        return Style == other.Style
+            && Count == other.Count
+            && Separator == other.Separator;
+    }
 
-        public static bool operator ==(in HorizontalRuleFormat format1, in HorizontalRuleFormat format2)
-        {
-            return format1.Equals(format2);
-        }
+    public override int GetHashCode()
+    {
+        return Hash.Combine((int)Style, Hash.Combine(Count, Hash.Create(Separator)));
+    }
 
-        public static bool operator !=(in HorizontalRuleFormat format1, in HorizontalRuleFormat format2)
-        {
-            return !(format1 == format2);
-        }
+    public static bool operator ==(in HorizontalRuleFormat format1, in HorizontalRuleFormat format2)
+    {
+        return format1.Equals(format2);
+    }
+
+    public static bool operator !=(in HorizontalRuleFormat format1, in HorizontalRuleFormat format2)
+    {
+        return !(format1 == format2);
     }
 }

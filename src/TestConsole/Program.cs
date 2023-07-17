@@ -4,17 +4,16 @@ using System;
 using DotMarkdown.Linq;
 using static DotMarkdown.Linq.MFactory;
 
-namespace DotMarkdown.TestConsole
+namespace DotMarkdown.TestConsole;
+
+public static class Program
 {
-    public static class Program
+    public static void Main()
     {
-        public static void Main()
-        {
-            MDocument document = Document();
+        MDocument document = Document();
 
-            Console.WriteLine(document.ToString());
+        Console.WriteLine(document.ToString());
 
-            Console.ReadKey();
-        }
+        Console.ReadKey();
     }
 }

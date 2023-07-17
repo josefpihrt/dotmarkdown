@@ -6,60 +6,59 @@ using static DotMarkdown.Tests.TestHelpers;
 
 #pragma warning disable CS1718
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+public static class MRawTests
 {
-    public static class MRawTests
+    [Fact]
+    public static void MRaw_Equals()
     {
-        [Fact]
-        public static void MRaw_Equals()
-        {
-            MRaw rawText = CreateRawText();
+        MRaw rawText = CreateRawText();
 
-            Assert.True(rawText.Equals((object)rawText));
-        }
+        Assert.True(rawText.Equals((object)rawText));
+    }
 
-        [Fact]
-        public static void MRaw_NotEquals()
-        {
-            MRaw rawText = CreateRawText();
-            MRaw rawText2 = rawText.Modify();
+    [Fact]
+    public static void MRaw_NotEquals()
+    {
+        MRaw rawText = CreateRawText();
+        MRaw rawText2 = rawText.Modify();
 
-            Assert.False(rawText.Equals((object)rawText2));
-        }
+        Assert.False(rawText.Equals((object)rawText2));
+    }
 
-        [Fact]
-        public static void MRaw_GetHashCode_Equal()
-        {
-            MRaw rawText = CreateRawText();
+    [Fact]
+    public static void MRaw_GetHashCode_Equal()
+    {
+        MRaw rawText = CreateRawText();
 
-            Assert.Equal(rawText.GetHashCode(), rawText.GetHashCode());
-        }
+        Assert.Equal(rawText.GetHashCode(), rawText.GetHashCode());
+    }
 
-        [Fact]
-        public static void MRaw_GetHashCode_NotEqual()
-        {
-            MRaw rawText = CreateRawText();
-            MRaw rawText2 = rawText.Modify();
+    [Fact]
+    public static void MRaw_GetHashCode_NotEqual()
+    {
+        MRaw rawText = CreateRawText();
+        MRaw rawText2 = rawText.Modify();
 
-            Assert.NotEqual(rawText.GetHashCode(), rawText2.GetHashCode());
-        }
+        Assert.NotEqual(rawText.GetHashCode(), rawText2.GetHashCode());
+    }
 
-        [Fact]
-        public static void MRaw_OperatorEquals()
-        {
-            MRaw rawText = CreateRawText();
-            MRaw rawText2 = rawText;
+    [Fact]
+    public static void MRaw_OperatorEquals()
+    {
+        MRaw rawText = CreateRawText();
+        MRaw rawText2 = rawText;
 
-            Assert.True(rawText == rawText2);
-        }
+        Assert.True(rawText == rawText2);
+    }
 
-        [Fact]
-        public static void MRaw_OperatorNotEquals()
-        {
-            MRaw rawText = CreateRawText();
-            MRaw rawText2 = rawText.Modify();
+    [Fact]
+    public static void MRaw_OperatorNotEquals()
+    {
+        MRaw rawText = CreateRawText();
+        MRaw rawText2 = rawText.Modify();
 
-            Assert.True(rawText != rawText2);
-        }
+        Assert.True(rawText != rawText2);
     }
 }

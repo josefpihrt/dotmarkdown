@@ -2,18 +2,17 @@
 
 using System;
 
-namespace DotMarkdown
+namespace DotMarkdown;
+
+[Flags]
+public enum HeadingOptions
 {
-    [Flags]
-    public enum HeadingOptions
-    {
-        None = 0,
-        UnderlineHeading1 = 1,
-        UnderlineHeading2 = 1 << 1,
-        Underline = UnderlineHeading1 | UnderlineHeading2,
-        Close = 1 << 2,
-        EmptyLineBefore = 1 << 3,
-        EmptyLineAfter = 1 << 4,
-        EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter,
-    }
+    None = 0,
+    UnderlineHeading1 = 1,
+    UnderlineHeading2 = 1 << 1,
+    Underline = UnderlineHeading1 | UnderlineHeading2,
+    Close = 1 << 2,
+    EmptyLineBefore = 1 << 3,
+    EmptyLineAfter = 1 << 4,
+    EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter,
 }

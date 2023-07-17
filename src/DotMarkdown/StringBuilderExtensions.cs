@@ -2,26 +2,25 @@
 
 using System.Text;
 
-namespace DotMarkdown
+namespace DotMarkdown;
+
+internal static class StringBuilderExtensions
 {
-    internal static class StringBuilderExtensions
+    public static bool IsWhiteSpace(this StringBuilder sb)
     {
-        public static bool IsWhiteSpace(this StringBuilder sb)
+        return IsWhiteSpace(sb, 0, sb.Length);
+    }
+
+    public static bool IsWhiteSpace(this StringBuilder sb, int index, int length)
+    {
+        int max = index + length;
+
+        for (int i = index; i < max; i++)
         {
-            return IsWhiteSpace(sb, 0, sb.Length);
+            if (!char.IsWhiteSpace(sb[i]))
+                return false;
         }
 
-        public static bool IsWhiteSpace(this StringBuilder sb, int index, int length)
-        {
-            int max = index + length;
-
-            for (int i = index; i < max; i++)
-            {
-                if (!char.IsWhiteSpace(sb[i]))
-                    return false;
-            }
-
-            return true;
-        }
+        return true;
     }
 }

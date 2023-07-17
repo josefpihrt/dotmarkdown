@@ -3,42 +3,41 @@
 using System;
 using System.Diagnostics;
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+[DebuggerDisplay("{Kind} {Value,nq}")]
+public class MComment : MElement
 {
-    [DebuggerDisplay("{Kind} {Value,nq}")]
-    public class MComment : MElement
+    private string _value;
+
+    public MComment(string value)
     {
-        private string _value;
+        Value = value;
+    }
 
-        public MComment(string value)
-        {
-            Value = value;
-        }
+    public MComment(MComment other)
+    {
+        if (other is null)
+            throw new ArgumentNullException(nameof(other));
 
-        public MComment(MComment other)
-        {
-            if (other is null)
-                throw new ArgumentNullException(nameof(other));
+        _value = other.Value;
+    }
 
-            _value = other.Value;
-        }
+    public string Value
+    {
+        get { return _value; }
+        set { _value = value ?? throw new ArgumentNullException(nameof(value)); }
+    }
 
-        public string Value
-        {
-            get { return _value; }
-            set { _value = value ?? throw new ArgumentNullException(nameof(value)); }
-        }
+    public override MarkdownKind Kind => MarkdownKind.Comment;
 
-        public override MarkdownKind Kind => MarkdownKind.Comment;
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        writer.WriteComment(Value);
+    }
 
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            writer.WriteComment(Value);
-        }
-
-        internal override MElement Clone()
-        {
-            return new MComment(this);
-        }
+    internal override MElement Clone()
+    {
+        return new MComment(this);
     }
 }

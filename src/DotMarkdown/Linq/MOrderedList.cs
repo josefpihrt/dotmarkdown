@@ -1,74 +1,73 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-namespace DotMarkdown.Linq
+namespace DotMarkdown.Linq;
+
+public class MOrderedList : MList
 {
-    public class MOrderedList : MList
+    private const int NumberingBase = 1;
+
+    public MOrderedList()
     {
-        private const int NumberingBase = 1;
+    }
 
-        public MOrderedList()
+    public MOrderedList(object content)
+        : base(content)
+    {
+    }
+
+    public MOrderedList(params object[] content)
+        : base(content)
+    {
+    }
+
+    public MOrderedList(MOrderedList other)
+        : base(other)
+    {
+    }
+
+    public override MarkdownKind Kind => MarkdownKind.OrderedList;
+
+    public override void WriteTo(MarkdownWriter writer)
+    {
+        if (content is string s)
         {
+            writer.WriteOrderedItem(NumberingBase, s);
         }
-
-        public MOrderedList(object content)
-            : base(content)
+        else
         {
-        }
+            int number = NumberingBase;
 
-        public MOrderedList(params object[] content)
-            : base(content)
-        {
-        }
-
-        public MOrderedList(MOrderedList other)
-            : base(other)
-        {
-        }
-
-        public override MarkdownKind Kind => MarkdownKind.OrderedList;
-
-        public override void WriteTo(MarkdownWriter writer)
-        {
-            if (content is string s)
+            foreach (MElement element in Elements())
             {
-                writer.WriteOrderedItem(NumberingBase, s);
-            }
-            else
-            {
-                int number = NumberingBase;
+                writer.WriteStartOrderedItem(number);
 
-                foreach (MElement element in Elements())
+                if (element is MOrderedItem item)
                 {
-                    writer.WriteStartOrderedItem(number);
-
-                    if (element is MOrderedItem item)
-                    {
-                        item.WriteContentTo(writer);
-                    }
-                    else
-                    {
-                        writer.Write(element);
-                    }
-
-                    writer.WriteEndOrderedItem();
-                    number++;
+                    item.WriteContentTo(writer);
+                }
+                else
+                {
+                    writer.Write(element);
                 }
 
-                writer.WriteLine();
+                writer.WriteEndOrderedItem();
+                number++;
             }
-        }
 
-        internal override void ValidateElement(MElement element)
-        {
-            if (element.Kind == MarkdownKind.OrderedItem)
-                return;
-
-            base.ValidateElement(element);
+            writer.WriteLine();
         }
+    }
 
-        internal override MElement Clone()
-        {
-            return new MOrderedList(this);
-        }
+    internal override void ValidateElement(MElement element)
+    {
+        if (element.Kind == MarkdownKind.OrderedItem)
+            return;
+
+        base.ValidateElement(element);
+    }
+
+    internal override MElement Clone()
+    {
+        return new MOrderedList(this);
     }
 }

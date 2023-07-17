@@ -2,10 +2,9 @@
 
 using static DotMarkdown.Tests.TestHelpers;
 
-namespace DotMarkdown.Tests
+namespace DotMarkdown.Tests;
+
+internal static class MarkdownSamples
 {
-    internal static class MarkdownSamples
-    {
-        public const string CodeBlockMarkdown = "```" + DefaultText + NewLine + Chars + NewLine + "```" + NewLine;
-    }
+    public const string CodeBlockMarkdown = "```" + DefaultText + NewLine + Chars + NewLine + "```" + NewLine;
 }

@@ -2,19 +2,18 @@
 
 using System;
 
-namespace DotMarkdown
+namespace DotMarkdown;
+
+[Flags]
+public enum TableOptions
 {
-    [Flags]
-    public enum TableOptions
-    {
-        None = 0,
-        FormatHeader = 1,
-        FormatContent = 1 << 1,
-        FormatHeaderAndContent = FormatHeader | FormatContent,
-        Padding = 1 << 2,
-        OuterDelimiter = 1 << 3,
-        EmptyLineBefore = 1 << 4,
-        EmptyLineAfter = 1 << 5,
-        EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter,
-    }
+    None = 0,
+    FormatHeader = 1,
+    FormatContent = 1 << 1,
+    FormatHeaderAndContent = FormatHeader | FormatContent,
+    Padding = 1 << 2,
+    OuterDelimiter = 1 << 3,
+    EmptyLineBefore = 1 << 4,
+    EmptyLineAfter = 1 << 5,
+    EmptyLineBeforeAndAfter = EmptyLineBefore | EmptyLineAfter,
 }
