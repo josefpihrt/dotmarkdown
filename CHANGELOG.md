@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Migrate documentation to [GitHub Pages](https://josefpihrt.github.io/docs/dotmarkdown/api) ([#24](https://github.com/josefpihrt/dotmarkdown/pull/24)).
+
 ## [0.2.0] - 2022-06-26
 
 ### Added

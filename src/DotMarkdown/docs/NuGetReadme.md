@@ -7,7 +7,11 @@ DotMarkdown enables to conveniently create markdown content from the code.
 * .NET Standard 1.3
 * .NET Framework 4.5
 
-## Usage 
+## Documentation
+
+* [Reference documentation](https://josefpihrt.github.io/docs/dotmarkdown/api)
+
+## Usage
 
 ### Commonly Used Types
 
