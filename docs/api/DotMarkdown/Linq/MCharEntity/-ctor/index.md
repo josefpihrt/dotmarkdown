@@ -12,10 +12,12 @@ sidebar_label: MCharEntity
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MCharEntity(Char)](#DotMarkdown_Linq_MCharEntity__ctor_System_Char_) | |
-| [MCharEntity(MCharEntity)](#DotMarkdown_Linq_MCharEntity__ctor_DotMarkdown_Linq_MCharEntity_) | |
+| [MCharEntity(Char)](#236677836) | |
+| [MCharEntity(MCharEntity)](#1796637737) | |
 
-## MCharEntity\(Char\) <a id="DotMarkdown_Linq_MCharEntity__ctor_System_Char_"></a>
+<a id="236677836"></a>
+
+## MCharEntity\(Char\) 
 
 ```csharp
 public MCharEntity(char value)
@@ -23,9 +25,9 @@ public MCharEntity(char value)
 
 ### Parameters
 
-**value** &ensp; [Char](https://docs.microsoft.com/en-us/dotnet/api/system.char)
+**value** &ensp; [Char](https://docs.microsoft.com/en-us/dotnet/api/system.char)<a id="1796637737"></a>
 
-## MCharEntity\(MCharEntity\) <a id="DotMarkdown_Linq_MCharEntity__ctor_DotMarkdown_Linq_MCharEntity_"></a>
+## MCharEntity\(MCharEntity\) 
 
 ```csharp
 public MCharEntity(DotMarkdown.Linq.MCharEntity other)

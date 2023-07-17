@@ -58,13 +58,13 @@ public abstract class MElement : DotMarkdown.Linq.MObject
 | [GetType()](https://docs.microsoft.com/en-us/dotnet/api/system.object.gettype) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |
 | [MemberwiseClone()](https://docs.microsoft.com/en-us/dotnet/api/system.object.memberwiseclone) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |
 | [Remove()](Remove/index.md) | |
-| [Save(MarkdownWriter)](Save/index.md#DotMarkdown_Linq_MElement_Save_DotMarkdown_MarkdownWriter_) | |
-| [Save(Stream, MarkdownFormat)](Save/index.md#DotMarkdown_Linq_MElement_Save_System_IO_Stream_DotMarkdown_MarkdownFormat_) | |
-| [Save(String, MarkdownFormat)](Save/index.md#DotMarkdown_Linq_MElement_Save_System_String_DotMarkdown_MarkdownFormat_) | |
-| [Save(TextWriter, MarkdownFormat)](Save/index.md#DotMarkdown_Linq_MElement_Save_System_IO_TextWriter_DotMarkdown_MarkdownFormat_) | |
-| [ToString()](ToString/index.md#DotMarkdown_Linq_MElement_ToString) |  \(Overrides [Object.ToString](https://docs.microsoft.com/en-us/dotnet/api/system.object.tostring)\) |
-| [ToString(MarkdownFormat)](ToString/index.md#DotMarkdown_Linq_MElement_ToString_DotMarkdown_MarkdownFormat_) | |
-| [ToString(MarkdownWriterSettings)](ToString/index.md#DotMarkdown_Linq_MElement_ToString_DotMarkdown_MarkdownWriterSettings_) | |
+| [Save(MarkdownWriter)](Save/index.md#1605807764) | |
+| [Save(Stream, MarkdownFormat)](Save/index.md#377468245) | |
+| [Save(String, MarkdownFormat)](Save/index.md#3914377559) | |
+| [Save(TextWriter, MarkdownFormat)](Save/index.md#3157011060) | |
+| [ToString()](ToString/index.md#3980478763) |  \(Overrides [Object.ToString](https://docs.microsoft.com/en-us/dotnet/api/system.object.tostring)\) |
+| [ToString(MarkdownFormat)](ToString/index.md#3726866586) | |
+| [ToString(MarkdownWriterSettings)](ToString/index.md#1055640702) | |
 | [WriteTo(MarkdownWriter)](WriteTo/index.md) | |
 
 ## Derived \(All\)

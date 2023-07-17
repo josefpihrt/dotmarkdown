@@ -12,10 +12,12 @@ sidebar_label: Raw
 
 | Method | Summary |
 | ------ | ------- |
-| [Raw(MRaw)](#DotMarkdown_Linq_MFactory_Raw_DotMarkdown_Linq_MRaw_) | |
-| [Raw(String)](#DotMarkdown_Linq_MFactory_Raw_System_String_) | |
+| [Raw(MRaw)](#2128713166) | |
+| [Raw(String)](#2303668258) | |
 
-## Raw\(MRaw\) <a id="DotMarkdown_Linq_MFactory_Raw_DotMarkdown_Linq_MRaw_"></a>
+<a id="2128713166"></a>
+
+## Raw\(MRaw\) 
 
 ```csharp
 public static DotMarkdown.Linq.MRaw Raw(DotMarkdown.Linq.MRaw other)
@@ -29,7 +31,9 @@ public static DotMarkdown.Linq.MRaw Raw(DotMarkdown.Linq.MRaw other)
 
 [MRaw](../../MRaw/index.md)
 
-## Raw\(String\) <a id="DotMarkdown_Linq_MFactory_Raw_System_String_"></a>
+<a id="2303668258"></a>
+
+## Raw\(String\) 
 
 ```csharp
 public static DotMarkdown.Linq.MRaw Raw(string text)

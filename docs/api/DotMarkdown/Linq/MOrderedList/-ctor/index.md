@@ -12,18 +12,22 @@ sidebar_label: MOrderedList
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MOrderedList()](#DotMarkdown_Linq_MOrderedList__ctor) | |
-| [MOrderedList(MOrderedList)](#DotMarkdown_Linq_MOrderedList__ctor_DotMarkdown_Linq_MOrderedList_) | |
-| [MOrderedList(Object)](#DotMarkdown_Linq_MOrderedList__ctor_System_Object_) | |
-| [MOrderedList(Object\[\])](#DotMarkdown_Linq_MOrderedList__ctor_System_Object___) | |
+| [MOrderedList()](#450365122) | |
+| [MOrderedList(MOrderedList)](#1376195225) | |
+| [MOrderedList(Object)](#319575181) | |
+| [MOrderedList(Object\[\])](#2961759804) | |
 
-## MOrderedList\(\) <a id="DotMarkdown_Linq_MOrderedList__ctor"></a>
+<a id="450365122"></a>
+
+## MOrderedList\(\) 
 
 ```csharp
 public MOrderedList()
 ```
 
-## MOrderedList\(MOrderedList\) <a id="DotMarkdown_Linq_MOrderedList__ctor_DotMarkdown_Linq_MOrderedList_"></a>
+<a id="1376195225"></a>
+
+## MOrderedList\(MOrderedList\) 
 
 ```csharp
 public MOrderedList(DotMarkdown.Linq.MOrderedList other)
@@ -31,9 +35,9 @@ public MOrderedList(DotMarkdown.Linq.MOrderedList other)
 
 ### Parameters
 
-**other** &ensp; [MOrderedList](../index.md)
+**other** &ensp; [MOrderedList](../index.md)<a id="319575181"></a>
 
-## MOrderedList\(Object\) <a id="DotMarkdown_Linq_MOrderedList__ctor_System_Object_"></a>
+## MOrderedList\(Object\) 
 
 ```csharp
 public MOrderedList(object content)
@@ -41,9 +45,9 @@ public MOrderedList(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="2961759804"></a>
 
-## MOrderedList\(Object\[\]\) <a id="DotMarkdown_Linq_MOrderedList__ctor_System_Object___"></a>
+## MOrderedList\(Object\[\]\) 
 
 ```csharp
 public MOrderedList(params object[] content)

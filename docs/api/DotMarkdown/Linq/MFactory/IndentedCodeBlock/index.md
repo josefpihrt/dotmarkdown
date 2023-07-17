@@ -12,10 +12,12 @@ sidebar_label: IndentedCodeBlock
 
 | Method | Summary |
 | ------ | ------- |
-| [IndentedCodeBlock(MIndentedCodeBlock)](#DotMarkdown_Linq_MFactory_IndentedCodeBlock_DotMarkdown_Linq_MIndentedCodeBlock_) | |
-| [IndentedCodeBlock(String)](#DotMarkdown_Linq_MFactory_IndentedCodeBlock_System_String_) | |
+| [IndentedCodeBlock(MIndentedCodeBlock)](#413936494) | |
+| [IndentedCodeBlock(String)](#1277723376) | |
 
-## IndentedCodeBlock\(MIndentedCodeBlock\) <a id="DotMarkdown_Linq_MFactory_IndentedCodeBlock_DotMarkdown_Linq_MIndentedCodeBlock_"></a>
+<a id="413936494"></a>
+
+## IndentedCodeBlock\(MIndentedCodeBlock\) 
 
 ```csharp
 public static DotMarkdown.Linq.MIndentedCodeBlock IndentedCodeBlock(DotMarkdown.Linq.MIndentedCodeBlock other)
@@ -29,7 +31,9 @@ public static DotMarkdown.Linq.MIndentedCodeBlock IndentedCodeBlock(DotMarkdown.
 
 [MIndentedCodeBlock](../../MIndentedCodeBlock/index.md)
 
-## IndentedCodeBlock\(String\) <a id="DotMarkdown_Linq_MFactory_IndentedCodeBlock_System_String_"></a>
+<a id="1277723376"></a>
+
+## IndentedCodeBlock\(String\) 
 
 ```csharp
 public static DotMarkdown.Linq.MIndentedCodeBlock IndentedCodeBlock(string value)

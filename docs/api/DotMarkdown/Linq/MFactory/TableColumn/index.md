@@ -12,26 +12,14 @@ sidebar_label: TableColumn
 
 | Method | Summary |
 | ------ | ------- |
-| [TableColumn(HorizontalAlignment)](#DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_) | |
-| [TableColumn(HorizontalAlignment, Object)](#DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_System_Object_) | |
-| [TableColumn(HorizontalAlignment, Object\[\])](#DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_System_Object___) | |
-| [TableColumn(MTableColumn)](#DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_Linq_MTableColumn_) | |
+| [TableColumn(HorizontalAlignment, Object)](#1771417894) | |
+| [TableColumn(HorizontalAlignment, Object\[\])](#3236157241) | |
+| [TableColumn(HorizontalAlignment)](#1867783948) | |
+| [TableColumn(MTableColumn)](#1878775822) | |
 
-## TableColumn\(HorizontalAlignment\) <a id="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_"></a>
+<a id="1771417894"></a>
 
-```csharp
-public static DotMarkdown.Linq.MTableColumn TableColumn(DotMarkdown.HorizontalAlignment alignment)
-```
-
-### Parameters
-
-**alignment** &ensp; [HorizontalAlignment](../../../HorizontalAlignment/index.md)
-
-### Returns
-
-[MTableColumn](../../MTableColumn/index.md)
-
-## TableColumn\(HorizontalAlignment, Object\) <a id="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_System_Object_"></a>
+## TableColumn\(HorizontalAlignment, Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTableColumn TableColumn(DotMarkdown.HorizontalAlignment alignment, object content)
@@ -47,7 +35,9 @@ public static DotMarkdown.Linq.MTableColumn TableColumn(DotMarkdown.HorizontalAl
 
 [MTableColumn](../../MTableColumn/index.md)
 
-## TableColumn\(HorizontalAlignment, Object\[\]\) <a id="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_HorizontalAlignment_System_Object___"></a>
+<a id="3236157241"></a>
+
+## TableColumn\(HorizontalAlignment, Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTableColumn TableColumn(DotMarkdown.HorizontalAlignment alignment, params object[] content)
@@ -63,7 +53,25 @@ public static DotMarkdown.Linq.MTableColumn TableColumn(DotMarkdown.HorizontalAl
 
 [MTableColumn](../../MTableColumn/index.md)
 
-## TableColumn\(MTableColumn\) <a id="DotMarkdown_Linq_MFactory_TableColumn_DotMarkdown_Linq_MTableColumn_"></a>
+<a id="1867783948"></a>
+
+## TableColumn\(HorizontalAlignment\) 
+
+```csharp
+public static DotMarkdown.Linq.MTableColumn TableColumn(DotMarkdown.HorizontalAlignment alignment)
+```
+
+### Parameters
+
+**alignment** &ensp; [HorizontalAlignment](../../../HorizontalAlignment/index.md)
+
+### Returns
+
+[MTableColumn](../../MTableColumn/index.md)
+
+<a id="1878775822"></a>
+
+## TableColumn\(MTableColumn\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTableColumn TableColumn(DotMarkdown.Linq.MTableColumn other)

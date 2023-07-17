@@ -12,10 +12,12 @@ sidebar_label: MImage
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MImage(MImage)](#DotMarkdown_Linq_MImage__ctor_DotMarkdown_Linq_MImage_) | |
-| [MImage(String, String, String)](#DotMarkdown_Linq_MImage__ctor_System_String_System_String_System_String_) | |
+| [MImage(MImage)](#1891343353) | |
+| [MImage(String, String, String)](#1448364811) | |
 
-## MImage\(MImage\) <a id="DotMarkdown_Linq_MImage__ctor_DotMarkdown_Linq_MImage_"></a>
+<a id="1891343353"></a>
+
+## MImage\(MImage\) 
 
 ```csharp
 public MImage(DotMarkdown.Linq.MImage other)
@@ -23,9 +25,9 @@ public MImage(DotMarkdown.Linq.MImage other)
 
 ### Parameters
 
-**other** &ensp; [MImage](../index.md)
+**other** &ensp; [MImage](../index.md)<a id="1448364811"></a>
 
-## MImage\(String, String, String\) <a id="DotMarkdown_Linq_MImage__ctor_System_String_System_String_System_String_"></a>
+## MImage\(String, String, String\) 
 
 ```csharp
 public MImage(string text, string url, string title = null)

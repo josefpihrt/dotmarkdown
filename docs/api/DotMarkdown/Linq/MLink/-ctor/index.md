@@ -12,10 +12,12 @@ sidebar_label: MLink
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MLink(MLink)](#DotMarkdown_Linq_MLink__ctor_DotMarkdown_Linq_MLink_) | |
-| [MLink(Object, String, String)](#DotMarkdown_Linq_MLink__ctor_System_Object_System_String_System_String_) | |
+| [MLink(MLink)](#1074178393) | |
+| [MLink(Object, String, String)](#4130385807) | |
 
-## MLink\(MLink\) <a id="DotMarkdown_Linq_MLink__ctor_DotMarkdown_Linq_MLink_"></a>
+<a id="1074178393"></a>
+
+## MLink\(MLink\) 
 
 ```csharp
 public MLink(DotMarkdown.Linq.MLink other)
@@ -23,9 +25,9 @@ public MLink(DotMarkdown.Linq.MLink other)
 
 ### Parameters
 
-**other** &ensp; [MLink](../index.md)
+**other** &ensp; [MLink](../index.md)<a id="4130385807"></a>
 
-## MLink\(Object, String, String\) <a id="DotMarkdown_Linq_MLink__ctor_System_Object_System_String_System_String_"></a>
+## MLink\(Object, String, String\) 
 
 ```csharp
 public MLink(object content, string url, string title = null)

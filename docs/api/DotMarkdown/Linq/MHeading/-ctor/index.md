@@ -12,22 +12,14 @@ sidebar_label: MHeading
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MHeading(Int32)](#DotMarkdown_Linq_MHeading__ctor_System_Int32_) | |
-| [MHeading(Int32, Object)](#DotMarkdown_Linq_MHeading__ctor_System_Int32_System_Object_) | |
-| [MHeading(Int32, Object\[\])](#DotMarkdown_Linq_MHeading__ctor_System_Int32_System_Object___) | |
-| [MHeading(MHeading)](#DotMarkdown_Linq_MHeading__ctor_DotMarkdown_Linq_MHeading_) | |
+| [MHeading(Int32, Object)](#3767238414) | |
+| [MHeading(Int32, Object\[\])](#2053292091) | |
+| [MHeading(Int32)](#1931395651) | |
+| [MHeading(MHeading)](#2783439654) | |
 
-## MHeading\(Int32\) <a id="DotMarkdown_Linq_MHeading__ctor_System_Int32_"></a>
+<a id="3767238414"></a>
 
-```csharp
-public MHeading(int level)
-```
-
-### Parameters
-
-**level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
-
-## MHeading\(Int32, Object\) <a id="DotMarkdown_Linq_MHeading__ctor_System_Int32_System_Object_"></a>
+## MHeading\(Int32, Object\) 
 
 ```csharp
 public MHeading(int level, object content)
@@ -37,9 +29,9 @@ public MHeading(int level, object content)
 
 **level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="2053292091"></a>
 
-## MHeading\(Int32, Object\[\]\) <a id="DotMarkdown_Linq_MHeading__ctor_System_Int32_System_Object___"></a>
+## MHeading\(Int32, Object\[\]\) 
 
 ```csharp
 public MHeading(int level, params object[] content)
@@ -49,9 +41,19 @@ public MHeading(int level, params object[] content)
 
 **level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]<a id="1931395651"></a>
 
-## MHeading\(MHeading\) <a id="DotMarkdown_Linq_MHeading__ctor_DotMarkdown_Linq_MHeading_"></a>
+## MHeading\(Int32\) 
+
+```csharp
+public MHeading(int level)
+```
+
+### Parameters
+
+**level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)<a id="2783439654"></a>
+
+## MHeading\(MHeading\) 
 
 ```csharp
 public MHeading(DotMarkdown.Linq.MHeading other)

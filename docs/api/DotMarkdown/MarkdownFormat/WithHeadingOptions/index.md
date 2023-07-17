@@ -12,10 +12,12 @@ sidebar_label: WithHeadingOptions
 
 | Method | Summary |
 | ------ | ------- |
-| [WithHeadingOptions(HeadingOptions)](#DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingOptions_) | |
-| [WithHeadingOptions(HeadingStyle)](#DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingStyle_) | |
+| [WithHeadingOptions(HeadingOptions)](#70293284) | |
+| [WithHeadingOptions(HeadingStyle)](#1436480829) | |
 
-## WithHeadingOptions\(HeadingOptions\) <a id="DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingOptions_"></a>
+<a id="70293284"></a>
+
+## WithHeadingOptions\(HeadingOptions\) 
 
 ```csharp
 public DotMarkdown.MarkdownFormat WithHeadingOptions(DotMarkdown.HeadingOptions headingOptions)
@@ -29,7 +31,9 @@ public DotMarkdown.MarkdownFormat WithHeadingOptions(DotMarkdown.HeadingOptions 
 
 [MarkdownFormat](../index.md)
 
-## WithHeadingOptions\(HeadingStyle\) <a id="DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingStyle_"></a>
+<a id="1436480829"></a>
+
+## WithHeadingOptions\(HeadingStyle\) 
 
 ```csharp
 public DotMarkdown.MarkdownFormat WithHeadingOptions(DotMarkdown.HeadingStyle headingStyle)

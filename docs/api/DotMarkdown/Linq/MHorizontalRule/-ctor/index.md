@@ -12,11 +12,13 @@ sidebar_label: MHorizontalRule
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MHorizontalRule(HorizontalRuleFormat)](#DotMarkdown_Linq_MHorizontalRule__ctor_DotMarkdown_HorizontalRuleFormat__) | |
-| [MHorizontalRule(HorizontalRuleStyle, Int32, String)](#DotMarkdown_Linq_MHorizontalRule__ctor_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_) | |
-| [MHorizontalRule(MHorizontalRule)](#DotMarkdown_Linq_MHorizontalRule__ctor_DotMarkdown_Linq_MHorizontalRule_) | |
+| [MHorizontalRule(HorizontalRuleFormat)](#4136238364) | |
+| [MHorizontalRule(HorizontalRuleStyle, Int32, String)](#2608780795) | |
+| [MHorizontalRule(MHorizontalRule)](#2638559622) | |
 
-## MHorizontalRule\(HorizontalRuleFormat\) <a id="DotMarkdown_Linq_MHorizontalRule__ctor_DotMarkdown_HorizontalRuleFormat__"></a>
+<a id="4136238364"></a>
+
+## MHorizontalRule\(HorizontalRuleFormat\) 
 
 ```csharp
 public MHorizontalRule(in DotMarkdown.HorizontalRuleFormat format)
@@ -24,9 +26,9 @@ public MHorizontalRule(in DotMarkdown.HorizontalRuleFormat format)
 
 ### Parameters
 
-**format** &ensp; [HorizontalRuleFormat](../../../HorizontalRuleFormat/index.md)
+**format** &ensp; [HorizontalRuleFormat](../../../HorizontalRuleFormat/index.md)<a id="2608780795"></a>
 
-## MHorizontalRule\(HorizontalRuleStyle, Int32, String\) <a id="DotMarkdown_Linq_MHorizontalRule__ctor_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_"></a>
+## MHorizontalRule\(HorizontalRuleStyle, Int32, String\) 
 
 ```csharp
 public MHorizontalRule(DotMarkdown.HorizontalRuleStyle style, int count, string separator)
@@ -38,9 +40,9 @@ public MHorizontalRule(DotMarkdown.HorizontalRuleStyle style, int count, string 
 
 **count** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-**separator** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)
+**separator** &ensp; [String](https://docs.microsoft.com/en-us/dotnet/api/system.string)<a id="2638559622"></a>
 
-## MHorizontalRule\(MHorizontalRule\) <a id="DotMarkdown_Linq_MHorizontalRule__ctor_DotMarkdown_Linq_MHorizontalRule_"></a>
+## MHorizontalRule\(MHorizontalRule\) 
 
 ```csharp
 public MHorizontalRule(DotMarkdown.Linq.MHorizontalRule other)

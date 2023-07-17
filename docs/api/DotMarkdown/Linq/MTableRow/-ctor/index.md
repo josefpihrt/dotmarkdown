@@ -12,18 +12,22 @@ sidebar_label: MTableRow
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MTableRow()](#DotMarkdown_Linq_MTableRow__ctor) | |
-| [MTableRow(MTableRow)](#DotMarkdown_Linq_MTableRow__ctor_DotMarkdown_Linq_MTableRow_) | |
-| [MTableRow(Object)](#DotMarkdown_Linq_MTableRow__ctor_System_Object_) | |
-| [MTableRow(Object\[\])](#DotMarkdown_Linq_MTableRow__ctor_System_Object___) | |
+| [MTableRow()](#2220046604) | |
+| [MTableRow(MTableRow)](#1123266241) | |
+| [MTableRow(Object)](#2442687487) | |
+| [MTableRow(Object\[\])](#1294763560) | |
 
-## MTableRow\(\) <a id="DotMarkdown_Linq_MTableRow__ctor"></a>
+<a id="2220046604"></a>
+
+## MTableRow\(\) 
 
 ```csharp
 public MTableRow()
 ```
 
-## MTableRow\(MTableRow\) <a id="DotMarkdown_Linq_MTableRow__ctor_DotMarkdown_Linq_MTableRow_"></a>
+<a id="1123266241"></a>
+
+## MTableRow\(MTableRow\) 
 
 ```csharp
 public MTableRow(DotMarkdown.Linq.MTableRow other)
@@ -31,9 +35,9 @@ public MTableRow(DotMarkdown.Linq.MTableRow other)
 
 ### Parameters
 
-**other** &ensp; [MTableRow](../index.md)
+**other** &ensp; [MTableRow](../index.md)<a id="2442687487"></a>
 
-## MTableRow\(Object\) <a id="DotMarkdown_Linq_MTableRow__ctor_System_Object_"></a>
+## MTableRow\(Object\) 
 
 ```csharp
 public MTableRow(object content)
@@ -41,9 +45,9 @@ public MTableRow(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="1294763560"></a>
 
-## MTableRow\(Object\[\]\) <a id="DotMarkdown_Linq_MTableRow__ctor_System_Object___"></a>
+## MTableRow\(Object\[\]\) 
 
 ```csharp
 public MTableRow(params object[] content)

@@ -12,12 +12,14 @@ sidebar_label: TableRow
 
 | Method | Summary |
 | ------ | ------- |
-| [TableRow()](#DotMarkdown_Linq_MFactory_TableRow) | |
-| [TableRow(MTableRow)](#DotMarkdown_Linq_MFactory_TableRow_DotMarkdown_Linq_MTableRow_) | |
-| [TableRow(Object)](#DotMarkdown_Linq_MFactory_TableRow_System_Object_) | |
-| [TableRow(Object\[\])](#DotMarkdown_Linq_MFactory_TableRow_System_Object___) | |
+| [TableRow()](#3600693457) | |
+| [TableRow(MTableRow)](#2348528611) | |
+| [TableRow(Object)](#987982989) | |
+| [TableRow(Object\[\])](#1758952315) | |
 
-## TableRow\(\) <a id="DotMarkdown_Linq_MFactory_TableRow"></a>
+<a id="3600693457"></a>
+
+## TableRow\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTableRow TableRow()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MTableRow TableRow()
 
 [MTableRow](../../MTableRow/index.md)
 
-## TableRow\(MTableRow\) <a id="DotMarkdown_Linq_MFactory_TableRow_DotMarkdown_Linq_MTableRow_"></a>
+<a id="2348528611"></a>
+
+## TableRow\(MTableRow\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTableRow TableRow(DotMarkdown.Linq.MTableRow other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MTableRow TableRow(DotMarkdown.Linq.MTableRow oth
 
 [MTableRow](../../MTableRow/index.md)
 
-## TableRow\(Object\) <a id="DotMarkdown_Linq_MFactory_TableRow_System_Object_"></a>
+<a id="987982989"></a>
+
+## TableRow\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTableRow TableRow(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MTableRow TableRow(object content)
 
 [MTableRow](../../MTableRow/index.md)
 
-## TableRow\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_TableRow_System_Object___"></a>
+<a id="1758952315"></a>
+
+## TableRow\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTableRow TableRow(params object[] content)

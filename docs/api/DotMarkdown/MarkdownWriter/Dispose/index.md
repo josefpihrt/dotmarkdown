@@ -12,10 +12,12 @@ sidebar_label: Dispose
 
 | Method | Summary |
 | ------ | ------- |
-| [Dispose()](#DotMarkdown_MarkdownWriter_Dispose) |  \(Implements [IDisposable.Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose)\) |
-| [Dispose(Boolean)](#DotMarkdown_MarkdownWriter_Dispose_System_Boolean_) | |
+| [Dispose()](#606719728) |  \(Implements [IDisposable.Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose)\) |
+| [Dispose(Boolean)](#2997239713) | |
 
-## Dispose\(\) <a id="DotMarkdown_MarkdownWriter_Dispose"></a>
+<a id="606719728"></a>
+
+## Dispose\(\) 
 
 ```csharp
 public void Dispose()
@@ -24,8 +26,9 @@ public void Dispose()
 ### Implements
 
 * [IDisposable.Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose)
+<a id="2997239713"></a>
 
-## Dispose\(Boolean\) <a id="DotMarkdown_MarkdownWriter_Dispose_System_Boolean_"></a>
+## Dispose\(Boolean\) 
 
 ```csharp
 protected virtual void Dispose(bool disposing)

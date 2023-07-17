@@ -12,18 +12,22 @@ sidebar_label: MBold
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MBold()](#DotMarkdown_Linq_MBold__ctor) | |
-| [MBold(MBold)](#DotMarkdown_Linq_MBold__ctor_DotMarkdown_Linq_MBold_) | |
-| [MBold(Object)](#DotMarkdown_Linq_MBold__ctor_System_Object_) | |
-| [MBold(Object\[\])](#DotMarkdown_Linq_MBold__ctor_System_Object___) | |
+| [MBold()](#1221484544) | |
+| [MBold(MBold)](#3106573690) | |
+| [MBold(Object)](#1443574569) | |
+| [MBold(Object\[\])](#2439774196) | |
 
-## MBold\(\) <a id="DotMarkdown_Linq_MBold__ctor"></a>
+<a id="1221484544"></a>
+
+## MBold\(\) 
 
 ```csharp
 public MBold()
 ```
 
-## MBold\(MBold\) <a id="DotMarkdown_Linq_MBold__ctor_DotMarkdown_Linq_MBold_"></a>
+<a id="3106573690"></a>
+
+## MBold\(MBold\) 
 
 ```csharp
 public MBold(DotMarkdown.Linq.MBold other)
@@ -31,9 +35,9 @@ public MBold(DotMarkdown.Linq.MBold other)
 
 ### Parameters
 
-**other** &ensp; [MBold](../index.md)
+**other** &ensp; [MBold](../index.md)<a id="1443574569"></a>
 
-## MBold\(Object\) <a id="DotMarkdown_Linq_MBold__ctor_System_Object_"></a>
+## MBold\(Object\) 
 
 ```csharp
 public MBold(object content)
@@ -41,9 +45,9 @@ public MBold(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="2439774196"></a>
 
-## MBold\(Object\[\]\) <a id="DotMarkdown_Linq_MBold__ctor_System_Object___"></a>
+## MBold\(Object\[\]\) 
 
 ```csharp
 public MBold(params object[] content)

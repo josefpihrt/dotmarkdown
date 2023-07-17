@@ -12,10 +12,12 @@ sidebar_label: Label
 
 | Method | Summary |
 | ------ | ------- |
-| [Label(MLabel)](#DotMarkdown_Linq_MFactory_Label_DotMarkdown_Linq_MLabel_) | |
-| [Label(String, String, String)](#DotMarkdown_Linq_MFactory_Label_System_String_System_String_System_String_) | |
+| [Label(MLabel)](#313027566) | |
+| [Label(String, String, String)](#1604231635) | |
 
-## Label\(MLabel\) <a id="DotMarkdown_Linq_MFactory_Label_DotMarkdown_Linq_MLabel_"></a>
+<a id="313027566"></a>
+
+## Label\(MLabel\) 
 
 ```csharp
 public static DotMarkdown.Linq.MLabel Label(DotMarkdown.Linq.MLabel other)
@@ -29,7 +31,9 @@ public static DotMarkdown.Linq.MLabel Label(DotMarkdown.Linq.MLabel other)
 
 [MLabel](../../MLabel/index.md)
 
-## Label\(String, String, String\) <a id="DotMarkdown_Linq_MFactory_Label_System_String_System_String_System_String_"></a>
+<a id="1604231635"></a>
+
+## Label\(String, String, String\) 
 
 ```csharp
 public static DotMarkdown.Linq.MLabel Label(string text, string url, string title = null)

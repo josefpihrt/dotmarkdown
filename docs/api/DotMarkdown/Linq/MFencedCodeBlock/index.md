@@ -20,8 +20,8 @@ public class MFencedCodeBlock : DotMarkdown.Linq.MElement
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MFencedCodeBlock(MFencedCodeBlock)](-ctor/index.md#DotMarkdown_Linq_MFencedCodeBlock__ctor_DotMarkdown_Linq_MFencedCodeBlock_) | |
-| [MFencedCodeBlock(String, String)](-ctor/index.md#DotMarkdown_Linq_MFencedCodeBlock__ctor_System_String_System_String_) | |
+| [MFencedCodeBlock(MFencedCodeBlock)](-ctor/index.md#2215519142) | |
+| [MFencedCodeBlock(String, String)](-ctor/index.md#3933934622) | |
 
 ## Properties
 
@@ -47,12 +47,12 @@ public class MFencedCodeBlock : DotMarkdown.Linq.MElement
 | [GetType()](https://docs.microsoft.com/en-us/dotnet/api/system.object.gettype) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |
 | [MemberwiseClone()](https://docs.microsoft.com/en-us/dotnet/api/system.object.memberwiseclone) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |
 | [Remove()](../MElement/Remove/index.md) |  \(Inherited from [MElement](../MElement/index.md)\) |
-| [Save(MarkdownWriter)](../MElement/Save/index.md#DotMarkdown_Linq_MElement_Save_DotMarkdown_MarkdownWriter_) |  \(Inherited from [MElement](../MElement/index.md)\) |
-| [Save(Stream, MarkdownFormat)](../MElement/Save/index.md#DotMarkdown_Linq_MElement_Save_System_IO_Stream_DotMarkdown_MarkdownFormat_) |  \(Inherited from [MElement](../MElement/index.md)\) |
-| [Save(String, MarkdownFormat)](../MElement/Save/index.md#DotMarkdown_Linq_MElement_Save_System_String_DotMarkdown_MarkdownFormat_) |  \(Inherited from [MElement](../MElement/index.md)\) |
-| [Save(TextWriter, MarkdownFormat)](../MElement/Save/index.md#DotMarkdown_Linq_MElement_Save_System_IO_TextWriter_DotMarkdown_MarkdownFormat_) |  \(Inherited from [MElement](../MElement/index.md)\) |
-| [ToString()](../MElement/ToString/index.md#DotMarkdown_Linq_MElement_ToString) |  \(Inherited from [MElement](../MElement/index.md)\) |
-| [ToString(MarkdownFormat)](../MElement/ToString/index.md#DotMarkdown_Linq_MElement_ToString_DotMarkdown_MarkdownFormat_) |  \(Inherited from [MElement](../MElement/index.md)\) |
-| [ToString(MarkdownWriterSettings)](../MElement/ToString/index.md#DotMarkdown_Linq_MElement_ToString_DotMarkdown_MarkdownWriterSettings_) |  \(Inherited from [MElement](../MElement/index.md)\) |
+| [Save(MarkdownWriter)](../MElement/Save/index.md#1605807764) |  \(Inherited from [MElement](../MElement/index.md)\) |
+| [Save(Stream, MarkdownFormat)](../MElement/Save/index.md#377468245) |  \(Inherited from [MElement](../MElement/index.md)\) |
+| [Save(String, MarkdownFormat)](../MElement/Save/index.md#3914377559) |  \(Inherited from [MElement](../MElement/index.md)\) |
+| [Save(TextWriter, MarkdownFormat)](../MElement/Save/index.md#3157011060) |  \(Inherited from [MElement](../MElement/index.md)\) |
+| [ToString()](../MElement/ToString/index.md#3980478763) |  \(Inherited from [MElement](../MElement/index.md)\) |
+| [ToString(MarkdownFormat)](../MElement/ToString/index.md#3726866586) |  \(Inherited from [MElement](../MElement/index.md)\) |
+| [ToString(MarkdownWriterSettings)](../MElement/ToString/index.md#1055640702) |  \(Inherited from [MElement](../MElement/index.md)\) |
 | [WriteTo(MarkdownWriter)](WriteTo/index.md) |  \(Overrides [MElement.WriteTo](../MElement/WriteTo/index.md)\) |
 

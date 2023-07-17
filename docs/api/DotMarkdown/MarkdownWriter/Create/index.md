@@ -12,14 +12,16 @@ sidebar_label: Create
 
 | Method | Summary |
 | ------ | ------- |
-| [Create(Stream, Encoding, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_IO_Stream_System_Text_Encoding_DotMarkdown_MarkdownWriterSettings_) | |
-| [Create(Stream, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_IO_Stream_DotMarkdown_MarkdownWriterSettings_) | |
-| [Create(String, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_String_DotMarkdown_MarkdownWriterSettings_) | |
-| [Create(StringBuilder, IFormatProvider, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_Text_StringBuilder_System_IFormatProvider_DotMarkdown_MarkdownWriterSettings_) | |
-| [Create(StringBuilder, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_Text_StringBuilder_DotMarkdown_MarkdownWriterSettings_) | |
-| [Create(TextWriter, MarkdownWriterSettings)](#DotMarkdown_MarkdownWriter_Create_System_IO_TextWriter_DotMarkdown_MarkdownWriterSettings_) | |
+| [Create(Stream, Encoding, MarkdownWriterSettings)](#1803453469) | |
+| [Create(Stream, MarkdownWriterSettings)](#2595698549) | |
+| [Create(String, MarkdownWriterSettings)](#3360061740) | |
+| [Create(StringBuilder, IFormatProvider, MarkdownWriterSettings)](#3111769310) | |
+| [Create(StringBuilder, MarkdownWriterSettings)](#1010978077) | |
+| [Create(TextWriter, MarkdownWriterSettings)](#2942469733) | |
 
-## Create\(Stream, Encoding, MarkdownWriterSettings\) <a id="DotMarkdown_MarkdownWriter_Create_System_IO_Stream_System_Text_Encoding_DotMarkdown_MarkdownWriterSettings_"></a>
+<a id="1803453469"></a>
+
+## Create\(Stream, Encoding, MarkdownWriterSettings\) 
 
 ```csharp
 public static DotMarkdown.MarkdownWriter Create(System.IO.Stream stream, System.Text.Encoding encoding, DotMarkdown.MarkdownWriterSettings settings = null)
@@ -37,7 +39,9 @@ public static DotMarkdown.MarkdownWriter Create(System.IO.Stream stream, System.
 
 [MarkdownWriter](../index.md)
 
-## Create\(Stream, MarkdownWriterSettings\) <a id="DotMarkdown_MarkdownWriter_Create_System_IO_Stream_DotMarkdown_MarkdownWriterSettings_"></a>
+<a id="2595698549"></a>
+
+## Create\(Stream, MarkdownWriterSettings\) 
 
 ```csharp
 public static DotMarkdown.MarkdownWriter Create(System.IO.Stream stream, DotMarkdown.MarkdownWriterSettings settings = null)
@@ -53,7 +57,9 @@ public static DotMarkdown.MarkdownWriter Create(System.IO.Stream stream, DotMark
 
 [MarkdownWriter](../index.md)
 
-## Create\(String, MarkdownWriterSettings\) <a id="DotMarkdown_MarkdownWriter_Create_System_String_DotMarkdown_MarkdownWriterSettings_"></a>
+<a id="3360061740"></a>
+
+## Create\(String, MarkdownWriterSettings\) 
 
 ```csharp
 public static DotMarkdown.MarkdownWriter Create(string fileName, DotMarkdown.MarkdownWriterSettings settings = null)
@@ -69,7 +75,9 @@ public static DotMarkdown.MarkdownWriter Create(string fileName, DotMarkdown.Mar
 
 [MarkdownWriter](../index.md)
 
-## Create\(StringBuilder, IFormatProvider, MarkdownWriterSettings\) <a id="DotMarkdown_MarkdownWriter_Create_System_Text_StringBuilder_System_IFormatProvider_DotMarkdown_MarkdownWriterSettings_"></a>
+<a id="3111769310"></a>
+
+## Create\(StringBuilder, IFormatProvider, MarkdownWriterSettings\) 
 
 ```csharp
 public static DotMarkdown.MarkdownWriter Create(System.Text.StringBuilder output, IFormatProvider formatProvider, DotMarkdown.MarkdownWriterSettings settings = null)
@@ -87,7 +95,9 @@ public static DotMarkdown.MarkdownWriter Create(System.Text.StringBuilder output
 
 [MarkdownWriter](../index.md)
 
-## Create\(StringBuilder, MarkdownWriterSettings\) <a id="DotMarkdown_MarkdownWriter_Create_System_Text_StringBuilder_DotMarkdown_MarkdownWriterSettings_"></a>
+<a id="1010978077"></a>
+
+## Create\(StringBuilder, MarkdownWriterSettings\) 
 
 ```csharp
 public static DotMarkdown.MarkdownWriter Create(System.Text.StringBuilder output, DotMarkdown.MarkdownWriterSettings settings = null)
@@ -103,7 +113,9 @@ public static DotMarkdown.MarkdownWriter Create(System.Text.StringBuilder output
 
 [MarkdownWriter](../index.md)
 
-## Create\(TextWriter, MarkdownWriterSettings\) <a id="DotMarkdown_MarkdownWriter_Create_System_IO_TextWriter_DotMarkdown_MarkdownWriterSettings_"></a>
+<a id="2942469733"></a>
+
+## Create\(TextWriter, MarkdownWriterSettings\) 
 
 ```csharp
 public static DotMarkdown.MarkdownWriter Create(System.IO.TextWriter output, DotMarkdown.MarkdownWriterSettings settings = null)

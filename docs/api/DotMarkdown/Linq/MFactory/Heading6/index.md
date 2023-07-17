@@ -12,11 +12,13 @@ sidebar_label: Heading6
 
 | Method | Summary |
 | ------ | ------- |
-| [Heading6()](#DotMarkdown_Linq_MFactory_Heading6) | |
-| [Heading6(Object)](#DotMarkdown_Linq_MFactory_Heading6_System_Object_) | |
-| [Heading6(Object\[\])](#DotMarkdown_Linq_MFactory_Heading6_System_Object___) | |
+| [Heading6()](#2544246913) | |
+| [Heading6(Object)](#1987621783) | |
+| [Heading6(Object\[\])](#3427028878) | |
 
-## Heading6\(\) <a id="DotMarkdown_Linq_MFactory_Heading6"></a>
+<a id="2544246913"></a>
+
+## Heading6\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHeading Heading6()
@@ -26,7 +28,9 @@ public static DotMarkdown.Linq.MHeading Heading6()
 
 [MHeading](../../MHeading/index.md)
 
-## Heading6\(Object\) <a id="DotMarkdown_Linq_MFactory_Heading6_System_Object_"></a>
+<a id="1987621783"></a>
+
+## Heading6\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHeading Heading6(object content)
@@ -40,7 +44,9 @@ public static DotMarkdown.Linq.MHeading Heading6(object content)
 
 [MHeading](../../MHeading/index.md)
 
-## Heading6\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Heading6_System_Object___"></a>
+<a id="3427028878"></a>
+
+## Heading6\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHeading Heading6(params object[] content)

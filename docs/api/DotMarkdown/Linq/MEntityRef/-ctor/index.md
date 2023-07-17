@@ -12,10 +12,12 @@ sidebar_label: MEntityRef
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MEntityRef(MEntityRef)](#DotMarkdown_Linq_MEntityRef__ctor_DotMarkdown_Linq_MEntityRef_) | |
-| [MEntityRef(String)](#DotMarkdown_Linq_MEntityRef__ctor_System_String_) | |
+| [MEntityRef(MEntityRef)](#286746329) | |
+| [MEntityRef(String)](#3732243605) | |
 
-## MEntityRef\(MEntityRef\) <a id="DotMarkdown_Linq_MEntityRef__ctor_DotMarkdown_Linq_MEntityRef_"></a>
+<a id="286746329"></a>
+
+## MEntityRef\(MEntityRef\) 
 
 ```csharp
 public MEntityRef(DotMarkdown.Linq.MEntityRef other)
@@ -23,9 +25,9 @@ public MEntityRef(DotMarkdown.Linq.MEntityRef other)
 
 ### Parameters
 
-**other** &ensp; [MEntityRef](../index.md)
+**other** &ensp; [MEntityRef](../index.md)<a id="3732243605"></a>
 
-## MEntityRef\(String\) <a id="DotMarkdown_Linq_MEntityRef__ctor_System_String_"></a>
+## MEntityRef\(String\) 
 
 ```csharp
 public MEntityRef(string name)

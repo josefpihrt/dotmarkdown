@@ -12,10 +12,12 @@ sidebar_label: Equals
 
 | Method | Summary |
 | ------ | ------- |
-| [Equals(MarkdownFormat)](#DotMarkdown_MarkdownFormat_Equals_DotMarkdown_MarkdownFormat_) |  \(Implements [IEquatable&lt;MarkdownFormat&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
-| [Equals(Object)](#DotMarkdown_MarkdownFormat_Equals_System_Object_) |  \(Overrides [Object.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.object.equals)\) |
+| [Equals(MarkdownFormat)](#3821670844) |  \(Implements [IEquatable&lt;MarkdownFormat&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
+| [Equals(Object)](#2318467644) |  \(Overrides [Object.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.object.equals)\) |
 
-## Equals\(MarkdownFormat\) <a id="DotMarkdown_MarkdownFormat_Equals_DotMarkdown_MarkdownFormat_"></a>
+<a id="3821670844"></a>
+
+## Equals\(MarkdownFormat\) 
 
 ```csharp
 public bool Equals(DotMarkdown.MarkdownFormat other)
@@ -32,8 +34,9 @@ public bool Equals(DotMarkdown.MarkdownFormat other)
 ### Implements
 
 * [IEquatable&lt;MarkdownFormat&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)
+<a id="2318467644"></a>
 
-## Equals\(Object\) <a id="DotMarkdown_MarkdownFormat_Equals_System_Object_"></a>
+## Equals\(Object\) 
 
 ```csharp
 public override bool Equals(object obj)

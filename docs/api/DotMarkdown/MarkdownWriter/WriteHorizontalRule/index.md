@@ -12,17 +12,21 @@ sidebar_label: WriteHorizontalRule
 
 | Method | Summary |
 | ------ | ------- |
-| [WriteHorizontalRule()](#DotMarkdown_MarkdownWriter_WriteHorizontalRule) | |
-| [WriteHorizontalRule(HorizontalRuleFormat)](#DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleFormat__) | |
-| [WriteHorizontalRule(HorizontalRuleStyle, Int32, String)](#DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_) | |
+| [WriteHorizontalRule()](#3448336783) | |
+| [WriteHorizontalRule(HorizontalRuleFormat)](#3263388817) | |
+| [WriteHorizontalRule(HorizontalRuleStyle, Int32, String)](#660685721) | |
 
-## WriteHorizontalRule\(\) <a id="DotMarkdown_MarkdownWriter_WriteHorizontalRule"></a>
+<a id="3448336783"></a>
+
+## WriteHorizontalRule\(\) 
 
 ```csharp
 public void WriteHorizontalRule()
 ```
 
-## WriteHorizontalRule\(HorizontalRuleFormat\) <a id="DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleFormat__"></a>
+<a id="3263388817"></a>
+
+## WriteHorizontalRule\(HorizontalRuleFormat\) 
 
 ```csharp
 public void WriteHorizontalRule(in DotMarkdown.HorizontalRuleFormat format)
@@ -30,9 +34,9 @@ public void WriteHorizontalRule(in DotMarkdown.HorizontalRuleFormat format)
 
 ### Parameters
 
-**format** &ensp; [HorizontalRuleFormat](../../HorizontalRuleFormat/index.md)
+**format** &ensp; [HorizontalRuleFormat](../../HorizontalRuleFormat/index.md)<a id="660685721"></a>
 
-## WriteHorizontalRule\(HorizontalRuleStyle, Int32, String\) <a id="DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_"></a>
+## WriteHorizontalRule\(HorizontalRuleStyle, Int32, String\) 
 
 ```csharp
 public abstract void WriteHorizontalRule(DotMarkdown.HorizontalRuleStyle style, int count = 3, string separator = " ")

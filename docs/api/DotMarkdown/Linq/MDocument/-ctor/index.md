@@ -12,18 +12,22 @@ sidebar_label: MDocument
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MDocument()](#DotMarkdown_Linq_MDocument__ctor) | |
-| [MDocument(MDocument)](#DotMarkdown_Linq_MDocument__ctor_DotMarkdown_Linq_MDocument_) | |
-| [MDocument(Object)](#DotMarkdown_Linq_MDocument__ctor_System_Object_) | |
-| [MDocument(Object\[\])](#DotMarkdown_Linq_MDocument__ctor_System_Object___) | |
+| [MDocument()](#2358206457) | |
+| [MDocument(MDocument)](#1279225569) | |
+| [MDocument(Object)](#2961059212) | |
+| [MDocument(Object\[\])](#1126449921) | |
 
-## MDocument\(\) <a id="DotMarkdown_Linq_MDocument__ctor"></a>
+<a id="2358206457"></a>
+
+## MDocument\(\) 
 
 ```csharp
 public MDocument()
 ```
 
-## MDocument\(MDocument\) <a id="DotMarkdown_Linq_MDocument__ctor_DotMarkdown_Linq_MDocument_"></a>
+<a id="1279225569"></a>
+
+## MDocument\(MDocument\) 
 
 ```csharp
 public MDocument(DotMarkdown.Linq.MDocument other)
@@ -31,9 +35,9 @@ public MDocument(DotMarkdown.Linq.MDocument other)
 
 ### Parameters
 
-**other** &ensp; [MDocument](../index.md)
+**other** &ensp; [MDocument](../index.md)<a id="2961059212"></a>
 
-## MDocument\(Object\) <a id="DotMarkdown_Linq_MDocument__ctor_System_Object_"></a>
+## MDocument\(Object\) 
 
 ```csharp
 public MDocument(object content)
@@ -41,9 +45,9 @@ public MDocument(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="1126449921"></a>
 
-## MDocument\(Object\[\]\) <a id="DotMarkdown_Linq_MDocument__ctor_System_Object___"></a>
+## MDocument\(Object\[\]\) 
 
 ```csharp
 public MDocument(params object[] content)

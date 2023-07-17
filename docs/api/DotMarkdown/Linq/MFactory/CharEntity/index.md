@@ -12,10 +12,12 @@ sidebar_label: CharEntity
 
 | Method | Summary |
 | ------ | ------- |
-| [CharEntity(Char)](#DotMarkdown_Linq_MFactory_CharEntity_System_Char_) | |
-| [CharEntity(MCharEntity)](#DotMarkdown_Linq_MFactory_CharEntity_DotMarkdown_Linq_MCharEntity_) | |
+| [CharEntity(Char)](#3389319600) | |
+| [CharEntity(MCharEntity)](#89799614) | |
 
-## CharEntity\(Char\) <a id="DotMarkdown_Linq_MFactory_CharEntity_System_Char_"></a>
+<a id="3389319600"></a>
+
+## CharEntity\(Char\) 
 
 ```csharp
 public static DotMarkdown.Linq.MCharEntity CharEntity(char value)
@@ -29,7 +31,9 @@ public static DotMarkdown.Linq.MCharEntity CharEntity(char value)
 
 [MCharEntity](../../MCharEntity/index.md)
 
-## CharEntity\(MCharEntity\) <a id="DotMarkdown_Linq_MFactory_CharEntity_DotMarkdown_Linq_MCharEntity_"></a>
+<a id="89799614"></a>
+
+## CharEntity\(MCharEntity\) 
 
 ```csharp
 public static DotMarkdown.Linq.MCharEntity CharEntity(DotMarkdown.Linq.MCharEntity other)

@@ -12,18 +12,22 @@ sidebar_label: MBulletItem
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MBulletItem()](#DotMarkdown_Linq_MBulletItem__ctor) | |
-| [MBulletItem(MBulletItem)](#DotMarkdown_Linq_MBulletItem__ctor_DotMarkdown_Linq_MBulletItem_) | |
-| [MBulletItem(Object)](#DotMarkdown_Linq_MBulletItem__ctor_System_Object_) | |
-| [MBulletItem(Object\[\])](#DotMarkdown_Linq_MBulletItem__ctor_System_Object___) | |
+| [MBulletItem()](#3624079543) | |
+| [MBulletItem(MBulletItem)](#52684905) | |
+| [MBulletItem(Object)](#2068995779) | |
+| [MBulletItem(Object\[\])](#242989829) | |
 
-## MBulletItem\(\) <a id="DotMarkdown_Linq_MBulletItem__ctor"></a>
+<a id="3624079543"></a>
+
+## MBulletItem\(\) 
 
 ```csharp
 public MBulletItem()
 ```
 
-## MBulletItem\(MBulletItem\) <a id="DotMarkdown_Linq_MBulletItem__ctor_DotMarkdown_Linq_MBulletItem_"></a>
+<a id="52684905"></a>
+
+## MBulletItem\(MBulletItem\) 
 
 ```csharp
 public MBulletItem(DotMarkdown.Linq.MBulletItem other)
@@ -31,9 +35,9 @@ public MBulletItem(DotMarkdown.Linq.MBulletItem other)
 
 ### Parameters
 
-**other** &ensp; [MBulletItem](../index.md)
+**other** &ensp; [MBulletItem](../index.md)<a id="2068995779"></a>
 
-## MBulletItem\(Object\) <a id="DotMarkdown_Linq_MBulletItem__ctor_System_Object_"></a>
+## MBulletItem\(Object\) 
 
 ```csharp
 public MBulletItem(object content)
@@ -41,9 +45,9 @@ public MBulletItem(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="242989829"></a>
 
-## MBulletItem\(Object\[\]\) <a id="DotMarkdown_Linq_MBulletItem__ctor_System_Object___"></a>
+## MBulletItem\(Object\[\]\) 
 
 ```csharp
 public MBulletItem(params object[] content)

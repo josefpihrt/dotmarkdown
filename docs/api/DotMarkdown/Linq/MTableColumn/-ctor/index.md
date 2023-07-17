@@ -12,22 +12,14 @@ sidebar_label: MTableColumn
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MTableColumn(HorizontalAlignment)](#DotMarkdown_Linq_MTableColumn__ctor_DotMarkdown_HorizontalAlignment_) | |
-| [MTableColumn(HorizontalAlignment, Object)](#DotMarkdown_Linq_MTableColumn__ctor_DotMarkdown_HorizontalAlignment_System_Object_) | |
-| [MTableColumn(HorizontalAlignment, Object\[\])](#DotMarkdown_Linq_MTableColumn__ctor_DotMarkdown_HorizontalAlignment_System_Object___) | |
-| [MTableColumn(MTableColumn)](#DotMarkdown_Linq_MTableColumn__ctor_DotMarkdown_Linq_MTableColumn_) | |
+| [MTableColumn(HorizontalAlignment, Object)](#3800870480) | |
+| [MTableColumn(HorizontalAlignment, Object\[\])](#910964193) | |
+| [MTableColumn(HorizontalAlignment)](#3196476806) | |
+| [MTableColumn(MTableColumn)](#2452917158) | |
 
-## MTableColumn\(HorizontalAlignment\) <a id="DotMarkdown_Linq_MTableColumn__ctor_DotMarkdown_HorizontalAlignment_"></a>
+<a id="3800870480"></a>
 
-```csharp
-public MTableColumn(DotMarkdown.HorizontalAlignment alignment)
-```
-
-### Parameters
-
-**alignment** &ensp; [HorizontalAlignment](../../../HorizontalAlignment/index.md)
-
-## MTableColumn\(HorizontalAlignment, Object\) <a id="DotMarkdown_Linq_MTableColumn__ctor_DotMarkdown_HorizontalAlignment_System_Object_"></a>
+## MTableColumn\(HorizontalAlignment, Object\) 
 
 ```csharp
 public MTableColumn(DotMarkdown.HorizontalAlignment alignment, object content)
@@ -37,9 +29,9 @@ public MTableColumn(DotMarkdown.HorizontalAlignment alignment, object content)
 
 **alignment** &ensp; [HorizontalAlignment](../../../HorizontalAlignment/index.md)
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="910964193"></a>
 
-## MTableColumn\(HorizontalAlignment, Object\[\]\) <a id="DotMarkdown_Linq_MTableColumn__ctor_DotMarkdown_HorizontalAlignment_System_Object___"></a>
+## MTableColumn\(HorizontalAlignment, Object\[\]\) 
 
 ```csharp
 public MTableColumn(DotMarkdown.HorizontalAlignment alignment, params object[] content)
@@ -49,9 +41,19 @@ public MTableColumn(DotMarkdown.HorizontalAlignment alignment, params object[] c
 
 **alignment** &ensp; [HorizontalAlignment](../../../HorizontalAlignment/index.md)
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]<a id="3196476806"></a>
 
-## MTableColumn\(MTableColumn\) <a id="DotMarkdown_Linq_MTableColumn__ctor_DotMarkdown_Linq_MTableColumn_"></a>
+## MTableColumn\(HorizontalAlignment\) 
+
+```csharp
+public MTableColumn(DotMarkdown.HorizontalAlignment alignment)
+```
+
+### Parameters
+
+**alignment** &ensp; [HorizontalAlignment](../../../HorizontalAlignment/index.md)<a id="2452917158"></a>
+
+## MTableColumn\(MTableColumn\) 
 
 ```csharp
 public MTableColumn(DotMarkdown.Linq.MTableColumn other)

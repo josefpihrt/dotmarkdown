@@ -12,18 +12,22 @@ sidebar_label: MTaskList
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MTaskList()](#DotMarkdown_Linq_MTaskList__ctor) | |
-| [MTaskList(MTaskList)](#DotMarkdown_Linq_MTaskList__ctor_DotMarkdown_Linq_MTaskList_) | |
-| [MTaskList(Object)](#DotMarkdown_Linq_MTaskList__ctor_System_Object_) | |
-| [MTaskList(Object\[\])](#DotMarkdown_Linq_MTaskList__ctor_System_Object___) | |
+| [MTaskList()](#21926318) | |
+| [MTaskList(MTaskList)](#3945801054) | |
+| [MTaskList(Object)](#1621305411) | |
+| [MTaskList(Object\[\])](#921628457) | |
 
-## MTaskList\(\) <a id="DotMarkdown_Linq_MTaskList__ctor"></a>
+<a id="21926318"></a>
+
+## MTaskList\(\) 
 
 ```csharp
 public MTaskList()
 ```
 
-## MTaskList\(MTaskList\) <a id="DotMarkdown_Linq_MTaskList__ctor_DotMarkdown_Linq_MTaskList_"></a>
+<a id="3945801054"></a>
+
+## MTaskList\(MTaskList\) 
 
 ```csharp
 public MTaskList(DotMarkdown.Linq.MTaskList other)
@@ -31,9 +35,9 @@ public MTaskList(DotMarkdown.Linq.MTaskList other)
 
 ### Parameters
 
-**other** &ensp; [MTaskList](../index.md)
+**other** &ensp; [MTaskList](../index.md)<a id="1621305411"></a>
 
-## MTaskList\(Object\) <a id="DotMarkdown_Linq_MTaskList__ctor_System_Object_"></a>
+## MTaskList\(Object\) 
 
 ```csharp
 public MTaskList(object content)
@@ -41,9 +45,9 @@ public MTaskList(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="921628457"></a>
 
-## MTaskList\(Object\[\]\) <a id="DotMarkdown_Linq_MTaskList__ctor_System_Object___"></a>
+## MTaskList\(Object\[\]\) 
 
 ```csharp
 public MTaskList(params object[] content)

@@ -12,12 +12,14 @@ sidebar_label: Italic
 
 | Method | Summary |
 | ------ | ------- |
-| [Italic()](#DotMarkdown_Linq_MFactory_Italic) | |
-| [Italic(MItalic)](#DotMarkdown_Linq_MFactory_Italic_DotMarkdown_Linq_MItalic_) | |
-| [Italic(Object)](#DotMarkdown_Linq_MFactory_Italic_System_Object_) | |
-| [Italic(Object\[\])](#DotMarkdown_Linq_MFactory_Italic_System_Object___) | |
+| [Italic()](#1900336662) | |
+| [Italic(MItalic)](#2781687431) | |
+| [Italic(Object)](#3059732948) | |
+| [Italic(Object\[\])](#1808954625) | |
 
-## Italic\(\) <a id="DotMarkdown_Linq_MFactory_Italic"></a>
+<a id="1900336662"></a>
+
+## Italic\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MItalic Italic()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MItalic Italic()
 
 [MItalic](../../MItalic/index.md)
 
-## Italic\(MItalic\) <a id="DotMarkdown_Linq_MFactory_Italic_DotMarkdown_Linq_MItalic_"></a>
+<a id="2781687431"></a>
+
+## Italic\(MItalic\) 
 
 ```csharp
 public static DotMarkdown.Linq.MItalic Italic(DotMarkdown.Linq.MItalic other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MItalic Italic(DotMarkdown.Linq.MItalic other)
 
 [MItalic](../../MItalic/index.md)
 
-## Italic\(Object\) <a id="DotMarkdown_Linq_MFactory_Italic_System_Object_"></a>
+<a id="3059732948"></a>
+
+## Italic\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MItalic Italic(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MItalic Italic(object content)
 
 [MItalic](../../MItalic/index.md)
 
-## Italic\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Italic_System_Object___"></a>
+<a id="1808954625"></a>
+
+## Italic\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MItalic Italic(params object[] content)

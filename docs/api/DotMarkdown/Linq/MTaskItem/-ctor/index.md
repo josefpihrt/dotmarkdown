@@ -12,22 +12,14 @@ sidebar_label: MTaskItem
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MTaskItem(Boolean)](#DotMarkdown_Linq_MTaskItem__ctor_System_Boolean_) | |
-| [MTaskItem(Boolean, Object)](#DotMarkdown_Linq_MTaskItem__ctor_System_Boolean_System_Object_) | |
-| [MTaskItem(Boolean, Object\[\])](#DotMarkdown_Linq_MTaskItem__ctor_System_Boolean_System_Object___) | |
-| [MTaskItem(MTaskItem)](#DotMarkdown_Linq_MTaskItem__ctor_DotMarkdown_Linq_MTaskItem_) | |
+| [MTaskItem(Boolean, Object)](#33130631) | |
+| [MTaskItem(Boolean, Object\[\])](#3157797282) | |
+| [MTaskItem(Boolean)](#83663725) | |
+| [MTaskItem(MTaskItem)](#4043065334) | |
 
-## MTaskItem\(Boolean\) <a id="DotMarkdown_Linq_MTaskItem__ctor_System_Boolean_"></a>
+<a id="33130631"></a>
 
-```csharp
-public MTaskItem(bool isCompleted)
-```
-
-### Parameters
-
-**isCompleted** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
-
-## MTaskItem\(Boolean, Object\) <a id="DotMarkdown_Linq_MTaskItem__ctor_System_Boolean_System_Object_"></a>
+## MTaskItem\(Boolean, Object\) 
 
 ```csharp
 public MTaskItem(bool isCompleted, object content)
@@ -37,9 +29,9 @@ public MTaskItem(bool isCompleted, object content)
 
 **isCompleted** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="3157797282"></a>
 
-## MTaskItem\(Boolean, Object\[\]\) <a id="DotMarkdown_Linq_MTaskItem__ctor_System_Boolean_System_Object___"></a>
+## MTaskItem\(Boolean, Object\[\]\) 
 
 ```csharp
 public MTaskItem(bool isCompleted, params object[] content)
@@ -49,9 +41,19 @@ public MTaskItem(bool isCompleted, params object[] content)
 
 **isCompleted** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]<a id="83663725"></a>
 
-## MTaskItem\(MTaskItem\) <a id="DotMarkdown_Linq_MTaskItem__ctor_DotMarkdown_Linq_MTaskItem_"></a>
+## MTaskItem\(Boolean\) 
+
+```csharp
+public MTaskItem(bool isCompleted)
+```
+
+### Parameters
+
+**isCompleted** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)<a id="4043065334"></a>
+
+## MTaskItem\(MTaskItem\) 
 
 ```csharp
 public MTaskItem(DotMarkdown.Linq.MTaskItem other)

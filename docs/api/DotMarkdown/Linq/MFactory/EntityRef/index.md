@@ -12,10 +12,12 @@ sidebar_label: EntityRef
 
 | Method | Summary |
 | ------ | ------- |
-| [EntityRef(MEntityRef)](#DotMarkdown_Linq_MFactory_EntityRef_DotMarkdown_Linq_MEntityRef_) | |
-| [EntityRef(String)](#DotMarkdown_Linq_MFactory_EntityRef_System_String_) | |
+| [EntityRef(MEntityRef)](#975697902) | |
+| [EntityRef(String)](#388858259) | |
 
-## EntityRef\(MEntityRef\) <a id="DotMarkdown_Linq_MFactory_EntityRef_DotMarkdown_Linq_MEntityRef_"></a>
+<a id="975697902"></a>
+
+## EntityRef\(MEntityRef\) 
 
 ```csharp
 public static DotMarkdown.Linq.MEntityRef EntityRef(DotMarkdown.Linq.MEntityRef other)
@@ -29,7 +31,9 @@ public static DotMarkdown.Linq.MEntityRef EntityRef(DotMarkdown.Linq.MEntityRef 
 
 [MEntityRef](../../MEntityRef/index.md)
 
-## EntityRef\(String\) <a id="DotMarkdown_Linq_MFactory_EntityRef_System_String_"></a>
+<a id="388858259"></a>
+
+## EntityRef\(String\) 
 
 ```csharp
 public static DotMarkdown.Linq.MEntityRef EntityRef(string name)

@@ -12,12 +12,14 @@ sidebar_label: OrderedList
 
 | Method | Summary |
 | ------ | ------- |
-| [OrderedList()](#DotMarkdown_Linq_MFactory_OrderedList) | |
-| [OrderedList(MOrderedList)](#DotMarkdown_Linq_MFactory_OrderedList_DotMarkdown_Linq_MOrderedList_) | |
-| [OrderedList(Object)](#DotMarkdown_Linq_MFactory_OrderedList_System_Object_) | |
-| [OrderedList(Object\[\])](#DotMarkdown_Linq_MFactory_OrderedList_System_Object___) | |
+| [OrderedList()](#428165435) | |
+| [OrderedList(MOrderedList)](#515656494) | |
+| [OrderedList(Object)](#2839132855) | |
+| [OrderedList(Object\[\])](#1198502564) | |
 
-## OrderedList\(\) <a id="DotMarkdown_Linq_MFactory_OrderedList"></a>
+<a id="428165435"></a>
+
+## OrderedList\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MOrderedList OrderedList()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MOrderedList OrderedList()
 
 [MOrderedList](../../MOrderedList/index.md)
 
-## OrderedList\(MOrderedList\) <a id="DotMarkdown_Linq_MFactory_OrderedList_DotMarkdown_Linq_MOrderedList_"></a>
+<a id="515656494"></a>
+
+## OrderedList\(MOrderedList\) 
 
 ```csharp
 public static DotMarkdown.Linq.MOrderedList OrderedList(DotMarkdown.Linq.MOrderedList other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MOrderedList OrderedList(DotMarkdown.Linq.MOrdere
 
 [MOrderedList](../../MOrderedList/index.md)
 
-## OrderedList\(Object\) <a id="DotMarkdown_Linq_MFactory_OrderedList_System_Object_"></a>
+<a id="2839132855"></a>
+
+## OrderedList\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MOrderedList OrderedList(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MOrderedList OrderedList(object content)
 
 [MOrderedList](../../MOrderedList/index.md)
 
-## OrderedList\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_OrderedList_System_Object___"></a>
+<a id="1198502564"></a>
+
+## OrderedList\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MOrderedList OrderedList(params object[] content)

@@ -12,26 +12,14 @@ sidebar_label: TaskItem
 
 | Method | Summary |
 | ------ | ------- |
-| [TaskItem(Boolean)](#DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_) | |
-| [TaskItem(Boolean, Object)](#DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_System_Object_) | |
-| [TaskItem(Boolean, Object\[\])](#DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_System_Object___) | |
-| [TaskItem(MTaskItem)](#DotMarkdown_Linq_MFactory_TaskItem_DotMarkdown_Linq_MTaskItem_) | |
+| [TaskItem(Boolean, Object)](#1042399140) | |
+| [TaskItem(Boolean, Object\[\])](#1518315464) | |
+| [TaskItem(Boolean)](#1892159258) | |
+| [TaskItem(MTaskItem)](#2860550771) | |
 
-## TaskItem\(Boolean\) <a id="DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_"></a>
+<a id="1042399140"></a>
 
-```csharp
-public static DotMarkdown.Linq.MTaskItem TaskItem(bool isCompleted)
-```
-
-### Parameters
-
-**isCompleted** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
-
-### Returns
-
-[MTaskItem](../../MTaskItem/index.md)
-
-## TaskItem\(Boolean, Object\) <a id="DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_System_Object_"></a>
+## TaskItem\(Boolean, Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTaskItem TaskItem(bool isCompleted, object content)
@@ -47,7 +35,9 @@ public static DotMarkdown.Linq.MTaskItem TaskItem(bool isCompleted, object conte
 
 [MTaskItem](../../MTaskItem/index.md)
 
-## TaskItem\(Boolean, Object\[\]\) <a id="DotMarkdown_Linq_MFactory_TaskItem_System_Boolean_System_Object___"></a>
+<a id="1518315464"></a>
+
+## TaskItem\(Boolean, Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTaskItem TaskItem(bool isCompleted, params object[] content)
@@ -63,7 +53,25 @@ public static DotMarkdown.Linq.MTaskItem TaskItem(bool isCompleted, params objec
 
 [MTaskItem](../../MTaskItem/index.md)
 
-## TaskItem\(MTaskItem\) <a id="DotMarkdown_Linq_MFactory_TaskItem_DotMarkdown_Linq_MTaskItem_"></a>
+<a id="1892159258"></a>
+
+## TaskItem\(Boolean\) 
+
+```csharp
+public static DotMarkdown.Linq.MTaskItem TaskItem(bool isCompleted)
+```
+
+### Parameters
+
+**isCompleted** &ensp; [Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
+
+### Returns
+
+[MTaskItem](../../MTaskItem/index.md)
+
+<a id="2860550771"></a>
+
+## TaskItem\(MTaskItem\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTaskItem TaskItem(DotMarkdown.Linq.MTaskItem other)

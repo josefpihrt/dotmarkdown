@@ -12,10 +12,12 @@ sidebar_label: Add
 
 | Method | Summary |
 | ------ | ------- |
-| [Add(Object)](#DotMarkdown_Linq_MContainer_Add_System_Object_) | |
-| [Add(Object\[\])](#DotMarkdown_Linq_MContainer_Add_System_Object___) | |
+| [Add(Object)](#3875543708) | |
+| [Add(Object\[\])](#675654701) | |
 
-## Add\(Object\) <a id="DotMarkdown_Linq_MContainer_Add_System_Object_"></a>
+<a id="3875543708"></a>
+
+## Add\(Object\) 
 
 ```csharp
 public void Add(object content)
@@ -23,9 +25,9 @@ public void Add(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="675654701"></a>
 
-## Add\(Object\[\]\) <a id="DotMarkdown_Linq_MContainer_Add_System_Object___"></a>
+## Add\(Object\[\]\) 
 
 ```csharp
 public void Add(params object[] content)

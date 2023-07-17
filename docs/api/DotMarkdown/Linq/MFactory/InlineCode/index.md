@@ -12,10 +12,12 @@ sidebar_label: InlineCode
 
 | Method | Summary |
 | ------ | ------- |
-| [InlineCode(MInlineCode)](#DotMarkdown_Linq_MFactory_InlineCode_DotMarkdown_Linq_MInlineCode_) | |
-| [InlineCode(String)](#DotMarkdown_Linq_MFactory_InlineCode_System_String_) | |
+| [InlineCode(MInlineCode)](#1409845596) | |
+| [InlineCode(String)](#62965249) | |
 
-## InlineCode\(MInlineCode\) <a id="DotMarkdown_Linq_MFactory_InlineCode_DotMarkdown_Linq_MInlineCode_"></a>
+<a id="1409845596"></a>
+
+## InlineCode\(MInlineCode\) 
 
 ```csharp
 public static DotMarkdown.Linq.MInlineCode InlineCode(DotMarkdown.Linq.MInlineCode other)
@@ -29,7 +31,9 @@ public static DotMarkdown.Linq.MInlineCode InlineCode(DotMarkdown.Linq.MInlineCo
 
 [MInlineCode](../../MInlineCode/index.md)
 
-## InlineCode\(String\) <a id="DotMarkdown_Linq_MFactory_InlineCode_System_String_"></a>
+<a id="62965249"></a>
+
+## InlineCode\(String\) 
 
 ```csharp
 public static DotMarkdown.Linq.MInlineCode InlineCode(string text)

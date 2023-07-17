@@ -12,10 +12,12 @@ sidebar_label: Join
 
 | Method | Summary |
 | ------ | ------- |
-| [Join(Object, IEnumerable&lt;Object&gt;)](#DotMarkdown_Linq_MFactory_Join_System_Object_System_Collections_Generic_IEnumerable_System_Object__) | |
-| [Join(Object, Object\[\])](#DotMarkdown_Linq_MFactory_Join_System_Object_System_Object___) | |
+| [Join(Object, IEnumerable&lt;Object&gt;)](#4152446612) | |
+| [Join(Object, Object\[\])](#2035073235) | |
 
-## Join\(Object, IEnumerable&lt;Object&gt;\) <a id="DotMarkdown_Linq_MFactory_Join_System_Object_System_Collections_Generic_IEnumerable_System_Object__"></a>
+<a id="4152446612"></a>
+
+## Join\(Object, IEnumerable&lt;Object&gt;\) 
 
 ```csharp
 public static DotMarkdown.Linq.MInline Join(object separator, System.Collections.Generic.IEnumerable<object> values)
@@ -31,7 +33,9 @@ public static DotMarkdown.Linq.MInline Join(object separator, System.Collections
 
 [MInline](../../MInline/index.md)
 
-## Join\(Object, Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Join_System_Object_System_Object___"></a>
+<a id="2035073235"></a>
+
+## Join\(Object, Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MInline Join(object separator, params object[] values)

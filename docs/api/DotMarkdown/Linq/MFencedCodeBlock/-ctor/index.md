@@ -12,10 +12,12 @@ sidebar_label: MFencedCodeBlock
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MFencedCodeBlock(MFencedCodeBlock)](#DotMarkdown_Linq_MFencedCodeBlock__ctor_DotMarkdown_Linq_MFencedCodeBlock_) | |
-| [MFencedCodeBlock(String, String)](#DotMarkdown_Linq_MFencedCodeBlock__ctor_System_String_System_String_) | |
+| [MFencedCodeBlock(MFencedCodeBlock)](#2215519142) | |
+| [MFencedCodeBlock(String, String)](#3933934622) | |
 
-## MFencedCodeBlock\(MFencedCodeBlock\) <a id="DotMarkdown_Linq_MFencedCodeBlock__ctor_DotMarkdown_Linq_MFencedCodeBlock_"></a>
+<a id="2215519142"></a>
+
+## MFencedCodeBlock\(MFencedCodeBlock\) 
 
 ```csharp
 public MFencedCodeBlock(DotMarkdown.Linq.MFencedCodeBlock other)
@@ -23,9 +25,9 @@ public MFencedCodeBlock(DotMarkdown.Linq.MFencedCodeBlock other)
 
 ### Parameters
 
-**other** &ensp; [MFencedCodeBlock](../index.md)
+**other** &ensp; [MFencedCodeBlock](../index.md)<a id="3933934622"></a>
 
-## MFencedCodeBlock\(String, String\) <a id="DotMarkdown_Linq_MFencedCodeBlock__ctor_System_String_System_String_"></a>
+## MFencedCodeBlock\(String, String\) 
 
 ```csharp
 public MFencedCodeBlock(string text, string info = null)

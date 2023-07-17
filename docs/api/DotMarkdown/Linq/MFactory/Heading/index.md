@@ -12,26 +12,14 @@ sidebar_label: Heading
 
 | Method | Summary |
 | ------ | ------- |
-| [Heading(Int32)](#DotMarkdown_Linq_MFactory_Heading_System_Int32_) | |
-| [Heading(Int32, Object)](#DotMarkdown_Linq_MFactory_Heading_System_Int32_System_Object_) | |
-| [Heading(Int32, Object\[\])](#DotMarkdown_Linq_MFactory_Heading_System_Int32_System_Object___) | |
-| [Heading(MHeading)](#DotMarkdown_Linq_MFactory_Heading_DotMarkdown_Linq_MHeading_) | |
+| [Heading(Int32, Object)](#2213022987) | |
+| [Heading(Int32, Object\[\])](#2199750411) | |
+| [Heading(Int32)](#609207058) | |
+| [Heading(MHeading)](#2707149169) | |
 
-## Heading\(Int32\) <a id="DotMarkdown_Linq_MFactory_Heading_System_Int32_"></a>
+<a id="2213022987"></a>
 
-```csharp
-public static DotMarkdown.Linq.MHeading Heading(int level)
-```
-
-### Parameters
-
-**level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
-
-### Returns
-
-[MHeading](../../MHeading/index.md)
-
-## Heading\(Int32, Object\) <a id="DotMarkdown_Linq_MFactory_Heading_System_Int32_System_Object_"></a>
+## Heading\(Int32, Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHeading Heading(int level, object content)
@@ -47,7 +35,9 @@ public static DotMarkdown.Linq.MHeading Heading(int level, object content)
 
 [MHeading](../../MHeading/index.md)
 
-## Heading\(Int32, Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Heading_System_Int32_System_Object___"></a>
+<a id="2199750411"></a>
+
+## Heading\(Int32, Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHeading Heading(int level, params object[] content)
@@ -63,7 +53,25 @@ public static DotMarkdown.Linq.MHeading Heading(int level, params object[] conte
 
 [MHeading](../../MHeading/index.md)
 
-## Heading\(MHeading\) <a id="DotMarkdown_Linq_MFactory_Heading_DotMarkdown_Linq_MHeading_"></a>
+<a id="609207058"></a>
+
+## Heading\(Int32\) 
+
+```csharp
+public static DotMarkdown.Linq.MHeading Heading(int level)
+```
+
+### Parameters
+
+**level** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
+
+### Returns
+
+[MHeading](../../MHeading/index.md)
+
+<a id="2707149169"></a>
+
+## Heading\(MHeading\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHeading Heading(DotMarkdown.Linq.MHeading other)

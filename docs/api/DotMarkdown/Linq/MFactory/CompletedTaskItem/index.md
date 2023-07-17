@@ -12,11 +12,13 @@ sidebar_label: CompletedTaskItem
 
 | Method | Summary |
 | ------ | ------- |
-| [CompletedTaskItem()](#DotMarkdown_Linq_MFactory_CompletedTaskItem) | |
-| [CompletedTaskItem(Object)](#DotMarkdown_Linq_MFactory_CompletedTaskItem_System_Object_) | |
-| [CompletedTaskItem(Object\[\])](#DotMarkdown_Linq_MFactory_CompletedTaskItem_System_Object___) | |
+| [CompletedTaskItem()](#3191243664) | |
+| [CompletedTaskItem(Object)](#3462498905) | |
+| [CompletedTaskItem(Object\[\])](#4132288569) | |
 
-## CompletedTaskItem\(\) <a id="DotMarkdown_Linq_MFactory_CompletedTaskItem"></a>
+<a id="3191243664"></a>
+
+## CompletedTaskItem\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTaskItem CompletedTaskItem()
@@ -26,7 +28,9 @@ public static DotMarkdown.Linq.MTaskItem CompletedTaskItem()
 
 [MTaskItem](../../MTaskItem/index.md)
 
-## CompletedTaskItem\(Object\) <a id="DotMarkdown_Linq_MFactory_CompletedTaskItem_System_Object_"></a>
+<a id="3462498905"></a>
+
+## CompletedTaskItem\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTaskItem CompletedTaskItem(object content)
@@ -40,7 +44,9 @@ public static DotMarkdown.Linq.MTaskItem CompletedTaskItem(object content)
 
 [MTaskItem](../../MTaskItem/index.md)
 
-## CompletedTaskItem\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_CompletedTaskItem_System_Object___"></a>
+<a id="4132288569"></a>
+
+## CompletedTaskItem\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTaskItem CompletedTaskItem(params object[] content)

@@ -12,12 +12,14 @@ sidebar_label: Inline
 
 | Method | Summary |
 | ------ | ------- |
-| [Inline()](#DotMarkdown_Linq_MFactory_Inline) | |
-| [Inline(MInline)](#DotMarkdown_Linq_MFactory_Inline_DotMarkdown_Linq_MInline_) | |
-| [Inline(Object)](#DotMarkdown_Linq_MFactory_Inline_System_Object_) | |
-| [Inline(Object\[\])](#DotMarkdown_Linq_MFactory_Inline_System_Object___) | |
+| [Inline()](#1480845763) | |
+| [Inline(MInline)](#1827862098) | |
+| [Inline(Object)](#1552204740) | |
+| [Inline(Object\[\])](#1081218632) | |
 
-## Inline\(\) <a id="DotMarkdown_Linq_MFactory_Inline"></a>
+<a id="1480845763"></a>
+
+## Inline\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MInline Inline()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MInline Inline()
 
 [MInline](../../MInline/index.md)
 
-## Inline\(MInline\) <a id="DotMarkdown_Linq_MFactory_Inline_DotMarkdown_Linq_MInline_"></a>
+<a id="1827862098"></a>
+
+## Inline\(MInline\) 
 
 ```csharp
 public static DotMarkdown.Linq.MInline Inline(DotMarkdown.Linq.MInline other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MInline Inline(DotMarkdown.Linq.MInline other)
 
 [MInline](../../MInline/index.md)
 
-## Inline\(Object\) <a id="DotMarkdown_Linq_MFactory_Inline_System_Object_"></a>
+<a id="1552204740"></a>
+
+## Inline\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MInline Inline(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MInline Inline(object content)
 
 [MInline](../../MInline/index.md)
 
-## Inline\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Inline_System_Object___"></a>
+<a id="1081218632"></a>
+
+## Inline\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MInline Inline(params object[] content)

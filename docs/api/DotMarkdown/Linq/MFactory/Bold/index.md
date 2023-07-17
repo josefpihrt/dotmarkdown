@@ -12,12 +12,14 @@ sidebar_label: Bold
 
 | Method | Summary |
 | ------ | ------- |
-| [Bold()](#DotMarkdown_Linq_MFactory_Bold) | |
-| [Bold(MBold)](#DotMarkdown_Linq_MFactory_Bold_DotMarkdown_Linq_MBold_) | |
-| [Bold(Object)](#DotMarkdown_Linq_MFactory_Bold_System_Object_) | |
-| [Bold(Object\[\])](#DotMarkdown_Linq_MFactory_Bold_System_Object___) | |
+| [Bold()](#1179551163) | |
+| [Bold(MBold)](#572484834) | |
+| [Bold(Object)](#3241577289) | |
+| [Bold(Object\[\])](#3509752289) | |
 
-## Bold\(\) <a id="DotMarkdown_Linq_MFactory_Bold"></a>
+<a id="1179551163"></a>
+
+## Bold\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBold Bold()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MBold Bold()
 
 [MBold](../../MBold/index.md)
 
-## Bold\(MBold\) <a id="DotMarkdown_Linq_MFactory_Bold_DotMarkdown_Linq_MBold_"></a>
+<a id="572484834"></a>
+
+## Bold\(MBold\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBold Bold(DotMarkdown.Linq.MBold other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MBold Bold(DotMarkdown.Linq.MBold other)
 
 [MBold](../../MBold/index.md)
 
-## Bold\(Object\) <a id="DotMarkdown_Linq_MFactory_Bold_System_Object_"></a>
+<a id="3241577289"></a>
+
+## Bold\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBold Bold(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MBold Bold(object content)
 
 [MBold](../../MBold/index.md)
 
-## Bold\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Bold_System_Object___"></a>
+<a id="3509752289"></a>
+
+## Bold\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBold Bold(params object[] content)

@@ -12,18 +12,22 @@ sidebar_label: MBlockContainer
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MBlockContainer()](#DotMarkdown_Linq_MBlockContainer__ctor) | |
-| [MBlockContainer(MBlockContainer)](#DotMarkdown_Linq_MBlockContainer__ctor_DotMarkdown_Linq_MBlockContainer_) | |
-| [MBlockContainer(Object)](#DotMarkdown_Linq_MBlockContainer__ctor_System_Object_) | |
-| [MBlockContainer(Object\[\])](#DotMarkdown_Linq_MBlockContainer__ctor_System_Object___) | |
+| [MBlockContainer()](#2266535746) | |
+| [MBlockContainer(MBlockContainer)](#1909925885) | |
+| [MBlockContainer(Object)](#2343752315) | |
+| [MBlockContainer(Object\[\])](#358767368) | |
 
-## MBlockContainer\(\) <a id="DotMarkdown_Linq_MBlockContainer__ctor"></a>
+<a id="2266535746"></a>
+
+## MBlockContainer\(\) 
 
 ```csharp
 protected MBlockContainer()
 ```
 
-## MBlockContainer\(MBlockContainer\) <a id="DotMarkdown_Linq_MBlockContainer__ctor_DotMarkdown_Linq_MBlockContainer_"></a>
+<a id="1909925885"></a>
+
+## MBlockContainer\(MBlockContainer\) 
 
 ```csharp
 protected MBlockContainer(DotMarkdown.Linq.MBlockContainer other)
@@ -31,9 +35,9 @@ protected MBlockContainer(DotMarkdown.Linq.MBlockContainer other)
 
 ### Parameters
 
-**other** &ensp; [MBlockContainer](../index.md)
+**other** &ensp; [MBlockContainer](../index.md)<a id="2343752315"></a>
 
-## MBlockContainer\(Object\) <a id="DotMarkdown_Linq_MBlockContainer__ctor_System_Object_"></a>
+## MBlockContainer\(Object\) 
 
 ```csharp
 protected MBlockContainer(object content)
@@ -41,9 +45,9 @@ protected MBlockContainer(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="358767368"></a>
 
-## MBlockContainer\(Object\[\]\) <a id="DotMarkdown_Linq_MBlockContainer__ctor_System_Object___"></a>
+## MBlockContainer\(Object\[\]\) 
 
 ```csharp
 protected MBlockContainer(params object[] content)

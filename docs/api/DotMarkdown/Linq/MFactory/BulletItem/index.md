@@ -12,12 +12,14 @@ sidebar_label: BulletItem
 
 | Method | Summary |
 | ------ | ------- |
-| [BulletItem()](#DotMarkdown_Linq_MFactory_BulletItem) | |
-| [BulletItem(MBulletItem)](#DotMarkdown_Linq_MFactory_BulletItem_DotMarkdown_Linq_MBulletItem_) | |
-| [BulletItem(Object)](#DotMarkdown_Linq_MFactory_BulletItem_System_Object_) | |
-| [BulletItem(Object\[\])](#DotMarkdown_Linq_MFactory_BulletItem_System_Object___) | |
+| [BulletItem()](#1139213101) | |
+| [BulletItem(MBulletItem)](#2122708318) | |
+| [BulletItem(Object)](#2978581033) | |
+| [BulletItem(Object\[\])](#2782252973) | |
 
-## BulletItem\(\) <a id="DotMarkdown_Linq_MFactory_BulletItem"></a>
+<a id="1139213101"></a>
+
+## BulletItem\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBulletItem BulletItem()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MBulletItem BulletItem()
 
 [MBulletItem](../../MBulletItem/index.md)
 
-## BulletItem\(MBulletItem\) <a id="DotMarkdown_Linq_MFactory_BulletItem_DotMarkdown_Linq_MBulletItem_"></a>
+<a id="2122708318"></a>
+
+## BulletItem\(MBulletItem\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBulletItem BulletItem(DotMarkdown.Linq.MBulletItem other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MBulletItem BulletItem(DotMarkdown.Linq.MBulletIt
 
 [MBulletItem](../../MBulletItem/index.md)
 
-## BulletItem\(Object\) <a id="DotMarkdown_Linq_MFactory_BulletItem_System_Object_"></a>
+<a id="2978581033"></a>
+
+## BulletItem\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBulletItem BulletItem(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MBulletItem BulletItem(object content)
 
 [MBulletItem](../../MBulletItem/index.md)
 
-## BulletItem\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_BulletItem_System_Object___"></a>
+<a id="2782252973"></a>
+
+## BulletItem\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBulletItem BulletItem(params object[] content)

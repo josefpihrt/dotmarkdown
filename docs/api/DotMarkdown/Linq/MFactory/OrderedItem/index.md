@@ -12,26 +12,14 @@ sidebar_label: OrderedItem
 
 | Method | Summary |
 | ------ | ------- |
-| [OrderedItem(Int32)](#DotMarkdown_Linq_MFactory_OrderedItem_System_Int32_) | |
-| [OrderedItem(Int32, Object)](#DotMarkdown_Linq_MFactory_OrderedItem_System_Int32_System_Object_) | |
-| [OrderedItem(Int32, Object\[\])](#DotMarkdown_Linq_MFactory_OrderedItem_System_Int32_System_Object___) | |
-| [OrderedItem(MOrderedItem)](#DotMarkdown_Linq_MFactory_OrderedItem_DotMarkdown_Linq_MOrderedItem_) | |
+| [OrderedItem(Int32, Object)](#1265625576) | |
+| [OrderedItem(Int32, Object\[\])](#2069094784) | |
+| [OrderedItem(Int32)](#3023675221) | |
+| [OrderedItem(MOrderedItem)](#4228168177) | |
 
-## OrderedItem\(Int32\) <a id="DotMarkdown_Linq_MFactory_OrderedItem_System_Int32_"></a>
+<a id="1265625576"></a>
 
-```csharp
-public static DotMarkdown.Linq.MOrderedItem OrderedItem(int number)
-```
-
-### Parameters
-
-**number** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
-
-### Returns
-
-[MOrderedItem](../../MOrderedItem/index.md)
-
-## OrderedItem\(Int32, Object\) <a id="DotMarkdown_Linq_MFactory_OrderedItem_System_Int32_System_Object_"></a>
+## OrderedItem\(Int32, Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MOrderedItem OrderedItem(int number, object content)
@@ -47,7 +35,9 @@ public static DotMarkdown.Linq.MOrderedItem OrderedItem(int number, object conte
 
 [MOrderedItem](../../MOrderedItem/index.md)
 
-## OrderedItem\(Int32, Object\[\]\) <a id="DotMarkdown_Linq_MFactory_OrderedItem_System_Int32_System_Object___"></a>
+<a id="2069094784"></a>
+
+## OrderedItem\(Int32, Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MOrderedItem OrderedItem(int number, params object[] content)
@@ -63,7 +53,25 @@ public static DotMarkdown.Linq.MOrderedItem OrderedItem(int number, params objec
 
 [MOrderedItem](../../MOrderedItem/index.md)
 
-## OrderedItem\(MOrderedItem\) <a id="DotMarkdown_Linq_MFactory_OrderedItem_DotMarkdown_Linq_MOrderedItem_"></a>
+<a id="3023675221"></a>
+
+## OrderedItem\(Int32\) 
+
+```csharp
+public static DotMarkdown.Linq.MOrderedItem OrderedItem(int number)
+```
+
+### Parameters
+
+**number** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
+
+### Returns
+
+[MOrderedItem](../../MOrderedItem/index.md)
+
+<a id="4228168177"></a>
+
+## OrderedItem\(MOrderedItem\) 
 
 ```csharp
 public static DotMarkdown.Linq.MOrderedItem OrderedItem(DotMarkdown.Linq.MOrderedItem other)

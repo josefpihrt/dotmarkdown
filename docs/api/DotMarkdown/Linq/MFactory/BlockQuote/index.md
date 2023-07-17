@@ -12,12 +12,14 @@ sidebar_label: BlockQuote
 
 | Method | Summary |
 | ------ | ------- |
-| [BlockQuote()](#DotMarkdown_Linq_MFactory_BlockQuote) | |
-| [BlockQuote(MBlockQuote)](#DotMarkdown_Linq_MFactory_BlockQuote_DotMarkdown_Linq_MBlockQuote_) | |
-| [BlockQuote(Object)](#DotMarkdown_Linq_MFactory_BlockQuote_System_Object_) | |
-| [BlockQuote(Object\[\])](#DotMarkdown_Linq_MFactory_BlockQuote_System_Object___) | |
+| [BlockQuote()](#328208397) | |
+| [BlockQuote(MBlockQuote)](#2957775137) | |
+| [BlockQuote(Object)](#1243840182) | |
+| [BlockQuote(Object\[\])](#3028794189) | |
 
-## BlockQuote\(\) <a id="DotMarkdown_Linq_MFactory_BlockQuote"></a>
+<a id="328208397"></a>
+
+## BlockQuote\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBlockQuote BlockQuote()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MBlockQuote BlockQuote()
 
 [MBlockQuote](../../MBlockQuote/index.md)
 
-## BlockQuote\(MBlockQuote\) <a id="DotMarkdown_Linq_MFactory_BlockQuote_DotMarkdown_Linq_MBlockQuote_"></a>
+<a id="2957775137"></a>
+
+## BlockQuote\(MBlockQuote\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBlockQuote BlockQuote(DotMarkdown.Linq.MBlockQuote other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MBlockQuote BlockQuote(DotMarkdown.Linq.MBlockQuo
 
 [MBlockQuote](../../MBlockQuote/index.md)
 
-## BlockQuote\(Object\) <a id="DotMarkdown_Linq_MFactory_BlockQuote_System_Object_"></a>
+<a id="1243840182"></a>
+
+## BlockQuote\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBlockQuote BlockQuote(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MBlockQuote BlockQuote(object content)
 
 [MBlockQuote](../../MBlockQuote/index.md)
 
-## BlockQuote\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_BlockQuote_System_Object___"></a>
+<a id="3028794189"></a>
+
+## BlockQuote\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBlockQuote BlockQuote(params object[] content)

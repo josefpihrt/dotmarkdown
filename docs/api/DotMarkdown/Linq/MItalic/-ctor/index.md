@@ -12,18 +12,22 @@ sidebar_label: MItalic
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MItalic()](#DotMarkdown_Linq_MItalic__ctor) | |
-| [MItalic(MItalic)](#DotMarkdown_Linq_MItalic__ctor_DotMarkdown_Linq_MItalic_) | |
-| [MItalic(Object)](#DotMarkdown_Linq_MItalic__ctor_System_Object_) | |
-| [MItalic(Object\[\])](#DotMarkdown_Linq_MItalic__ctor_System_Object___) | |
+| [MItalic()](#3879558342) | |
+| [MItalic(MItalic)](#2230437226) | |
+| [MItalic(Object)](#759889024) | |
+| [MItalic(Object\[\])](#86254476) | |
 
-## MItalic\(\) <a id="DotMarkdown_Linq_MItalic__ctor"></a>
+<a id="3879558342"></a>
+
+## MItalic\(\) 
 
 ```csharp
 public MItalic()
 ```
 
-## MItalic\(MItalic\) <a id="DotMarkdown_Linq_MItalic__ctor_DotMarkdown_Linq_MItalic_"></a>
+<a id="2230437226"></a>
+
+## MItalic\(MItalic\) 
 
 ```csharp
 public MItalic(DotMarkdown.Linq.MItalic other)
@@ -31,9 +35,9 @@ public MItalic(DotMarkdown.Linq.MItalic other)
 
 ### Parameters
 
-**other** &ensp; [MItalic](../index.md)
+**other** &ensp; [MItalic](../index.md)<a id="759889024"></a>
 
-## MItalic\(Object\) <a id="DotMarkdown_Linq_MItalic__ctor_System_Object_"></a>
+## MItalic\(Object\) 
 
 ```csharp
 public MItalic(object content)
@@ -41,9 +45,9 @@ public MItalic(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="86254476"></a>
 
-## MItalic\(Object\[\]\) <a id="DotMarkdown_Linq_MItalic__ctor_System_Object___"></a>
+## MItalic\(Object\[\]\) 
 
 ```csharp
 public MItalic(params object[] content)

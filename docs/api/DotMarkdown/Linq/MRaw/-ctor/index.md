@@ -12,10 +12,12 @@ sidebar_label: MRaw
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MRaw(MRaw)](#DotMarkdown_Linq_MRaw__ctor_DotMarkdown_Linq_MRaw_) | |
-| [MRaw(String)](#DotMarkdown_Linq_MRaw__ctor_System_String_) | |
+| [MRaw(MRaw)](#3430510950) | |
+| [MRaw(String)](#1833675072) | |
 
-## MRaw\(MRaw\) <a id="DotMarkdown_Linq_MRaw__ctor_DotMarkdown_Linq_MRaw_"></a>
+<a id="3430510950"></a>
+
+## MRaw\(MRaw\) 
 
 ```csharp
 public MRaw(DotMarkdown.Linq.MRaw other)
@@ -23,9 +25,9 @@ public MRaw(DotMarkdown.Linq.MRaw other)
 
 ### Parameters
 
-**other** &ensp; [MRaw](../index.md)
+**other** &ensp; [MRaw](../index.md)<a id="1833675072"></a>
 
-## MRaw\(String\) <a id="DotMarkdown_Linq_MRaw__ctor_System_String_"></a>
+## MRaw\(String\) 
 
 ```csharp
 public MRaw(string value)

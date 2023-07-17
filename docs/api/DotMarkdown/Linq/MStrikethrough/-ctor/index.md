@@ -12,18 +12,22 @@ sidebar_label: MStrikethrough
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MStrikethrough()](#DotMarkdown_Linq_MStrikethrough__ctor) | |
-| [MStrikethrough(MStrikethrough)](#DotMarkdown_Linq_MStrikethrough__ctor_DotMarkdown_Linq_MStrikethrough_) | |
-| [MStrikethrough(Object)](#DotMarkdown_Linq_MStrikethrough__ctor_System_Object_) | |
-| [MStrikethrough(Object\[\])](#DotMarkdown_Linq_MStrikethrough__ctor_System_Object___) | |
+| [MStrikethrough()](#3105760547) | |
+| [MStrikethrough(MStrikethrough)](#4156179910) | |
+| [MStrikethrough(Object)](#507116789) | |
+| [MStrikethrough(Object\[\])](#1027993843) | |
 
-## MStrikethrough\(\) <a id="DotMarkdown_Linq_MStrikethrough__ctor"></a>
+<a id="3105760547"></a>
+
+## MStrikethrough\(\) 
 
 ```csharp
 public MStrikethrough()
 ```
 
-## MStrikethrough\(MStrikethrough\) <a id="DotMarkdown_Linq_MStrikethrough__ctor_DotMarkdown_Linq_MStrikethrough_"></a>
+<a id="4156179910"></a>
+
+## MStrikethrough\(MStrikethrough\) 
 
 ```csharp
 public MStrikethrough(DotMarkdown.Linq.MStrikethrough other)
@@ -31,9 +35,9 @@ public MStrikethrough(DotMarkdown.Linq.MStrikethrough other)
 
 ### Parameters
 
-**other** &ensp; [MStrikethrough](../index.md)
+**other** &ensp; [MStrikethrough](../index.md)<a id="507116789"></a>
 
-## MStrikethrough\(Object\) <a id="DotMarkdown_Linq_MStrikethrough__ctor_System_Object_"></a>
+## MStrikethrough\(Object\) 
 
 ```csharp
 public MStrikethrough(object content)
@@ -41,9 +45,9 @@ public MStrikethrough(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="1027993843"></a>
 
-## MStrikethrough\(Object\[\]\) <a id="DotMarkdown_Linq_MStrikethrough__ctor_System_Object___"></a>
+## MStrikethrough\(Object\[\]\) 
 
 ```csharp
 public MStrikethrough(params object[] content)

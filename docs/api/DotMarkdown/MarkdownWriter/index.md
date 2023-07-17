@@ -39,14 +39,14 @@ public abstract class MarkdownWriter : IDisposable
 | Method | Summary |
 | ------ | ------- |
 | [Close()](Close/index.md) | |
-| [Create(Stream, Encoding, MarkdownWriterSettings)](Create/index.md#DotMarkdown_MarkdownWriter_Create_System_IO_Stream_System_Text_Encoding_DotMarkdown_MarkdownWriterSettings_) | |
-| [Create(Stream, MarkdownWriterSettings)](Create/index.md#DotMarkdown_MarkdownWriter_Create_System_IO_Stream_DotMarkdown_MarkdownWriterSettings_) | |
-| [Create(String, MarkdownWriterSettings)](Create/index.md#DotMarkdown_MarkdownWriter_Create_System_String_DotMarkdown_MarkdownWriterSettings_) | |
-| [Create(StringBuilder, IFormatProvider, MarkdownWriterSettings)](Create/index.md#DotMarkdown_MarkdownWriter_Create_System_Text_StringBuilder_System_IFormatProvider_DotMarkdown_MarkdownWriterSettings_) | |
-| [Create(StringBuilder, MarkdownWriterSettings)](Create/index.md#DotMarkdown_MarkdownWriter_Create_System_Text_StringBuilder_DotMarkdown_MarkdownWriterSettings_) | |
-| [Create(TextWriter, MarkdownWriterSettings)](Create/index.md#DotMarkdown_MarkdownWriter_Create_System_IO_TextWriter_DotMarkdown_MarkdownWriterSettings_) | |
-| [Dispose()](Dispose/index.md#DotMarkdown_MarkdownWriter_Dispose) |  \(Implements [IDisposable.Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose)\) |
-| [Dispose(Boolean)](Dispose/index.md#DotMarkdown_MarkdownWriter_Dispose_System_Boolean_) | |
+| [Create(Stream, Encoding, MarkdownWriterSettings)](Create/index.md#1803453469) | |
+| [Create(Stream, MarkdownWriterSettings)](Create/index.md#2595698549) | |
+| [Create(String, MarkdownWriterSettings)](Create/index.md#3360061740) | |
+| [Create(StringBuilder, IFormatProvider, MarkdownWriterSettings)](Create/index.md#3111769310) | |
+| [Create(StringBuilder, MarkdownWriterSettings)](Create/index.md#1010978077) | |
+| [Create(TextWriter, MarkdownWriterSettings)](Create/index.md#2942469733) | |
+| [Dispose()](Dispose/index.md#606719728) |  \(Implements [IDisposable.Dispose](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose)\) |
+| [Dispose(Boolean)](Dispose/index.md#2997239713) | |
 | [Equals(Object)](https://docs.microsoft.com/en-us/dotnet/api/system.object.equals) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |
 | [Flush()](Flush/index.md) | |
 | [GetHashCode()](https://docs.microsoft.com/en-us/dotnet/api/system.object.gethashcode) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |
@@ -80,9 +80,9 @@ public abstract class MarkdownWriter : IDisposable
 | [WriteHeading4(String)](WriteHeading4/index.md) | |
 | [WriteHeading5(String)](WriteHeading5/index.md) | |
 | [WriteHeading6(String)](WriteHeading6/index.md) | |
-| [WriteHorizontalRule()](WriteHorizontalRule/index.md#DotMarkdown_MarkdownWriter_WriteHorizontalRule) | |
-| [WriteHorizontalRule(HorizontalRuleFormat)](WriteHorizontalRule/index.md#DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleFormat__) | |
-| [WriteHorizontalRule(HorizontalRuleStyle, Int32, String)](WriteHorizontalRule/index.md#DotMarkdown_MarkdownWriter_WriteHorizontalRule_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_) | |
+| [WriteHorizontalRule()](WriteHorizontalRule/index.md#3448336783) | |
+| [WriteHorizontalRule(HorizontalRuleFormat)](WriteHorizontalRule/index.md#3263388817) | |
+| [WriteHorizontalRule(HorizontalRuleStyle, Int32, String)](WriteHorizontalRule/index.md#660685721) | |
 | [WriteCharEntity(Char)](WriteCharEntity/index.md) | |
 | [WriteImage(String, String, String)](WriteImage/index.md) | |
 | [WriteImageReference(String, String)](WriteImageReference/index.md) | |
@@ -105,8 +105,8 @@ public abstract class MarkdownWriter : IDisposable
 | [WriteStartLink()](WriteStartLink/index.md) | |
 | [WriteStartOrderedItem(Int32)](WriteStartOrderedItem/index.md) | |
 | [WriteStartStrikethrough()](WriteStartStrikethrough/index.md) | |
-| [WriteStartTable(Int32)](WriteStartTable/index.md#DotMarkdown_MarkdownWriter_WriteStartTable_System_Int32_) | |
-| [WriteStartTable(IReadOnlyList&lt;TableColumnInfo&gt;)](WriteStartTable/index.md#DotMarkdown_MarkdownWriter_WriteStartTable_System_Collections_Generic_IReadOnlyList_DotMarkdown_TableColumnInfo__) | |
+| [WriteStartTable(Int32)](WriteStartTable/index.md#3634233395) | |
+| [WriteStartTable(IReadOnlyList&lt;TableColumnInfo&gt;)](WriteStartTable/index.md#21940845) | |
 | [WriteStartTableCell()](WriteStartTableCell/index.md) | |
 | [WriteStartTableRow()](WriteStartTableRow/index.md) | |
 | [WriteStartTaskItem(Boolean)](WriteStartTaskItem/index.md) | |
@@ -115,10 +115,10 @@ public abstract class MarkdownWriter : IDisposable
 | [WriteTableCell(String)](WriteTableCell/index.md) | |
 | [WriteTableHeaderSeparator()](WriteTableHeaderSeparator/index.md) | |
 | [WriteTaskItem(String, Boolean)](WriteTaskItem/index.md) | |
-| [WriteValue(Boolean)](WriteValue/index.md#DotMarkdown_MarkdownWriter_WriteValue_System_Boolean_) | |
-| [WriteValue(Decimal)](WriteValue/index.md#DotMarkdown_MarkdownWriter_WriteValue_System_Decimal_) | |
-| [WriteValue(Double)](WriteValue/index.md#DotMarkdown_MarkdownWriter_WriteValue_System_Double_) | |
-| [WriteValue(Int32)](WriteValue/index.md#DotMarkdown_MarkdownWriter_WriteValue_System_Int32_) | |
-| [WriteValue(Int64)](WriteValue/index.md#DotMarkdown_MarkdownWriter_WriteValue_System_Int64_) | |
-| [WriteValue(Single)](WriteValue/index.md#DotMarkdown_MarkdownWriter_WriteValue_System_Single_) | |
+| [WriteValue(Boolean)](WriteValue/index.md#2881816944) | |
+| [WriteValue(Decimal)](WriteValue/index.md#2615740455) | |
+| [WriteValue(Double)](WriteValue/index.md#865017894) | |
+| [WriteValue(Int32)](WriteValue/index.md#3015420922) | |
+| [WriteValue(Int64)](WriteValue/index.md#294862040) | |
+| [WriteValue(Single)](WriteValue/index.md#212160301) | |
 

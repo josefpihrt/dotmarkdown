@@ -12,12 +12,14 @@ sidebar_label: Strikethrough
 
 | Method | Summary |
 | ------ | ------- |
-| [Strikethrough()](#DotMarkdown_Linq_MFactory_Strikethrough) | |
-| [Strikethrough(MStrikethrough)](#DotMarkdown_Linq_MFactory_Strikethrough_DotMarkdown_Linq_MStrikethrough_) | |
-| [Strikethrough(Object)](#DotMarkdown_Linq_MFactory_Strikethrough_System_Object_) | |
-| [Strikethrough(Object\[\])](#DotMarkdown_Linq_MFactory_Strikethrough_System_Object___) | |
+| [Strikethrough()](#3842745876) | |
+| [Strikethrough(MStrikethrough)](#1534301742) | |
+| [Strikethrough(Object)](#1859200282) | |
+| [Strikethrough(Object\[\])](#2174192725) | |
 
-## Strikethrough\(\) <a id="DotMarkdown_Linq_MFactory_Strikethrough"></a>
+<a id="3842745876"></a>
+
+## Strikethrough\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MStrikethrough Strikethrough()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MStrikethrough Strikethrough()
 
 [MStrikethrough](../../MStrikethrough/index.md)
 
-## Strikethrough\(MStrikethrough\) <a id="DotMarkdown_Linq_MFactory_Strikethrough_DotMarkdown_Linq_MStrikethrough_"></a>
+<a id="1534301742"></a>
+
+## Strikethrough\(MStrikethrough\) 
 
 ```csharp
 public static DotMarkdown.Linq.MStrikethrough Strikethrough(DotMarkdown.Linq.MStrikethrough other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MStrikethrough Strikethrough(DotMarkdown.Linq.MSt
 
 [MStrikethrough](../../MStrikethrough/index.md)
 
-## Strikethrough\(Object\) <a id="DotMarkdown_Linq_MFactory_Strikethrough_System_Object_"></a>
+<a id="1859200282"></a>
+
+## Strikethrough\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MStrikethrough Strikethrough(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MStrikethrough Strikethrough(object content)
 
 [MStrikethrough](../../MStrikethrough/index.md)
 
-## Strikethrough\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Strikethrough_System_Object___"></a>
+<a id="2174192725"></a>
+
+## Strikethrough\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MStrikethrough Strikethrough(params object[] content)

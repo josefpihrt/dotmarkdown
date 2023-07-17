@@ -12,12 +12,14 @@ sidebar_label: TaskList
 
 | Method | Summary |
 | ------ | ------- |
-| [TaskList()](#DotMarkdown_Linq_MFactory_TaskList) | |
-| [TaskList(MTaskList)](#DotMarkdown_Linq_MFactory_TaskList_DotMarkdown_Linq_MTaskList_) | |
-| [TaskList(Object)](#DotMarkdown_Linq_MFactory_TaskList_System_Object_) | |
-| [TaskList(Object\[\])](#DotMarkdown_Linq_MFactory_TaskList_System_Object___) | |
+| [TaskList()](#2576490894) | |
+| [TaskList(MTaskList)](#1866943822) | |
+| [TaskList(Object)](#2460374599) | |
+| [TaskList(Object\[\])](#448972116) | |
 
-## TaskList\(\) <a id="DotMarkdown_Linq_MFactory_TaskList"></a>
+<a id="2576490894"></a>
+
+## TaskList\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTaskList TaskList()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MTaskList TaskList()
 
 [MTaskList](../../MTaskList/index.md)
 
-## TaskList\(MTaskList\) <a id="DotMarkdown_Linq_MFactory_TaskList_DotMarkdown_Linq_MTaskList_"></a>
+<a id="1866943822"></a>
+
+## TaskList\(MTaskList\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTaskList TaskList(DotMarkdown.Linq.MTaskList other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MTaskList TaskList(DotMarkdown.Linq.MTaskList oth
 
 [MTaskList](../../MTaskList/index.md)
 
-## TaskList\(Object\) <a id="DotMarkdown_Linq_MFactory_TaskList_System_Object_"></a>
+<a id="2460374599"></a>
+
+## TaskList\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTaskList TaskList(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MTaskList TaskList(object content)
 
 [MTaskList](../../MTaskList/index.md)
 
-## TaskList\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_TaskList_System_Object___"></a>
+<a id="448972116"></a>
+
+## TaskList\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTaskList TaskList(params object[] content)

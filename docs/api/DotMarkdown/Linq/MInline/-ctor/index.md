@@ -12,18 +12,22 @@ sidebar_label: MInline
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MInline()](#DotMarkdown_Linq_MInline__ctor) | |
-| [MInline(MContainer)](#DotMarkdown_Linq_MInline__ctor_DotMarkdown_Linq_MContainer_) | |
-| [MInline(Object)](#DotMarkdown_Linq_MInline__ctor_System_Object_) | |
-| [MInline(Object\[\])](#DotMarkdown_Linq_MInline__ctor_System_Object___) | |
+| [MInline()](#1018915894) | |
+| [MInline(MContainer)](#3989159460) | |
+| [MInline(Object)](#4259673590) | |
+| [MInline(Object\[\])](#771505571) | |
 
-## MInline\(\) <a id="DotMarkdown_Linq_MInline__ctor"></a>
+<a id="1018915894"></a>
+
+## MInline\(\) 
 
 ```csharp
 public MInline()
 ```
 
-## MInline\(MContainer\) <a id="DotMarkdown_Linq_MInline__ctor_DotMarkdown_Linq_MContainer_"></a>
+<a id="3989159460"></a>
+
+## MInline\(MContainer\) 
 
 ```csharp
 public MInline(DotMarkdown.Linq.MContainer other)
@@ -31,9 +35,9 @@ public MInline(DotMarkdown.Linq.MContainer other)
 
 ### Parameters
 
-**other** &ensp; [MContainer](../../MContainer/index.md)
+**other** &ensp; [MContainer](../../MContainer/index.md)<a id="4259673590"></a>
 
-## MInline\(Object\) <a id="DotMarkdown_Linq_MInline__ctor_System_Object_"></a>
+## MInline\(Object\) 
 
 ```csharp
 public MInline(object content)
@@ -41,9 +45,9 @@ public MInline(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="771505571"></a>
 
-## MInline\(Object\[\]\) <a id="DotMarkdown_Linq_MInline__ctor_System_Object___"></a>
+## MInline\(Object\[\]\) 
 
 ```csharp
 public MInline(params object[] content)

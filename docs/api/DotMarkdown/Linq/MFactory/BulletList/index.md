@@ -12,12 +12,14 @@ sidebar_label: BulletList
 
 | Method | Summary |
 | ------ | ------- |
-| [BulletList()](#DotMarkdown_Linq_MFactory_BulletList) | |
-| [BulletList(MBulletList)](#DotMarkdown_Linq_MFactory_BulletList_DotMarkdown_Linq_MBulletList_) | |
-| [BulletList(Object)](#DotMarkdown_Linq_MFactory_BulletList_System_Object_) | |
-| [BulletList(Object\[\])](#DotMarkdown_Linq_MFactory_BulletList_System_Object___) | |
+| [BulletList()](#1602848078) | |
+| [BulletList(MBulletList)](#3503762211) | |
+| [BulletList(Object)](#677504253) | |
+| [BulletList(Object\[\])](#4181783604) | |
 
-## BulletList\(\) <a id="DotMarkdown_Linq_MFactory_BulletList"></a>
+<a id="1602848078"></a>
+
+## BulletList\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBulletList BulletList()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MBulletList BulletList()
 
 [MBulletList](../../MBulletList/index.md)
 
-## BulletList\(MBulletList\) <a id="DotMarkdown_Linq_MFactory_BulletList_DotMarkdown_Linq_MBulletList_"></a>
+<a id="3503762211"></a>
+
+## BulletList\(MBulletList\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBulletList BulletList(DotMarkdown.Linq.MBulletList other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MBulletList BulletList(DotMarkdown.Linq.MBulletLi
 
 [MBulletList](../../MBulletList/index.md)
 
-## BulletList\(Object\) <a id="DotMarkdown_Linq_MFactory_BulletList_System_Object_"></a>
+<a id="677504253"></a>
+
+## BulletList\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBulletList BulletList(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MBulletList BulletList(object content)
 
 [MBulletList](../../MBulletList/index.md)
 
-## BulletList\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_BulletList_System_Object___"></a>
+<a id="4181783604"></a>
+
+## BulletList\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MBulletList BulletList(params object[] content)

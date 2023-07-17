@@ -12,11 +12,13 @@ sidebar_label: HorizontalRule
 
 | Method | Summary |
 | ------ | ------- |
-| [HorizontalRule()](#DotMarkdown_Linq_MFactory_HorizontalRule) | |
-| [HorizontalRule(HorizontalRuleFormat)](#DotMarkdown_Linq_MFactory_HorizontalRule_DotMarkdown_HorizontalRuleFormat__) | |
-| [HorizontalRule(HorizontalRuleStyle, Int32, String)](#DotMarkdown_Linq_MFactory_HorizontalRule_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_) | |
+| [HorizontalRule()](#2817816631) | |
+| [HorizontalRule(HorizontalRuleFormat)](#1260978966) | |
+| [HorizontalRule(HorizontalRuleStyle, Int32, String)](#1455008193) | |
 
-## HorizontalRule\(\) <a id="DotMarkdown_Linq_MFactory_HorizontalRule"></a>
+<a id="2817816631"></a>
+
+## HorizontalRule\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHorizontalRule HorizontalRule()
@@ -26,7 +28,9 @@ public static DotMarkdown.Linq.MHorizontalRule HorizontalRule()
 
 [MHorizontalRule](../../MHorizontalRule/index.md)
 
-## HorizontalRule\(HorizontalRuleFormat\) <a id="DotMarkdown_Linq_MFactory_HorizontalRule_DotMarkdown_HorizontalRuleFormat__"></a>
+<a id="1260978966"></a>
+
+## HorizontalRule\(HorizontalRuleFormat\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHorizontalRule HorizontalRule(in DotMarkdown.HorizontalRuleFormat format)
@@ -40,7 +44,9 @@ public static DotMarkdown.Linq.MHorizontalRule HorizontalRule(in DotMarkdown.Hor
 
 [MHorizontalRule](../../MHorizontalRule/index.md)
 
-## HorizontalRule\(HorizontalRuleStyle, Int32, String\) <a id="DotMarkdown_Linq_MFactory_HorizontalRule_DotMarkdown_HorizontalRuleStyle_System_Int32_System_String_"></a>
+<a id="1455008193"></a>
+
+## HorizontalRule\(HorizontalRuleStyle, Int32, String\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHorizontalRule HorizontalRule(DotMarkdown.HorizontalRuleStyle style, int count = 3, string separator = " ")

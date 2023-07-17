@@ -12,12 +12,14 @@ sidebar_label: Table
 
 | Method | Summary |
 | ------ | ------- |
-| [Table()](#DotMarkdown_Linq_MFactory_Table) | |
-| [Table(MTable)](#DotMarkdown_Linq_MFactory_Table_DotMarkdown_Linq_MTable_) | |
-| [Table(Object)](#DotMarkdown_Linq_MFactory_Table_System_Object_) | |
-| [Table(Object\[\])](#DotMarkdown_Linq_MFactory_Table_System_Object___) | |
+| [Table()](#2301723985) | |
+| [Table(MTable)](#2880495121) | |
+| [Table(Object)](#239344891) | |
+| [Table(Object\[\])](#967605717) | |
 
-## Table\(\) <a id="DotMarkdown_Linq_MFactory_Table"></a>
+<a id="2301723985"></a>
+
+## Table\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTable Table()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MTable Table()
 
 [MTable](../../MTable/index.md)
 
-## Table\(MTable\) <a id="DotMarkdown_Linq_MFactory_Table_DotMarkdown_Linq_MTable_"></a>
+<a id="2880495121"></a>
+
+## Table\(MTable\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTable Table(DotMarkdown.Linq.MTable other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MTable Table(DotMarkdown.Linq.MTable other)
 
 [MTable](../../MTable/index.md)
 
-## Table\(Object\) <a id="DotMarkdown_Linq_MFactory_Table_System_Object_"></a>
+<a id="239344891"></a>
+
+## Table\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTable Table(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MTable Table(object content)
 
 [MTable](../../MTable/index.md)
 
-## Table\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Table_System_Object___"></a>
+<a id="967605717"></a>
+
+## Table\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MTable Table(params object[] content)

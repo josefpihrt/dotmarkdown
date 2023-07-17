@@ -12,10 +12,12 @@ sidebar_label: MText
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MText(MText)](#DotMarkdown_Linq_MText__ctor_DotMarkdown_Linq_MText_) | |
-| [MText(String)](#DotMarkdown_Linq_MText__ctor_System_String_) | |
+| [MText(MText)](#4070265002) | |
+| [MText(String)](#3245792214) | |
 
-## MText\(MText\) <a id="DotMarkdown_Linq_MText__ctor_DotMarkdown_Linq_MText_"></a>
+<a id="4070265002"></a>
+
+## MText\(MText\) 
 
 ```csharp
 public MText(DotMarkdown.Linq.MText other)
@@ -23,9 +25,9 @@ public MText(DotMarkdown.Linq.MText other)
 
 ### Parameters
 
-**other** &ensp; [MText](../index.md)
+**other** &ensp; [MText](../index.md)<a id="3245792214"></a>
 
-## MText\(String\) <a id="DotMarkdown_Linq_MText__ctor_System_String_"></a>
+## MText\(String\) 
 
 ```csharp
 public MText(string value)

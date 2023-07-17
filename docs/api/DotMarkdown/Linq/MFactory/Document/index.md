@@ -12,12 +12,14 @@ sidebar_label: Document
 
 | Method | Summary |
 | ------ | ------- |
-| [Document()](#DotMarkdown_Linq_MFactory_Document) | |
-| [Document(MDocument)](#DotMarkdown_Linq_MFactory_Document_DotMarkdown_Linq_MDocument_) | |
-| [Document(Object)](#DotMarkdown_Linq_MFactory_Document_System_Object_) | |
-| [Document(Object\[\])](#DotMarkdown_Linq_MFactory_Document_System_Object___) | |
+| [Document()](#657960449) | |
+| [Document(MDocument)](#310261006) | |
+| [Document(Object)](#1351949504) | |
+| [Document(Object\[\])](#643023188) | |
 
-## Document\(\) <a id="DotMarkdown_Linq_MFactory_Document"></a>
+<a id="657960449"></a>
+
+## Document\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MDocument Document()
@@ -27,7 +29,9 @@ public static DotMarkdown.Linq.MDocument Document()
 
 [MDocument](../../MDocument/index.md)
 
-## Document\(MDocument\) <a id="DotMarkdown_Linq_MFactory_Document_DotMarkdown_Linq_MDocument_"></a>
+<a id="310261006"></a>
+
+## Document\(MDocument\) 
 
 ```csharp
 public static DotMarkdown.Linq.MDocument Document(DotMarkdown.Linq.MDocument other)
@@ -41,7 +45,9 @@ public static DotMarkdown.Linq.MDocument Document(DotMarkdown.Linq.MDocument oth
 
 [MDocument](../../MDocument/index.md)
 
-## Document\(Object\) <a id="DotMarkdown_Linq_MFactory_Document_System_Object_"></a>
+<a id="1351949504"></a>
+
+## Document\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MDocument Document(object content)
@@ -55,7 +61,9 @@ public static DotMarkdown.Linq.MDocument Document(object content)
 
 [MDocument](../../MDocument/index.md)
 
-## Document\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Document_System_Object___"></a>
+<a id="643023188"></a>
+
+## Document\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MDocument Document(params object[] content)

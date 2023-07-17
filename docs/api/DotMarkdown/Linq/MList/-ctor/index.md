@@ -12,18 +12,22 @@ sidebar_label: MList
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MList()](#DotMarkdown_Linq_MList__ctor) | |
-| [MList(MList)](#DotMarkdown_Linq_MList__ctor_DotMarkdown_Linq_MList_) | |
-| [MList(Object)](#DotMarkdown_Linq_MList__ctor_System_Object_) | |
-| [MList(Object\[\])](#DotMarkdown_Linq_MList__ctor_System_Object___) | |
+| [MList()](#2757172290) | |
+| [MList(MList)](#3103408378) | |
+| [MList(Object)](#1561524616) | |
+| [MList(Object\[\])](#3911082079) | |
 
-## MList\(\) <a id="DotMarkdown_Linq_MList__ctor"></a>
+<a id="2757172290"></a>
+
+## MList\(\) 
 
 ```csharp
 protected MList()
 ```
 
-## MList\(MList\) <a id="DotMarkdown_Linq_MList__ctor_DotMarkdown_Linq_MList_"></a>
+<a id="3103408378"></a>
+
+## MList\(MList\) 
 
 ```csharp
 protected MList(DotMarkdown.Linq.MList other)
@@ -31,9 +35,9 @@ protected MList(DotMarkdown.Linq.MList other)
 
 ### Parameters
 
-**other** &ensp; [MList](../index.md)
+**other** &ensp; [MList](../index.md)<a id="1561524616"></a>
 
-## MList\(Object\) <a id="DotMarkdown_Linq_MList__ctor_System_Object_"></a>
+## MList\(Object\) 
 
 ```csharp
 protected MList(object content)
@@ -41,9 +45,9 @@ protected MList(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="3911082079"></a>
 
-## MList\(Object\[\]\) <a id="DotMarkdown_Linq_MList__ctor_System_Object___"></a>
+## MList\(Object\[\]\) 
 
 ```csharp
 protected MList(params object[] content)

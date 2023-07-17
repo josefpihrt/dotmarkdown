@@ -12,10 +12,12 @@ sidebar_label: MAutolink
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MAutolink(MAutolink)](#DotMarkdown_Linq_MAutolink__ctor_DotMarkdown_Linq_MAutolink_) | |
-| [MAutolink(String)](#DotMarkdown_Linq_MAutolink__ctor_System_String_) | |
+| [MAutolink(MAutolink)](#697466433) | |
+| [MAutolink(String)](#3122736964) | |
 
-## MAutolink\(MAutolink\) <a id="DotMarkdown_Linq_MAutolink__ctor_DotMarkdown_Linq_MAutolink_"></a>
+<a id="697466433"></a>
+
+## MAutolink\(MAutolink\) 
 
 ```csharp
 public MAutolink(DotMarkdown.Linq.MAutolink other)
@@ -23,9 +25,9 @@ public MAutolink(DotMarkdown.Linq.MAutolink other)
 
 ### Parameters
 
-**other** &ensp; [MAutolink](../index.md)
+**other** &ensp; [MAutolink](../index.md)<a id="3122736964"></a>
 
-## MAutolink\(String\) <a id="DotMarkdown_Linq_MAutolink__ctor_System_String_"></a>
+## MAutolink\(String\) 
 
 ```csharp
 public MAutolink(string url)

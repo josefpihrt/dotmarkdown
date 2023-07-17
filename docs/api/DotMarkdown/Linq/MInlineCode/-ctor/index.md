@@ -12,10 +12,12 @@ sidebar_label: MInlineCode
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MInlineCode(MInlineCode)](#DotMarkdown_Linq_MInlineCode__ctor_DotMarkdown_Linq_MInlineCode_) | |
-| [MInlineCode(String)](#DotMarkdown_Linq_MInlineCode__ctor_System_String_) | |
+| [MInlineCode(MInlineCode)](#2293154814) | |
+| [MInlineCode(String)](#2460590809) | |
 
-## MInlineCode\(MInlineCode\) <a id="DotMarkdown_Linq_MInlineCode__ctor_DotMarkdown_Linq_MInlineCode_"></a>
+<a id="2293154814"></a>
+
+## MInlineCode\(MInlineCode\) 
 
 ```csharp
 public MInlineCode(DotMarkdown.Linq.MInlineCode other)
@@ -23,9 +25,9 @@ public MInlineCode(DotMarkdown.Linq.MInlineCode other)
 
 ### Parameters
 
-**other** &ensp; [MInlineCode](../index.md)
+**other** &ensp; [MInlineCode](../index.md)<a id="2460590809"></a>
 
-## MInlineCode\(String\) <a id="DotMarkdown_Linq_MInlineCode__ctor_System_String_"></a>
+## MInlineCode\(String\) 
 
 ```csharp
 public MInlineCode(string text)

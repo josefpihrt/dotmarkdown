@@ -12,10 +12,12 @@ sidebar_label: WriteStartTable
 
 | Method | Summary |
 | ------ | ------- |
-| [WriteStartTable(Int32)](#DotMarkdown_MarkdownWriter_WriteStartTable_System_Int32_) | |
-| [WriteStartTable(IReadOnlyList&lt;TableColumnInfo&gt;)](#DotMarkdown_MarkdownWriter_WriteStartTable_System_Collections_Generic_IReadOnlyList_DotMarkdown_TableColumnInfo__) | |
+| [WriteStartTable(Int32)](#3634233395) | |
+| [WriteStartTable(IReadOnlyList&lt;TableColumnInfo&gt;)](#21940845) | |
 
-## WriteStartTable\(Int32\) <a id="DotMarkdown_MarkdownWriter_WriteStartTable_System_Int32_"></a>
+<a id="3634233395"></a>
+
+## WriteStartTable\(Int32\) 
 
 ```csharp
 public abstract void WriteStartTable(int columnCount)
@@ -23,9 +25,9 @@ public abstract void WriteStartTable(int columnCount)
 
 ### Parameters
 
-**columnCount** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
+**columnCount** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)<a id="21940845"></a>
 
-## WriteStartTable\(IReadOnlyList&lt;TableColumnInfo&gt;\) <a id="DotMarkdown_MarkdownWriter_WriteStartTable_System_Collections_Generic_IReadOnlyList_DotMarkdown_TableColumnInfo__"></a>
+## WriteStartTable\(IReadOnlyList&lt;TableColumnInfo&gt;\) 
 
 ```csharp
 public abstract void WriteStartTable(System.Collections.Generic.IReadOnlyList<DotMarkdown.TableColumnInfo> columns)

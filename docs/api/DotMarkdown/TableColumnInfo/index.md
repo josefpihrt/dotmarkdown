@@ -38,8 +38,8 @@ public readonly struct TableColumnInfo : IEquatable<DotMarkdown.TableColumnInfo>
 
 | Method | Summary |
 | ------ | ------- |
-| [Equals(Object)](Equals/index.md#DotMarkdown_TableColumnInfo_Equals_System_Object_) |  \(Overrides [ValueType.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.valuetype.equals)\) |
-| [Equals(TableColumnInfo)](Equals/index.md#DotMarkdown_TableColumnInfo_Equals_DotMarkdown_TableColumnInfo_) |  \(Implements [IEquatable&lt;TableColumnInfo&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
+| [Equals(Object)](Equals/index.md#729843953) |  \(Overrides [ValueType.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.valuetype.equals)\) |
+| [Equals(TableColumnInfo)](Equals/index.md#2313757328) |  \(Implements [IEquatable&lt;TableColumnInfo&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
 | [GetHashCode()](GetHashCode/index.md) |  \(Overrides [ValueType.GetHashCode](https://docs.microsoft.com/en-us/dotnet/api/system.valuetype.gethashcode)\) |
 | [GetType()](https://docs.microsoft.com/en-us/dotnet/api/system.object.gettype) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |
 | [MemberwiseClone()](https://docs.microsoft.com/en-us/dotnet/api/system.object.memberwiseclone) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |

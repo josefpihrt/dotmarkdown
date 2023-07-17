@@ -12,10 +12,12 @@ sidebar_label: FencedCodeBlock
 
 | Method | Summary |
 | ------ | ------- |
-| [FencedCodeBlock(MFencedCodeBlock)](#DotMarkdown_Linq_MFactory_FencedCodeBlock_DotMarkdown_Linq_MFencedCodeBlock_) | |
-| [FencedCodeBlock(String, String)](#DotMarkdown_Linq_MFactory_FencedCodeBlock_System_String_System_String_) | |
+| [FencedCodeBlock(MFencedCodeBlock)](#1228039406) | |
+| [FencedCodeBlock(String, String)](#116387924) | |
 
-## FencedCodeBlock\(MFencedCodeBlock\) <a id="DotMarkdown_Linq_MFactory_FencedCodeBlock_DotMarkdown_Linq_MFencedCodeBlock_"></a>
+<a id="1228039406"></a>
+
+## FencedCodeBlock\(MFencedCodeBlock\) 
 
 ```csharp
 public static DotMarkdown.Linq.MFencedCodeBlock FencedCodeBlock(DotMarkdown.Linq.MFencedCodeBlock other)
@@ -29,7 +31,9 @@ public static DotMarkdown.Linq.MFencedCodeBlock FencedCodeBlock(DotMarkdown.Linq
 
 [MFencedCodeBlock](../../MFencedCodeBlock/index.md)
 
-## FencedCodeBlock\(String, String\) <a id="DotMarkdown_Linq_MFactory_FencedCodeBlock_System_String_System_String_"></a>
+<a id="116387924"></a>
+
+## FencedCodeBlock\(String, String\) 
 
 ```csharp
 public static DotMarkdown.Linq.MFencedCodeBlock FencedCodeBlock(string value, string info = null)

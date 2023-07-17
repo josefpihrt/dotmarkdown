@@ -12,18 +12,22 @@ sidebar_label: MBlockQuote
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MBlockQuote()](#DotMarkdown_Linq_MBlockQuote__ctor) | |
-| [MBlockQuote(MBlockQuote)](#DotMarkdown_Linq_MBlockQuote__ctor_DotMarkdown_Linq_MBlockQuote_) | |
-| [MBlockQuote(Object)](#DotMarkdown_Linq_MBlockQuote__ctor_System_Object_) | |
-| [MBlockQuote(Object\[\])](#DotMarkdown_Linq_MBlockQuote__ctor_System_Object___) | |
+| [MBlockQuote()](#3528418263) | |
+| [MBlockQuote(MBlockQuote)](#2958675350) | |
+| [MBlockQuote(Object)](#1213988259) | |
+| [MBlockQuote(Object\[\])](#2945219738) | |
 
-## MBlockQuote\(\) <a id="DotMarkdown_Linq_MBlockQuote__ctor"></a>
+<a id="3528418263"></a>
+
+## MBlockQuote\(\) 
 
 ```csharp
 public MBlockQuote()
 ```
 
-## MBlockQuote\(MBlockQuote\) <a id="DotMarkdown_Linq_MBlockQuote__ctor_DotMarkdown_Linq_MBlockQuote_"></a>
+<a id="2958675350"></a>
+
+## MBlockQuote\(MBlockQuote\) 
 
 ```csharp
 public MBlockQuote(DotMarkdown.Linq.MBlockQuote other)
@@ -31,9 +35,9 @@ public MBlockQuote(DotMarkdown.Linq.MBlockQuote other)
 
 ### Parameters
 
-**other** &ensp; [MBlockQuote](../index.md)
+**other** &ensp; [MBlockQuote](../index.md)<a id="1213988259"></a>
 
-## MBlockQuote\(Object\) <a id="DotMarkdown_Linq_MBlockQuote__ctor_System_Object_"></a>
+## MBlockQuote\(Object\) 
 
 ```csharp
 public MBlockQuote(object content)
@@ -41,9 +45,9 @@ public MBlockQuote(object content)
 
 ### Parameters
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="2945219738"></a>
 
-## MBlockQuote\(Object\[\]\) <a id="DotMarkdown_Linq_MBlockQuote__ctor_System_Object___"></a>
+## MBlockQuote\(Object\[\]\) 
 
 ```csharp
 public MBlockQuote(params object[] content)

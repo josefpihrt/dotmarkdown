@@ -12,10 +12,12 @@ sidebar_label: Image
 
 | Method | Summary |
 | ------ | ------- |
-| [Image(MImage)](#DotMarkdown_Linq_MFactory_Image_DotMarkdown_Linq_MImage_) | |
-| [Image(String, String, String)](#DotMarkdown_Linq_MFactory_Image_System_String_System_String_System_String_) | |
+| [Image(MImage)](#4053134865) | |
+| [Image(String, String, String)](#1761686754) | |
 
-## Image\(MImage\) <a id="DotMarkdown_Linq_MFactory_Image_DotMarkdown_Linq_MImage_"></a>
+<a id="4053134865"></a>
+
+## Image\(MImage\) 
 
 ```csharp
 public static DotMarkdown.Linq.MImage Image(DotMarkdown.Linq.MImage other)
@@ -29,7 +31,9 @@ public static DotMarkdown.Linq.MImage Image(DotMarkdown.Linq.MImage other)
 
 [MImage](../../MImage/index.md)
 
-## Image\(String, String, String\) <a id="DotMarkdown_Linq_MFactory_Image_System_String_System_String_System_String_"></a>
+<a id="1761686754"></a>
+
+## Image\(String, String, String\) 
 
 ```csharp
 public static DotMarkdown.Linq.MImage Image(string text, string url, string title = null)

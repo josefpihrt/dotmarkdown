@@ -12,22 +12,14 @@ sidebar_label: MOrderedItem
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MOrderedItem(Int32)](#DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_) | |
-| [MOrderedItem(Int32, Object)](#DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_System_Object_) | |
-| [MOrderedItem(Int32, Object\[\])](#DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_System_Object___) | |
-| [MOrderedItem(MOrderedItem)](#DotMarkdown_Linq_MOrderedItem__ctor_DotMarkdown_Linq_MOrderedItem_) | |
+| [MOrderedItem(Int32, Object)](#1363747167) | |
+| [MOrderedItem(Int32, Object\[\])](#3010602866) | |
+| [MOrderedItem(Int32)](#4102942450) | |
+| [MOrderedItem(MOrderedItem)](#3023090790) | |
 
-## MOrderedItem\(Int32\) <a id="DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_"></a>
+<a id="1363747167"></a>
 
-```csharp
-public MOrderedItem(int number)
-```
-
-### Parameters
-
-**number** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
-
-## MOrderedItem\(Int32, Object\) <a id="DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_System_Object_"></a>
+## MOrderedItem\(Int32, Object\) 
 
 ```csharp
 public MOrderedItem(int number, object content)
@@ -37,9 +29,9 @@ public MOrderedItem(int number, object content)
 
 **number** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)<a id="3010602866"></a>
 
-## MOrderedItem\(Int32, Object\[\]\) <a id="DotMarkdown_Linq_MOrderedItem__ctor_System_Int32_System_Object___"></a>
+## MOrderedItem\(Int32, Object\[\]\) 
 
 ```csharp
 public MOrderedItem(int number, params object[] content)
@@ -49,9 +41,19 @@ public MOrderedItem(int number, params object[] content)
 
 **number** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)
 
-**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]
+**content** &ensp; [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\[\]<a id="4102942450"></a>
 
-## MOrderedItem\(MOrderedItem\) <a id="DotMarkdown_Linq_MOrderedItem__ctor_DotMarkdown_Linq_MOrderedItem_"></a>
+## MOrderedItem\(Int32\) 
+
+```csharp
+public MOrderedItem(int number)
+```
+
+### Parameters
+
+**number** &ensp; [Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32)<a id="3023090790"></a>
+
+## MOrderedItem\(MOrderedItem\) 
 
 ```csharp
 public MOrderedItem(DotMarkdown.Linq.MOrderedItem other)

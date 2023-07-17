@@ -12,11 +12,13 @@ sidebar_label: Heading5
 
 | Method | Summary |
 | ------ | ------- |
-| [Heading5()](#DotMarkdown_Linq_MFactory_Heading5) | |
-| [Heading5(Object)](#DotMarkdown_Linq_MFactory_Heading5_System_Object_) | |
-| [Heading5(Object\[\])](#DotMarkdown_Linq_MFactory_Heading5_System_Object___) | |
+| [Heading5()](#2947531440) | |
+| [Heading5(Object)](#2395884279) | |
+| [Heading5(Object\[\])](#3959405491) | |
 
-## Heading5\(\) <a id="DotMarkdown_Linq_MFactory_Heading5"></a>
+<a id="2947531440"></a>
+
+## Heading5\(\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHeading Heading5()
@@ -26,7 +28,9 @@ public static DotMarkdown.Linq.MHeading Heading5()
 
 [MHeading](../../MHeading/index.md)
 
-## Heading5\(Object\) <a id="DotMarkdown_Linq_MFactory_Heading5_System_Object_"></a>
+<a id="2395884279"></a>
+
+## Heading5\(Object\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHeading Heading5(object content)
@@ -40,7 +44,9 @@ public static DotMarkdown.Linq.MHeading Heading5(object content)
 
 [MHeading](../../MHeading/index.md)
 
-## Heading5\(Object\[\]\) <a id="DotMarkdown_Linq_MFactory_Heading5_System_Object___"></a>
+<a id="3959405491"></a>
+
+## Heading5\(Object\[\]\) 
 
 ```csharp
 public static DotMarkdown.Linq.MHeading Heading5(params object[] content)

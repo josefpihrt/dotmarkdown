@@ -48,8 +48,8 @@ public class MarkdownFormat : IEquatable<DotMarkdown.MarkdownFormat>
 
 | Method | Summary |
 | ------ | ------- |
-| [Equals(MarkdownFormat)](Equals/index.md#DotMarkdown_MarkdownFormat_Equals_DotMarkdown_MarkdownFormat_) |  \(Implements [IEquatable&lt;MarkdownFormat&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
-| [Equals(Object)](Equals/index.md#DotMarkdown_MarkdownFormat_Equals_System_Object_) |  \(Overrides [Object.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.object.equals)\) |
+| [Equals(MarkdownFormat)](Equals/index.md#3821670844) |  \(Implements [IEquatable&lt;MarkdownFormat&gt;.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1.equals)\) |
+| [Equals(Object)](Equals/index.md#2318467644) |  \(Overrides [Object.Equals](https://docs.microsoft.com/en-us/dotnet/api/system.object.equals)\) |
 | [GetHashCode()](GetHashCode/index.md) |  \(Overrides [Object.GetHashCode](https://docs.microsoft.com/en-us/dotnet/api/system.object.gethashcode)\) |
 | [GetType()](https://docs.microsoft.com/en-us/dotnet/api/system.object.gettype) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |
 | [MemberwiseClone()](https://docs.microsoft.com/en-us/dotnet/api/system.object.memberwiseclone) |  \(Inherited from [Object](https://docs.microsoft.com/en-us/dotnet/api/system.object)\) |
@@ -58,8 +58,8 @@ public class MarkdownFormat : IEquatable<DotMarkdown.MarkdownFormat>
 | [WithBulletListStyle(BulletListStyle)](WithBulletListStyle/index.md) | |
 | [WithCodeBlockOptions(CodeBlockOptions)](WithCodeBlockOptions/index.md) | |
 | [WithCodeFenceStyle(CodeFenceStyle)](WithCodeFenceStyle/index.md) | |
-| [WithHeadingOptions(HeadingOptions)](WithHeadingOptions/index.md#DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingOptions_) | |
-| [WithHeadingOptions(HeadingStyle)](WithHeadingOptions/index.md#DotMarkdown_MarkdownFormat_WithHeadingOptions_DotMarkdown_HeadingStyle_) | |
+| [WithHeadingOptions(HeadingOptions)](WithHeadingOptions/index.md#70293284) | |
+| [WithHeadingOptions(HeadingStyle)](WithHeadingOptions/index.md#1436480829) | |
 | [WithHorizontalRuleFormat(HorizontalRuleFormat)](WithHorizontalRuleFormat/index.md) | |
 | [WithCharEntityFormat(CharEntityFormat)](WithCharEntityFormat/index.md) | |
 | [WithItalicStyle(EmphasisStyle)](WithItalicStyle/index.md) | |

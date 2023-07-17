@@ -12,10 +12,12 @@ sidebar_label: MComment
 
 | Constructor | Summary |
 | ----------- | ------- |
-| [MComment(MComment)](#DotMarkdown_Linq_MComment__ctor_DotMarkdown_Linq_MComment_) | |
-| [MComment(String)](#DotMarkdown_Linq_MComment__ctor_System_String_) | |
+| [MComment(MComment)](#67123801) | |
+| [MComment(String)](#910363927) | |
 
-## MComment\(MComment\) <a id="DotMarkdown_Linq_MComment__ctor_DotMarkdown_Linq_MComment_"></a>
+<a id="67123801"></a>
+
+## MComment\(MComment\) 
 
 ```csharp
 public MComment(DotMarkdown.Linq.MComment other)
@@ -23,9 +25,9 @@ public MComment(DotMarkdown.Linq.MComment other)
 
 ### Parameters
 
-**other** &ensp; [MComment](../index.md)
+**other** &ensp; [MComment](../index.md)<a id="910363927"></a>
 
-## MComment\(String\) <a id="DotMarkdown_Linq_MComment__ctor_System_String_"></a>
+## MComment\(String\) 
 
 ```csharp
 public MComment(string value)
