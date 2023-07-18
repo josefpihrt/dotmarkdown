@@ -11,6 +11,7 @@ dotnet build "../../Roslynator/src/CommandLine.sln" --no-restore /p:Configuratio
  --host docusaurus `
  --group-by-common-namespace `
  --ignored-common-parts content `
+ --ignored-root-parts all `
  --max-derived-types 10
 
  & $roslynatorExe generate-doc-root "../src/DotMarkdown.sln" `
