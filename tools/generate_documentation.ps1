@@ -7,13 +7,22 @@ dotnet build "../../Roslynator/src/CommandLine.sln" --no-restore /p:Configuratio
  --properties "Configuration=Release" `
  --projects "DotMarkdown(netstandard1.3)" `
  --heading "DotMarkdown Reference" `
- -o "../docs/api" `
+ -o "build/ref" `
  --host docusaurus `
  --group-by-common-namespace `
  --ignored-common-parts content `
  --max-derived-types 10
 
-# & $roslynatorExe list-symbols "../src/DotMarkdown.sln" `
+ & $roslynatorExe generate-doc-root "../src/DotMarkdown.sln" `
+  --properties "Configuration=Release" `
+  --projects "DotMarkdown(netstandard1.3)" `
+  -o "build/ref.md" `
+  --host docusaurus `
+  --heading "DotMarkdown Reference" `
+  --ignored-parts content `
+  --root-directory-url "ref"
+
+#   & $roslynatorExe list-symbols "../src/DotMarkdown.sln" `
 #  --properties "Configuration=Release" `
 #  --projects "DotMarkdown(netstandard1.3)" `
 #  --visibility public `
