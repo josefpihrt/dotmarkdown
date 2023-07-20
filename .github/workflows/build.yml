@@ -34,7 +34,7 @@ jobs:
           echo "semantic_version=$semantic_version" >> $GITHUB_ENV
         working-directory: ./
       - run: dotnet restore --configfile nuget.config
-      - run: dotnet format --no-restore --verify-no-changes
+      - run: dotnet format --no-restore --verify-no-changes --severity info
       - run: dotnet build --no-restore /p:Version=${{ env.semantic_version }}
       - run: dotnet test --no-build
       - run: dotnet pack --no-build /p:PackageVersion=${{ env.semantic_version }}

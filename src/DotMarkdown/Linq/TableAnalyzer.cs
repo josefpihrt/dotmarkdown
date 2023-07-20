@@ -7,7 +7,7 @@ namespace DotMarkdown.Linq;
 
 internal static class TableAnalyzer
 {
-    public static List<TableColumnInfo> Analyze(
+    public static List<TableColumnInfo>? Analyze(
         IEnumerable<MElement> rows,
         MarkdownWriterSettings settings,
         IFormatProvider formatProvider)

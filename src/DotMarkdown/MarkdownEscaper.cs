@@ -7,7 +7,7 @@ namespace DotMarkdown;
 
 public static class MarkdownEscaper
 {
-    public static string Escape(string value, Func<char, bool> shouldBeEscaped = null)
+    public static string Escape(string value, Func<char, bool>? shouldBeEscaped = null)
     {
         return Escape(value, shouldBeEscaped ?? ShouldBeEscaped, escapingChar: '\\');
     }

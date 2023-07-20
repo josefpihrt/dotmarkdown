@@ -9,8 +9,8 @@ namespace DotMarkdown;
 public class MarkdownWriterSettings
 {
     public MarkdownWriterSettings(
-        MarkdownFormat format = null,
-        string newLineChars = null,
+        MarkdownFormat? format = null,
+        string? newLineChars = null,
         NewLineHandling newLineHandling = NewLineHandling.Replace,
         bool closeOutput = false)
     {
@@ -54,7 +54,7 @@ public class MarkdownWriterSettings
         return new MarkdownWriterSettings(Format, NewLineChars, NewLineHandling, closeOutput);
     }
 
-    internal static MarkdownWriterSettings From(MarkdownFormat format)
+    internal static MarkdownWriterSettings From(MarkdownFormat? format)
     {
         if (format is null
             || object.ReferenceEquals(format, MarkdownFormat.Default))

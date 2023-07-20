@@ -12,7 +12,7 @@ public class MRaw : MElement
 
     public MRaw(string value)
     {
-        Value = value;
+        _value = value ?? throw new ArgumentNullException(nameof(value));
     }
 
     public MRaw(MRaw other)

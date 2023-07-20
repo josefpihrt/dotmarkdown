@@ -14,7 +14,7 @@ public abstract class MarkdownWriter : IDisposable
 {
     private bool _disposed;
 
-    protected MarkdownWriter(MarkdownWriterSettings settings = null)
+    protected MarkdownWriter(MarkdownWriterSettings? settings = null)
     {
         Settings = settings ?? MarkdownWriterSettings.Default;
     }
@@ -29,7 +29,7 @@ public abstract class MarkdownWriter : IDisposable
 
     internal string NewLineChars => Settings.NewLineChars;
 
-    public static MarkdownWriter Create(StringBuilder output, MarkdownWriterSettings settings = null)
+    public static MarkdownWriter Create(StringBuilder output, MarkdownWriterSettings? settings = null)
     {
         return Create(output, CultureInfo.InvariantCulture, settings);
     }
@@ -37,7 +37,7 @@ public abstract class MarkdownWriter : IDisposable
     public static MarkdownWriter Create(
         StringBuilder output,
         IFormatProvider formatProvider,
-        MarkdownWriterSettings settings = null)
+        MarkdownWriterSettings? settings = null)
     {
         if (output is null)
             throw new ArgumentNullException(nameof(output));
@@ -48,7 +48,7 @@ public abstract class MarkdownWriter : IDisposable
         return new MarkdownStringWriter(output, formatProvider, settings);
     }
 
-    public static MarkdownWriter Create(TextWriter output, MarkdownWriterSettings settings = null)
+    public static MarkdownWriter Create(TextWriter output, MarkdownWriterSettings? settings = null)
     {
         if (output is null)
             throw new ArgumentNullException(nameof(output));
@@ -56,7 +56,7 @@ public abstract class MarkdownWriter : IDisposable
         return new MarkdownTextWriter(output, settings);
     }
 
-    public static MarkdownWriter Create(string fileName, MarkdownWriterSettings settings = null)
+    public static MarkdownWriter Create(string fileName, MarkdownWriterSettings? settings = null)
     {
         if (settings is null
             || object.ReferenceEquals(settings, MarkdownWriterSettings.Default))
@@ -68,7 +68,7 @@ public abstract class MarkdownWriter : IDisposable
             settings = settings.WithCloseOutput(true);
         }
 
-        FileStream fs = null;
+        FileStream? fs = null;
 
         try
         {
@@ -84,12 +84,12 @@ public abstract class MarkdownWriter : IDisposable
         }
     }
 
-    public static MarkdownWriter Create(Stream stream, MarkdownWriterSettings settings = null)
+    public static MarkdownWriter Create(Stream stream, MarkdownWriterSettings? settings = null)
     {
         return Create(stream, Encoding.UTF8, settings);
     }
 
-    public static MarkdownWriter Create(Stream stream, Encoding encoding, MarkdownWriterSettings settings = null)
+    public static MarkdownWriter Create(Stream stream, Encoding encoding, MarkdownWriterSettings? settings = null)
     {
         if (stream is null)
             throw new ArgumentNullException(nameof(stream));
@@ -100,7 +100,7 @@ public abstract class MarkdownWriter : IDisposable
         if (settings is null)
             settings = MarkdownWriterSettings.Default;
 
-        StreamWriter sw = null;
+        StreamWriter? sw = null;
 
         if (settings.CloseOutput)
         {
@@ -252,13 +252,13 @@ public abstract class MarkdownWriter : IDisposable
         WriteTaskItem(text, isCompleted: true);
     }
 
-    public abstract void WriteImage(string text, string url, string title = null);
+    public abstract void WriteImage(string text, string url, string? title = null);
 
     public abstract void WriteStartLink();
 
-    public abstract void WriteEndLink(string url, string title = null);
+    public abstract void WriteEndLink(string url, string? title = null);
 
-    public virtual void WriteLink(string text, string url, string title = null)
+    public virtual void WriteLink(string text, string url, string? title = null)
     {
         if (text is null)
             throw new ArgumentNullException(nameof(text));
@@ -268,11 +268,11 @@ public abstract class MarkdownWriter : IDisposable
         WriteEndLink(url, title);
     }
 
-    public void WriteLinkOrText(string text, string url = null, string title = null)
+    public void WriteLinkOrText(string text, string? url = null, string? title = null)
     {
         if (!string.IsNullOrEmpty(url))
         {
-            WriteLink(text, url, title);
+            WriteLink(text, url!, title);
         }
         else
         {
@@ -284,13 +284,13 @@ public abstract class MarkdownWriter : IDisposable
 
     public abstract void WriteImageReference(string text, string label);
 
-    public abstract void WriteLinkReference(string text, string label = null);
+    public abstract void WriteLinkReference(string text, string? label = null);
 
-    public abstract void WriteLabel(string label, string url, string title = null);
+    public abstract void WriteLabel(string label, string url, string? title = null);
 
     public abstract void WriteIndentedCodeBlock(string text);
 
-    public abstract void WriteFencedCodeBlock(string text, string info = null);
+    public abstract void WriteFencedCodeBlock(string text, string? info = null);
 
     public abstract void WriteStartBlockQuote();
 
@@ -316,7 +316,7 @@ public abstract class MarkdownWriter : IDisposable
     public abstract void WriteHorizontalRule(
         HorizontalRuleStyle style,
         int count = HorizontalRuleFormat.DefaultCount,
-        string separator = HorizontalRuleFormat.DefaultSeparator);
+        string? separator = HorizontalRuleFormat.DefaultSeparator);
 
     public abstract void WriteStartTable(int columnCount);
 

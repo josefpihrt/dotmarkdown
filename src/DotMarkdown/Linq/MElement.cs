@@ -11,9 +11,9 @@ namespace DotMarkdown.Linq;
 [DebuggerDisplay("{Kind} {ToStringDebuggerDisplay(),nq}")]
 public abstract class MElement : MObject
 {
-    internal MElement next;
+    internal MElement? next;
 
-    public MElement NextElement
+    public MElement? NextElement
     {
         get
         {
@@ -23,22 +23,22 @@ public abstract class MElement : MObject
         }
     }
 
-    public MElement PreviousElement
+    public MElement? PreviousElement
     {
         get
         {
             if (Parent is null)
                 return null;
 
-            MElement e = ((MElement)Parent.content).next;
+            MElement e = ((MElement)Parent.content!).next!;
 
-            MElement p = null;
+            MElement? p = null;
 
             while (e != this)
             {
                 p = e;
 
-                e = e.next;
+                e = e.next!;
             }
 
             return p;
@@ -59,7 +59,7 @@ public abstract class MElement : MObject
         return ToString(MarkdownWriterSettings.From(format));
     }
 
-    public string ToString(MarkdownWriterSettings settings)
+    public string ToString(MarkdownWriterSettings? settings)
     {
         StringBuilder sb = StringBuilderCache.GetInstance();
 
@@ -76,7 +76,7 @@ public abstract class MElement : MObject
         return ToString(MarkdownWriterSettings.Debugging);
     }
 
-    public void Save(string fileName, MarkdownFormat format = null)
+    public void Save(string fileName, MarkdownFormat? format = null)
     {
         using (MarkdownWriter mw = MarkdownWriter.Create(fileName, MarkdownWriterSettings.From(format)))
         {
@@ -84,7 +84,7 @@ public abstract class MElement : MObject
         }
     }
 
-    public void Save(Stream stream, MarkdownFormat format = null)
+    public void Save(Stream stream, MarkdownFormat? format = null)
     {
         using (MarkdownWriter mw = MarkdownWriter.Create(stream, MarkdownWriterSettings.From(format)))
         {
@@ -92,7 +92,7 @@ public abstract class MElement : MObject
         }
     }
 
-    public void Save(TextWriter writer, MarkdownFormat format = null)
+    public void Save(TextWriter writer, MarkdownFormat? format = null)
     {
         using (MarkdownWriter mw = MarkdownWriter.Create(writer, MarkdownWriterSettings.From(format)))
         {
@@ -128,13 +128,13 @@ public abstract class MElement : MObject
     public IEnumerable<MElement> ElementsAfterSelf()
     {
         var e = this;
-
-        while (e.Parent is not null
+        while (e!.Parent is not null
             && e.Parent.content != e)
         {
-            e = e.next;
+            e = e.next!;
 
-            yield return e;
+            if (e is not null)
+                yield return e;
         }
     }
 
@@ -142,7 +142,7 @@ public abstract class MElement : MObject
     {
         if (Parent is not null)
         {
-            var e = (MElement)Parent.content;
+            var e = (MElement)Parent.content!;
 
             do
             {
@@ -151,9 +151,10 @@ public abstract class MElement : MObject
                 if (e == this)
                     break;
 
-                yield return e;
+                if (e is not null)
+                    yield return e;
             }
-            while (Parent is not null && Parent == e.Parent);
+            while (Parent is not null && Parent == e!.Parent);
         }
     }
 

@@ -12,13 +12,13 @@ public class MTaskItem : MBlockContainer
         IsCompleted = isCompleted;
     }
 
-    public MTaskItem(bool isCompleted, object content)
+    public MTaskItem(bool isCompleted, object? content)
         : base(content)
     {
         IsCompleted = isCompleted;
     }
 
-    public MTaskItem(bool isCompleted, params object[] content)
+    public MTaskItem(bool isCompleted, params object[]? content)
         : base(content)
     {
         IsCompleted = isCompleted;

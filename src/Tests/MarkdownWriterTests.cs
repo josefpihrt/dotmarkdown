@@ -431,8 +431,8 @@ public static class MarkdownWriterTests
     {
         MarkdownWriter mw = CreateWriter();
 
-        Assert.Throws<ArgumentNullException>(() => mw.WriteImage(text: null, url: "Url"));
-        Assert.Throws<ArgumentNullException>(() => mw.WriteImage(text: "Text", url: null));
+        Assert.Throws<ArgumentNullException>(() => mw.WriteImage(text: null!, url: "Url"));
+        Assert.Throws<ArgumentNullException>(() => mw.WriteImage(text: "Text", url: null!));
     }
 
     [Fact]

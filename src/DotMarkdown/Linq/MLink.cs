@@ -8,10 +8,12 @@ public class MLink : MContainer
 {
     private string _url;
 
-    public MLink(object content, string url, string title = null)
+    public MLink(object? content, string url, string? title = null)
         : base(content)
     {
-        Url = url;
+        ValidateUrl(url);
+
+        _url = url;
         Title = title;
     }
 
@@ -46,16 +48,20 @@ public class MLink : MContainer
         get { return _url; }
         set
         {
-            if (value is null)
-                throw new ArgumentNullException(nameof(value));
-
-            Error.ThrowIfContainsWhitespace(value, nameof(value));
-
+            ValidateUrl(value);
             _url = value;
         }
     }
 
-    public string Title { get; set; }
+    private static void ValidateUrl(string value)
+    {
+        if (value is null)
+            throw new ArgumentNullException(nameof(value));
+
+        Error.ThrowIfContainsWhitespace(value, nameof(value));
+    }
+
+    public string? Title { get; set; }
 
     public override MarkdownKind Kind => MarkdownKind.Link;
 

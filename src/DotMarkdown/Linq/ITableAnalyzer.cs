@@ -6,5 +6,5 @@ namespace DotMarkdown.Linq;
 
 public interface ITableAnalyzer
 {
-    IReadOnlyList<TableColumnInfo> AnalyzeTable(IEnumerable<MElement> rows);
+    IReadOnlyList<TableColumnInfo>? AnalyzeTable(IEnumerable<MElement> rows);
 }
