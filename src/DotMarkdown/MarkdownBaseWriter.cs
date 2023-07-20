@@ -805,7 +805,6 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
     {
         if (string.IsNullOrEmpty(title))
             return;
-
         WriteRaw(" ");
         WriteRaw("\"");
         WriteString(title!, MarkdownCharEscaper.LinkTitle);
