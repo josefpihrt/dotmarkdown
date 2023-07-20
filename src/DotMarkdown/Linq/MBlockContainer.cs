@@ -8,12 +8,12 @@ public abstract class MBlockContainer : MContainer
     {
     }
 
-    protected MBlockContainer(object content)
+    protected MBlockContainer(object? content)
         : base(content)
     {
     }
 
-    protected MBlockContainer(params object[] content)
+    protected MBlockContainer(params object[]? content)
         : base(content)
     {
     }

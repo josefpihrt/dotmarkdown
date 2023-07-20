@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Enable nullable reference types ([#26](https://github.com/josefpihrt/dotmarkdown/pull/26)).
+
 ## [0.2.0] - 2022-06-26
 
 ### Added

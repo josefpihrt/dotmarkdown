@@ -4,10 +4,10 @@ namespace DotMarkdown.Tests;
 
 internal static class MarkdownWriterExtensions
 {
-    public static string ToStringAndClear(this MarkdownWriter mb)
+    public static string? ToStringAndClear(this MarkdownWriter mw)
     {
-        string s = mb.ToString();
-        ((MarkdownStringWriter)mb).GetStringBuilder().Clear();
+        string? s = mw.ToString();
+        ((MarkdownStringWriter)mw).GetStringBuilder().Clear();
         return s;
     }
 

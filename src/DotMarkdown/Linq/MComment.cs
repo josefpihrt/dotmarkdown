@@ -12,7 +12,7 @@ public class MComment : MElement
 
     public MComment(string value)
     {
-        Value = value;
+        _value = value ?? throw new ArgumentNullException(nameof(value));
     }
 
     public MComment(MComment other)

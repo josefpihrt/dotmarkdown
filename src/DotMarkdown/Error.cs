@@ -23,12 +23,12 @@ internal static class Error
         }
     }
 
-    public static void ThrowOnInvalidFencedCodeBlockInfo(string info)
+    public static void ThrowOnInvalidFencedCodeBlockInfo(string? info)
     {
         if (string.IsNullOrEmpty(info))
             return;
 
-        for (int i = 0; i < info.Length; i++)
+        for (int i = 0; i < info!.Length; i++)
         {
             switch (info[i])
             {
@@ -58,7 +58,7 @@ internal static class Error
         }
     }
 
-    public static void ThrowOnInvalidHorizontalRuleSeparator(string separator)
+    public static void ThrowOnInvalidHorizontalRuleSeparator(string? separator)
     {
         if (!HorizontalRuleFormat.IsValidSeparator(separator))
         {
@@ -108,7 +108,7 @@ internal static class Error
         ThrowIfContainsWhitespace(url, nameof(url));
     }
 
-    public static void ThrowIfContainsWhitespace(string value, string parameterName = null)
+    public static void ThrowIfContainsWhitespace(string value, string? parameterName = null)
     {
         if (value is null)
             return;

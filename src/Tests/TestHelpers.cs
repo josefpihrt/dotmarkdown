@@ -295,7 +295,7 @@ internal static class TestHelpers
         return (CharEntityFormat)IntValue(0, 1);
     }
 
-    public static MarkdownWriter CreateWriter(MarkdownFormat format = null)
+    public static MarkdownWriter CreateWriter(MarkdownFormat? format = null)
     {
         return CreateBuilder(new StringBuilder(), format);
     }
@@ -335,7 +335,7 @@ internal static class TestHelpers
         return CreateWriter((style is not null) ? new MarkdownFormat(bulletListStyle: style.Value) : null);
     }
 
-    public static MarkdownWriter CreateBuilder(StringBuilder sb, MarkdownFormat format = null)
+    public static MarkdownWriter CreateBuilder(StringBuilder sb, MarkdownFormat? format = null)
     {
         return MarkdownWriter.Create(sb, settings: new MarkdownWriterSettings(format, newLineChars: NewLine));
     }

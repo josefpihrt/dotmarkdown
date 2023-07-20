@@ -9,18 +9,18 @@ namespace DotMarkdown.Linq;
 
 public abstract class MContainer : MElement
 {
-    internal object content;
+    internal object? content;
 
     protected MContainer()
     {
     }
 
-    protected MContainer(object content)
+    protected MContainer(object? content)
     {
         Add(content);
     }
 
-    protected MContainer(params object[] content)
+    protected MContainer(params object[]? content)
     {
         Add(content);
     }
@@ -36,13 +36,13 @@ public abstract class MContainer : MElement
         }
         else
         {
-            var e = (MElement)other.content;
+            MElement? e = (MElement?)other.content;
 
             if (e is not null)
             {
                 do
                 {
-                    e = e.next;
+                    e = e.next!;
                     AppendElement(e.Clone());
                 }
                 while (e != other.content);
@@ -57,12 +57,12 @@ public abstract class MContainer : MElement
         get { return content is null; }
     }
 
-    public MElement FirstElement
+    public MElement? FirstElement
     {
         get { return LastElement?.next; }
     }
 
-    public MElement LastElement
+    public MElement? LastElement
     {
         get
         {
@@ -102,13 +102,13 @@ public abstract class MContainer : MElement
 
     public IEnumerable<MElement> Elements()
     {
-        MElement e = LastElement;
+        MElement? e = LastElement;
 
         if (e is not null)
         {
             do
             {
-                e = e.next;
+                e = e.next!;
                 yield return e;
             }
             while (e.Parent == this && e != content);
@@ -141,7 +141,7 @@ public abstract class MContainer : MElement
 
         while (true)
         {
-            MElement first = c?.FirstElement;
+            MElement? first = c?.FirstElement;
 
             if (first is not null)
             {
@@ -149,20 +149,23 @@ public abstract class MContainer : MElement
             }
             else
             {
-                while (e != this
-                    && e == e.Parent.content)
+                while (e is not null
+                    && e != this
+                    && e == e.Parent!.content)
                 {
                     e = e.Parent;
                 }
 
-                if (e == this)
+                if (e is null
+                    || e == this)
+                {
                     break;
+                }
 
-                e = e.next;
+                e = e.next!;
             }
 
-            if (e is not null)
-                yield return e;
+            yield return e;
 
             c = e as MContainer;
         }
@@ -170,10 +173,10 @@ public abstract class MContainer : MElement
 
     internal void RemoveElement(MElement e)
     {
-        var p = (MElement)content;
+        var p = (MElement?)content;
 
-        while (p.next != e)
-            p = p.next;
+        while (p?.next != e)
+            p = p?.next;
 
         if (p == e)
         {
@@ -206,7 +209,7 @@ public abstract class MContainer : MElement
 
         do
         {
-            MElement n = e.next;
+            MElement n = e.next!;
 
             e.Parent = null;
             e.next = null;
@@ -218,7 +221,7 @@ public abstract class MContainer : MElement
         content = null;
     }
 
-    public void Add(object content)
+    public void Add(object? content)
     {
         if (content is null)
             return;
@@ -254,9 +257,9 @@ public abstract class MContainer : MElement
         AddString(content.ToString());
     }
 
-    public void Add(params object[] content)
+    public void Add(params object[]? content)
     {
-        Add((object)content);
+        Add((object?)content);
     }
 
     internal void AddElement(MElement e)
@@ -371,7 +374,7 @@ public abstract class MContainer : MElement
 
         if (!string.IsNullOrEmpty(s))
         {
-            var t = new MText(s) { Parent = this };
+            var t = new MText(s!) { Parent = this };
 
             t.next = t;
             content = t;

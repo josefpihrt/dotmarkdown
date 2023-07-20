@@ -14,22 +14,22 @@ internal class MarkdownStringWriter : MarkdownBaseWriter, ITableAnalyzer
     private readonly IFormatProvider _formatProvider;
     private bool _isOpen;
 
-    public MarkdownStringWriter(MarkdownWriterSettings settings = null)
+    public MarkdownStringWriter(MarkdownWriterSettings? settings = null)
         : this(new StringBuilder(), settings)
     {
     }
 
-    public MarkdownStringWriter(StringBuilder sb, MarkdownWriterSettings settings = null)
+    public MarkdownStringWriter(StringBuilder sb, MarkdownWriterSettings? settings = null)
         : this(sb, CultureInfo.CurrentCulture, settings)
     {
     }
 
-    public MarkdownStringWriter(IFormatProvider formatProvider, MarkdownWriterSettings settings = null)
+    public MarkdownStringWriter(IFormatProvider formatProvider, MarkdownWriterSettings? settings = null)
         : this(new StringBuilder(), formatProvider, settings)
     {
     }
 
-    public MarkdownStringWriter(StringBuilder sb, IFormatProvider formatProvider, MarkdownWriterSettings settings = null)
+    public MarkdownStringWriter(StringBuilder sb, IFormatProvider formatProvider, MarkdownWriterSettings? settings = null)
         : base(settings)
     {
         _sb = sb ?? throw new ArgumentNullException(nameof(sb));
@@ -55,7 +55,7 @@ internal class MarkdownStringWriter : MarkdownBaseWriter, ITableAnalyzer
 
     public override void WriteString(string text)
     {
-        string indentation = null;
+        string? indentation = null;
 
         try
         {
@@ -274,7 +274,7 @@ internal class MarkdownStringWriter : MarkdownBaseWriter, ITableAnalyzer
             throw new ObjectDisposedException(null, "Cannot write to a closed writer.");
     }
 
-    public IReadOnlyList<TableColumnInfo> AnalyzeTable(IEnumerable<MElement> rows)
+    public IReadOnlyList<TableColumnInfo>? AnalyzeTable(IEnumerable<MElement> rows)
     {
         return TableAnalyzer.Analyze(rows, Settings, FormatProvider)?.AsReadOnly();
     }

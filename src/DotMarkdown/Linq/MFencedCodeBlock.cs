@@ -1,16 +1,16 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Diagnostics;
 using System;
+using System.Diagnostics;
 
 namespace DotMarkdown.Linq;
 
 [DebuggerDisplay("{Kind}{InfoDebuggerDisplay,nq} {Text,nq}")]
 public class MFencedCodeBlock : MElement
 {
-    private string _info;
+    private string? _info;
 
-    public MFencedCodeBlock(string text, string info = null)
+    public MFencedCodeBlock(string text, string? info = null)
     {
         Text = text;
         Info = info;
@@ -27,7 +27,7 @@ public class MFencedCodeBlock : MElement
 
     public string Text { get; set; }
 
-    public string Info
+    public string? Info
     {
         get { return _info; }
         set

@@ -23,7 +23,9 @@ public class MEntityRef : MElement
         }
         else
         {
-            Name = name;
+            Error.ThrowOnInvalidEntityName(name);
+
+            _name = name;
         }
     }
 

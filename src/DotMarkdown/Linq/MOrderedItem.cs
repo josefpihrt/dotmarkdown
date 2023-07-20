@@ -15,13 +15,13 @@ public class MOrderedItem : MBlockContainer
         Number = number;
     }
 
-    public MOrderedItem(int number, object content)
+    public MOrderedItem(int number, object? content)
         : base(content)
     {
         Number = number;
     }
 
-    public MOrderedItem(int number, params object[] content)
+    public MOrderedItem(int number, params object[]? content)
         : base(content)
     {
         Number = number;

@@ -20,7 +20,7 @@ internal class MarkdownTextWriter : MarkdownBaseWriter, ITableAnalyzer
     private int _bufPos;
     private readonly int _bufLen = BufferSize;
 
-    public MarkdownTextWriter(TextWriter writer, MarkdownWriterSettings settings = null)
+    public MarkdownTextWriter(TextWriter writer, MarkdownWriterSettings? settings = null)
         : base(settings)
     {
         _writer = writer ?? throw new ArgumentNullException(nameof(writer));
@@ -52,7 +52,7 @@ internal class MarkdownTextWriter : MarkdownBaseWriter, ITableAnalyzer
     {
         Debug.Assert(value is not null);
 
-        string indentation = null;
+        string? indentation = null;
         var pendingIndentation = false;
         int offset = 0;
 
@@ -60,12 +60,12 @@ internal class MarkdownTextWriter : MarkdownBaseWriter, ITableAnalyzer
         {
             fixed (char* pSrcStart = value)
             {
-                offset += WriteStringUnsafe(pSrcStart + offset, pSrcStart + value.Length);
+                offset += WriteStringUnsafe(pSrcStart + offset, pSrcStart + value!.Length);
             }
 
             if (pendingIndentation)
             {
-                WriteRawUnsafe(indentation);
+                WriteRawUnsafe(indentation!);
                 pendingIndentation = false;
             }
             else
@@ -373,14 +373,14 @@ internal class MarkdownTextWriter : MarkdownBaseWriter, ITableAnalyzer
                     }
                     finally
                     {
-                        _writer = null;
+                        _writer = null!;
                     }
                 }
             }
         }
     }
 
-    public IReadOnlyList<TableColumnInfo> AnalyzeTable(IEnumerable<MElement> rows)
+    public IReadOnlyList<TableColumnInfo>? AnalyzeTable(IEnumerable<MElement> rows)
     {
         return TableAnalyzer.Analyze(rows, Settings, _writer.FormatProvider)?.AsReadOnly();
     }

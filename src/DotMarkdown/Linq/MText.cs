@@ -12,7 +12,7 @@ public class MText : MElement
 
     public MText(string value)
     {
-        Value = value;
+        _value = value ?? throw new ArgumentNullException(nameof(value));
     }
 
     public MText(MText other)

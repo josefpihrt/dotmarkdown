@@ -50,7 +50,7 @@ public readonly struct HorizontalRuleFormat : IEquatable<HorizontalRuleFormat>
         return count >= 3;
     }
 
-    internal static bool IsValidSeparator(string separator)
+    internal static bool IsValidSeparator(string? separator)
     {
         if (separator is null)
             return true;
