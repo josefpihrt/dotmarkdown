@@ -16,7 +16,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
     private int _headingLevel = -1;
 
-    private List<TableColumnInfo> _tableColumns;
+    private List<TableColumnInfo>? _tableColumns;
     private int _tableColumnCount = -1;
     private int _tableRowIndex = -1;
     private int _tableColumnIndex = -1;
@@ -27,7 +27,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
     private readonly Collection<ElementInfo> _stack = new();
 
-    protected MarkdownBaseWriter(MarkdownWriterSettings settings = null)
+    protected MarkdownBaseWriter(MarkdownWriterSettings? settings = null)
     {
         Settings = settings ?? MarkdownWriterSettings.Default;
     }
@@ -73,7 +73,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
     protected MarkdownCharEscaper Escaper { get; set; } = MarkdownCharEscaper.Default;
 
-    private TableColumnInfo CurrentColumn => _tableColumns[_tableColumnIndex];
+    private TableColumnInfo CurrentColumn => _tableColumns![_tableColumnIndex];
 
     private bool IsFirstColumn => _tableColumnIndex == 0;
 
@@ -644,7 +644,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    public override void WriteImage(string text, string url, string title = null)
+    public override void WriteImage(string text, string url, string? title = null)
     {
         try
         {
@@ -687,7 +687,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    public override void WriteEndLink(string url, string title = null)
+    public override void WriteEndLink(string url, string? title = null)
     {
         try
         {
@@ -711,7 +711,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    public override void WriteLink(string text, string url, string title = null)
+    public override void WriteLink(string text, string url, string? title = null)
     {
         try
         {
@@ -756,7 +756,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    public override void WriteLinkReference(string text, string label = null)
+    public override void WriteLinkReference(string text, string? label = null)
     {
         try
         {
@@ -771,13 +771,15 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    private void WriteLinkReferenceCore(string text, string label = null)
+    private void WriteLinkReferenceCore(string text, string? label = null)
     {
         WriteSquareBrackets(text);
-        WriteSquareBrackets(label);
+
+        if (label is not null)
+            WriteSquareBrackets(label);
     }
 
-    public override void WriteLabel(string label, string url, string title = null)
+    public override void WriteLabel(string label, string url, string? title = null)
     {
         try
         {
@@ -799,14 +801,14 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    private void WriteLinkTitle(string title)
+    private void WriteLinkTitle(string? title)
     {
         if (string.IsNullOrEmpty(title))
             return;
 
         WriteRaw(" ");
         WriteRaw("\"");
-        WriteString(title, MarkdownCharEscaper.LinkTitle);
+        WriteString(title!, MarkdownCharEscaper.LinkTitle);
         WriteRaw("\"");
     }
 
@@ -842,7 +844,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    public override void WriteFencedCodeBlock(string text, string info = null)
+    public override void WriteFencedCodeBlock(string text, string? info = null)
     {
         try
         {
@@ -852,7 +854,10 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
             WriteLine(Format.EmptyLineBeforeCodeBlock);
             WriteRaw(Format.CodeFence);
-            WriteRaw(info);
+
+            if (!string.IsNullOrEmpty(info))
+                WriteRaw(info!);
+
             WriteLine();
             WriteString(text, MarkdownCharEscaper.NoEscape);
             WriteLineIfNecessary();
@@ -914,7 +919,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
     public override void WriteHorizontalRule(
         HorizontalRuleStyle style,
         int count = HorizontalRuleFormat.DefaultCount,
-        string separator = HorizontalRuleFormat.DefaultSeparator)
+        string? separator = HorizontalRuleFormat.DefaultSeparator)
     {
         try
         {
@@ -935,9 +940,9 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
                 {
                     isFirst = false;
                 }
-                else
+                else if (!string.IsNullOrEmpty(separator))
                 {
-                    WriteRaw(separator);
+                    WriteRaw(separator!);
                 }
 
                 WriteRaw(text);
@@ -981,7 +986,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         WriteStartTable(columns, columns.Count);
     }
 
-    private void WriteStartTable(IReadOnlyList<TableColumnInfo> columns, int columnCount)
+    private void WriteStartTable(IReadOnlyList<TableColumnInfo>? columns, int columnCount)
     {
         if (columnCount <= 0)
         {
@@ -1027,7 +1032,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         {
             ThrowIfCannotWriteEnd(State.Table);
             _tableRowIndex = -1;
-            _tableColumns.Clear();
+            _tableColumns!.Clear();
             _tableColumnCount = -1;
             WriteEmptyLineIf(Format.EmptyLineAfterTable);
             Pop(State.Table);
@@ -1145,7 +1150,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
             if (currentColumn.Width == 0
                 && width > 0)
             {
-                _tableColumns[_tableColumnIndex] = currentColumn.WithWidth(width);
+                _tableColumns![_tableColumnIndex] = currentColumn.WithWidth(width);
             }
 
             if (Format.TableOuterDelimiter
@@ -1448,7 +1453,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
             return false;
         }
 
-        string GetIndentation(State state, int orderedItemNumber)
+        string? GetIndentation(State state, int orderedItemNumber)
         {
             switch (state)
             {

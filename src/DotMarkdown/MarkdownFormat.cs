@@ -236,7 +236,7 @@ public class MarkdownFormat : IEquatable<MarkdownFormat>
         return Equals(obj as MarkdownFormat);
     }
 
-    public bool Equals(MarkdownFormat other)
+    public bool Equals(MarkdownFormat? other)
     {
         return other is not null
             && BoldStyle == other.BoldStyle

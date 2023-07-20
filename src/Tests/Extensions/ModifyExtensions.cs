@@ -72,7 +72,7 @@ internal static class ModifyExtensions
 
     public static MFencedCodeBlock Modify(this MFencedCodeBlock block)
     {
-        return new MFencedCodeBlock(block.Text.Modify(), block.Info.Modify());
+        return new MFencedCodeBlock(block.Text.Modify(), block.Info!.Modify());
     }
 
     public static MIndentedCodeBlock Modify(this MIndentedCodeBlock block)
@@ -82,17 +82,17 @@ internal static class ModifyExtensions
 
     public static MImage Modify(this MImage image)
     {
-        return new MImage(image.Text.Modify(), image.Url.Modify(), image.Title.Modify());
+        return new MImage(image.Text.Modify(), image.Url.Modify(), image.Title!.Modify());
     }
 
     public static MLink Modify(this MLink link)
     {
-        return new MLink(link.content.ToString().Modify(), link.Url.Modify(), link.Title.Modify());
+        return new MLink(link.content!.ToString()!.Modify(), link.Url.Modify(), link.Title!.Modify());
     }
 
     public static MLabel Modify(this MLabel label)
     {
-        return new MLabel(label.Text.Modify(), label.Url.Modify(), label.Title.Modify());
+        return new MLabel(label.Text.Modify(), label.Url.Modify(), label.Title!.Modify());
     }
 
     public static MRaw Modify(this MRaw text)

@@ -9,7 +9,7 @@ public abstract class MObject
 {
     public abstract MarkdownKind Kind { get; }
 
-    public MDocument Document
+    public MDocument? Document
     {
         get
         {
@@ -22,5 +22,5 @@ public abstract class MObject
         }
     }
 
-    public MContainer Parent { get; internal set; }
+    public MContainer? Parent { get; internal set; }
 }

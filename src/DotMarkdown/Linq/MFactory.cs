@@ -290,12 +290,12 @@ public static class MFactory
         return new MOrderedItem(number);
     }
 
-    public static MOrderedItem OrderedItem(int number, object content)
+    public static MOrderedItem OrderedItem(int number, object? content)
     {
         return new MOrderedItem(number, content);
     }
 
-    public static MOrderedItem OrderedItem(int number, params object[] content)
+    public static MOrderedItem OrderedItem(int number, params object[]? content)
     {
         return new MOrderedItem(number, content);
     }
@@ -310,12 +310,12 @@ public static class MFactory
         return new MTaskItem(isCompleted);
     }
 
-    public static MTaskItem TaskItem(bool isCompleted, object content)
+    public static MTaskItem TaskItem(bool isCompleted, object? content)
     {
         return new MTaskItem(isCompleted, content);
     }
 
-    public static MTaskItem TaskItem(bool isCompleted, params object[] content)
+    public static MTaskItem TaskItem(bool isCompleted, params object[]? content)
     {
         return new MTaskItem(isCompleted, content);
     }
@@ -400,7 +400,7 @@ public static class MFactory
         return new MTaskList(other);
     }
 
-    public static MImage Image(string text, string url, string title = null)
+    public static MImage Image(string text, string url, string? title = null)
     {
         return new MImage(text, url, title);
     }
@@ -410,7 +410,7 @@ public static class MFactory
         return new MImage(other);
     }
 
-    public static MLabel Label(string text, string url, string title = null)
+    public static MLabel Label(string text, string url, string? title = null)
     {
         return new MLabel(text, url, title);
     }
@@ -420,7 +420,7 @@ public static class MFactory
         return new MLabel(other);
     }
 
-    public static MLink Link(object content, string url, string title = null)
+    public static MLink Link(object content, string url, string? title = null)
     {
         return new MLink(content, url, title);
     }
@@ -430,10 +430,10 @@ public static class MFactory
         return new MLink(other);
     }
 
-    public static MElement LinkOrText(string text, string url, string title = null)
+    public static MElement LinkOrText(string text, string? url, string? title = null)
     {
         if (!string.IsNullOrEmpty(url))
-            return new MLink(text, url, title);
+            return new MLink(text, url!, title);
 
         return new MText(text);
     }
@@ -448,7 +448,7 @@ public static class MFactory
         return new MAutolink(other);
     }
 
-    public static MElement LinkOrAutolink(string text, string url, string title = null)
+    public static MElement LinkOrAutolink(string? text, string url, string? title = null)
     {
         if (!string.IsNullOrEmpty(text))
             return new MLink(text, url, title);
@@ -456,7 +456,7 @@ public static class MFactory
         return new MAutolink(url);
     }
 
-    public static MFencedCodeBlock FencedCodeBlock(string value, string info = null)
+    public static MFencedCodeBlock FencedCodeBlock(string value, string? info = null)
     {
         return new MFencedCodeBlock(value, info);
     }
@@ -509,7 +509,7 @@ public static class MFactory
     public static MHorizontalRule HorizontalRule(
         HorizontalRuleStyle style,
         int count = HorizontalRuleFormat.DefaultCount,
-        string separator = HorizontalRuleFormat.DefaultSeparator)
+        string? separator = HorizontalRuleFormat.DefaultSeparator)
     {
         return new MHorizontalRule(style, count, separator);
     }

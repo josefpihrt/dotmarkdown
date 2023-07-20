@@ -12,7 +12,9 @@ public class MAutolink : MElement
 
     public MAutolink(string url)
     {
-        Url = url;
+        ValidateUrl(url);
+
+        _url = url;
     }
 
     public MAutolink(MAutolink other)
@@ -28,13 +30,18 @@ public class MAutolink : MElement
         get { return _url; }
         set
         {
-            if (value is null)
-                throw new ArgumentNullException(nameof(value));
-
-            Error.ThrowIfContainsWhitespace(value, nameof(value));
+            ValidateUrl(value);
 
             _url = value;
         }
+    }
+
+    private static void ValidateUrl(string value)
+    {
+        if (value is null)
+            throw new ArgumentNullException(nameof(value));
+
+        Error.ThrowIfContainsWhitespace(value, nameof(value));
     }
 
     public override MarkdownKind Kind => MarkdownKind.Autolink;

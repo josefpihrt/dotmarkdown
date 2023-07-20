@@ -10,10 +10,13 @@ public class MImage : MElement
 {
     private string _url;
 
-    public MImage(string text, string url, string title = null)
+    public MImage(string text, string url, string? title = null)
     {
         Text = text;
-        Url = url;
+
+        ValidateUrl(url);
+        _url = url;
+
         Title = title;
     }
 
@@ -34,16 +37,20 @@ public class MImage : MElement
         get { return _url; }
         set
         {
-            if (value is null)
-                throw new ArgumentNullException(nameof(value));
-
-            Error.ThrowIfContainsWhitespace(value, nameof(value));
-
+            ValidateUrl(value);
             _url = value;
         }
     }
 
-    public string Title { get; set; }
+    private static void ValidateUrl(string value)
+    {
+        if (value is null)
+            throw new ArgumentNullException(nameof(value));
+
+        Error.ThrowIfContainsWhitespace(value, nameof(value));
+    }
+
+    public string? Title { get; set; }
 
     private string TitleDebuggerDisplay => (!string.IsNullOrEmpty(Title)) ? " " + Title : "";
 

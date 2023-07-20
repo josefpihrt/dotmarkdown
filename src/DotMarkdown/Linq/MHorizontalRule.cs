@@ -7,9 +7,9 @@ namespace DotMarkdown.Linq;
 public class MHorizontalRule : MElement
 {
     private int _count;
-    private string _separator;
+    private string? _separator;
 
-    public MHorizontalRule(HorizontalRuleStyle style, int count, string separator)
+    public MHorizontalRule(HorizontalRuleStyle style, int count, string? separator)
     {
         Style = style;
         Count = count;
@@ -43,7 +43,7 @@ public class MHorizontalRule : MElement
         }
     }
 
-    public string Separator
+    public string? Separator
     {
         get { return _separator; }
         set
