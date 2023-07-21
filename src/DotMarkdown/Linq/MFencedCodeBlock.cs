@@ -38,7 +38,7 @@ public class MFencedCodeBlock : MElement
         }
     }
 
-    public override MarkdownKind Kind => MarkdownKind.FencedCodeBlock;
+    public override MarkdownKind Kind => MarkdownKind.FencedBlock;
 
     private string InfoDebuggerDisplay => (!string.IsNullOrEmpty(Info)) ? " " + Info : "";
 
