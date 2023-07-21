@@ -77,14 +77,14 @@ public static class MarkdownWriterExtensions
             throw new ArgumentNullException(nameof(writer));
 
         string info = admonitionStyle switch
-            {
-                AdmonitionStyle.Note => "note",
-                AdmonitionStyle.Tip => "tip",
-                AdmonitionStyle.Info => "info",
-                AdmonitionStyle.Caution => "caution",
-                AdmonitionStyle.Danger => "danger",
-                _ => throw new ArgumentException($"Unknown {nameof(AdmonitionStyle)} '{admonitionStyle}'", nameof(admonitionStyle))
-            };
+        {
+            AdmonitionStyle.Note => "note",
+            AdmonitionStyle.Tip => "tip",
+            AdmonitionStyle.Info => "info",
+            AdmonitionStyle.Caution => "caution",
+            AdmonitionStyle.Danger => "danger",
+            _ => throw new ArgumentException($"Unknown {nameof(AdmonitionStyle)} '{admonitionStyle}'", nameof(admonitionStyle))
+        };
 
         info += title;
 
