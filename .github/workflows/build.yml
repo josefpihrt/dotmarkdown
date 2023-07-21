@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  build_packages:
+  build:
     runs-on: ubuntu-20.04
     env:
       Configuration: Release
@@ -41,11 +41,15 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: nuget_packages
-          path: src/DotMarkdown*/bin/Release/*nupkg
+          path: src/DotMarkdown/bin/Release/*nupkg
+      - uses: actions/upload-artifact@v3
+        with:
+          name: nuget_packages
+          path: src/DotMarkdown.Docusaurus/bin/Release/*nupkg
 
-  release_packages:
+  publish:
     runs-on: ubuntu-20.04
-    needs: [build_packages]
+    needs: [build]
     if: github.ref_type == 'tag'
     env:
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
