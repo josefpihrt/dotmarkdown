@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>DotMarkdown.Tests</AssemblyName>
-    <RootNamespace>DotMarkdown.Tests</RootNamespace>
+    <AssemblyName>DotMarkdown.Docusaurus.Tests</AssemblyName>
+    <RootNamespace>DotMarkdown.Docusaurus.Tests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -15,13 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotMarkdown\DotMarkdown.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-      <_Parameter1>DotMarkdown.Docusaurus.Tests, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
-    </AssemblyAttribute>
+    <ProjectReference Include="..\Tests\DotMarkdown.Tests.csproj" />
   </ItemGroup>
 
 </Project>

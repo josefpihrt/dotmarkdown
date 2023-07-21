@@ -45,13 +45,15 @@ DotMarkdown.Linq.MFactory</Description>
     <None Include="docs\NuGetReadme.md" Pack="true" PackagePath="docs\README.md" />
   </ItemGroup>
 
-
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>DotMarkdown.Docusaurus, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
     </AssemblyAttribute>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>DotMarkdown.Tests, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>DotMarkdown.Docusaurus.Tests, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
 
