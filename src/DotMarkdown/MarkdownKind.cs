@@ -23,9 +23,9 @@ public enum MarkdownKind
 
     [Obsolete]
     FencedCodeBlock = 13,
-
+#pragma warning disable RCS1234
     FencedBlock = 13,
-
+#pragma warning restore RCS1234
     IndentedCodeBlock = 14,
     HorizontalRule = 15,
 
