@@ -9,38 +9,20 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyName>DotMarkdown</AssemblyName>
-    <RootNamespace>DotMarkdown</RootNamespace>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>DotMarkdown.Docusaurus</AssemblyName>
+    <RootNamespace>DotMarkdown.Docusaurus</RootNamespace>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\$(Configuration)\netstandard1.3\DotMarkdown.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\netstandard1.3\DotMarkdown.Docusaurus.xml</DocumentationFile>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(CI)' == 'true'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(CI)' == 'true'">
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
-  </ItemGroup>
 
   <PropertyGroup>
-    <PackageId>DotMarkdown</PackageId>
+    <PackageId>DotMarkdown.Docusaurus</PackageId>
     <Authors>Josef Pihrt</Authors>
     <Company></Company>
-    <Description>DotMarkdown enables to conveniently create markdown content from the code.
-
-Commonly Used Types:
-DotMarkdown.MarkdownWriter
-DotMarkdown.MarkdownFormat
-DotMarkdown.Linq.MFactory</Description>
+    <Description>Extension of DotMarkdown package for Docusaurus markdown</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>http://github.com/josefpihrt/dotmarkdown</PackageProjectUrl>
@@ -57,11 +39,11 @@ DotMarkdown.Linq.MFactory</Description>
     <None Include="docs\NuGetReadme.md" Pack="true" PackagePath="docs\README.md" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DotMarkdown\DotMarkdown.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-      <_Parameter1>DotMarkdown.Docusaurus, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
-    </AssemblyAttribute>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>DotMarkdown.Tests, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
     </AssemblyAttribute>

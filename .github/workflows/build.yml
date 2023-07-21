@@ -41,7 +41,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: nuget_packages
-          path: src/DotMarkdown/bin/Release/*nupkg
+          path: src/DotMarkdown*/bin/Release/*nupkg
 
   release_packages:
     runs-on: ubuntu-20.04

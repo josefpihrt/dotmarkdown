@@ -42,7 +42,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
                     return WriteState.Start;
                 case State.SimpleElement:
                 case State.IndentedCodeBlock:
-                case State.FencedCodeBlock:
+                case State.FencedBlock:
                 case State.HorizontalRule:
                 case State.Heading:
                 case State.Bold:
@@ -844,13 +844,13 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    public override void WriteFencedCodeBlock(string text, string? info = null)
+    public override void WriteFencedBlock(string text, string fence, string? info = null)
     {
         try
         {
             Error.ThrowOnInvalidFencedCodeBlockInfo(info);
 
-            Push(State.FencedCodeBlock);
+            Push(State.FencedBlock);
 
             WriteLine(Format.EmptyLineBeforeCodeBlock);
             WriteRaw(Format.CodeFence);
@@ -865,13 +865,18 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
             WriteLine();
             WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
 
-            Pop(State.FencedCodeBlock);
+            Pop(State.FencedBlock);
         }
         catch
         {
             _state = State.Error;
             throw;
         }
+    }
+
+    public override void WriteFencedCodeBlock(string text, string? info = null)
+    {
+        WriteFencedBlock(text, Format.CodeFence, info);
     }
 
     public override void WriteStartBlockQuote()
@@ -1586,7 +1591,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
     {
         Start = 0,
         SimpleElement = 1,
-        FencedCodeBlock = 2,
+        FencedBlock = 2,
         IndentedCodeBlock = 3,
         HorizontalRule = 4,
         Heading = 5,
@@ -1630,7 +1635,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
     {
         /* State.Start */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedCodeBlock   */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,
@@ -1864,7 +1869,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.BulletItem */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedCodeBlock   */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,
@@ -1882,7 +1887,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.OrderedItem */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedCodeBlock   */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,
@@ -1900,7 +1905,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.TaskItem */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedCodeBlock   */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,
@@ -1918,7 +1923,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.BlockQuote */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedCodeBlock   */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,
@@ -1936,7 +1941,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.Document */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedCodeBlock   */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,
