@@ -19,18 +19,6 @@
     <DocumentationFile>bin\$(Configuration)\netstandard1.3\DotMarkdown.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(CI)' == 'true'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(CI)' == 'true'">
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
-  </ItemGroup>
-
   <PropertyGroup>
     <PackageId>DotMarkdown</PackageId>
     <Authors>Josef Pihrt</Authors>
