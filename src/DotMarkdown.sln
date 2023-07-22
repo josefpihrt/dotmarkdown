@@ -5,9 +5,9 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkdown", "DotMarkdown\DotMarkdown.csproj", "{50E75BED-201D-47F0-B898-B5576F448823}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkdown.Tests", "DotMarkdown.Tests\DotMarkdown.Tests.csproj", "{E3700360-B624-4B9B-9BF1-17D2EB720C53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkdown.Tests", "Tests\DotMarkdown.Tests\DotMarkdown.Tests.csproj", "{E3700360-B624-4B9B-9BF1-17D2EB720C53}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkdown.TestConsole", "TestConsole\DotMarkdown.TestConsole.csproj", "{D28E193B-5DA1-4387-92E4-DA1AC28DB231}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkdown.TestConsole", "Tests\TestConsole\DotMarkdown.TestConsole.csproj", "{D28E193B-5DA1-4387-92E4-DA1AC28DB231}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{10655C54-2294-4374-9FA3-74B42CFE6FC8}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkdown.Docusaurus", "DotMarkdown.Docusaurus\DotMarkdown.Docusaurus.csproj", "{F320C85F-BE11-49CF-B49D-1BC0C7E7F6E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkdown.Docusaurus.Tests", "Dotmarkdown.Docusaurus.Tests\DotMarkdown.Docusaurus.Tests.csproj", "{728534E0-89BB-4CD0-8FCF-DCDC5409A789}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkdown.Docusaurus.Tests", "Tests\Dotmarkdown.Docusaurus.Tests\DotMarkdown.Docusaurus.Tests.csproj", "{728534E0-89BB-4CD0-8FCF-DCDC5409A789}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0D423BA2-A7EE-4991-9590-600449A4C7E7}"
 EndProject
@@ -121,6 +121,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E3700360-B624-4B9B-9BF1-17D2EB720C53} = {0D423BA2-A7EE-4991-9590-600449A4C7E7}
+		{D28E193B-5DA1-4387-92E4-DA1AC28DB231} = {0D423BA2-A7EE-4991-9590-600449A4C7E7}
 		{728534E0-89BB-4CD0-8FCF-DCDC5409A789} = {0D423BA2-A7EE-4991-9590-600449A4C7E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

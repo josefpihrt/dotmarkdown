@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotMarkdown\DotMarkdown.csproj" />
-    <ProjectReference Include="..\DotMarkdown.Docusaurus\DotMarkdown.Docusaurus.csproj" />
+    <ProjectReference Include="..\..\DotMarkdown\DotMarkdown.csproj" />
+    <ProjectReference Include="..\..\DotMarkdown.Docusaurus\DotMarkdown.Docusaurus.csproj" />
   </ItemGroup>
 
 </Project>

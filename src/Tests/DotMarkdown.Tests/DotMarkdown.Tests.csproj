@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotMarkdown\DotMarkdown.csproj" />
+    <ProjectReference Include="..\..\DotMarkdown\DotMarkdown.csproj" />
   </ItemGroup>
 
   <ItemGroup>
