@@ -2,7 +2,7 @@
 
 namespace DotMarkdown.Docusaurus;
 
-public enum AdmonitionStyle
+public enum AdmonitionKind
 {
     Note,
     Tip,

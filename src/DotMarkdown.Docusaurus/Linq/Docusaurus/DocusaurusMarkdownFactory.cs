@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using DotMarkdown.Docusaurus;
+
 namespace DotMarkdown.Linq.Docusaurus;
 
 public static class DocusaurusMarkdownFactory
@@ -32,5 +34,10 @@ public static class DocusaurusMarkdownFactory
     public static MDocusaurusDangerBlock DocusaurusDangerBlock(string text, string? title = null)
     {
         return new MDocusaurusDangerBlock(text, title);
+    }
+
+    public static MDocusaurusAdmonition DocusaurusAdmonition(AdmonitionKind kind, string text, string? title = null)
+    {
+        return MDocusaurusAdmonition.Create(kind, text, title);
     }
 }

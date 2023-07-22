@@ -24,18 +24,31 @@ public abstract class MDocusaurusAdmonition : MElement
         Title = other.Title;
     }
 
+    public static MDocusaurusAdmonition Create(AdmonitionKind kind, string text, string? title = null)
+    {
+        return kind switch
+        {
+            AdmonitionKind.Note => new MDocusaurusNoteBlock(text, title),
+            AdmonitionKind.Tip => new MDocusaurusTipBlock(text, title),
+            AdmonitionKind.Info => new MDocusaurusInfoBlock(text, title),
+            AdmonitionKind.Caution => new MDocusaurusCautionBlock(text, title),
+            AdmonitionKind.Danger => new MDocusaurusDangerBlock(text, title),
+            _ => throw new ArgumentException($"Unknown {nameof(DotMarkdown.Docusaurus.AdmonitionKind)} '{kind}'.", nameof(kind)),
+        };
+    }
+
     public string Text { get; set; }
 
     public string? Title { get; }
 
-    public abstract AdmonitionStyle Style { get; }
+    public abstract AdmonitionKind AdmonitionKind { get; }
 
     public override MarkdownKind Kind => MarkdownKind.FencedBlock;
 
-    private string DebuggerDisplay => $" Docusaurus {Style} {Title}";
+    private string DebuggerDisplay => $" Docusaurus {AdmonitionKind} {Title}";
 
     public override void WriteTo(MarkdownWriter writer)
     {
-        writer.WriteDocusaurusAdmonition(Text, Style, Title);
+        writer.WriteDocusaurusAdmonition(Text, AdmonitionKind, Title);
     }
 }

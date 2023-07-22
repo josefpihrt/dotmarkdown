@@ -48,46 +48,47 @@ public static class MarkdownWriterExtensions
 
     public static void WriteDocusaurusNote(this MarkdownWriter writer, string text, string? title = null)
     {
-        WriteDocusaurusAdmonition(writer, text, AdmonitionStyle.Note, title);
+        WriteDocusaurusAdmonition(writer, text, AdmonitionKind.Note, title);
     }
 
     public static void WriteDocusaurusTip(this MarkdownWriter writer, string text, string? title = null)
     {
-        WriteDocusaurusAdmonition(writer, text, AdmonitionStyle.Tip, title);
+        WriteDocusaurusAdmonition(writer, text, AdmonitionKind.Tip, title);
     }
 
     public static void WriteDocusaurusInfo(this MarkdownWriter writer, string text, string? title = null)
     {
-        WriteDocusaurusAdmonition(writer, text, AdmonitionStyle.Info, title);
+        WriteDocusaurusAdmonition(writer, text, AdmonitionKind.Info, title);
     }
 
     public static void WriteDocusaurusCaution(this MarkdownWriter writer, string text, string? title = null)
     {
-        WriteDocusaurusAdmonition(writer, text, AdmonitionStyle.Caution, title);
+        WriteDocusaurusAdmonition(writer, text, AdmonitionKind.Caution, title);
     }
 
     public static void WriteDocusaurusDanger(this MarkdownWriter writer, string text, string? title = null)
     {
-        WriteDocusaurusAdmonition(writer, text, AdmonitionStyle.Danger, title);
+        WriteDocusaurusAdmonition(writer, text, AdmonitionKind.Danger, title);
     }
 
-    public static void WriteDocusaurusAdmonition(this MarkdownWriter writer, string text, AdmonitionStyle admonitionStyle, string? title = null)
+    public static void WriteDocusaurusAdmonition(this MarkdownWriter writer, string text, AdmonitionKind kind, string? title = null)
     {
         if (writer is null)
             throw new ArgumentNullException(nameof(writer));
 
-        string info = admonitionStyle switch
+        string info = kind switch
         {
-            AdmonitionStyle.Note => "note",
-            AdmonitionStyle.Tip => "tip",
-            AdmonitionStyle.Info => "info",
-            AdmonitionStyle.Caution => "caution",
-            AdmonitionStyle.Danger => "danger",
-            _ => throw new ArgumentException($"Unknown {nameof(AdmonitionStyle)} '{admonitionStyle}'", nameof(admonitionStyle))
+            AdmonitionKind.Note => "note",
+            AdmonitionKind.Tip => "tip",
+            AdmonitionKind.Info => "info",
+            AdmonitionKind.Caution => "caution",
+            AdmonitionKind.Danger => "danger",
+            _ => throw new ArgumentException($"Unknown {nameof(AdmonitionKind)} '{kind}'", nameof(kind))
         };
 
-        info += title;
+        if (!string.IsNullOrEmpty(title))
+            info += $" {title}";
 
-        writer.WriteFencedBlock(text, ":::", info);
+        writer.WriteFencedBlock(text, ":::", MarkdownCharEscaper.Default, info: info, blankLinesAroundContent: true);
     }
 }

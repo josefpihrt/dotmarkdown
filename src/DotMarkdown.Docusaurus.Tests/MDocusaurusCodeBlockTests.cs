@@ -1,9 +1,11 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using DotMarkdown.Linq;
+using DotMarkdown.Linq.Docusaurus;
 using DotMarkdown.Tests;
 using Xunit;
 using static DotMarkdown.Tests.TestHelpers;
+using static DotMarkdown.Docusaurus.Tests.DocusaurusTestHelpers;
 
 namespace DotMarkdown.Docusaurus.Tests;
 
@@ -12,7 +14,7 @@ public static class MDocusaurusCodeBlockTests
     [Fact]
     public static void MDocusaurusCodeBlock_Equals()
     {
-        MFencedCodeBlock block = CreateCodeBlock();
+        MDocusaurusCodeBlock block = CreateDocusaurusCodeBlock();
 
         Assert.True(block.Equals((object)block));
     }
@@ -20,8 +22,8 @@ public static class MDocusaurusCodeBlockTests
     [Fact]
     public static void MDocusaurusCodeBlock_NotEquals()
     {
-        MFencedCodeBlock block = CreateCodeBlock();
-        MFencedCodeBlock block2 = block.Modify();
+        MDocusaurusCodeBlock block = CreateDocusaurusCodeBlock();
+        MDocusaurusCodeBlock block2 = block.Modify();
 
         Assert.False(block.Equals((object)block2));
     }
@@ -29,7 +31,7 @@ public static class MDocusaurusCodeBlockTests
     [Fact]
     public static void MDocusaurusCodeBlock_GetHashCode_Equal()
     {
-        MFencedCodeBlock block = CreateCodeBlock();
+        MDocusaurusCodeBlock block = CreateDocusaurusCodeBlock();
 
         Assert.Equal(block.GetHashCode(), block.GetHashCode());
     }
@@ -37,8 +39,8 @@ public static class MDocusaurusCodeBlockTests
     [Fact]
     public static void MDocusaurusCodeBlock_GetHashCode_NotEqual()
     {
-        MFencedCodeBlock block = CreateCodeBlock();
-        MFencedCodeBlock block2 = block.Modify();
+        MDocusaurusCodeBlock block = CreateDocusaurusCodeBlock();
+        MDocusaurusCodeBlock block2 = block.Modify();
 
         Assert.NotEqual(block.GetHashCode(), block2.GetHashCode());
     }
@@ -46,8 +48,8 @@ public static class MDocusaurusCodeBlockTests
     [Fact]
     public static void MDocusaurusCodeBlock_OperatorEquals()
     {
-        MFencedCodeBlock block = CreateCodeBlock();
-        MFencedCodeBlock block2 = block;
+        MDocusaurusCodeBlock block = CreateDocusaurusCodeBlock();
+        MDocusaurusCodeBlock block2 = block;
 
         Assert.True(block == block2);
     }
@@ -55,8 +57,8 @@ public static class MDocusaurusCodeBlockTests
     [Fact]
     public static void MDocusaurusCodeBlock_OperatorNotEquals()
     {
-        MFencedCodeBlock block = CreateCodeBlock();
-        MFencedCodeBlock block2 = block.Modify();
+        MDocusaurusCodeBlock block = CreateDocusaurusCodeBlock();
+        MDocusaurusCodeBlock block2 = block.Modify();
 
         Assert.True(block != block2);
     }
@@ -65,7 +67,7 @@ public static class MDocusaurusCodeBlockTests
     public static void MDocusaurusCodeBlock_Constructor_AssignText()
     {
         string text = CodeBlockText();
-        var block = new MFencedCodeBlock(text: text, info: CodeBlockInfo());
+        var block = new MDocusaurusCodeBlock(text: text, info: CodeBlockInfo());
 
         Assert.Equal(text, block.Text);
     }
@@ -74,7 +76,7 @@ public static class MDocusaurusCodeBlockTests
     public static void MDocusaurusCodeBlock_Constructor_AssignInfo()
     {
         string info = CodeBlockInfo();
-        var block = new MFencedCodeBlock(text: CodeBlockText(), info: info);
+        var block = new MDocusaurusCodeBlock(text: CodeBlockText(), info: info);
 
         Assert.Equal(info, block.Info);
     }

@@ -14,7 +14,7 @@ public class MDocusaurusDangerBlock : MDocusaurusAdmonition
     {
     }
 
-    public override AdmonitionStyle Style => AdmonitionStyle.Danger;
+    public override AdmonitionKind AdmonitionKind => AdmonitionKind.Danger;
 
     internal override MElement Clone()
     {

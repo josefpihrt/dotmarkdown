@@ -844,7 +844,12 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    public override void WriteFencedBlock(string text, string fence, string? info = null)
+    internal override void WriteFencedBlock(
+        string text,
+        string fence,
+        MarkdownCharEscaper escaper,
+        string? info = null,
+        bool blankLinesAroundContent = false)
     {
         try
         {
@@ -853,15 +858,19 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
             Push(State.FencedBlock);
 
             WriteLine(Format.EmptyLineBeforeCodeBlock);
-            WriteRaw(Format.CodeFence);
+            WriteRaw(fence);
 
             if (!string.IsNullOrEmpty(info))
                 WriteRaw(info!);
 
             WriteLine();
-            WriteString(text, MarkdownCharEscaper.NoEscape);
+
+            WriteEmptyLineIf(blankLinesAroundContent);
+            WriteString(text, escaper);
             WriteLineIfNecessary();
-            WriteRaw(Format.CodeFence);
+            WriteEmptyLineIf(blankLinesAroundContent);
+
+            WriteRaw(fence);
             WriteLine();
             WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
 
@@ -876,7 +885,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
     public override void WriteFencedCodeBlock(string text, string? info = null)
     {
-        WriteFencedBlock(text, Format.CodeFence, info);
+        WriteFencedBlock(text, Format.CodeFence, MarkdownCharEscaper.NoEscape, info: info, blankLinesAroundContent: false);
     }
 
     public override void WriteStartBlockQuote()
