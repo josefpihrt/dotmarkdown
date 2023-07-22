@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Enable nullable reference types ([#26](https://github.com/josefpihrt/dotmarkdown/pull/26)).
 - Migrate documentation to [Docusaurus](https://josefpihrt.github.io/docs/dotmarkdown) ([#24](https://github.com/josefpihrt/dotmarkdown/pull/24)).
+- Add support for Docusaurus markdown ([#28](https://github.com/josefpihrt/dotmarkdown/pull/28)).
 
 ## [0.2.0] - 2022-06-26
 

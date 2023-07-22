@@ -2,7 +2,7 @@
 
 namespace DotMarkdown.Docusaurus.Linq;
 
-//TODO: DocusaurusMarkdownFactory > DocusaurusFactory
+//TODO: DocusaurusMarkdownFactory > DocusaurusFactory, DocusaurusMarkdown
 public static class DocusaurusMarkdownFactory
 {
     public static DocusaurusCodeBlock DocusaurusCodeBlock(string text, string? language = null, string? title = null, bool? showLineNumbers = false)
