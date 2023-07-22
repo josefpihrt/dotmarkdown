@@ -4,13 +4,17 @@ using DotMarkdown.Linq;
 
 namespace DotMarkdown.Docusaurus.Linq;
 
-public class DocusaurusCautionBlock : DocusaurusAdmonition
+public class DocusaurusCautionBlock : DocusaurusAdmonitionBlock
 {
-    public DocusaurusCautionBlock(string text, string? title = null) : base(text, title)
+    public DocusaurusCautionBlock(object? content) : base(content)
     {
     }
 
-    public DocusaurusCautionBlock(DocusaurusAdmonition other) : base(other)
+    public DocusaurusCautionBlock(params object[]? content) : base(content)
+    {
+    }
+
+    public DocusaurusCautionBlock(DocusaurusCautionBlock other) : base(other)
     {
     }
 

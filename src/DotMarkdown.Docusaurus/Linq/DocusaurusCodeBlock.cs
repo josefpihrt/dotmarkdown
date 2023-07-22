@@ -9,12 +9,12 @@ namespace DotMarkdown.Docusaurus.Linq;
 [DebuggerDisplay("{Kind}{InfoDebuggerDisplay,nq} {Text,nq}")]
 public class DocusaurusCodeBlock : MElement
 {
-    private string? _info;
+    private string? _language;
 
-    public DocusaurusCodeBlock(string text, string? language = null, string? title = null, bool? includeLineNumbers = false)
+    public DocusaurusCodeBlock(string text, string? language = null, string? title = null, bool? includeLineNumbers = null)
     {
         Text = text;
-        Info = language;
+        Language = language;
         Title = title;
         IncludeLineNumbers = includeLineNumbers;
     }
@@ -25,21 +25,21 @@ public class DocusaurusCodeBlock : MElement
             throw new ArgumentNullException(nameof(other));
 
         Text = other.Text;
-        _info = other.Info;
+        _language = other.Language;
         Title = other.Title;
         IncludeLineNumbers = other.IncludeLineNumbers;
     }
 
     public string Text { get; set; }
 
-    public string? Info
+    public string? Language
     {
-        get { return _info; }
+        get { return _language; }
         set
         {
             Error.ThrowOnInvalidFencedCodeBlockInfo(value);
 
-            _info = value;
+            _language = value;
         }
     }
 
@@ -49,18 +49,14 @@ public class DocusaurusCodeBlock : MElement
 
     public override MarkdownKind Kind => MarkdownKind.FencedBlock;
 
-    private string InfoDebuggerDisplay => (!string.IsNullOrEmpty(Info)) ? " " + Info : "";
+    private string InfoDebuggerDisplay => (!string.IsNullOrEmpty(Language)) ? " " + Language : "";
 
     public override void WriteTo(MarkdownWriter writer)
     {
-        if (writer is DocusaurusMarkdownWriter docusaurusWriter)
-        {
-            docusaurusWriter.WriteDocusaurusCodeBlock(Text, Info, Title, IncludeLineNumbers);
-        }
-        else
-        {
-            writer.WriteDocusaurusCodeBlock(Text, Info, Title, IncludeLineNumbers ?? DocusaurusMarkdownFormat.Default.CodeLineNumbers);
-        }
+        if (writer is not DocusaurusMarkdownWriter docusaurusWriter)
+            throw new InvalidOperationException($"Writer must be '{typeof(DocusaurusMarkdownWriter).Name}'.");
+
+        docusaurusWriter.WriteDocusaurusCodeBlock(Text, Language, Title, IncludeLineNumbers ?? docusaurusWriter.DocusaurusFormat.CodeLineNumbers);
     }
 
     internal override MElement Clone()

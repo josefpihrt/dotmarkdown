@@ -2,41 +2,44 @@
 
 namespace DotMarkdown.Docusaurus.Linq;
 
-//TODO: DocusaurusMarkdownFactory > DocusaurusFactory, DocusaurusMarkdown
 public static class DocusaurusMarkdownFactory
 {
-    public static DocusaurusCodeBlock DocusaurusCodeBlock(string text, string? language = null, string? title = null, bool? showLineNumbers = false)
+    public static DocusaurusCodeBlock DocusaurusCodeBlock(
+        string text,
+        string? language = null,
+        string? title = null,
+        bool? showLineNumbers = false)
     {
         return new DocusaurusCodeBlock(text, language, title, showLineNumbers);
     }
 
-    public static DocusaurusNoteBlock DocusaurusNoteBlock(string text, string? title = null)
+    public static DocusaurusNoteBlock DocusaurusNote(object? content) => new(content);
+
+    public static DocusaurusNoteBlock DocusaurusNote(params object[]? content) => new(content);
+
+    public static DocusaurusTipBlock DocusaurusTip(object? content) => new(content);
+
+    public static DocusaurusTipBlock DocusaurusTip(params object[]? content) => new(content);
+
+    public static DocusaurusInfoBlock DocusaurusInfo(object? content) => new(content);
+
+    public static DocusaurusInfoBlock DocusaurusInfo(params object[]? content) => new(content);
+
+    public static DocusaurusCautionBlock DocusaurusCaution(object? content) => new(content);
+
+    public static DocusaurusCautionBlock DocusaurusCaution(params object[]? content) => new(content);
+
+    public static DocusaurusDangerBlock DocusaurusDanger(object? content) => new(content);
+
+    public static DocusaurusDangerBlock DocusaurusDanger(params object[]? content) => new(content);
+
+    public static DocusaurusAdmonitionBlock DocusaurusAdmonition(AdmonitionKind kind, object? content)
     {
-        return new DocusaurusNoteBlock(text, title);
+        return Linq.DocusaurusAdmonitionBlock.Create(kind, content);
     }
 
-    public static DocusaurusTipBlock DocusaurusTipBlock(string text, string? title = null)
+    public static DocusaurusAdmonitionBlock DocusaurusAdmonition(AdmonitionKind kind, params object[]? content)
     {
-        return new DocusaurusTipBlock(text, title);
-    }
-
-    public static DocusaurusInfoBlock DocusaurusInfoBlock(string text, string? title = null)
-    {
-        return new DocusaurusInfoBlock(text, title);
-    }
-
-    public static DocusaurusCautionBlock DocusaurusCautionBlock(string text, string? title = null)
-    {
-        return new DocusaurusCautionBlock(text, title);
-    }
-
-    public static DocusaurusDangerBlock DocusaurusDangerBlock(string text, string? title = null)
-    {
-        return new DocusaurusDangerBlock(text, title);
-    }
-
-    public static DocusaurusAdmonition DocusaurusAdmonition(AdmonitionKind kind, string text, string? title = null)
-    {
-        return Linq.DocusaurusAdmonition.Create(kind, text, title);
+        return Linq.DocusaurusAdmonitionBlock.Create(kind, content);
     }
 }

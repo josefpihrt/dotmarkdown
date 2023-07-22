@@ -76,6 +76,6 @@ public static class MDocusaurusCodeBlockTests
         string info = CodeBlockInfo();
         var block = new DocusaurusCodeBlock(text: CodeBlockText(), language: info);
 
-        Assert.Equal(info, block.Info);
+        Assert.Equal(info, block.Language);
     }
 }

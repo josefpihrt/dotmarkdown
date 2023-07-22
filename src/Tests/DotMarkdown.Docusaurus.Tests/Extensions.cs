@@ -17,7 +17,7 @@ internal static class Extensions
 
     public static DocusaurusCodeBlock Modify(this DocusaurusCodeBlock block)
     {
-        return new DocusaurusCodeBlock(block.Text.Modify(), block.Info!.Modify());
+        return new DocusaurusCodeBlock(block.Text.Modify(), block.Language!.Modify());
     }
 
     public static string? ToStringAndClear(this DocusaurusMarkdownWriter mw)

@@ -17,6 +17,16 @@ internal static class DocusaurusTestHelpers
         return CreateDocusaurusWriter(CreateWriter(), new DocusaurusMarkdownFormat(admonitionBlankLines: admonitionBlankLines));
     }
 
+    public static DocusaurusMarkdownWriter CreateWriterWithFenceStyle(CodeFenceStyle? style)
+    {
+        return CreateDocusaurusWriter(CreateWriter((style is not null) ? new MarkdownFormat(codeFenceStyle: style.Value) : null));
+    }
+
+    public static DocusaurusMarkdownWriter CreateWriterWithCodeBlockOptions(CodeBlockOptions options)
+    {
+        return CreateDocusaurusWriter(CreateWriter(new MarkdownFormat(codeBlockOptions: options)));
+    }
+
     public static DocusaurusMarkdownWriter CreateDocusaurusWriter(MarkdownWriter writer, DocusaurusMarkdownFormat? format = null)
     {
         return new DocusaurusMarkdownWriter(writer, format);

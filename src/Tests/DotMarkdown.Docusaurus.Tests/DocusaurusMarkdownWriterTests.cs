@@ -17,7 +17,7 @@ public static class DocusaurusMarkdownWriterTests
     [InlineData("~~~", CodeFenceStyle.Tilde)]
     public static void MarkdownWriter_Write_DocusaurusCodeBlock_CodeFenceStyle(string syntax, CodeFenceStyle? style)
     {
-        MarkdownWriter mw = CreateBuilderWithCodeFenceOptions(style);
+        DocusaurusMarkdownWriter mw = CreateWriterWithFenceStyle(style);
 
         DocusaurusCodeBlock block = DocusaurusCodeBlock(Chars, DefaultText, "file.txt", showLineNumbers: true);
         block.WriteTo(mw);
@@ -34,7 +34,7 @@ public static class DocusaurusMarkdownWriterTests
     [Fact]
     public static void MarkdownWriter_Write_DocusaurusCodeBlock_CodeBlockOptionsNone()
     {
-        MarkdownWriter mw = CreateBuilderWithCodeBlockOptions(CodeBlockOptions.None);
+        DocusaurusMarkdownWriter mw = CreateWriterWithCodeBlockOptions(CodeBlockOptions.None);
 
         mw.Write(DefaultText);
         mw.Write(DocusaurusCodeBlock(Chars, DefaultText, "file1.txt", showLineNumbers: true));
@@ -100,9 +100,10 @@ public static class DocusaurusMarkdownWriterTests
     [InlineData(AdmonitionKind.Danger, "danger")]
     public static void MarkdownWriter_Write_DocusaurusAdmonition(AdmonitionKind kind, string kindText)
     {
-        MarkdownWriter mw = CreateBuilderWithCodeFenceOptions(CodeFenceStyle.Tilde);
+        DocusaurusMarkdownWriter mw = CreateWriterWithFenceStyle(CodeFenceStyle.Tilde);
 
-        DocusaurusAdmonition admonition = DocusaurusAdmonition(kind, Chars, "Title");
+        DocusaurusAdmonitionBlock admonition = DocusaurusAdmonition(kind, Chars);
+        admonition.Title = "Title";
         admonition.WriteTo(mw);
 
         string expected = $@":::{kindText} Title
@@ -121,7 +122,7 @@ public static class DocusaurusMarkdownWriterTests
     {
         DocusaurusMarkdownWriter mw = CreateWriterWithBlankLines(admonitionBlankLines: false);
 
-        DocusaurusAdmonition admonition = DocusaurusAdmonition(AdmonitionKind.Note, Chars);
+        DocusaurusAdmonitionBlock admonition = DocusaurusAdmonition(AdmonitionKind.Note, Chars);
         admonition.WriteTo(mw);
 
         string expected = $@":::note
@@ -138,7 +139,8 @@ public static class DocusaurusMarkdownWriterTests
     {
         DocusaurusMarkdownWriter mw = CreateWriterWithBlankLines(admonitionBlankLines: false);
 
-        DocusaurusAdmonition admonition = DocusaurusAdmonition(AdmonitionKind.Note, Chars, "Title");
+        DocusaurusAdmonitionBlock admonition = DocusaurusAdmonition(AdmonitionKind.Note, Chars);
+        admonition.Title = "Title";
         admonition.WriteTo(mw);
 
         string expected = $@":::note Title

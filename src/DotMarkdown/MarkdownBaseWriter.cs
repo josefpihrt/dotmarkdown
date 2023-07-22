@@ -844,12 +844,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    internal override void WriteFencedBlock(
-        string text,
-        string fence,
-        MarkdownCharEscaper escaper,
-        string? info = null,
-        bool blankLinesAroundContent = false)
+    internal override void WriteStartFencedBlock(string fence, string? info = null)
     {
         try
         {
@@ -864,12 +859,19 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
                 WriteRaw(info!);
 
             WriteLine();
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
 
-            WriteEmptyLineIf(blankLinesAroundContent);
-            WriteString(text, escaper);
+    internal override void WriteEndFencedBlock(string fence)
+    {
+        try
+        {
             WriteLineIfNecessary();
-            WriteEmptyLineIf(blankLinesAroundContent);
-
             WriteRaw(fence);
             WriteLine();
             WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
@@ -885,7 +887,32 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
     public override void WriteFencedCodeBlock(string text, string? info = null)
     {
-        WriteFencedBlock(text, Format.CodeFence, MarkdownCharEscaper.NoEscape, info: info, blankLinesAroundContent: false);
+        try
+        {
+            Error.ThrowOnInvalidFencedCodeBlockInfo(info);
+
+            Push(State.FencedBlock);
+
+            WriteLine(Format.EmptyLineBeforeCodeBlock);
+            WriteRaw(Format.CodeFence);
+
+            if (!string.IsNullOrEmpty(info))
+                WriteRaw(info!);
+
+            WriteLine();
+            WriteString(text, MarkdownCharEscaper.NoEscape);
+            WriteLineIfNecessary();
+            WriteRaw(Format.CodeFence);
+            WriteLine();
+            WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
+
+            Pop(State.FencedBlock);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
     }
 
     public override void WriteStartBlockQuote()

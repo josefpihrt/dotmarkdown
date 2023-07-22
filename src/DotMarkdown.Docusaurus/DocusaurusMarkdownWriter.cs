@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace DotMarkdown.Docusaurus;
 
@@ -17,39 +18,68 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
 
     public DocusaurusMarkdownFormat DocusaurusFormat { get; }
 
-    public void WriteDocusaurusCodeBlock(string text, string? language = null, string? title = null, bool? includeLineNumbers = null)
+    public void WriteDocusaurusCodeBlock(
+        string text,
+        string? language = null,
+        string? title = null,
+        bool includeLineNumbers = false)
     {
-        Writer.WriteDocusaurusCodeBlock(text, language, title, includeLineNumbers ?? DocusaurusFormat.CodeLineNumbers);
+        if (!string.IsNullOrEmpty(language)
+            || !string.IsNullOrEmpty(title)
+            || includeLineNumbers)
+        {
+            StringBuilder sb = StringBuilderCache.GetInstance();
+
+            if (!string.IsNullOrEmpty(language))
+                sb.Append(language);
+
+            if (includeLineNumbers)
+            {
+                if (sb.Length > 0)
+                    sb.Append(' ');
+
+                sb.Append("showLineNumbers");
+            }
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                if (sb.Length > 0)
+                    sb.Append(' ');
+
+                sb.Append("title=\"");
+                sb.Append(title);
+                sb.Replace("\"", "\\\"", sb.Length - title!.Length, title.Length);
+                sb.Append('"');
+            }
+
+            language = StringBuilderCache.GetStringAndFree(sb);
+        }
+
+        WriteFencedCodeBlock(text, language);
     }
 
-    public void WriteDocusaurusNoteBlock(string text, string? title = null)
+    public void WriteStartAdmonition(AdmonitionKind kind, string? title = null)
     {
-        WriteDocusaurusAdmonition(AdmonitionKind.Note, text, title);
+        string info = kind.GetText();
+
+        if (!string.IsNullOrEmpty(title))
+            info += $" {title}";
+
+        WriteStartFencedBlock(":::", info);
+
+        if (DocusaurusFormat.AdmonitionBlankLines)
+            WriteLine();
     }
 
-    public void WriteDocusaurusTipBlock(string text, string? title = null)
+    public void WriteEndAdmonition()
     {
-        WriteDocusaurusAdmonition(AdmonitionKind.Tip, text, title);
-    }
+        if (DocusaurusFormat.AdmonitionBlankLines)
+        {
+            WriteLine();
+            WriteLine();
+        }
 
-    public void WriteDocusaurusInfoBlock(string text, string? title = null)
-    {
-        WriteDocusaurusAdmonition(AdmonitionKind.Info, text, title);
-    }
-
-    public void WriteDocusaurusCautionBlock(string text, string? title = null)
-    {
-        WriteDocusaurusAdmonition(AdmonitionKind.Caution, text, title);
-    }
-
-    public void WriteDocusaurusDangerBlock(string text, string? title = null)
-    {
-        WriteDocusaurusAdmonition(AdmonitionKind.Danger, text, title);
-    }
-
-    public void WriteDocusaurusAdmonition(AdmonitionKind kind, string text, string? title = null)
-    {
-        Writer.WriteDocusaurusAdmonition(kind.GetText(), text, title, includeBlankLines: DocusaurusFormat.AdmonitionBlankLines);
+        WriteEndFencedBlock(":::");
     }
 
     public override WriteState WriteState => Writer.WriteState;
@@ -138,5 +168,7 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
 
     public override void WriteTableHeaderSeparator() => Writer.WriteTableHeaderSeparator();
 
-    internal override void WriteFencedBlock(string text, string fence, MarkdownCharEscaper escaper, string? info = null, bool blankLinesAroundContent = false) => Writer.WriteFencedBlock(text, fence, escaper, info, blankLinesAroundContent);
+    internal override void WriteStartFencedBlock(string fence, string? info = null) => Writer.WriteStartFencedBlock(fence, info);
+
+    internal override void WriteEndFencedBlock(string fence) => Writer.WriteEndFencedBlock(fence);
 }

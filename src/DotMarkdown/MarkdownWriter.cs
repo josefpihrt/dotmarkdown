@@ -288,12 +288,9 @@ public abstract class MarkdownWriter : IDisposable
 
     public abstract void WriteLabel(string label, string url, string? title = null);
 
-    internal abstract void WriteFencedBlock(
-        string text,
-        string fence,
-        MarkdownCharEscaper escaper,
-        string? info = null,
-        bool blankLinesAroundContent = false);
+    internal abstract void WriteStartFencedBlock(string fence, string? info = null);
+
+    internal abstract void WriteEndFencedBlock(string fence);
 
     public abstract void WriteIndentedCodeBlock(string text);
 
