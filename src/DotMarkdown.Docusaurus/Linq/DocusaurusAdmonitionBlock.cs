@@ -53,8 +53,8 @@ public abstract class DocusaurusAdmonitionBlock : MContainer
         if (writer is not DocusaurusMarkdownWriter docusaurusWriter)
             throw new InvalidOperationException($"Writer must be '{typeof(DocusaurusMarkdownWriter).Name}'.");
 
-        docusaurusWriter.WriteStartAdmonition(AdmonitionKind, Title);
+        docusaurusWriter.WriteStartDocusaurusAdmonition(AdmonitionKind, Title);
         WriteContentTo(docusaurusWriter);
-        docusaurusWriter.WriteEndAdmonition();
+        docusaurusWriter.WriteEndDocusaurusAdmonition();
     }
 }

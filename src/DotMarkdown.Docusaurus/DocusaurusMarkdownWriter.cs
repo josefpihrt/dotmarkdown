@@ -58,7 +58,7 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
         WriteFencedCodeBlock(text, language);
     }
 
-    public void WriteStartAdmonition(AdmonitionKind kind, string? title = null)
+    public void WriteStartDocusaurusAdmonition(AdmonitionKind kind, string? title = null)
     {
         string info = kind.GetText();
 
@@ -71,7 +71,7 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
             WriteLine();
     }
 
-    public void WriteEndAdmonition()
+    public void WriteEndDocusaurusAdmonition()
     {
         if (DocusaurusFormat.AdmonitionBlankLines)
         {
