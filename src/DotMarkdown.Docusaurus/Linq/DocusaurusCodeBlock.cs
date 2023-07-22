@@ -61,7 +61,6 @@ public class DocusaurusCodeBlock : MElement
         {
             writer.WriteDocusaurusCodeBlock(Text, Language, Title, IncludeLineNumbers ?? DocusaurusMarkdownFormat.Default.CodeLineNumbers);
         }
-
     }
 
     internal override MElement Clone()
