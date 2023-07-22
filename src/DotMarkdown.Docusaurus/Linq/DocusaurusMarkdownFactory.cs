@@ -5,38 +5,38 @@ namespace DotMarkdown.Docusaurus.Linq;
 //TODO: DocusaurusMarkdownFactory > DocusaurusFactory
 public static class DocusaurusMarkdownFactory
 {
-    public static MDocusaurusCodeBlock DocusaurusCodeBlock(string text, string? language = null, string? title = null, bool? showLineNumbers = false)
+    public static DocusaurusCodeBlock DocusaurusCodeBlock(string text, string? language = null, string? title = null, bool? showLineNumbers = false)
     {
-        return new MDocusaurusCodeBlock(text, language, title, showLineNumbers);
+        return new DocusaurusCodeBlock(text, language, title, showLineNumbers);
     }
 
-    public static MDocusaurusNoteBlock DocusaurusNoteBlock(string text, string? title = null)
+    public static DocusaurusNoteBlock DocusaurusNoteBlock(string text, string? title = null)
     {
-        return new MDocusaurusNoteBlock(text, title);
+        return new DocusaurusNoteBlock(text, title);
     }
 
-    public static MDocusaurusTipBlock DocusaurusTipBlock(string text, string? title = null)
+    public static DocusaurusTipBlock DocusaurusTipBlock(string text, string? title = null)
     {
-        return new MDocusaurusTipBlock(text, title);
+        return new DocusaurusTipBlock(text, title);
     }
 
-    public static MDocusaurusInfoBlock DocusaurusInfoBlock(string text, string? title = null)
+    public static DocusaurusInfoBlock DocusaurusInfoBlock(string text, string? title = null)
     {
-        return new MDocusaurusInfoBlock(text, title);
+        return new DocusaurusInfoBlock(text, title);
     }
 
-    public static MDocusaurusCautionBlock DocusaurusCautionBlock(string text, string? title = null)
+    public static DocusaurusCautionBlock DocusaurusCautionBlock(string text, string? title = null)
     {
-        return new MDocusaurusCautionBlock(text, title);
+        return new DocusaurusCautionBlock(text, title);
     }
 
-    public static MDocusaurusDangerBlock DocusaurusDangerBlock(string text, string? title = null)
+    public static DocusaurusDangerBlock DocusaurusDangerBlock(string text, string? title = null)
     {
-        return new MDocusaurusDangerBlock(text, title);
+        return new DocusaurusDangerBlock(text, title);
     }
 
-    public static MDocusaurusAdmonition DocusaurusAdmonition(AdmonitionKind kind, string text, string? title = null)
+    public static DocusaurusAdmonition DocusaurusAdmonition(AdmonitionKind kind, string text, string? title = null)
     {
-        return MDocusaurusAdmonition.Create(kind, text, title);
+        return Linq.DocusaurusAdmonition.Create(kind, text, title);
     }
 }

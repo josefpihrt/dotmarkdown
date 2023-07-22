@@ -22,8 +22,8 @@ internal static class DocusaurusTestHelpers
         return new DocusaurusMarkdownWriter(writer, format);
     }
 
-    public static MDocusaurusCodeBlock CreateDocusaurusCodeBlock()
+    public static DocusaurusCodeBlock CreateDocusaurusCodeBlock()
     {
-        return new MDocusaurusCodeBlock(CodeBlockText(), CodeBlockInfo(), "file.txt", includeLineNumbers: true);
+        return new DocusaurusCodeBlock(CodeBlockText(), CodeBlockInfo(), "file.txt", includeLineNumbers: true);
     }
 }

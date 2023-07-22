@@ -15,9 +15,9 @@ internal static class Extensions
         return _newLineRegex.Replace(value, "\n");
     }
 
-    public static MDocusaurusCodeBlock Modify(this MDocusaurusCodeBlock block)
+    public static DocusaurusCodeBlock Modify(this DocusaurusCodeBlock block)
     {
-        return new MDocusaurusCodeBlock(block.Text.Modify(), block.Info!.Modify());
+        return new DocusaurusCodeBlock(block.Text.Modify(), block.Info!.Modify());
     }
 
     public static string? ToStringAndClear(this DocusaurusMarkdownWriter mw)

@@ -7,11 +7,11 @@ using DotMarkdown.Linq;
 namespace DotMarkdown.Docusaurus.Linq;
 
 [DebuggerDisplay("{Kind}{InfoDebuggerDisplay,nq} {Text,nq}")]
-public class MDocusaurusCodeBlock : MElement
+public class DocusaurusCodeBlock : MElement
 {
     private string? _info;
 
-    public MDocusaurusCodeBlock(string text, string? language = null, string? title = null, bool? includeLineNumbers = false)
+    public DocusaurusCodeBlock(string text, string? language = null, string? title = null, bool? includeLineNumbers = false)
     {
         Text = text;
         Info = language;
@@ -19,7 +19,7 @@ public class MDocusaurusCodeBlock : MElement
         IncludeLineNumbers = includeLineNumbers;
     }
 
-    public MDocusaurusCodeBlock(MDocusaurusCodeBlock other)
+    public DocusaurusCodeBlock(DocusaurusCodeBlock other)
     {
         if (other is null)
             throw new ArgumentNullException(nameof(other));
@@ -65,6 +65,6 @@ public class MDocusaurusCodeBlock : MElement
 
     internal override MElement Clone()
     {
-        return new MDocusaurusCodeBlock(this);
+        return new DocusaurusCodeBlock(this);
     }
 }

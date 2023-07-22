@@ -19,7 +19,7 @@ public static class DocusaurusMarkdownWriterTests
     {
         MarkdownWriter mw = CreateBuilderWithCodeFenceOptions(style);
 
-        MDocusaurusCodeBlock block = DocusaurusCodeBlock(Chars, DefaultText, "file.txt", showLineNumbers: true);
+        DocusaurusCodeBlock block = DocusaurusCodeBlock(Chars, DefaultText, "file.txt", showLineNumbers: true);
         block.WriteTo(mw);
 
         string expected = $@"{syntax}{DefaultText} showLineNumbers title=""file.txt""
@@ -102,7 +102,7 @@ public static class DocusaurusMarkdownWriterTests
     {
         MarkdownWriter mw = CreateBuilderWithCodeFenceOptions(CodeFenceStyle.Tilde);
 
-        MDocusaurusAdmonition admonition = DocusaurusAdmonition(kind, Chars, "Title");
+        DocusaurusAdmonition admonition = DocusaurusAdmonition(kind, Chars, "Title");
         admonition.WriteTo(mw);
 
         string expected = $@":::{kindText} Title
@@ -121,7 +121,7 @@ public static class DocusaurusMarkdownWriterTests
     {
         DocusaurusMarkdownWriter mw = CreateWriterWithBlankLines(admonitionBlankLines: false);
 
-        MDocusaurusAdmonition admonition = DocusaurusAdmonition(AdmonitionKind.Note, Chars);
+        DocusaurusAdmonition admonition = DocusaurusAdmonition(AdmonitionKind.Note, Chars);
         admonition.WriteTo(mw);
 
         string expected = $@":::note
@@ -138,7 +138,7 @@ public static class DocusaurusMarkdownWriterTests
     {
         DocusaurusMarkdownWriter mw = CreateWriterWithBlankLines(admonitionBlankLines: false);
 
-        MDocusaurusAdmonition admonition = DocusaurusAdmonition(AdmonitionKind.Note, Chars, "Title");
+        DocusaurusAdmonition admonition = DocusaurusAdmonition(AdmonitionKind.Note, Chars, "Title");
         admonition.WriteTo(mw);
 
         string expected = $@":::note Title

@@ -7,15 +7,15 @@ using DotMarkdown.Linq;
 namespace DotMarkdown.Docusaurus.Linq;
 
 [DebuggerDisplay("{Kind}{DebuggerDisplay,nq} {Text,nq}")]
-public abstract class MDocusaurusAdmonition : MElement
+public abstract class DocusaurusAdmonition : MElement
 {
-    protected MDocusaurusAdmonition(string text, string? title = null)
+    protected DocusaurusAdmonition(string text, string? title = null)
     {
         Text = text;
         Title = title;
     }
 
-    protected MDocusaurusAdmonition(MDocusaurusAdmonition other)
+    protected DocusaurusAdmonition(DocusaurusAdmonition other)
     {
         if (other is null)
             throw new ArgumentNullException(nameof(other));
@@ -24,15 +24,15 @@ public abstract class MDocusaurusAdmonition : MElement
         Title = other.Title;
     }
 
-    public static MDocusaurusAdmonition Create(AdmonitionKind kind, string text, string? title = null)
+    public static DocusaurusAdmonition Create(AdmonitionKind kind, string text, string? title = null)
     {
         return kind switch
         {
-            AdmonitionKind.Note => new MDocusaurusNoteBlock(text, title),
-            AdmonitionKind.Tip => new MDocusaurusTipBlock(text, title),
-            AdmonitionKind.Info => new MDocusaurusInfoBlock(text, title),
-            AdmonitionKind.Caution => new MDocusaurusCautionBlock(text, title),
-            AdmonitionKind.Danger => new MDocusaurusDangerBlock(text, title),
+            AdmonitionKind.Note => new DocusaurusNoteBlock(text, title),
+            AdmonitionKind.Tip => new DocusaurusTipBlock(text, title),
+            AdmonitionKind.Info => new DocusaurusInfoBlock(text, title),
+            AdmonitionKind.Caution => new DocusaurusCautionBlock(text, title),
+            AdmonitionKind.Danger => new DocusaurusDangerBlock(text, title),
             _ => throw new ArgumentException($"Unknown {nameof(DotMarkdown.Docusaurus.AdmonitionKind)} '{kind}'.", nameof(kind)),
         };
     }

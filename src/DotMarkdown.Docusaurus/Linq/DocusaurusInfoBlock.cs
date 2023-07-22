@@ -4,13 +4,13 @@ using DotMarkdown.Linq;
 
 namespace DotMarkdown.Docusaurus.Linq;
 
-public class MDocusaurusInfoBlock : MDocusaurusAdmonition
+public class DocusaurusInfoBlock : DocusaurusAdmonition
 {
-    public MDocusaurusInfoBlock(string text, string? title = null) : base(text, title)
+    public DocusaurusInfoBlock(string text, string? title = null) : base(text, title)
     {
     }
 
-    public MDocusaurusInfoBlock(MDocusaurusAdmonition other) : base(other)
+    public DocusaurusInfoBlock(DocusaurusAdmonition other) : base(other)
     {
     }
 
@@ -18,6 +18,6 @@ public class MDocusaurusInfoBlock : MDocusaurusAdmonition
 
     internal override MElement Clone()
     {
-        return new MDocusaurusInfoBlock(this);
+        return new DocusaurusInfoBlock(this);
     }
 }
