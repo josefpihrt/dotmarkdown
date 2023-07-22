@@ -11,7 +11,6 @@
   <PropertyGroup>
     <AssemblyName>DotMarkdown.Docusaurus</AssemblyName>
     <RootNamespace>DotMarkdown.Docusaurus</RootNamespace>
-    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -19,19 +18,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <IsPackable>true</IsPackable>
     <PackageId>DotMarkdown.Docusaurus</PackageId>
-    <Authors>Josef Pihrt</Authors>
-    <Company></Company>
     <Description>Extension of DotMarkdown package for Docusaurus markdown</Description>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>http://github.com/josefpihrt/dotmarkdown</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageTags>markdown;md;linq</PackageTags>
-    <PackageReadmeFile>docs/README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/josefpihrt/dotmarkdown.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

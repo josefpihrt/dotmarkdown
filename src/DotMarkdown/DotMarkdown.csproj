@@ -12,7 +12,6 @@
     <AssemblyName>DotMarkdown</AssemblyName>
     <RootNamespace>DotMarkdown</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -20,24 +19,14 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <IsPackable>true</IsPackable>
     <PackageId>DotMarkdown</PackageId>
-    <Authors>Josef Pihrt</Authors>
-    <Company></Company>
     <Description>DotMarkdown enables to conveniently create markdown content from the code.
 
 Commonly Used Types:
 DotMarkdown.MarkdownWriter
 DotMarkdown.MarkdownFormat
 DotMarkdown.Linq.MFactory</Description>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>http://github.com/josefpihrt/dotmarkdown</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageTags>markdown;md;linq</PackageTags>
-    <PackageReadmeFile>docs/README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/josefpihrt/dotmarkdown.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
