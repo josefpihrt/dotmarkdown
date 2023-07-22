@@ -2,18 +2,19 @@
 
 namespace DotMarkdown.Docusaurus;
 
-//TODO: 
 public class DocusaurusMarkdownFormat
 {
+    public static DocusaurusMarkdownFormat Default { get; } = new();
+
     public DocusaurusMarkdownFormat(
-        bool codeBlockLineNumber = false,
-        bool admonitionEmptyLines = true)
+        bool codeLineNumbers = false,
+        bool admonitionBlankLines = true)
     {
-        CodeBlockLineNumber = codeBlockLineNumber;
-        AdmonitionEmptyLines = admonitionEmptyLines;
+        CodeLineNumbers = codeLineNumbers;
+        AdmonitionBlankLines = admonitionBlankLines;
     }
 
-    public bool CodeBlockLineNumber { get; }
+    public bool CodeLineNumbers { get; }
 
-    public bool AdmonitionEmptyLines { get; }
+    public bool AdmonitionBlankLines { get; }
 }

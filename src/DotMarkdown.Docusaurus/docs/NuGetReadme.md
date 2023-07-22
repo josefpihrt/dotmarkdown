@@ -6,9 +6,3 @@ Extension of DotMarkdown package for Docusaurus markdown.
 
 * .NET Standard 1.3
 * .NET Framework 4.6
-
-## Usage 
-
-### Commonly Used Types
-
-* `DotMarkdown.Docusaurus`

@@ -1,11 +1,9 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using DotMarkdown.Linq;
-using DotMarkdown.Linq.Docusaurus;
-using DotMarkdown.Tests;
 using Xunit;
 using static DotMarkdown.Tests.TestHelpers;
 using static DotMarkdown.Docusaurus.Tests.DocusaurusTestHelpers;
+using DotMarkdown.Docusaurus.Linq;
 
 namespace DotMarkdown.Docusaurus.Tests;
 
@@ -67,7 +65,7 @@ public static class MDocusaurusCodeBlockTests
     public static void MDocusaurusCodeBlock_Constructor_AssignText()
     {
         string text = CodeBlockText();
-        var block = new MDocusaurusCodeBlock(text: text, info: CodeBlockInfo());
+        var block = new MDocusaurusCodeBlock(text: text, language: CodeBlockInfo());
 
         Assert.Equal(text, block.Text);
     }
@@ -76,7 +74,7 @@ public static class MDocusaurusCodeBlockTests
     public static void MDocusaurusCodeBlock_Constructor_AssignInfo()
     {
         string info = CodeBlockInfo();
-        var block = new MDocusaurusCodeBlock(text: CodeBlockText(), info: info);
+        var block = new MDocusaurusCodeBlock(text: CodeBlockText(), language: info);
 
         Assert.Equal(info, block.Info);
     }

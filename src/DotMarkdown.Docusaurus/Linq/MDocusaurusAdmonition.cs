@@ -2,9 +2,9 @@
 
 using System;
 using System.Diagnostics;
-using DotMarkdown.Docusaurus;
+using DotMarkdown.Linq;
 
-namespace DotMarkdown.Linq.Docusaurus;
+namespace DotMarkdown.Docusaurus.Linq;
 
 [DebuggerDisplay("{Kind}{DebuggerDisplay,nq} {Text,nq}")]
 public abstract class MDocusaurusAdmonition : MElement
@@ -49,6 +49,13 @@ public abstract class MDocusaurusAdmonition : MElement
 
     public override void WriteTo(MarkdownWriter writer)
     {
-        writer.WriteDocusaurusAdmonition(Text, AdmonitionKind, Title);
+        if (writer is DocusaurusMarkdownWriter docusaurusWriter)
+        {
+            docusaurusWriter.WriteDocusaurusAdmonition(AdmonitionKind, Text, Title);
+        }
+        else
+        {
+            writer.WriteDocusaurusAdmonition(AdmonitionKind, Text, Title);
+        }
     }
 }

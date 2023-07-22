@@ -1,14 +1,13 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using DotMarkdown.Docusaurus;
+namespace DotMarkdown.Docusaurus.Linq;
 
-namespace DotMarkdown.Linq.Docusaurus;
-
+//TODO: DocusaurusMarkdownFactory > DocusaurusFactory
 public static class DocusaurusMarkdownFactory
 {
-    public static MDocusaurusCodeBlock DocusaurusCodeBlock(string text, string? info = null, string? textInfo = null, bool showLineNumbers = false)
+    public static MDocusaurusCodeBlock DocusaurusCodeBlock(string text, string? language = null, string? title = null, bool? showLineNumbers = false)
     {
-        return new MDocusaurusCodeBlock(text, info, textInfo, showLineNumbers);
+        return new MDocusaurusCodeBlock(text, language, title, showLineNumbers);
     }
 
     public static MDocusaurusNoteBlock DocusaurusNoteBlock(string text, string? title = null)

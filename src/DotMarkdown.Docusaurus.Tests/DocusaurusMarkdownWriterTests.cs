@@ -1,9 +1,10 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using DotMarkdown.Linq.Docusaurus;
+using DotMarkdown.Docusaurus.Linq;
 using DotMarkdown.Tests;
 using Xunit;
-using static DotMarkdown.Linq.Docusaurus.DocusaurusMarkdownFactory;
+using static DotMarkdown.Docusaurus.Linq.DocusaurusMarkdownFactory;
+using static DotMarkdown.Docusaurus.Tests.DocusaurusTestHelpers;
 using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Docusaurus.Tests;
@@ -56,6 +57,41 @@ public static class DocusaurusMarkdownWriterTests
         Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
     }
 
+    [Fact]
+    public static void MarkdownWriter_Write_DocusaurusCodeBlock_LineNumbers()
+    {
+        DocusaurusMarkdownWriter mw = CreateWriterWithLineNumbers(includeLineNumbers: true);
+
+        mw.Write(DefaultText);
+        mw.Write(DocusaurusCodeBlock(Chars, DefaultText, showLineNumbers: null));
+        mw.Write(DocusaurusCodeBlock(Chars, DefaultText, showLineNumbers: true));
+        mw.Write(DocusaurusCodeBlock(Chars, DefaultText, showLineNumbers: false));
+        mw.Write(DocusaurusCodeBlock(Chars, DefaultText, "file1.txt"));
+        mw.Write(DefaultText);
+
+        string expected = $@"{DefaultText}
+
+```{DefaultText} showLineNumbers
+{Chars}
+```
+
+```{DefaultText} showLineNumbers
+{Chars}
+```
+
+```{DefaultText}
+{Chars}
+```
+
+```{DefaultText} title=""file1.txt""
+{Chars}
+```
+
+{DefaultText}";
+
+        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+    }
+
     [Theory]
     [InlineData(AdmonitionKind.Note, "note")]
     [InlineData(AdmonitionKind.Tip, "tip")]
@@ -73,6 +109,40 @@ public static class DocusaurusMarkdownWriterTests
 
 {CharsEscaped}
 
+:::
+
+";
+
+        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+    }
+
+    [Fact]
+    public static void MarkdownWriter_Write_DocusaurusAdmonition_NoTitle()
+    {
+        DocusaurusMarkdownWriter mw = CreateWriterWithBlankLines(admonitionBlankLines: false);
+
+        MDocusaurusAdmonition admonition = DocusaurusAdmonition(AdmonitionKind.Note, Chars);
+        admonition.WriteTo(mw);
+
+        string expected = $@":::note
+{CharsEscaped}
+:::
+
+";
+
+        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+    }
+
+    [Fact]
+    public static void MarkdownWriter_Write_DocusaurusAdmonition_NoBlankLines()
+    {
+        DocusaurusMarkdownWriter mw = CreateWriterWithBlankLines(admonitionBlankLines: false);
+
+        MDocusaurusAdmonition admonition = DocusaurusAdmonition(AdmonitionKind.Note, Chars, "Title");
+        admonition.WriteTo(mw);
+
+        string expected = $@":::note Title
+{CharsEscaped}
 :::
 
 ";

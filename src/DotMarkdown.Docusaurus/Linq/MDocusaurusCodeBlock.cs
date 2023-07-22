@@ -2,21 +2,21 @@
 
 using System;
 using System.Diagnostics;
-using DotMarkdown.Docusaurus;
+using DotMarkdown.Linq;
 
-namespace DotMarkdown.Linq.Docusaurus;
+namespace DotMarkdown.Docusaurus.Linq;
 
 [DebuggerDisplay("{Kind}{InfoDebuggerDisplay,nq} {Text,nq}")]
 public class MDocusaurusCodeBlock : MElement
 {
     private string? _info;
 
-    public MDocusaurusCodeBlock(string text, string? info = null, string? textInfo = null, bool showLineNumbers = false)
+    public MDocusaurusCodeBlock(string text, string? language = null, string? title = null, bool? includeLineNumbers = false)
     {
         Text = text;
-        Info = info;
-        TextInfo = textInfo;
-        ShowLineNumbers = showLineNumbers;
+        Info = language;
+        Title = title;
+        IncludeLineNumbers = includeLineNumbers;
     }
 
     public MDocusaurusCodeBlock(MDocusaurusCodeBlock other)
@@ -26,8 +26,8 @@ public class MDocusaurusCodeBlock : MElement
 
         Text = other.Text;
         _info = other.Info;
-        TextInfo = other.TextInfo;
-        ShowLineNumbers = other.ShowLineNumbers;
+        Title = other.Title;
+        IncludeLineNumbers = other.IncludeLineNumbers;
     }
 
     public string Text { get; set; }
@@ -43,9 +43,9 @@ public class MDocusaurusCodeBlock : MElement
         }
     }
 
-    public string? TextInfo { get; }
+    public string? Title { get; }
 
-    public bool ShowLineNumbers { get; }
+    public bool? IncludeLineNumbers { get; }
 
     public override MarkdownKind Kind => MarkdownKind.FencedBlock;
 
@@ -53,7 +53,14 @@ public class MDocusaurusCodeBlock : MElement
 
     public override void WriteTo(MarkdownWriter writer)
     {
-        writer.WriteDocusaurusCodeBlock(Text, Info, TextInfo, ShowLineNumbers);
+        if (writer is DocusaurusMarkdownWriter docusaurusWriter)
+        {
+            docusaurusWriter.WriteDocusaurusCodeBlock(Text, Info, Title, IncludeLineNumbers);
+        }
+        else
+        {
+            writer.WriteDocusaurusCodeBlock(Text, Info, Title, IncludeLineNumbers ?? DocusaurusMarkdownFormat.Default.CodeLineNumbers);
+        }
     }
 
     internal override MElement Clone()

@@ -7,21 +7,26 @@ namespace DotMarkdown.Docusaurus;
 
 public static class MarkdownWriterExtensions
 {
-    public static void WriteDocusaurusCodeBlock(this MarkdownWriter writer, string text, string? info = null, string? textInfo = null, bool showLineNumbers = false)
+    public static void WriteDocusaurusCodeBlock(
+        this MarkdownWriter writer,
+        string text,
+        string? info = null,
+        string? title = null,
+        bool includeLineNumbers = false)
     {
         if (writer is null)
             throw new ArgumentNullException(nameof(writer));
 
         if (!string.IsNullOrEmpty(info)
-            || !string.IsNullOrEmpty(textInfo)
-            || showLineNumbers)
+            || !string.IsNullOrEmpty(title)
+            || includeLineNumbers)
         {
             StringBuilder sb = StringBuilderCache.GetInstance();
 
             if (!string.IsNullOrEmpty(info))
                 sb.Append(info);
 
-            if (showLineNumbers)
+            if (includeLineNumbers)
             {
                 if (sb.Length > 0)
                     sb.Append(' ');
@@ -29,14 +34,14 @@ public static class MarkdownWriterExtensions
                 sb.Append("showLineNumbers");
             }
 
-            if (!string.IsNullOrEmpty(textInfo))
+            if (!string.IsNullOrEmpty(title))
             {
                 if (sb.Length > 0)
                     sb.Append(' ');
 
                 sb.Append("title=\"");
-                sb.Append(textInfo);
-                sb.Replace("\"", "\\\"", sb.Length - textInfo!.Length, textInfo.Length);
+                sb.Append(title);
+                sb.Replace("\"", "\\\"", sb.Length - title!.Length, title.Length);
                 sb.Append('"');
             }
 
@@ -48,35 +53,32 @@ public static class MarkdownWriterExtensions
 
     public static void WriteDocusaurusNote(this MarkdownWriter writer, string text, string? title = null)
     {
-        WriteDocusaurusAdmonition(writer, text, AdmonitionKind.Note, title);
+        WriteDocusaurusAdmonition(writer, "note", text, title);
     }
 
     public static void WriteDocusaurusTip(this MarkdownWriter writer, string text, string? title = null)
     {
-        WriteDocusaurusAdmonition(writer, text, AdmonitionKind.Tip, title);
+        WriteDocusaurusAdmonition(writer, "tip", text, title);
     }
 
     public static void WriteDocusaurusInfo(this MarkdownWriter writer, string text, string? title = null)
     {
-        WriteDocusaurusAdmonition(writer, text, AdmonitionKind.Info, title);
+        WriteDocusaurusAdmonition(writer, "info", text, title);
     }
 
     public static void WriteDocusaurusCaution(this MarkdownWriter writer, string text, string? title = null)
     {
-        WriteDocusaurusAdmonition(writer, text, AdmonitionKind.Caution, title);
+        WriteDocusaurusAdmonition(writer, "caution", text, title);
     }
 
     public static void WriteDocusaurusDanger(this MarkdownWriter writer, string text, string? title = null)
     {
-        WriteDocusaurusAdmonition(writer, text, AdmonitionKind.Danger, title);
+        WriteDocusaurusAdmonition(writer, "danger", text, title);
     }
 
-    public static void WriteDocusaurusAdmonition(this MarkdownWriter writer, string text, AdmonitionKind kind, string? title = null)
+    public static void WriteDocusaurusAdmonition(this MarkdownWriter writer, AdmonitionKind kind, string text, string? title = null)
     {
-        if (writer is null)
-            throw new ArgumentNullException(nameof(writer));
-
-        string info = kind switch
+        string admonition = kind switch
         {
             AdmonitionKind.Note => "note",
             AdmonitionKind.Tip => "tip",
@@ -86,9 +88,19 @@ public static class MarkdownWriterExtensions
             _ => throw new ArgumentException($"Unknown {nameof(AdmonitionKind)} '{kind}'", nameof(kind))
         };
 
+        WriteDocusaurusAdmonition(writer, admonition, text, title);
+    }
+
+    internal static void WriteDocusaurusAdmonition(this MarkdownWriter writer, string admonition, string text, string? title = null, bool includeBlankLines = true)
+    {
+        if (writer is null)
+            throw new ArgumentNullException(nameof(writer));
+
+        string info = admonition;
+
         if (!string.IsNullOrEmpty(title))
             info += $" {title}";
 
-        writer.WriteFencedBlock(text, ":::", MarkdownCharEscaper.Default, info: info, blankLinesAroundContent: true);
+        writer.WriteFencedBlock(text, ":::", MarkdownCharEscaper.Default, info: info, blankLinesAroundContent: includeBlankLines);
     }
 }
