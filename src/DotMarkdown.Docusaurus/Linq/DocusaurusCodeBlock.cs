@@ -53,10 +53,15 @@ public class DocusaurusCodeBlock : MElement
 
     public override void WriteTo(MarkdownWriter writer)
     {
-        if (writer is not DocusaurusMarkdownWriter docusaurusWriter)
-            throw new InvalidOperationException($"Writer must be '{typeof(DocusaurusMarkdownWriter).Name}'.");
+        if (writer is DocusaurusMarkdownWriter docusaurusWriter)
+        {
+            docusaurusWriter.WriteDocusaurusCodeBlock(Text, Language, Title, IncludeLineNumbers ?? docusaurusWriter.DocusaurusFormat.CodeLineNumbers);
+        }
+        else
+        {
+            writer.WriteDocusaurusCodeBlock(Text, Language, Title, IncludeLineNumbers ?? DocusaurusMarkdownFormat.Default.CodeLineNumbers);
+        }
 
-        docusaurusWriter.WriteDocusaurusCodeBlock(Text, Language, Title, IncludeLineNumbers ?? docusaurusWriter.DocusaurusFormat.CodeLineNumbers);
     }
 
     internal override MElement Clone()

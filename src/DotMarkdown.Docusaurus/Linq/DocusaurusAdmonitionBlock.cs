@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Text;
 using DotMarkdown.Linq;
 
 namespace DotMarkdown.Docusaurus.Linq;
@@ -50,11 +51,17 @@ public abstract class DocusaurusAdmonitionBlock : MContainer
 
     public override void WriteTo(MarkdownWriter writer)
     {
-        if (writer is not DocusaurusMarkdownWriter docusaurusWriter)
-            throw new InvalidOperationException($"Writer must be '{typeof(DocusaurusMarkdownWriter).Name}'.");
-
-        docusaurusWriter.WriteStartDocusaurusAdmonition(AdmonitionKind, Title);
-        WriteContentTo(docusaurusWriter);
-        docusaurusWriter.WriteEndDocusaurusAdmonition();
+        if (writer is DocusaurusMarkdownWriter docusaurusWriter)
+        {
+            docusaurusWriter.WriteStartDocusaurusAdmonition(AdmonitionKind, Title);
+            WriteContentTo(docusaurusWriter);
+            docusaurusWriter.WriteEndDocusaurusAdmonition();
+        }
+        else
+        {
+            writer.WriteStartDocusaurusAdmonition(AdmonitionKind, Title);
+            WriteContentTo(writer);
+            writer.WriteEndDocusaurusAdmonition();
+        }
     }
 }

@@ -22,64 +22,19 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
         string text,
         string? language = null,
         string? title = null,
-        bool includeLineNumbers = false)
+        bool? includeLineNumbers = null)
     {
-        if (!string.IsNullOrEmpty(language)
-            || !string.IsNullOrEmpty(title)
-            || includeLineNumbers)
-        {
-            StringBuilder sb = StringBuilderCache.GetInstance();
-
-            if (!string.IsNullOrEmpty(language))
-                sb.Append(language);
-
-            if (includeLineNumbers)
-            {
-                if (sb.Length > 0)
-                    sb.Append(' ');
-
-                sb.Append("showLineNumbers");
-            }
-
-            if (!string.IsNullOrEmpty(title))
-            {
-                if (sb.Length > 0)
-                    sb.Append(' ');
-
-                sb.Append("title=\"");
-                sb.Append(title);
-                sb.Replace("\"", "\\\"", sb.Length - title!.Length, title.Length);
-                sb.Append('"');
-            }
-
-            language = StringBuilderCache.GetStringAndFree(sb);
-        }
-
-        WriteFencedCodeBlock(text, language);
+        Writer.WriteDocusaurusCodeBlock(text, language, title, includeLineNumbers ?? DocusaurusFormat.CodeLineNumbers);
     }
 
     public void WriteStartDocusaurusAdmonition(AdmonitionKind kind, string? title = null)
     {
-        string info = kind.GetText();
-
-        if (!string.IsNullOrEmpty(title))
-            info += $" {title}";
-
-        WriteStartFencedBlock(":::", info);
-
-        if (DocusaurusFormat.AdmonitionBlankLines)
-            WriteLine();
+        Writer.WriteStartDocusaurusAdmonition(kind, title, DocusaurusFormat.AdmonitionBlankLines);
     }
 
     public void WriteEndDocusaurusAdmonition()
     {
-        if (DocusaurusFormat.AdmonitionBlankLines)
-        {
-            WriteLine();
-            WriteLine();
-        }
-
-        WriteEndFencedBlock(":::");
+        Writer.WriteEndDocusaurusAdmonition(DocusaurusFormat.AdmonitionBlankLines);
     }
 
     public override WriteState WriteState => Writer.WriteState;
