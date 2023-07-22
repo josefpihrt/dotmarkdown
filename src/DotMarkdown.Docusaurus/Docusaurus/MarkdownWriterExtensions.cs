@@ -51,27 +51,27 @@ public static class MarkdownWriterExtensions
         writer.WriteFencedCodeBlock(text, info);
     }
 
-    public static void WriteDocusaurusNote(this MarkdownWriter writer, string text, string? title = null)
+    public static void WriteDocusaurusNoteBlock(this MarkdownWriter writer, string text, string? title = null)
     {
         WriteDocusaurusAdmonition(writer, "note", text, title);
     }
 
-    public static void WriteDocusaurusTip(this MarkdownWriter writer, string text, string? title = null)
+    public static void WriteDocusaurusTipBlock(this MarkdownWriter writer, string text, string? title = null)
     {
         WriteDocusaurusAdmonition(writer, "tip", text, title);
     }
 
-    public static void WriteDocusaurusInfo(this MarkdownWriter writer, string text, string? title = null)
+    public static void WriteDocusaurusInfoBlock(this MarkdownWriter writer, string text, string? title = null)
     {
         WriteDocusaurusAdmonition(writer, "info", text, title);
     }
 
-    public static void WriteDocusaurusCaution(this MarkdownWriter writer, string text, string? title = null)
+    public static void WriteDocusaurusCautionBlock(this MarkdownWriter writer, string text, string? title = null)
     {
         WriteDocusaurusAdmonition(writer, "caution", text, title);
     }
 
-    public static void WriteDocusaurusDanger(this MarkdownWriter writer, string text, string? title = null)
+    public static void WriteDocusaurusDangerBlock(this MarkdownWriter writer, string text, string? title = null)
     {
         WriteDocusaurusAdmonition(writer, "danger", text, title);
     }

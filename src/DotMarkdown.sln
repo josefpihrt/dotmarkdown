@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkdown.Docusaurus.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkdown.Tests", "Tests\DotMarkdown.Tests\DotMarkdown.Tests.csproj", "{191C777D-F530-4571-8E57-64DDE0D3BB14}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkdown.TestConsole", "Tests\TestConsole\DotMarkdown.TestConsole.csproj", "{115CD18C-4827-4564-B84E-FC6E07C4712C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsole", "Tests\TestConsole\TestConsole.csproj", "{115CD18C-4827-4564-B84E-FC6E07C4712C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

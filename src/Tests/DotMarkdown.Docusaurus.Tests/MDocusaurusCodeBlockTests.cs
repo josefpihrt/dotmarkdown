@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using Xunit;
-using static DotMarkdown.Tests.TestHelpers;
 using static DotMarkdown.Docusaurus.Tests.DocusaurusTestHelpers;
+using static DotMarkdown.Tests.TestHelpers;
 using DotMarkdown.Docusaurus.Linq;
 
 namespace DotMarkdown.Docusaurus.Tests;

@@ -22,27 +22,27 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
         Writer.WriteDocusaurusCodeBlock(text, language, title, includeLineNumbers ?? DocusaurusFormat.CodeLineNumbers);
     }
 
-    public void WriteDocusaurusNote(string text, string? title = null)
+    public void WriteDocusaurusNoteBlock(string text, string? title = null)
     {
         WriteDocusaurusAdmonition(AdmonitionKind.Note, text, title);
     }
 
-    public void WriteDocusaurusTip(string text, string? title = null)
+    public void WriteDocusaurusTipBlock(string text, string? title = null)
     {
         WriteDocusaurusAdmonition(AdmonitionKind.Tip, text, title);
     }
 
-    public void WriteDocusaurusInfo(string text, string? title = null)
+    public void WriteDocusaurusInfoBlock(string text, string? title = null)
     {
         WriteDocusaurusAdmonition(AdmonitionKind.Info, text, title);
     }
 
-    public void WriteDocusaurusCaution(string text, string? title = null)
+    public void WriteDocusaurusCautionBlock(string text, string? title = null)
     {
         WriteDocusaurusAdmonition(AdmonitionKind.Caution, text, title);
     }
 
-    public void WriteDocusaurusDanger(string text, string? title = null)
+    public void WriteDocusaurusDangerBlock(string text, string? title = null)
     {
         WriteDocusaurusAdmonition(AdmonitionKind.Danger, text, title);
     }
