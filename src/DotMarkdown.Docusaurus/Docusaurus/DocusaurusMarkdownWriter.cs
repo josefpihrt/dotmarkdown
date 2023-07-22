@@ -49,17 +49,7 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
 
     public void WriteDocusaurusAdmonition(AdmonitionKind kind, string text, string? title = null)
     {
-        string admonition = kind switch
-        {
-            AdmonitionKind.Note => "note",
-            AdmonitionKind.Tip => "tip",
-            AdmonitionKind.Info => "info",
-            AdmonitionKind.Caution => "caution",
-            AdmonitionKind.Danger => "danger",
-            _ => throw new ArgumentException($"Unknown {nameof(AdmonitionKind)} '{kind}'", nameof(kind))
-        };
-
-        Writer.WriteDocusaurusAdmonition(admonition, text, title, includeBlankLines: DocusaurusFormat.AdmonitionBlankLines);
+        Writer.WriteDocusaurusAdmonition(kind.GetText(), text, title, includeBlankLines: DocusaurusFormat.AdmonitionBlankLines);
     }
 
     public override WriteState WriteState => Writer.WriteState;

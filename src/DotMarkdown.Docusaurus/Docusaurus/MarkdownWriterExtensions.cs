@@ -78,17 +78,7 @@ public static class MarkdownWriterExtensions
 
     public static void WriteDocusaurusAdmonition(this MarkdownWriter writer, AdmonitionKind kind, string text, string? title = null)
     {
-        string admonition = kind switch
-        {
-            AdmonitionKind.Note => "note",
-            AdmonitionKind.Tip => "tip",
-            AdmonitionKind.Info => "info",
-            AdmonitionKind.Caution => "caution",
-            AdmonitionKind.Danger => "danger",
-            _ => throw new ArgumentException($"Unknown {nameof(AdmonitionKind)} '{kind}'", nameof(kind))
-        };
-
-        WriteDocusaurusAdmonition(writer, admonition, text, title);
+        WriteDocusaurusAdmonition(writer, kind.GetText(), text, title);
     }
 
     internal static void WriteDocusaurusAdmonition(this MarkdownWriter writer, string admonition, string text, string? title = null, bool includeBlankLines = true)
