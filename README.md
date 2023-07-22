@@ -12,7 +12,7 @@
 
 ## Documentation
 
-* [Reference documentation](https://github.com/josefpihrt/dotmarkdown/blob/master/docs/api/README.md#_top)
+* [Reference documentation](https://josefpihrt.github.io/docs/dotmarkdown/api)
 
 ## Usage 
 
