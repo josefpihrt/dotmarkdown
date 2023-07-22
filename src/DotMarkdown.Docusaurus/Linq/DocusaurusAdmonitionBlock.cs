@@ -64,4 +64,41 @@ public abstract class DocusaurusAdmonitionBlock : MContainer
             writer.WriteEndDocusaurusAdmonition();
         }
     }
+
+    internal override void ValidateElement(MElement element)
+    {
+        switch (element.Kind)
+        {
+            case MarkdownKind.Text:
+            case MarkdownKind.Raw:
+            case MarkdownKind.Link:
+            case MarkdownKind.LinkReference:
+            case MarkdownKind.Image:
+            case MarkdownKind.ImageReference:
+            case MarkdownKind.Autolink:
+            case MarkdownKind.InlineCode:
+            case MarkdownKind.CharEntity:
+            case MarkdownKind.EntityRef:
+            case MarkdownKind.Comment:
+            case MarkdownKind.Bold:
+            case MarkdownKind.Italic:
+            case MarkdownKind.Strikethrough:
+            case MarkdownKind.Inline:
+            case MarkdownKind.FencedBlock:
+            case MarkdownKind.IndentedCodeBlock:
+            case MarkdownKind.Table:
+            case MarkdownKind.TableRow:
+            case MarkdownKind.TableColumn:
+            case MarkdownKind.BulletList:
+            case MarkdownKind.OrderedList:
+            case MarkdownKind.TaskList:
+            case MarkdownKind.BulletItem:
+            case MarkdownKind.OrderedItem:
+            case MarkdownKind.TaskItem:
+            case MarkdownKind.BlockQuote:
+                return;
+        }
+
+        Error.InvalidContent(this, element);
+    }
 }
