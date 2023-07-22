@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-      <_Parameter1>DotMarkdown.Tests, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
+      <_Parameter1>DotMarkdown.Docusaurus.Tests, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
 

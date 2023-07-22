@@ -1,15 +1,16 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using DotMarkdown.Linq;
+using DotMarkdown.Tests;
 using Xunit;
 using static DotMarkdown.Tests.TestHelpers;
 
-namespace DotMarkdown.Tests;
+namespace DotMarkdown.Docusaurus.Tests;
 
 public static class MDocusaurusCodeBlockTests
 {
     [Fact]
-    public static void MFencedCodeBlock_Equals()
+    public static void MDocusaurusCodeBlock_Equals()
     {
         MFencedCodeBlock block = CreateCodeBlock();
 
@@ -17,7 +18,7 @@ public static class MDocusaurusCodeBlockTests
     }
 
     [Fact]
-    public static void MFencedCodeBlock_NotEquals()
+    public static void MDocusaurusCodeBlock_NotEquals()
     {
         MFencedCodeBlock block = CreateCodeBlock();
         MFencedCodeBlock block2 = block.Modify();
@@ -26,7 +27,7 @@ public static class MDocusaurusCodeBlockTests
     }
 
     [Fact]
-    public static void MFencedCodeBlock_GetHashCode_Equal()
+    public static void MDocusaurusCodeBlock_GetHashCode_Equal()
     {
         MFencedCodeBlock block = CreateCodeBlock();
 
@@ -34,7 +35,7 @@ public static class MDocusaurusCodeBlockTests
     }
 
     [Fact]
-    public static void MFencedCodeBlock_GetHashCode_NotEqual()
+    public static void MDocusaurusCodeBlock_GetHashCode_NotEqual()
     {
         MFencedCodeBlock block = CreateCodeBlock();
         MFencedCodeBlock block2 = block.Modify();
@@ -43,7 +44,7 @@ public static class MDocusaurusCodeBlockTests
     }
 
     [Fact]
-    public static void MFencedCodeBlock_OperatorEquals()
+    public static void MDocusaurusCodeBlock_OperatorEquals()
     {
         MFencedCodeBlock block = CreateCodeBlock();
         MFencedCodeBlock block2 = block;
@@ -52,7 +53,7 @@ public static class MDocusaurusCodeBlockTests
     }
 
     [Fact]
-    public static void MFencedCodeBlock_OperatorNotEquals()
+    public static void MDocusaurusCodeBlock_OperatorNotEquals()
     {
         MFencedCodeBlock block = CreateCodeBlock();
         MFencedCodeBlock block2 = block.Modify();
@@ -61,7 +62,7 @@ public static class MDocusaurusCodeBlockTests
     }
 
     [Fact]
-    public static void MFencedCodeBlock_Constructor_AssignText()
+    public static void MDocusaurusCodeBlock_Constructor_AssignText()
     {
         string text = CodeBlockText();
         var block = new MFencedCodeBlock(text: text, info: CodeBlockInfo());
@@ -70,7 +71,7 @@ public static class MDocusaurusCodeBlockTests
     }
 
     [Fact]
-    public static void MFencedCodeBlock_Constructor_AssignInfo()
+    public static void MDocusaurusCodeBlock_Constructor_AssignInfo()
     {
         string info = CodeBlockInfo();
         var block = new MFencedCodeBlock(text: CodeBlockText(), info: info);

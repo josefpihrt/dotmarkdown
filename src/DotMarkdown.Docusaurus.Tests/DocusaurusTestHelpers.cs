@@ -3,7 +3,7 @@
 using DotMarkdown.Linq;
 using static DotMarkdown.Tests.TestHelpers;
 
-namespace DotMarkdown.Tests;
+namespace DotMarkdown.Docusaurus.Tests;
 
 internal static class DocusaurusTestHelpers
 {

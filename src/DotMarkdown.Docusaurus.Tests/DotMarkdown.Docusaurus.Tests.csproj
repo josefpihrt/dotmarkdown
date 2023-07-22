@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tests\DotMarkdown.Tests.csproj" />
+    <ProjectReference Include="..\DotMarkdown.Docusaurus\DotMarkdown.Docusaurus.csproj" />
+    <ProjectReference Include="..\DotMarkdown.Tests\DotMarkdown.Tests.csproj" />
   </ItemGroup>
 
 </Project>
