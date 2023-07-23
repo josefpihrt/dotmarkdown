@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add support for [Docusaurus markdown](https://docusaurus.io/docs/markdown-features) ([#28](https://github.com/josefpihrt/dotmarkdown/pull/28)).
+
 ### Changed
 
 - Enable nullable reference types ([#26](https://github.com/josefpihrt/dotmarkdown/pull/26)).
 - Migrate documentation to [Docusaurus](https://josefpihrt.github.io/docs/dotmarkdown) ([#24](https://github.com/josefpihrt/dotmarkdown/pull/24)).
-- Add support for Docusaurus markdown ([#28](https://github.com/josefpihrt/dotmarkdown/pull/28)).
+- Make class `Emojis` obsolete ([#31](https://github.com/josefpihrt/dotmarkdown/pull/31)).
 
 ## [0.2.0] - 2022-06-26
 
