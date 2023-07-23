@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DotMarkdown;
 
@@ -853,7 +854,17 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
             Push(State.FencedCodeBlock);
 
             WriteLine(Format.EmptyLineBeforeCodeBlock);
-            WriteRaw(Format.CodeFence);
+
+            int length = 3;
+            Match match = Format.CodeFenceRegex.Value.Match(text);
+
+            while (match.Success)
+            {
+                length = Math.Max(length, match.Length + 1);
+                match = match.NextMatch();
+            }
+
+            WriteFence(length);
 
             if (!string.IsNullOrEmpty(info))
                 WriteRaw(info!);
@@ -861,7 +872,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
             WriteLine();
             WriteString(text, MarkdownCharEscaper.NoEscape);
             WriteLineIfNecessary();
-            WriteRaw(Format.CodeFence);
+            WriteFence(length);
             WriteLine();
             WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
 
@@ -871,6 +882,25 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         {
             _state = State.Error;
             throw;
+        }
+    }
+
+    private void WriteFence(int length)
+    {
+        if (length > 3)
+        {
+            string ch = Format.CodeFenceStyle switch
+            {
+                CodeFenceStyle.Backtick => "`",
+                CodeFenceStyle.Tilde => "~",
+                _ => throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(Format.CodeFenceStyle))
+            };
+
+            WriteRaw(ch, length);
+        }
+        else
+        {
+            WriteRaw(Format.CodeFence);
         }
     }
 
