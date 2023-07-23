@@ -363,7 +363,7 @@ public static class MarkdownWriterTests
 
         MImage image = Image(text + Chars, url + CharsWithoutSpaces, title + Chars);
 
-        string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+        const string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
             + $"({url + CharsWithoutSpacesParenthesesEscaped} \"{title + CharsDoubleQuoteEscaped}\")";
 
         mw.WriteImage(image.Text, image.Url, image.Title);
@@ -381,7 +381,7 @@ public static class MarkdownWriterTests
 
         MImage image = Image(text + Chars, url + CharsWithoutSpaces);
 
-        string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+        const string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
             + $"({url + CharsWithoutSpacesParenthesesEscaped})";
 
         mw.WriteImage(image.Text, image.Url);
@@ -400,7 +400,7 @@ public static class MarkdownWriterTests
 
         MImage image = Image(text + Chars, url + CharsWithoutSpaces, title + Chars);
 
-        string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+        const string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
             + $"({url + CharsWithoutSpacesParenthesesEscaped} \"{title + CharsDoubleQuoteEscaped}\")";
 
         mw.Write(image);
@@ -418,7 +418,7 @@ public static class MarkdownWriterTests
 
         MImage image = Image(text + Chars, url + CharsWithoutSpaces);
 
-        string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+        const string expected = $"![{text + CharsSquareBracketsBacktickLessThanEscaped}]"
             + $"({url + CharsWithoutSpacesParenthesesEscaped})";
 
         mw.Write(image);
@@ -448,7 +448,7 @@ public static class MarkdownWriterTests
         const string url = linkUrl + CharsWithoutSpaces;
         const string title = linkTitle + Chars;
 
-        string expected = $"[{linkText + CharsSquareBracketsBacktickLessThanEscaped}]"
+        const string expected = $"[{linkText + CharsSquareBracketsBacktickLessThanEscaped}]"
             + $"({linkUrl + CharsWithoutSpacesParenthesesEscaped} \"{linkTitle + CharsDoubleQuoteEscaped}\")";
 
         mw.WriteLink(text, url, title);
@@ -467,7 +467,7 @@ public static class MarkdownWriterTests
         const string text = linkText + Chars;
         const string url = linkUrl + CharsWithoutSpaces;
 
-        string expected = $"[{linkText + CharsSquareBracketsBacktickLessThanEscaped}]"
+        const string expected = $"[{linkText + CharsSquareBracketsBacktickLessThanEscaped}]"
             + $"({linkUrl + CharsWithoutSpacesParenthesesEscaped})";
 
         mw.WriteLink(text, url);
@@ -480,7 +480,7 @@ public static class MarkdownWriterTests
     {
         MarkdownWriter mw = CreateWriter();
 
-        string expected = $"[**b** *i* ~~s~~ `c` {CharsSquareBracketsBacktickLessThanEscaped}]"
+        const string expected = $"[**b** *i* ~~s~~ `c` {CharsSquareBracketsBacktickLessThanEscaped}]"
             + $"(u{CharsWithoutSpacesParenthesesEscaped} \"t{CharsDoubleQuoteEscaped}\")";
 
         mw.WriteStartLink();
@@ -509,7 +509,7 @@ public static class MarkdownWriterTests
 
         MLink link = Link(text + Chars, url + CharsWithoutSpaces, title + Chars);
 
-        string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+        const string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]"
             + $"({url + CharsWithoutSpacesParenthesesEscaped} \"{title + CharsDoubleQuoteEscaped}\")";
 
         Assert.Equal(expected, mw.Write2(link).ToStringAndClear());
@@ -525,7 +525,7 @@ public static class MarkdownWriterTests
 
         MLink link = Link(text + Chars, url + CharsWithoutSpaces);
 
-        string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]"
+        const string expected = $"[{text + CharsSquareBracketsBacktickLessThanEscaped}]"
             + $"({url + CharsWithoutSpacesParenthesesEscaped})";
 
         mw.Write(link);
