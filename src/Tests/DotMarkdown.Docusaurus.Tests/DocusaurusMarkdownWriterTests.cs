@@ -19,7 +19,7 @@ public static class DocusaurusMarkdownWriterTests
     {
         DocusaurusMarkdownWriter mw = CreateWriterWithFenceStyle(style);
 
-        DocusaurusCodeBlock block = DocusaurusCodeBlock(Chars, DefaultText, "file.txt", showLineNumbers: true);
+        DocusaurusCodeBlock block = CodeBlock(Chars, DefaultText, "file.txt", showLineNumbers: true);
         block.WriteTo(mw);
 
         string expected = $@"{syntax}{DefaultText} showLineNumbers title=""file.txt""
@@ -37,9 +37,9 @@ public static class DocusaurusMarkdownWriterTests
         DocusaurusMarkdownWriter mw = CreateWriterWithCodeBlockOptions(CodeBlockOptions.None);
 
         mw.Write(DefaultText);
-        mw.Write(DocusaurusCodeBlock(Chars, DefaultText, "file1.txt", showLineNumbers: true));
-        mw.Write(DocusaurusCodeBlock(Chars, DefaultText, "file2.txt", showLineNumbers: false));
-        mw.Write(DocusaurusCodeBlock(Chars, DefaultText));
+        mw.Write(CodeBlock(Chars, DefaultText, "file1.txt", showLineNumbers: true));
+        mw.Write(CodeBlock(Chars, DefaultText, "file2.txt", showLineNumbers: false));
+        mw.Write(CodeBlock(Chars, DefaultText));
         mw.Write(DefaultText);
 
         string expected = $@"{DefaultText}
@@ -63,10 +63,10 @@ public static class DocusaurusMarkdownWriterTests
         DocusaurusMarkdownWriter mw = CreateWriterWithLineNumbers(includeLineNumbers: true);
 
         mw.Write(DefaultText);
-        mw.Write(DocusaurusCodeBlock(Chars, DefaultText, showLineNumbers: null));
-        mw.Write(DocusaurusCodeBlock(Chars, DefaultText, showLineNumbers: true));
-        mw.Write(DocusaurusCodeBlock(Chars, DefaultText, showLineNumbers: false));
-        mw.Write(DocusaurusCodeBlock(Chars, DefaultText, "file1.txt"));
+        mw.Write(CodeBlock(Chars, DefaultText, showLineNumbers: null));
+        mw.Write(CodeBlock(Chars, DefaultText, showLineNumbers: true));
+        mw.Write(CodeBlock(Chars, DefaultText, showLineNumbers: false));
+        mw.Write(CodeBlock(Chars, DefaultText, "file1.txt"));
         mw.Write(DefaultText);
 
         string expected = $@"{DefaultText}

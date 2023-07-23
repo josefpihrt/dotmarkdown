@@ -6,11 +6,11 @@ public static class DocusaurusMarkdownFactory
 {
     public static DocusaurusFrontMatter FrontMatter(params (string Key, object? Value)[] labels) => new(labels);
 
-    public static DocusaurusCodeBlock DocusaurusCodeBlock(
+    public static DocusaurusCodeBlock CodeBlock(
         string text,
         string? language = null,
         string? title = null,
-        bool? showLineNumbers = false)
+        bool? showLineNumbers = null)
     {
         return new DocusaurusCodeBlock(text, language, title, showLineNumbers);
     }

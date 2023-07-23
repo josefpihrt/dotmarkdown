@@ -128,7 +128,7 @@ public static class DocusaurusExtensions
     {
         if (value is string s)
         {
-            WriteFrontMatterValue(writer, s);
+            writer.WriteFrontMatterValue(s);
         }
         else
         {
