@@ -55,11 +55,11 @@ public class DocusaurusCodeBlock : MElement
     {
         if (writer is DocusaurusMarkdownWriter docusaurusWriter)
         {
-            docusaurusWriter.WriteDocusaurusCodeBlock(Text, Language, Title, IncludeLineNumbers ?? docusaurusWriter.DocusaurusFormat.CodeLineNumbers);
+            docusaurusWriter.WriteDocusaurusCodeBlock(Text, Language, Title, IncludeLineNumbers ?? docusaurusWriter.DocusaurusFormat.IncludeCodeLineNumbers);
         }
         else
         {
-            writer.WriteDocusaurusCodeBlock(Text, Language, Title, IncludeLineNumbers ?? DocusaurusMarkdownFormat.Default.CodeLineNumbers);
+            writer.WriteDocusaurusCodeBlock(Text, Language, Title, IncludeLineNumbers ?? DocusaurusMarkdownFormat.Default.IncludeCodeLineNumbers);
         }
     }
 

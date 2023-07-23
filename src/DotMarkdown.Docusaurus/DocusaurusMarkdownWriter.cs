@@ -24,17 +24,17 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
         string? title = null,
         bool? includeLineNumbers = null)
     {
-        Writer.WriteDocusaurusCodeBlock(text, language, title, includeLineNumbers ?? DocusaurusFormat.CodeLineNumbers);
+        Writer.WriteDocusaurusCodeBlock(text, language, title, includeLineNumbers ?? DocusaurusFormat.IncludeCodeLineNumbers);
     }
 
     public void WriteStartDocusaurusAdmonition(AdmonitionKind kind, string? title = null)
     {
-        Writer.WriteStartDocusaurusAdmonition(kind, title, DocusaurusFormat.AdmonitionBlankLines);
+        Writer.WriteStartDocusaurusAdmonition(kind, title, DocusaurusFormat.IncludeAdmonitionBlankLines);
     }
 
     public void WriteEndDocusaurusAdmonition()
     {
-        Writer.WriteEndDocusaurusAdmonition(DocusaurusFormat.AdmonitionBlankLines);
+        Writer.WriteEndDocusaurusAdmonition(DocusaurusFormat.IncludeAdmonitionBlankLines);
     }
 
     public override WriteState WriteState => Writer.WriteState;
