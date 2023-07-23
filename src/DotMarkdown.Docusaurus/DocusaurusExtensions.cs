@@ -139,7 +139,7 @@ public static class DocusaurusExtensions
     private static void WriteFrontMatterValue(this MarkdownWriter writer, string value)
     {
         writer.WriteRaw("\"");
-        writer.WriteRaw(value);
+        writer.WriteRaw(value.Replace("\"", "\\\""));
         writer.WriteRaw("\"");
     }
 
