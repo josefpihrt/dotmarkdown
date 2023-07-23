@@ -13,32 +13,32 @@ public static class DocusaurusMarkdownFactory
         return new DocusaurusCodeBlock(text, language, title, showLineNumbers);
     }
 
-    public static DocusaurusNoteBlock DocusaurusNoteBlock(object? content) => new(content);
+    public static DocusaurusNoteBlock NoteBlock(object? content) => new(content);
 
-    public static DocusaurusNoteBlock DocusaurusNoteBlock(params object[]? content) => new(content);
+    public static DocusaurusNoteBlock NoteBlock(params object[]? content) => new(content);
 
-    public static DocusaurusTipBlock DocusaurusTipBlock(object? content) => new(content);
+    public static DocusaurusTipBlock TipBlock(object? content) => new(content);
 
-    public static DocusaurusTipBlock DocusaurusTipBlock(params object[]? content) => new(content);
+    public static DocusaurusTipBlock TipBlock(params object[]? content) => new(content);
 
-    public static DocusaurusInfoBlock DocusaurusInfoBlock(object? content) => new(content);
+    public static DocusaurusInfoBlock InfoBlock(object? content) => new(content);
 
-    public static DocusaurusInfoBlock DocusaurusInfoBlock(params object[]? content) => new(content);
+    public static DocusaurusInfoBlock InfoBlock(params object[]? content) => new(content);
 
-    public static DocusaurusCautionBlock DocusaurusCautionBlock(object? content) => new(content);
+    public static DocusaurusCautionBlock CautionBlock(object? content) => new(content);
 
-    public static DocusaurusCautionBlock DocusaurusCautionBlock(params object[]? content) => new(content);
+    public static DocusaurusCautionBlock CautionBlock(params object[]? content) => new(content);
 
-    public static DocusaurusDangerBlock DocusaurusDangerBlock(object? content) => new(content);
+    public static DocusaurusDangerBlock DangerBlock(object? content) => new(content);
 
-    public static DocusaurusDangerBlock DocusaurusDangerBlock(params object[]? content) => new(content);
+    public static DocusaurusDangerBlock DangerBlock(params object[]? content) => new(content);
 
-    public static DocusaurusAdmonitionBlock DocusaurusAdmonitionBlock(AdmonitionKind kind, object? content)
+    public static DocusaurusAdmonitionBlock AdmonitionBlock(AdmonitionKind kind, object? content)
     {
         return Linq.DocusaurusAdmonitionBlock.Create(kind, content);
     }
 
-    public static DocusaurusAdmonitionBlock DocusaurusAdmonitionBlock(AdmonitionKind kind, params object[]? content)
+    public static DocusaurusAdmonitionBlock AdmonitionBlock(AdmonitionKind kind, params object[]? content)
     {
         return Linq.DocusaurusAdmonitionBlock.Create(kind, content);
     }

@@ -102,7 +102,7 @@ public static class DocusaurusMarkdownWriterTests
     {
         DocusaurusMarkdownWriter mw = CreateWriterWithFenceStyle(CodeFenceStyle.Tilde);
 
-        DocusaurusAdmonitionBlock admonition = DocusaurusAdmonitionBlock(kind, Chars);
+        DocusaurusAdmonitionBlock admonition = AdmonitionBlock(kind, Chars);
         admonition.Title = "Title";
         admonition.WriteTo(mw);
 
@@ -122,7 +122,7 @@ public static class DocusaurusMarkdownWriterTests
     {
         DocusaurusMarkdownWriter mw = CreateWriterWithBlankLines(admonitionBlankLines: false);
 
-        DocusaurusAdmonitionBlock admonition = DocusaurusAdmonitionBlock(AdmonitionKind.Note, Chars);
+        DocusaurusAdmonitionBlock admonition = AdmonitionBlock(AdmonitionKind.Note, Chars);
         admonition.WriteTo(mw);
 
         string expected = $@":::note
@@ -139,7 +139,7 @@ public static class DocusaurusMarkdownWriterTests
     {
         DocusaurusMarkdownWriter mw = CreateWriterWithBlankLines(admonitionBlankLines: false);
 
-        DocusaurusAdmonitionBlock admonition = DocusaurusAdmonitionBlock(AdmonitionKind.Note, Chars);
+        DocusaurusAdmonitionBlock admonition = AdmonitionBlock(AdmonitionKind.Note, Chars);
         admonition.Title = "Title";
         admonition.WriteTo(mw);
 
