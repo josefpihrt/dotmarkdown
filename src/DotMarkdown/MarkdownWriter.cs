@@ -419,6 +419,8 @@ public abstract class MarkdownWriter : IDisposable
 
     public abstract void WriteLine();
 
+    internal abstract void WriteLine(bool addBlankLine);
+
     public virtual void WriteValue(bool value)
     {
         WriteString((value) ? "true" : "false");

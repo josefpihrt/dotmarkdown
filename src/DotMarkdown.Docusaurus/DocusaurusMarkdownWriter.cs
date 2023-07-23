@@ -89,6 +89,8 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
 
     public override void WriteLine() => Writer.WriteLine();
 
+    internal override void WriteLine(bool addBlankLine) => Writer.WriteLine(addBlankLine);
+
     public override void WriteLinkReference(string text, string? label = null) => Writer.WriteLinkReference(text, label);
 
     public override void WriteRaw(string data) => Writer.WriteRaw(data);

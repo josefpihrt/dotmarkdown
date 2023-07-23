@@ -66,12 +66,7 @@ public static class Extensions
 
     internal static void WriteEndDocusaurusAdmonition(this MarkdownWriter writer, bool includeBlankLine = true)
     {
-        if (includeBlankLine)
-        {
-            writer.WriteLine();
-            writer.WriteLine();
-        }
-
+        writer.WriteLine(includeBlankLine);
         writer.WriteEndFencedBlock(":::");
     }
 

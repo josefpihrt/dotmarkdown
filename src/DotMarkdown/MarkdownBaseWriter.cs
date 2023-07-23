@@ -1612,14 +1612,14 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    private void WriteLine(bool addEmptyLine)
+    internal override void WriteLine(bool addBlankLine)
     {
         if (_emptyLineStartPos != Length)
         {
             if (_lineStartPos != Length)
                 WriteLine();
 
-            WriteEmptyLineIf(addEmptyLine);
+            WriteEmptyLineIf(addBlankLine);
         }
     }
 
