@@ -195,7 +195,7 @@ c: d
 
         DocusaurusFrontMatter frontMatter = FrontMatter(
             ("a", "b"),
-            ("tags", new[] { "c", "d", null }));
+            ("tags", new string?[] { "c", "d", null }));
 
         frontMatter.WriteTo(mw);
 
