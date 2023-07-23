@@ -2,12 +2,11 @@
 
 using System;
 using System.Diagnostics;
-using System.Text;
 using DotMarkdown.Linq;
 
 namespace DotMarkdown.Docusaurus.Linq;
 
-[DebuggerDisplay("{Kind}{DebuggerDisplay,nq} {Text,nq}")]
+[DebuggerDisplay("Docusaurus {AdmonitionKind} {Title,nq}")]
 public abstract class DocusaurusAdmonitionBlock : MContainer
 {
     protected DocusaurusAdmonitionBlock(object? content) : base(content)
@@ -46,8 +45,6 @@ public abstract class DocusaurusAdmonitionBlock : MContainer
     public abstract AdmonitionKind AdmonitionKind { get; }
 
     public override MarkdownKind Kind => MarkdownKind.FencedBlock;
-
-    private string DebuggerDisplay => $" Docusaurus {AdmonitionKind} {Title}";
 
     public override void WriteTo(MarkdownWriter writer)
     {

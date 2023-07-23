@@ -54,9 +54,9 @@ public static class DocusaurusExtensions
             if (value is null)
                 continue;
 
-            if (value is string s)
+            if (value is string stringValue)
             {
-                WriteFrontMatterLabel(writer, ref pendingStart, key, s);
+                WriteFrontMatterLabel(writer, ref pendingStart, key, stringValue);
             }
             else if (value is object[] arr)
             {
@@ -97,7 +97,12 @@ public static class DocusaurusExtensions
         writer.WriteFrontMatterValue(value);
     }
 
-    private static void WriteFrontMatterLabel(this MarkdownWriter writer, ref bool pendingStart, ref bool isFirst, string key, object value)
+    private static void WriteFrontMatterLabel(
+        this MarkdownWriter writer,
+        ref bool pendingStart,
+        ref bool isFirst,
+        string key,
+        object value)
     {
         if (value is null)
             return;
@@ -150,40 +155,30 @@ public static class DocusaurusExtensions
         string? title = null,
         bool includeLineNumbers = false)
     {
-        if (!string.IsNullOrEmpty(language)
-            || !string.IsNullOrEmpty(title)
-            || includeLineNumbers)
-        {
-            StringBuilder sb = StringBuilderCache.GetInstance();
-
-            if (!string.IsNullOrEmpty(language))
-                sb.Append(language);
-
-            if (includeLineNumbers)
-            {
-                if (sb.Length > 0)
-                    sb.Append(' ');
-
-                sb.Append("showLineNumbers");
-            }
-
-            if (!string.IsNullOrEmpty(title))
-            {
-                if (sb.Length > 0)
-                    sb.Append(' ');
-
-                sb.Append("title=\"");
-                sb.Append(title);
-                sb.Replace("\"", "\\\"", sb.Length - title!.Length, title.Length);
-                sb.Append('"');
-            }
-
-            writer.WriteFencedCodeBlock(text, StringBuilderCache.GetStringAndFree(sb));
-        }
-        else
+        if (string.IsNullOrEmpty(title)
+            && !includeLineNumbers)
         {
             writer.WriteFencedCodeBlock(text, language);
+            return;
         }
+
+        StringBuilder sb = StringBuilderCache.GetInstance();
+
+        if (!string.IsNullOrEmpty(language))
+            sb.Append(language);
+
+        if (includeLineNumbers)
+            sb.Append(" showLineNumbers");
+
+        if (!string.IsNullOrEmpty(title))
+        {
+            sb.Append(" title=\"");
+            sb.Append(title);
+            sb.Replace("\"", "\\\"", sb.Length - title!.Length, title.Length);
+            sb.Append('"');
+        }
+
+        writer.WriteFencedCodeBlock(text, StringBuilderCache.GetStringAndFree(sb));
     }
 
     internal static void WriteStartDocusaurusAdmonition(this MarkdownWriter writer, AdmonitionKind kind, string? title = null, bool includeBlankLine = true)

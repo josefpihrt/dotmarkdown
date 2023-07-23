@@ -92,6 +92,38 @@ public static class DocusaurusMarkdownWriterTests
         Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
     }
 
+    [Fact]
+    public static void MarkdownWriter_Write_DocusaurusCodeBlock_LineNumbersOnly()
+    {
+        DocusaurusMarkdownWriter mw = CreateWriterWithLineNumbers(includeLineNumbers: true);
+
+        mw.Write(CodeBlock(Chars, showLineNumbers: true));
+
+        string expected = $@"``` showLineNumbers
+{Chars}
+```
+
+";
+
+        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+    }
+
+    [Fact]
+    public static void MarkdownWriter_Write_DocusaurusCodeBlock_TitleOnly()
+    {
+        DocusaurusMarkdownWriter mw = CreateDocusaurusWriter();
+
+        mw.Write(CodeBlock(Chars, title: "Foo"));
+
+        string expected = $@"``` title=""Foo""
+{Chars}
+```
+
+";
+
+        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+    }
+
     [Theory]
     [InlineData(AdmonitionKind.Note, "note")]
     [InlineData(AdmonitionKind.Tip, "tip")]

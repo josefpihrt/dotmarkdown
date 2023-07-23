@@ -23,6 +23,7 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
         Writer.WriteDocusaurusFrontMatter(labels);
     }
 
+    // https://docusaurus.io/docs/markdown-features/code-blocks
     public void WriteDocusaurusCodeBlock(
         string text,
         string? language = null,
@@ -32,6 +33,7 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
         Writer.WriteDocusaurusCodeBlock(text, language, title, includeLineNumbers ?? DocusaurusFormat.IncludeCodeLineNumbers);
     }
 
+    // https://docusaurus.io/docs/markdown-features/admonitions
     public void WriteStartDocusaurusAdmonition(AdmonitionKind kind, string? title = null)
     {
         Writer.WriteStartDocusaurusAdmonition(kind, title, DocusaurusFormat.IncludeAdmonitionBlankLines);
@@ -42,6 +44,7 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
         Writer.WriteEndDocusaurusAdmonition(DocusaurusFormat.IncludeAdmonitionBlankLines);
     }
 
+    #region Decorator
     public override WriteState WriteState => Writer.WriteState;
 
     public override void Flush() => Writer.Flush();
@@ -133,4 +136,5 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
     internal override void WriteStartFencedBlock(string fence, string? info = null) => Writer.WriteStartFencedBlock(fence, info);
 
     internal override void WriteEndFencedBlock(string fence) => Writer.WriteEndFencedBlock(fence);
+    #endregion Decorator
 }

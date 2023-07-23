@@ -6,7 +6,7 @@ using DotMarkdown.Linq;
 
 namespace DotMarkdown.Docusaurus.Linq;
 
-[DebuggerDisplay("{Kind}{InfoDebuggerDisplay,nq} {Text,nq}")]
+[DebuggerDisplay("Docusaurus CodeBlock {Language,nq} {Text,nq}")]
 public class DocusaurusCodeBlock : MElement
 {
     private string? _language;
@@ -48,8 +48,6 @@ public class DocusaurusCodeBlock : MElement
     public bool? IncludeLineNumbers { get; }
 
     public override MarkdownKind Kind => MarkdownKind.FencedBlock;
-
-    private string InfoDebuggerDisplay => (!string.IsNullOrEmpty(Language)) ? " " + Language : "";
 
     public override void WriteTo(MarkdownWriter writer)
     {
