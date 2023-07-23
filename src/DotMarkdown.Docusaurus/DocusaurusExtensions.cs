@@ -76,7 +76,8 @@ public static class DocusaurusExtensions
             }
         }
 
-        writer.WriteEndFencedBlock("---");
+        if (!pendingStart)
+            writer.WriteEndFencedBlock("---");
     }
 
     private static void WriteFrontMatterLabel(MarkdownWriter writer, ref bool pendingStart, string key, string s)
