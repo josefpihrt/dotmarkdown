@@ -45,7 +45,7 @@ public static class DocusaurusExtensions
         writer.WriteStartFencedBlock("---");
 
         var isFirst = true;
-        foreach ((string key, object value) in labels)
+        foreach ((string key, object? value) in labels)
         {
             if (isFirst)
             {

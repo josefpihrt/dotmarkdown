@@ -18,7 +18,7 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
     public DocusaurusMarkdownFormat DocusaurusFormat { get; }
 
     // https://docusaurus.io/docs/create-doc#doc-front-matter
-    public void WriteDocusaurusFrontMatter(params (string key, object value)[] labels)
+    public void WriteDocusaurusFrontMatter(params (string key, object? value)[] labels)
     {
         Writer.WriteDocusaurusFrontMatter(labels);
     }
