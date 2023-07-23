@@ -62,37 +62,23 @@ public static class DocusaurusExtensions
                 throw new InvalidOperationException("Docusarus front matter label is missing or invalid.");
             }
 
-            writer.WriteString(key);
-            writer.WriteRaw(":");
-
-            if (value is null)
-                throw new InvalidOperationException("Docusarus front matter value is missing.");
-
-            if (value is string s)
-            {
-                writer.WriteRaw(" ");
-                writer.WriteFrontMatterValue(s);
-            }
-
             if (value is object[] arr)
             {
+                var isFirst2 = true;
                 foreach (object item in arr)
-                {
-                    writer.WriteLine();
-                    writer.WriteRaw("  - ");
-                    writer.WriteFrontMatterValue(item.ToString());
-                    writer.WriteString(item.ToString().Replace(":", "\":\""));
-                }
+                    writer.WriteFrontMatter(ref isFirst2, key, item);
             }
-
-            if (value is IEnumerable enumerable)
+            else if (value is IEnumerable enumerable)
             {
+                var isFirst2 = true;
                 foreach (object item in enumerable)
-                {
-                    writer.WriteLine();
-                    writer.WriteRaw("  - ");
-                    writer.WriteFrontMatterValue(item.ToString());
-                }
+                    writer.WriteFrontMatter(ref isFirst2, key, item);
+            }
+            else if (value is not null)
+            {
+                writer.WriteString(key);
+                writer.WriteRaw(": ");
+                writer.WriteFrontMatterValue(value);
             }
         }
 
@@ -100,12 +86,26 @@ public static class DocusaurusExtensions
         writer.WriteLine();
     }
 
-    private static void WriteFrontMatterValue(this MarkdownWriter writer, string value)
+    private static void WriteFrontMatter(this MarkdownWriter writer, ref bool isFirst, string key, object value)
     {
         if (value is null)
-            throw new InvalidOperationException("Docusaurus front matter is missing.");
+            return;
 
-        writer.WriteString(value.Replace(":", "\":\""));
+        if (isFirst)
+        {
+            writer.WriteString(key);
+            writer.WriteRaw(":");
+        }
+
+        writer.WriteLine();
+        writer.WriteRaw("  - ");
+        writer.WriteFrontMatterValue(value);
+        isFirst = false;
+    }
+
+    private static void WriteFrontMatterValue(this MarkdownWriter writer, object value)
+    {
+        writer.WriteString(value.ToString().Replace(":", "\":\""));
     }
 
     internal static void WriteDocusaurusCodeBlock(
