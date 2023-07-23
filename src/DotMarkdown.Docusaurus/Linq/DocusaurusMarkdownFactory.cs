@@ -4,6 +4,8 @@ namespace DotMarkdown.Docusaurus.Linq;
 
 public static class DocusaurusMarkdownFactory
 {
+    public static DocusaurusFrontMatter FrontMatter(params (string Key, object Value)[] labels) => new(labels);
+
     public static DocusaurusCodeBlock DocusaurusCodeBlock(
         string text,
         string? language = null,

@@ -17,6 +17,14 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotMarkdown\DotMarkdown.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>DotMarkdown.Docusaurus</PackageId>
@@ -32,10 +40,6 @@
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>DotMarkdown.Docusaurus.Tests, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
     </AssemblyAttribute>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\DotMarkdown\DotMarkdown.csproj" />
   </ItemGroup>
 
 </Project>

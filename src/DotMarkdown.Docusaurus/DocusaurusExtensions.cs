@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
+using System.Collections;
 using System.Text;
 using DotMarkdown.Linq;
 
@@ -31,6 +32,80 @@ public static class DocusaurusExtensions
                 return StringBuilderCache.GetStringAndFree(writer.GetStringBuilder());
             }
         }
+    }
+
+    internal static void WriteDocusaurusFrontMatter(this MarkdownWriter writer, params (string key, object value)[] labels)
+    {
+        if (writer.WriteState != WriteState.Start)
+            throw new InvalidOperationException("Docusaurus front matter can be written only at the beginning of the document.");
+
+        if (labels is null || labels.Length == 0)
+            return;
+
+        writer.WriteStartFencedBlock("---");
+
+        var isFirst = true;
+        foreach ((string key, object value) in labels)
+        {
+            if (isFirst)
+            {
+                isFirst = false;
+            }
+            else
+            {
+                writer.WriteLine();
+            }
+
+            if (string.IsNullOrEmpty(key)
+                || key.Contains(":"))
+            {
+                throw new InvalidOperationException("Docusarus front matter label is missing or invalid.");
+            }
+
+            writer.WriteString(key);
+            writer.WriteRaw(":");
+
+            if (value is null)
+                throw new InvalidOperationException("Docusarus front matter value is missing.");
+
+            if (value is string s)
+            {
+                writer.WriteRaw(" ");
+                writer.WriteFrontMatterValue(s);
+            }
+
+            if (value is object[] arr)
+            {
+                foreach (object item in arr)
+                {
+                    writer.WriteLine();
+                    writer.WriteRaw("  - ");
+                    writer.WriteFrontMatterValue(item.ToString());
+                    writer.WriteString(item.ToString().Replace(":", "\":\""));
+                }
+            }
+
+            if (value is IEnumerable enumerable)
+            {
+                foreach (object item in enumerable)
+                {
+                    writer.WriteLine();
+                    writer.WriteRaw("  - ");
+                    writer.WriteFrontMatterValue(item.ToString());
+                }
+            }
+        }
+
+        writer.WriteEndFencedBlock("---");
+        writer.WriteLine();
+    }
+
+    private static void WriteFrontMatterValue(this MarkdownWriter writer, string value)
+    {
+        if (value is null)
+            throw new InvalidOperationException("Docusaurus front matter is missing.");
+
+        writer.WriteString(value.Replace(":", "\":\""));
     }
 
     internal static void WriteDocusaurusCodeBlock(
