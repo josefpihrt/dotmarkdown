@@ -8,13 +8,6 @@ namespace DotMarkdown.Docusaurus.Tests;
 
 internal static class Extensions
 {
-    private static readonly Regex _newLineRegex = new("\r?\n");
-
-    public static string NormalizeNewLine(this string value)
-    {
-        return _newLineRegex.Replace(value, "\n");
-    }
-
     public static DocusaurusCodeBlock Modify(this DocusaurusCodeBlock block)
     {
         return new DocusaurusCodeBlock(block.Text.Modify(), block.Language!.Modify());

@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace DotMarkdown;
 
@@ -103,10 +104,12 @@ public class MarkdownFormat : IEquatable<MarkdownFormat>
         if (CodeFenceStyle == CodeFenceStyle.Backtick)
         {
             CodeFence = "```";
+            CodeFenceRegex = new Lazy<Regex>(() => new Regex("^`{3,}", RegexOptions.Multiline));
         }
         else if (CodeFenceStyle == CodeFenceStyle.Tilde)
         {
             CodeFence = "~~~";
+            CodeFenceRegex = new Lazy<Regex>(() => new Regex("^~{3,}", RegexOptions.Multiline));
         }
         else
         {
@@ -198,6 +201,8 @@ public class MarkdownFormat : IEquatable<MarkdownFormat>
     public CodeFenceStyle CodeFenceStyle { get; }
 
     internal string CodeFence { get; }
+
+    internal Lazy<Regex> CodeFenceRegex { get; }
 
     public CodeBlockOptions CodeBlockOptions { get; }
 

@@ -762,6 +762,61 @@ public static class MarkdownWriterTests
             mw.ToStringAndClear());
     }
 
+    [Fact]
+    public static void MarkdownWriter_Write_FenceInsideFencedCodeBlock()
+    {
+        MarkdownWriter mw = CreateWriter();
+
+        MFencedCodeBlock block = FencedCodeBlock("```");
+
+        mw.Write(block);
+
+        const string expected = @"````
+```
+````
+
+";
+        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+    }
+
+    [Fact]
+    public static void MarkdownWriter_Write_FenceInsideFencedCodeBlock_Backtick()
+    {
+        MarkdownWriter mw = CreateBuilderWithCodeFenceOptions(CodeFenceStyle.Backtick);
+
+        MFencedCodeBlock block = FencedCodeBlock(@"````
+```");
+
+        mw.Write(block);
+
+        const string expected = @"`````
+````
+```
+`````
+
+";
+        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+    }
+
+    [Fact]
+    public static void MarkdownWriter_Write_FenceInsideFencedCodeBlock_Tilde()
+    {
+        MarkdownWriter mw = CreateBuilderWithCodeFenceOptions(CodeFenceStyle.Tilde);
+
+        MFencedCodeBlock block = FencedCodeBlock(@"~~
+~~~");
+
+        mw.Write(block);
+
+        const string expected = @"~~~~
+~~
+~~~
+~~~~
+
+";
+        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+    }
+
     [Theory]
     [InlineData(Chars, "> " + CharsEscaped + NewLine)]
     [InlineData(Chars + NewLine + Chars, "> " + CharsEscaped + NewLine + "> " + CharsEscaped + NewLine)]
