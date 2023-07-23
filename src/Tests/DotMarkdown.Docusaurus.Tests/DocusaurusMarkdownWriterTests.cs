@@ -157,12 +157,12 @@ public static class DocusaurusMarkdownWriterTests
     {
         DocusaurusMarkdownWriter mw = CreateDocusaurusWriter();
 
-        DocusaurusFrontMatter frontMatter = FrontMatter(("a", "b"), ("c", "d"));
+        DocusaurusFrontMatter frontMatter = FrontMatter(("a", 1), ("c", "d"));
         frontMatter.WriteTo(mw);
 
         const string expected = @"---
-a: b
-c: d
+a: 1
+c: ""d""
 ---
 
 ";
@@ -179,8 +179,8 @@ c: d
         frontMatter.WriteTo(mw);
 
         const string expected = @"---
-a: b
-c: d
+a: ""b""
+c: ""d""
 ---
 
 ";
@@ -194,16 +194,16 @@ c: d
         DocusaurusMarkdownWriter mw = CreateDocusaurusWriter();
 
         DocusaurusFrontMatter frontMatter = FrontMatter(
-            ("a", "b"),
-            ("tags", new string?[] { "c", "d", null }));
+            ("a", 1),
+            ("tags", new object?[] { "c", 2, null }));
 
         frontMatter.WriteTo(mw);
 
         const string expected = @"---
-a: b
+a: 1
 tags:
-  - c
-  - d
+  - ""c""
+  - 2
 ---
 
 ";
