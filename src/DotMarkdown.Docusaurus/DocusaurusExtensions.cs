@@ -42,67 +42,82 @@ public static class DocusaurusExtensions
         if (labels is null || labels.Length == 0)
             return;
 
-        writer.WriteStartFencedBlock("---");
-
-        var isFirst = true;
+        var pendingStart = true;
         foreach ((string key, object? value) in labels)
         {
-            if (isFirst)
-            {
-                isFirst = false;
-            }
-            else
-            {
-                writer.WriteLine();
-            }
-
             if (string.IsNullOrEmpty(key)
                 || key.Contains(":"))
             {
                 throw new InvalidOperationException("Docusarus front matter label is missing or invalid.");
             }
 
+            if (value is null)
+                continue;
+
             if (value is string s)
             {
-                writer.WriteRaw(key);
-                writer.WriteRaw(": ");
-                writer.WriteFrontMatterValue(s);
+                WriteFrontMatterLabel(writer, ref pendingStart, key, s);
             }
             else if (value is object[] arr)
             {
-                var isFirst2 = true;
+                var isFirst = true;
                 foreach (object item in arr)
-                    writer.WriteFrontMatter(ref isFirst2, key, item);
+                    writer.WriteFrontMatter(ref pendingStart, ref isFirst, key, item);
             }
             else if (value is IEnumerable enumerable)
             {
-                var isFirst2 = true;
+                var isFirst = true;
                 foreach (object item in enumerable)
-                    writer.WriteFrontMatter(ref isFirst2, key, item);
+                    writer.WriteFrontMatter(ref pendingStart, ref isFirst, key, item);
             }
-            else if (value is not null)
+            else
             {
-                writer.WriteRaw(key);
-                writer.WriteRaw(": ");
-                writer.WriteFrontMatterValue(value);
+                WriteFrontMatterLabel(writer, ref pendingStart, key, value.ToString());
             }
         }
 
         writer.WriteEndFencedBlock("---");
     }
 
-    private static void WriteFrontMatter(this MarkdownWriter writer, ref bool isFirst, string key, object value)
+    private static void WriteFrontMatterLabel(MarkdownWriter writer, ref bool pendingStart, string key, string s)
+    {
+        if (pendingStart)
+        {
+            writer.WriteStartFencedBlock("---");
+            pendingStart = false;
+        }
+        else
+        {
+            writer.WriteLine();
+        }
+
+        writer.WriteRaw(key);
+        writer.WriteRaw(": ");
+        writer.WriteFrontMatterValue(s);
+    }
+
+    private static void WriteFrontMatter(this MarkdownWriter writer, ref bool pendingStart, ref bool isFirst, string key, object value)
     {
         if (value is null)
             return;
+
+        if (pendingStart)
+        {
+            writer.WriteStartFencedBlock("---");
+            pendingStart = false;
+        }
+        else
+        {
+            writer.WriteLine();
+        }
 
         if (isFirst)
         {
             writer.WriteRaw(key);
             writer.WriteRaw(":");
+            writer.WriteLine();
         }
 
-        writer.WriteLine();
         writer.WriteRaw("  - ");
         writer.WriteFrontMatterValue(value);
         isFirst = false;

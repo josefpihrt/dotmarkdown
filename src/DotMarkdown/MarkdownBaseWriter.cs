@@ -850,9 +850,13 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         {
             Error.ThrowOnInvalidFencedCodeBlockInfo(info);
 
+            WriteState state = WriteState;
+
             Push(State.FencedBlock);
 
-            WriteLine(Format.EmptyLineBeforeCodeBlock);
+            if (state != WriteState.Start)
+                WriteLine(Format.EmptyLineBeforeCodeBlock);
+
             WriteRaw(fence);
 
             if (!string.IsNullOrEmpty(info))
