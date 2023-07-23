@@ -151,4 +151,63 @@ public static class DocusaurusMarkdownWriterTests
 
         Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
     }
+
+    [Fact]
+    public static void MarkdownWriter_Write_FrontMatter()
+    {
+        DocusaurusMarkdownWriter mw = CreateDocusaurusWriter();
+
+        DocusaurusFrontMatter frontMatter = FrontMatter(("a", "b"), ("c", "d"));
+        frontMatter.WriteTo(mw);
+
+        const string expected = @"---
+a: b
+c: d
+---
+
+";
+
+        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+    }
+
+    [Fact]
+    public static void MarkdownWriter_Write_FrontMatterMissingValue()
+    {
+        DocusaurusMarkdownWriter mw = CreateDocusaurusWriter();
+
+        DocusaurusFrontMatter frontMatter = FrontMatter(("a", "b"), ("c", "d"), ("e", null));
+        frontMatter.WriteTo(mw);
+
+        const string expected = @"---
+a: b
+c: d
+---
+
+";
+
+        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+    }
+
+    [Fact]
+    public static void MarkdownWriter_Write_FrontMatter_MultiValue()
+    {
+        DocusaurusMarkdownWriter mw = CreateDocusaurusWriter();
+
+        DocusaurusFrontMatter frontMatter = FrontMatter(
+            ("a", "b"),
+            ("tags", new[] { "c", "d", null }));
+
+        frontMatter.WriteTo(mw);
+
+        const string expected = @"---
+a: b
+tags:
+  - c
+  - d
+---
+
+";
+
+        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+    }
 }

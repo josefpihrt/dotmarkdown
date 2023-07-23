@@ -7,7 +7,7 @@ namespace DotMarkdown.Docusaurus.Linq;
 
 public class DocusaurusFrontMatter : MElement
 {
-    public DocusaurusFrontMatter(params (string key, object value)[] labels)
+    public DocusaurusFrontMatter(params (string key, object? value)[] labels)
     {
         Labels = labels;
     }
@@ -22,7 +22,7 @@ public class DocusaurusFrontMatter : MElement
 
     public override MarkdownKind Kind => MarkdownKind.FencedBlock;
 
-    public (string key, object value)[] Labels { get; }
+    public (string key, object? value)[] Labels { get; }
 
     public override void WriteTo(MarkdownWriter writer)
     {

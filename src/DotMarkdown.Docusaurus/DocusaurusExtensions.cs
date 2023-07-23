@@ -34,7 +34,7 @@ public static class DocusaurusExtensions
         }
     }
 
-    internal static void WriteDocusaurusFrontMatter(this MarkdownWriter writer, params (string key, object value)[] labels)
+    internal static void WriteDocusaurusFrontMatter(this MarkdownWriter writer, params (string key, object? value)[] labels)
     {
         if (writer.WriteState != WriteState.Start)
             throw new InvalidOperationException("Docusaurus front matter can be written only at the beginning of the document.");
@@ -62,7 +62,13 @@ public static class DocusaurusExtensions
                 throw new InvalidOperationException("Docusarus front matter label is missing or invalid.");
             }
 
-            if (value is object[] arr)
+            if (value is string s)
+            {
+                writer.WriteRaw(key);
+                writer.WriteRaw(": ");
+                writer.WriteFrontMatterValue(s);
+            }
+            else if (value is object[] arr)
             {
                 var isFirst2 = true;
                 foreach (object item in arr)
@@ -76,14 +82,13 @@ public static class DocusaurusExtensions
             }
             else if (value is not null)
             {
-                writer.WriteString(key);
+                writer.WriteRaw(key);
                 writer.WriteRaw(": ");
                 writer.WriteFrontMatterValue(value);
             }
         }
 
         writer.WriteEndFencedBlock("---");
-        writer.WriteLine();
     }
 
     private static void WriteFrontMatter(this MarkdownWriter writer, ref bool isFirst, string key, object value)
@@ -93,7 +98,7 @@ public static class DocusaurusExtensions
 
         if (isFirst)
         {
-            writer.WriteString(key);
+            writer.WriteRaw(key);
             writer.WriteRaw(":");
         }
 
@@ -105,7 +110,12 @@ public static class DocusaurusExtensions
 
     private static void WriteFrontMatterValue(this MarkdownWriter writer, object value)
     {
-        writer.WriteString(value.ToString().Replace(":", "\":\""));
+        writer.WriteFrontMatterValue(value.ToString());
+    }
+
+    private static void WriteFrontMatterValue(this MarkdownWriter writer, string value)
+    {
+        writer.WriteString(value.Replace(":", "\":\""));
     }
 
     internal static void WriteDocusaurusCodeBlock(
