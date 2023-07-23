@@ -83,7 +83,7 @@ public static class DocusaurusMarkdownWriterTests
 {Chars}
 ```
 
-```{DefaultText} title=""file1.txt""
+```{DefaultText} showLineNumbers title=""file1.txt""
 {Chars}
 ```
 
