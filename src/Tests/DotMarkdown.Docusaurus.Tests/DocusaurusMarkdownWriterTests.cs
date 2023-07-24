@@ -208,7 +208,7 @@ c: ""d""
     {
         DocusaurusMarkdownWriter mw = CreateDocusaurusWriter();
 
-        DocusaurusFrontMatter frontMatter = FrontMatter(("a", null));
+        DocusaurusFrontMatter frontMatter = FrontMatter(("a", null!));
 
         Assert.Throws<InvalidOperationException>(() => frontMatter.WriteTo(mw));
     }

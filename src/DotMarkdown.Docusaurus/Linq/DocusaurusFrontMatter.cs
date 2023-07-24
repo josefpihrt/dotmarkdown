@@ -10,12 +10,12 @@ namespace DotMarkdown.Docusaurus.Linq;
 [DebuggerDisplay("Docusaurus FrontMatter {ToStringDebuggerDisplay(),nq}")]
 public class DocusaurusFrontMatter : MElement
 {
-    public DocusaurusFrontMatter(IEnumerable<(string key, object? value)> labels)
+    public DocusaurusFrontMatter(IEnumerable<(string key, object value)> labels)
     {
         Labels = labels ?? throw new ArgumentNullException(nameof(labels));
     }
 
-    public DocusaurusFrontMatter(params (string key, object? value)[] labels)
+    public DocusaurusFrontMatter(params (string key, object value)[] labels)
     {
         Labels = labels ?? throw new ArgumentNullException(nameof(labels));
     }
@@ -30,7 +30,7 @@ public class DocusaurusFrontMatter : MElement
 
     public override MarkdownKind Kind => MarkdownKind.FencedBlock;
 
-    public IEnumerable<(string key, object? value)> Labels { get; set; }
+    public IEnumerable<(string key, object value)> Labels { get; set; }
 
     public override void WriteTo(MarkdownWriter writer)
     {

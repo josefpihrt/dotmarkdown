@@ -38,8 +38,7 @@ public static class DocusaurusExtensions
 
     internal static void WriteDocusaurusFrontMatter(
         this MarkdownWriter writer,
-        IEnumerable<(string key, object? value)> labels,
-        bool throwOnNullValue = true)
+        IEnumerable<(string key, object value)> labels)
     {
         if (labels is null)
             throw new ArgumentNullException(nameof(labels));
@@ -51,7 +50,7 @@ public static class DocusaurusExtensions
             return;
 
         var pendingStart = true;
-        foreach ((string key, object? value) in labels)
+        foreach ((string key, object value) in labels)
         {
             if (string.IsNullOrEmpty(key)
                 || key.Contains(":"))
@@ -60,32 +59,27 @@ public static class DocusaurusExtensions
             }
 
             if (value is null)
-            {
-                if (throwOnNullValue)
-                    throw new InvalidOperationException("Docusarus front matter value is null.");
-
-                continue;
-            }
+                throw new InvalidOperationException("Docusarus front matter value is null.");
 
             if (value is string stringValue)
             {
-                WriteFrontMatterLabel(writer, ref pendingStart, key, stringValue, throwOnNullValue);
+                WriteFrontMatterLabel(writer, ref pendingStart, key, stringValue);
             }
             else if (value is object[] arr)
             {
                 var isFirst = true;
                 foreach (object item in arr)
-                    writer.WriteFrontMatterLabel(ref pendingStart, ref isFirst, key, item, throwOnNullValue);
+                    writer.WriteFrontMatterLabel(ref pendingStart, ref isFirst, key, item);
             }
             else if (value is IEnumerable enumerable)
             {
                 var isFirst = true;
                 foreach (object item in enumerable)
-                    writer.WriteFrontMatterLabel(ref pendingStart, ref isFirst, key, item, throwOnNullValue);
+                    writer.WriteFrontMatterLabel(ref pendingStart, ref isFirst, key, item);
             }
             else
             {
-                WriteFrontMatterLabel(writer, ref pendingStart, key, value, throwOnNullValue);
+                WriteFrontMatterLabel(writer, ref pendingStart, key, value);
             }
         }
 
@@ -93,7 +87,7 @@ public static class DocusaurusExtensions
             writer.WriteEndFencedBlock("---");
     }
 
-    private static void WriteFrontMatterLabel(MarkdownWriter writer, ref bool pendingStart, string key, object value, bool throwOnNullValue)
+    private static void WriteFrontMatterLabel(MarkdownWriter writer, ref bool pendingStart, string key, object value)
     {
         if (pendingStart)
         {
@@ -107,7 +101,7 @@ public static class DocusaurusExtensions
 
         writer.WriteRaw(key);
         writer.WriteRaw(": ");
-        writer.WriteFrontMatterValue(value, throwOnNullValue);
+        writer.WriteFrontMatterValue(value);
     }
 
     private static void WriteFrontMatterLabel(
@@ -115,16 +109,10 @@ public static class DocusaurusExtensions
         ref bool pendingStart,
         ref bool isFirst,
         string key,
-        object value,
-        bool throwOnNullValue)
+        object value)
     {
         if (value is null)
-        {
-            if (throwOnNullValue)
-                throw new InvalidOperationException("Docusarus front matter value is null.");
-
-            return;
-        }
+            throw new InvalidOperationException("Docusarus front matter value is null.");
 
         if (pendingStart)
         {
@@ -144,19 +132,14 @@ public static class DocusaurusExtensions
         }
 
         writer.WriteRaw("  - ");
-        writer.WriteFrontMatterValue(value, throwOnNullValue);
+        writer.WriteFrontMatterValue(value);
         isFirst = false;
     }
 
-    private static void WriteFrontMatterValue(this MarkdownWriter writer, object value, bool throwOnNullValue)
+    private static void WriteFrontMatterValue(this MarkdownWriter writer, object value)
     {
         if (value is null)
-        {
-            if (throwOnNullValue)
-                throw new InvalidOperationException("Docusarus front matter value is null.");
-
-            return;
-        }
+            throw new InvalidOperationException("Docusarus front matter value is null.");
 
         if (value is string s)
         {
