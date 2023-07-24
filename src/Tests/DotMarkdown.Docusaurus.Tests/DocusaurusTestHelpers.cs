@@ -9,7 +9,7 @@ internal static class DocusaurusTestHelpers
 {
     public static DocusaurusMarkdownWriter CreateWriterWithLineNumbers(bool includeLineNumbers = false)
     {
-        return CreateDocusaurusWriter(CreateWriter(), new DocusaurusMarkdownFormat() { IncludeCodeLineNumbers = includeLineNumbers});
+        return CreateDocusaurusWriter(CreateWriter(), new DocusaurusMarkdownFormat() { IncludeCodeLineNumbers = includeLineNumbers });
     }
 
     public static DocusaurusMarkdownWriter CreateWriterWithBlankLines(bool admonitionBlankLines = true)
