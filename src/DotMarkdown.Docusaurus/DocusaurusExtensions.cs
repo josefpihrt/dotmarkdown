@@ -2,6 +2,8 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using DotMarkdown.Linq;
 
@@ -34,7 +36,10 @@ public static class DocusaurusExtensions
         }
     }
 
-    internal static void WriteDocusaurusFrontMatter(this MarkdownWriter writer, params (string key, object? value)[] labels)
+    internal static void WriteDocusaurusFrontMatter(
+        this MarkdownWriter writer,
+        IEnumerable<(string key, object? value)> labels,
+        bool throwOnNullValue = true)
     {
         if (labels is null)
             throw new ArgumentNullException(nameof(labels));
@@ -42,7 +47,7 @@ public static class DocusaurusExtensions
         if (writer.WriteState != WriteState.Start)
             throw new InvalidOperationException("Docusaurus front matter can be written only at the beginning of the document.");
 
-        if (labels is null || labels.Length == 0)
+        if (labels is null)
             return;
 
         var pendingStart = true;
@@ -55,27 +60,32 @@ public static class DocusaurusExtensions
             }
 
             if (value is null)
+            {
+                if (throwOnNullValue)
+                    throw new InvalidOperationException("Docusarus front matter value is null.");
+
                 continue;
+            }
 
             if (value is string stringValue)
             {
-                WriteFrontMatterLabel(writer, ref pendingStart, key, stringValue);
+                WriteFrontMatterLabel(writer, ref pendingStart, key, stringValue, throwOnNullValue);
             }
             else if (value is object[] arr)
             {
                 var isFirst = true;
                 foreach (object item in arr)
-                    writer.WriteFrontMatterLabel(ref pendingStart, ref isFirst, key, item);
+                    writer.WriteFrontMatterLabel(ref pendingStart, ref isFirst, key, item, throwOnNullValue);
             }
             else if (value is IEnumerable enumerable)
             {
                 var isFirst = true;
                 foreach (object item in enumerable)
-                    writer.WriteFrontMatterLabel(ref pendingStart, ref isFirst, key, item);
+                    writer.WriteFrontMatterLabel(ref pendingStart, ref isFirst, key, item, throwOnNullValue);
             }
             else
             {
-                WriteFrontMatterLabel(writer, ref pendingStart, key, value);
+                WriteFrontMatterLabel(writer, ref pendingStart, key, value, throwOnNullValue);
             }
         }
 
@@ -83,7 +93,7 @@ public static class DocusaurusExtensions
             writer.WriteEndFencedBlock("---");
     }
 
-    private static void WriteFrontMatterLabel(MarkdownWriter writer, ref bool pendingStart, string key, object value)
+    private static void WriteFrontMatterLabel(MarkdownWriter writer, ref bool pendingStart, string key, object value, bool throwOnNullValue)
     {
         if (pendingStart)
         {
@@ -97,7 +107,7 @@ public static class DocusaurusExtensions
 
         writer.WriteRaw(key);
         writer.WriteRaw(": ");
-        writer.WriteFrontMatterValue(value);
+        writer.WriteFrontMatterValue(value, throwOnNullValue);
     }
 
     private static void WriteFrontMatterLabel(
@@ -105,10 +115,16 @@ public static class DocusaurusExtensions
         ref bool pendingStart,
         ref bool isFirst,
         string key,
-        object value)
+        object value,
+        bool throwOnNullValue)
     {
         if (value is null)
+        {
+            if (throwOnNullValue)
+                throw new InvalidOperationException("Docusarus front matter value is null.");
+
             return;
+        }
 
         if (pendingStart)
         {
@@ -128,12 +144,20 @@ public static class DocusaurusExtensions
         }
 
         writer.WriteRaw("  - ");
-        writer.WriteFrontMatterValue(value);
+        writer.WriteFrontMatterValue(value, throwOnNullValue);
         isFirst = false;
     }
 
-    private static void WriteFrontMatterValue(this MarkdownWriter writer, object value)
+    private static void WriteFrontMatterValue(this MarkdownWriter writer, object value, bool throwOnNullValue)
     {
+        if (value is null)
+        {
+            if (throwOnNullValue)
+                throw new InvalidOperationException("Docusarus front matter value is null.");
+
+            return;
+        }
+
         if (value is string s)
         {
             writer.WriteFrontMatterValue(s);

@@ -6,15 +6,7 @@ public class DocusaurusMarkdownFormat
 {
     public static DocusaurusMarkdownFormat Default { get; } = new();
 
-    public DocusaurusMarkdownFormat(
-        bool includeCodeLineNumbers = false,
-        bool includeAdmonitionBlankLines = true)
-    {
-        IncludeCodeLineNumbers = includeCodeLineNumbers;
-        IncludeAdmonitionBlankLines = includeAdmonitionBlankLines;
-    }
+    public bool IncludeCodeLineNumbers { get; init; }
 
-    public bool IncludeCodeLineNumbers { get; }
-
-    public bool IncludeAdmonitionBlankLines { get; }
+    public bool IncludeAdmonitionBlankLines { get; init; } = true;
 }

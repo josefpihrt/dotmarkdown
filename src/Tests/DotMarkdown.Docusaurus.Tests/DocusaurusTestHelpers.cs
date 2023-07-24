@@ -9,12 +9,12 @@ internal static class DocusaurusTestHelpers
 {
     public static DocusaurusMarkdownWriter CreateWriterWithLineNumbers(bool includeLineNumbers = false)
     {
-        return CreateDocusaurusWriter(CreateWriter(), new DocusaurusMarkdownFormat(includeCodeLineNumbers: includeLineNumbers));
+        return CreateDocusaurusWriter(CreateWriter(), new DocusaurusMarkdownFormat() { IncludeCodeLineNumbers = includeLineNumbers});
     }
 
     public static DocusaurusMarkdownWriter CreateWriterWithBlankLines(bool admonitionBlankLines = true)
     {
-        return CreateDocusaurusWriter(CreateWriter(), new DocusaurusMarkdownFormat(includeAdmonitionBlankLines: admonitionBlankLines));
+        return CreateDocusaurusWriter(CreateWriter(), new DocusaurusMarkdownFormat() { IncludeAdmonitionBlankLines = admonitionBlankLines });
     }
 
     public static DocusaurusMarkdownWriter CreateWriterWithFenceStyle(CodeFenceStyle? style)
