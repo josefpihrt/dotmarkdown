@@ -24,7 +24,7 @@ public class DocusaurusFrontMatter : MElement
 
     public override MarkdownKind Kind => MarkdownKind.FencedBlock;
 
-    public (string key, object? value)[] Labels { get; }
+    public (string key, object? value)[] Labels { get; set; }
 
     public override void WriteTo(MarkdownWriter writer)
     {

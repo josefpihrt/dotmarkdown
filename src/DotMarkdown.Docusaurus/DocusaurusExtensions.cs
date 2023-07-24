@@ -36,6 +36,9 @@ public static class DocusaurusExtensions
 
     internal static void WriteDocusaurusFrontMatter(this MarkdownWriter writer, params (string key, object? value)[] labels)
     {
+        if (labels is null)
+            throw new ArgumentNullException(nameof(labels));
+
         if (writer.WriteState != WriteState.Start)
             throw new InvalidOperationException("Docusaurus front matter can be written only at the beginning of the document.");
 
