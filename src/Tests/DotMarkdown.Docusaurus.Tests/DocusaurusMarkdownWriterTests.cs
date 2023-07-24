@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System;
 using DotMarkdown.Docusaurus.Linq;
 using DotMarkdown.Tests;
 using Xunit;
@@ -207,17 +208,9 @@ c: ""d""
     {
         DocusaurusMarkdownWriter mw = CreateDocusaurusWriter();
 
-        DocusaurusFrontMatter frontMatter = FrontMatter(("a", "b"), ("c", "d"), ("e", null));
-        frontMatter.WriteTo(mw);
+        DocusaurusFrontMatter frontMatter = FrontMatter(("a", null));
 
-        const string expected = @"---
-a: ""b""
-c: ""d""
----
-
-";
-
-        Assert.Equal(expected.NormalizeNewLine(), mw.ToStringAndClear());
+        Assert.Throws<InvalidOperationException>(() => frontMatter.WriteTo(mw));
     }
 
     [Fact]
@@ -227,14 +220,14 @@ c: ""d""
 
         DocusaurusFrontMatter frontMatter = FrontMatter(
             ("a", 1),
-            ("tags", new object?[] { "c", 2, null }));
+            ("tags", new object?[] { "b", 2 }));
 
         frontMatter.WriteTo(mw);
 
         const string expected = @"---
 a: 1
 tags:
-  - ""c""
+  - ""b""
   - 2
 ---
 
