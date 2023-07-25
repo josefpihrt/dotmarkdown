@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DotMarkdown;
 
@@ -26,10 +27,18 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
     private int _orderedItemNumber;
 
     private readonly Collection<ElementInfo> _stack = new();
+    private readonly Lazy<Regex> _codeFenceRegex;
 
     protected MarkdownBaseWriter(MarkdownWriterSettings? settings = null)
     {
         Settings = settings ?? MarkdownWriterSettings.Default;
+
+        _codeFenceRegex = Format.CodeFenceStyle switch
+        {
+            CodeFenceStyle.Backtick => new Lazy<Regex>(() => new Regex("^`{3,}", RegexOptions.Multiline)),
+            CodeFenceStyle.Tilde => new Lazy<Regex>(() => new Regex("^~{3,}", RegexOptions.Multiline)),
+            _ => throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(Format.CodeFenceStyle)),
+        };
     }
 
     public override WriteState WriteState
@@ -853,7 +862,17 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
             Push(State.FencedCodeBlock);
 
             WriteLine(Format.EmptyLineBeforeCodeBlock);
-            WriteRaw(Format.CodeFence);
+
+            int length = 3;
+            Match match = _codeFenceRegex.Value.Match(text);
+
+            while (match.Success)
+            {
+                length = Math.Max(length, match.Length + 1);
+                match = match.NextMatch();
+            }
+
+            WriteFence(length);
 
             if (!string.IsNullOrEmpty(info))
                 WriteRaw(info!);
@@ -861,7 +880,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
             WriteLine();
             WriteString(text, MarkdownCharEscaper.NoEscape);
             WriteLineIfNecessary();
-            WriteRaw(Format.CodeFence);
+            WriteFence(length);
             WriteLine();
             WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
 
@@ -871,6 +890,18 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         {
             _state = State.Error;
             throw;
+        }
+    }
+
+    private void WriteFence(int length)
+    {
+        if (length > 3)
+        {
+            WriteRaw(Format.CodeFenceChar, length);
+        }
+        else
+        {
+            WriteRaw(Format.CodeFence);
         }
     }
 
