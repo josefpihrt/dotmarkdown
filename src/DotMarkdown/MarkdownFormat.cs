@@ -101,21 +101,6 @@ public class MarkdownFormat : IEquatable<MarkdownFormat>
             throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(HeadingStyle));
         }
 
-        if (CodeFenceStyle == CodeFenceStyle.Backtick)
-        {
-            CodeFence = "```";
-            CodeFenceRegex = new Lazy<Regex>(() => new Regex("^`{3,}", RegexOptions.Multiline));
-        }
-        else if (CodeFenceStyle == CodeFenceStyle.Tilde)
-        {
-            CodeFence = "~~~";
-            CodeFenceRegex = new Lazy<Regex>(() => new Regex("^~{3,}", RegexOptions.Multiline));
-        }
-        else
-        {
-            throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(CodeFenceStyle));
-        }
-
         if (horizontalRuleFormat is not null)
         {
             Error.ThrowOnInvalidHorizontalRuleFormat(horizontalRuleFormat.Value);
@@ -200,9 +185,31 @@ public class MarkdownFormat : IEquatable<MarkdownFormat>
 
     public CodeFenceStyle CodeFenceStyle { get; }
 
-    internal string CodeFence { get; }
+    internal string CodeFence
+    {
+        get
+        {
+            return CodeFenceStyle switch
+            {
+                CodeFenceStyle.Backtick => "```",
+                CodeFenceStyle.Tilde => "~~~",
+                _ => throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(CodeFenceStyle)),
+            };
+        }
+    }
 
-    internal Lazy<Regex> CodeFenceRegex { get; }
+    internal string CodeFenceChar
+    {
+        get
+        {
+            return CodeFenceStyle switch
+            {
+                CodeFenceStyle.Backtick => "`",
+                CodeFenceStyle.Tilde => "~",
+                _ => throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(CodeFenceStyle))
+            };
+        }
+    }
 
     public CodeBlockOptions CodeBlockOptions { get; }
 
