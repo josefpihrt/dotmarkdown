@@ -27,7 +27,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
     private int _orderedItemNumber;
 
     private readonly Collection<ElementInfo> _stack = new();
-    private Lazy<Regex> _codeFenceRegex { get; }
+    private readonly Lazy<Regex> _codeFenceRegex;
 
     protected MarkdownBaseWriter(MarkdownWriterSettings? settings = null)
     {
