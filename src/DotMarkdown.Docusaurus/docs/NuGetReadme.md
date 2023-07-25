@@ -1,6 +1,6 @@
 # DotMarkdown.Docusaurus
 
-Extension of DotMarkdown package for Docusaurus markdown.
+Extension of DotMarkdown for Docusaurus markdown.
 
 ## Supported Frameworks
 
@@ -13,4 +13,4 @@ Extension of DotMarkdown package for Docusaurus markdown.
 
 * `DotMarkdown.Docusaurus.DocusaurusMarkdownWriter`
 * `DotMarkdown.Docusaurus.DocusaurusMarkdownFormat`
-* `DotMarkdown.Docusaurus.Linq.DocusaurusMarkdownFactory`
+* `DotMarkdown.Docusaurus.DocusaurusMarkdownFactory`

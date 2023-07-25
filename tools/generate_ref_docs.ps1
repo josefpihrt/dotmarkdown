@@ -6,7 +6,7 @@ dotnet build "../../Roslynator/src/CommandLine.sln" --no-restore /p:Configuratio
 & $roslynatorExe generate-doc "../src/DotMarkdown.sln" `
  --properties "Configuration=Release" `
  --projects "DotMarkdown(netstandard1.3)" "DotMarkdown.Docusaurus(netstandard1.3)" `
- --heading "DotMarkdown Reference" `
+ --heading ".NET API Reference" `
  -o "build/ref" `
  --host docusaurus `
  --group-by-common-namespace `
@@ -19,17 +19,8 @@ dotnet build "../../Roslynator/src/CommandLine.sln" --no-restore /p:Configuratio
   --projects "DotMarkdown(netstandard1.3)" "DotMarkdown.Docusaurus(netstandard1.3)" `
   -o "build/ref.md" `
   --host docusaurus `
-  --heading "DotMarkdown Reference" `
+  --heading ".NET API Reference" `
   --ignored-parts content `
   --root-directory-url "ref"
-
-#   & $roslynatorExe list-symbols "../src/DotMarkdown.sln" `
-#  --properties "Configuration=Release" `
-#  --projects "DotMarkdown(netstandard1.3)" `
-#  --visibility public `
-#  --depth member `
-#  --ignored-parts containing-namespace assembly-attributes `
-#  --ignored-attributes System.Runtime.CompilerServices.InternalsVisibleToAttribute `
-#  --output "../docs/api.txt"
 
 Write-Host "DONE"
