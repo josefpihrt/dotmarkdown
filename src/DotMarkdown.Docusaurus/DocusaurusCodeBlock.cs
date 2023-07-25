@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using DotMarkdown.Linq;
 
-namespace DotMarkdown.Docusaurus.Linq;
+namespace DotMarkdown.Docusaurus;
 
 [DebuggerDisplay("Docusaurus CodeBlock {Language,nq} {Text,nq}")]
 public class DocusaurusCodeBlock : MElement

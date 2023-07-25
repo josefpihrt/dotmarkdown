@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace DotMarkdown.Docusaurus.Linq;
+namespace DotMarkdown.Docusaurus;
 
 public static class DocusaurusMarkdownFactory
 {
@@ -41,11 +41,11 @@ public static class DocusaurusMarkdownFactory
 
     public static DocusaurusAdmonitionBlock AdmonitionBlock(AdmonitionKind kind, object? content)
     {
-        return Linq.DocusaurusAdmonitionBlock.Create(kind, content);
+        return DocusaurusAdmonitionBlock.Create(kind, content);
     }
 
     public static DocusaurusAdmonitionBlock AdmonitionBlock(AdmonitionKind kind, params object[]? content)
     {
-        return Linq.DocusaurusAdmonitionBlock.Create(kind, content);
+        return DocusaurusAdmonitionBlock.Create(kind, content);
     }
 }

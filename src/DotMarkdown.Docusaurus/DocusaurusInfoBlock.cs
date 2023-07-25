@@ -2,7 +2,7 @@
 
 using DotMarkdown.Linq;
 
-namespace DotMarkdown.Docusaurus.Linq;
+namespace DotMarkdown.Docusaurus;
 
 public class DocusaurusInfoBlock : DocusaurusAdmonitionBlock
 {

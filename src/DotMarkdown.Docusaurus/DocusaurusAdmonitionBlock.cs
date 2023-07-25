@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using DotMarkdown.Linq;
 
-namespace DotMarkdown.Docusaurus.Linq;
+namespace DotMarkdown.Docusaurus;
 
 [DebuggerDisplay("Docusaurus {AdmonitionKind} {Title,nq}")]
 public abstract class DocusaurusAdmonitionBlock : MContainer
