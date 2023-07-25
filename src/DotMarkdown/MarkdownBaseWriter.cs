@@ -27,10 +27,18 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
     private int _orderedItemNumber;
 
     private readonly Collection<ElementInfo> _stack = new();
+    private Lazy<Regex> _codeFenceRegex { get; }
 
     protected MarkdownBaseWriter(MarkdownWriterSettings? settings = null)
     {
         Settings = settings ?? MarkdownWriterSettings.Default;
+
+        _codeFenceRegex = Format.CodeFenceStyle switch
+        {
+            CodeFenceStyle.Backtick => new Lazy<Regex>(() => new Regex("^`{3,}", RegexOptions.Multiline)),
+            CodeFenceStyle.Tilde => new Lazy<Regex>(() => new Regex("^~{3,}", RegexOptions.Multiline)),
+            _ => throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(Format.CodeFenceStyle)),
+        };
     }
 
     public override WriteState WriteState
@@ -856,7 +864,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
             WriteLine(Format.EmptyLineBeforeCodeBlock);
 
             int length = 3;
-            Match match = Format.CodeFenceRegex.Value.Match(text);
+            Match match = _codeFenceRegex.Value.Match(text);
 
             while (match.Success)
             {
@@ -889,14 +897,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
     {
         if (length > 3)
         {
-            string ch = Format.CodeFenceStyle switch
-            {
-                CodeFenceStyle.Backtick => "`",
-                CodeFenceStyle.Tilde => "~",
-                _ => throw new InvalidOperationException(ErrorMessages.UnknownEnumValue(Format.CodeFenceStyle))
-            };
-
-            WriteRaw(ch, length);
+            WriteRaw(Format.CodeFenceChar, length);
         }
         else
         {
