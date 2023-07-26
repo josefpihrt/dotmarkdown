@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0-rc] - 2023-07-27
+
 ### Added
 
 - Add support for [Docusaurus markdown](https://docusaurus.io/docs/markdown-features) ([#28](https://github.com/josefpihrt/dotmarkdown/pull/28)).
