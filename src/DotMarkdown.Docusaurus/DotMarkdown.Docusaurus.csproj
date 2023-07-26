@@ -9,24 +9,26 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyName>DotMarkdown</AssemblyName>
-    <RootNamespace>DotMarkdown</RootNamespace>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>DotMarkdown.Docusaurus</AssemblyName>
+    <RootNamespace>DotMarkdown.Docusaurus</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotMarkdown\DotMarkdown.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <IsPackable>true</IsPackable>
-    <PackageId>DotMarkdown</PackageId>
-    <Description>DotMarkdown enables to conveniently create markdown content from the code.
-
-Commonly Used Types:
-DotMarkdown.MarkdownWriter
-DotMarkdown.MarkdownFormat
-DotMarkdown.Linq.MFactory</Description>
+    <PackageId>DotMarkdown.Docusaurus</PackageId>
+    <Description>Extension of DotMarkdown package for Docusaurus markdown</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,12 +37,6 @@ DotMarkdown.Linq.MFactory</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-      <_Parameter1>DotMarkdown.Docusaurus, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
-    </AssemblyAttribute>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-      <_Parameter1>DotMarkdown.Tests, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
-    </AssemblyAttribute>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>DotMarkdown.Docusaurus.Tests, PublicKey=$(DotMarkdownPublicKey)</_Parameter1>
     </AssemblyAttribute>

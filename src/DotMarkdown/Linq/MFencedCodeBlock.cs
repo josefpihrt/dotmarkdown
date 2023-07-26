@@ -38,8 +38,9 @@ public class MFencedCodeBlock : MElement
         }
     }
 
-    public override MarkdownKind Kind => MarkdownKind.FencedCodeBlock;
+    public override MarkdownKind Kind => MarkdownKind.FencedBlock;
 
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private string InfoDebuggerDisplay => (!string.IsNullOrEmpty(Info)) ? " " + Info : "";
 
     public override void WriteTo(MarkdownWriter writer)

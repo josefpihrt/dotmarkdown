@@ -51,7 +51,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
                     return WriteState.Start;
                 case State.SimpleElement:
                 case State.IndentedCodeBlock:
-                case State.FencedCodeBlock:
+                case State.FencedBlock:
                 case State.HorizontalRule:
                 case State.Heading:
                 case State.Bold:
@@ -853,13 +853,58 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
+    internal override void WriteStartFencedBlock(string fence, string? info = null)
+    {
+        try
+        {
+            Error.ThrowOnInvalidFencedCodeBlockInfo(info);
+
+            WriteState state = WriteState;
+
+            Push(State.FencedBlock);
+
+            if (state != WriteState.Start)
+                WriteLine(Format.EmptyLineBeforeCodeBlock);
+
+            WriteRaw(fence);
+
+            if (!string.IsNullOrEmpty(info))
+                WriteRaw(info!);
+
+            WriteLine();
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
+    internal override void WriteEndFencedBlock(string fence)
+    {
+        try
+        {
+            WriteLineIfNecessary();
+            WriteRaw(fence);
+            WriteLine();
+            WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
+
+            Pop(State.FencedBlock);
+        }
+        catch
+        {
+            _state = State.Error;
+            throw;
+        }
+    }
+
     public override void WriteFencedCodeBlock(string text, string? info = null)
     {
         try
         {
             Error.ThrowOnInvalidFencedCodeBlockInfo(info);
 
-            Push(State.FencedCodeBlock);
+            Push(State.FencedBlock);
 
             WriteLine(Format.EmptyLineBeforeCodeBlock);
 
@@ -884,7 +929,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
             WriteLine();
             WriteEmptyLineIf(Format.EmptyLineAfterCodeBlock);
 
-            Pop(State.FencedCodeBlock);
+            Pop(State.FencedBlock);
         }
         catch
         {
@@ -1602,14 +1647,14 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         }
     }
 
-    private void WriteLine(bool addEmptyLine)
+    internal override void WriteLine(bool addBlankLine)
     {
         if (_emptyLineStartPos != Length)
         {
             if (_lineStartPos != Length)
                 WriteLine();
 
-            WriteEmptyLineIf(addEmptyLine);
+            WriteEmptyLineIf(addBlankLine);
         }
     }
 
@@ -1617,7 +1662,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
     {
         Start = 0,
         SimpleElement = 1,
-        FencedCodeBlock = 2,
+        FencedBlock = 2,
         IndentedCodeBlock = 3,
         HorizontalRule = 4,
         Heading = 5,
@@ -1661,7 +1706,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
     {
         /* State.Start */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedBlock       */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,
@@ -1679,7 +1724,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.SimpleElement */
         /* State.SimpleElement     */ State.Error,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
@@ -1695,27 +1740,27 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
         /* State.TaskItem          */ State.Error,
         /* State.BlockQuote        */ State.Error,
 
-        /* State.FencedCodeBlock */
-        /* State.SimpleElement     */ State.Error,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock */
+        /* State.SimpleElement     */ State.SimpleElement,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
-        /* State.Bold              */ State.Error,
-        /* State.Italic            */ State.Error,
-        /* State.Strikethrough     */ State.Error,
-        /* State.Link              */ State.Error,
-        /* State.Table             */ State.Error,
-        /* State.TableRow          */ State.Error,
-        /* State.TableCell         */ State.Error,
-        /* State.BulletItem        */ State.Error,
-        /* State.OrderedItem       */ State.Error,
-        /* State.TaskItem          */ State.Error,
-        /* State.BlockQuote        */ State.Error,
+        /* State.Bold              */ State.Bold,
+        /* State.Italic            */ State.Italic,
+        /* State.Strikethrough     */ State.Strikethrough,
+        /* State.Link              */ State.Link,
+        /* State.Table             */ State.Table,
+        /* State.TableRow          */ State.Table,
+        /* State.TableCell         */ State.Table,
+        /* State.BulletItem        */ State.BulletItem,
+        /* State.OrderedItem       */ State.OrderedItem,
+        /* State.TaskItem          */ State.TaskItem,
+        /* State.BlockQuote        */ State.BlockQuote,
 
         /* State.IndentedCodeBlock */
         /* State.SimpleElement     */ State.Error,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
@@ -1733,7 +1778,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.HorizontalRule */
         /* State.SimpleElement     */ State.Error,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
@@ -1751,7 +1796,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.Heading */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
@@ -1769,7 +1814,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.Bold */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
@@ -1787,7 +1832,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.Italic */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
@@ -1805,7 +1850,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.Strikethrough */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
@@ -1823,7 +1868,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.Link */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
@@ -1841,7 +1886,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.Table */
         /* State.SimpleElement     */ State.Error,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
@@ -1859,7 +1904,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.TableRow */
         /* State.SimpleElement     */ State.Error,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
@@ -1877,7 +1922,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.TableCell */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.Error,
+        /* State.FencedBlock       */ State.Error,
         /* State.IndentedCodeBlock */ State.Error,
         /* State.HorizontalRule    */ State.Error,
         /* State.Heading           */ State.Error,
@@ -1895,7 +1940,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.BulletItem */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedBlock       */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,
@@ -1913,7 +1958,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.OrderedItem */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedBlock       */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,
@@ -1931,7 +1976,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.TaskItem */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedBlock       */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,
@@ -1949,7 +1994,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.BlockQuote */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedBlock       */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,
@@ -1967,7 +2012,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
         /* State.Document */
         /* State.SimpleElement     */ State.SimpleElement,
-        /* State.FencedCodeBlock   */ State.FencedCodeBlock,
+        /* State.FencedBlock       */ State.FencedBlock,
         /* State.IndentedCodeBlock */ State.IndentedCodeBlock,
         /* State.HorizontalRule    */ State.HorizontalRule,
         /* State.Heading           */ State.Heading,

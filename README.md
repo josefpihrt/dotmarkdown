@@ -8,7 +8,7 @@
 ## Supported Frameworks
 
 * .NET Standard 1.3
-* .NET Framework 4.5
+* .NET Framework 4.6
 
 ## Documentation
 

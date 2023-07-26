@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System;
+
 namespace DotMarkdown;
 
 public enum MarkdownKind
@@ -19,7 +21,11 @@ public enum MarkdownKind
     EntityRef = 11,
     Comment = 12,
 
+    [Obsolete]
     FencedCodeBlock = 13,
+#pragma warning disable RCS1234
+    FencedBlock = 13,
+#pragma warning restore RCS1234
     IndentedCodeBlock = 14,
     HorizontalRule = 15,
 

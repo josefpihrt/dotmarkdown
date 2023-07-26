@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add support for [Docusaurus markdown](https://docusaurus.io/docs/markdown-features) ([#28](https://github.com/josefpihrt/dotmarkdown/pull/28)).
+- Add package symbols and Source Link ([#28](https://github.com/josefpihrt/dotmarkdown/pull/28)).
+
 ### Changed
 
 - Enable nullable reference types ([#26](https://github.com/josefpihrt/dotmarkdown/pull/26)).
