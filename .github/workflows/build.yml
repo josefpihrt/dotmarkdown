@@ -51,8 +51,6 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [build]
     if: github.ref_type == 'tag'
-    env:
-      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
     steps:
       - uses: actions/download-artifact@v3
         with:
