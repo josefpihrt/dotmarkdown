@@ -27,6 +27,7 @@ jobs:
       - name: Resolve version
         id: version
         run: |
+          dotnet-gitversion
           dotnet-gitversion > version.json
           version="$(jq -r '.SemVer' version.json)"
           pr_version="$(jq -r '.MajorMinorPatch' version.json)-$(jq -r '.PreReleaseLabel' version.json).${{ github.run_number }}.${{ github.run_attempt }}"
