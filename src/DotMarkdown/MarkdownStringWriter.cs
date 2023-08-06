@@ -1,14 +1,12 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using DotMarkdown.Linq;
 
 namespace DotMarkdown;
 
-internal class MarkdownStringWriter : MarkdownBaseWriter, ITableAnalyzer
+internal class MarkdownStringWriter : MarkdownBaseWriter
 {
     private readonly StringBuilder _sb;
     private readonly IFormatProvider _formatProvider;
@@ -42,7 +40,7 @@ internal class MarkdownStringWriter : MarkdownBaseWriter, ITableAnalyzer
         return _sb;
     }
 
-    public virtual IFormatProvider FormatProvider
+    public override IFormatProvider FormatProvider
     {
         get { return _formatProvider ?? CultureInfo.CurrentCulture; }
     }
@@ -272,10 +270,5 @@ internal class MarkdownStringWriter : MarkdownBaseWriter, ITableAnalyzer
     {
         if (!_isOpen)
             throw new ObjectDisposedException(null, "Cannot write to a closed writer.");
-    }
-
-    public IReadOnlyList<TableColumnInfo>? AnalyzeTable(IEnumerable<MElement> rows)
-    {
-        return TableAnalyzer.Analyze(rows, Settings, FormatProvider)?.AsReadOnly();
     }
 }

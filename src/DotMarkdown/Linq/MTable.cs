@@ -32,7 +32,7 @@ public class MTable : MContainer
     {
         IEnumerable<MElement> rows = Elements();
 
-        IReadOnlyList<TableColumnInfo>? columns = (writer as ITableAnalyzer)?.AnalyzeTable(rows);
+        IReadOnlyList<TableColumnInfo>? columns = TableAnalyzer.Analyze(rows, writer.Settings, writer.FormatProvider);
 
         if (columns is not null)
         {
