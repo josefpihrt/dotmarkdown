@@ -6,8 +6,8 @@ using DotMarkdown.Tests;
 using Xunit;
 using static DotMarkdown.Docusaurus.DocusaurusMarkdownFactory;
 using static DotMarkdown.Docusaurus.Tests.DocusaurusTestHelpers;
-using static DotMarkdown.Tests.TestHelpers;
 using static DotMarkdown.Linq.MFactory;
+using static DotMarkdown.Tests.TestHelpers;
 
 namespace DotMarkdown.Docusaurus.Tests;
 
