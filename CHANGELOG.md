@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Make `ITableAnalyzer` obsolete ([#37](https://github.com/josefpihrt/dotmarkdown/pull/37)).
+
+### Fixed
+
+- Fix table format ([#37](https://github.com/josefpihrt/dotmarkdown/pull/37)).
+
 ## [0.3.0-beta] - 2023-07-27
 
 ### Added
