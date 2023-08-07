@@ -3,7 +3,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using DotMarkdown.Linq;
 
@@ -38,7 +37,7 @@ public static class DocusaurusExtensions
 
     internal static void WriteDocusaurusFrontMatter(
         this MarkdownWriter writer,
-        IEnumerable<(string key, object value)> labels)
+        IEnumerable<(string Key, object Value)> labels)
     {
         if (labels is null)
             throw new ArgumentNullException(nameof(labels));
