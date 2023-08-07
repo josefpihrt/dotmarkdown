@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Make `ITableAnalyzer` obsolete ([#37](https://github.com/josefpihrt/dotmarkdown/pull/37)).
+- Add abstract property `MarkdownWriter.FormatProvider` (BREAKING CHANGE)
 
 ### Fixed
 

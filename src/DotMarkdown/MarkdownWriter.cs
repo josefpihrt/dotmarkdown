@@ -21,7 +21,7 @@ public abstract class MarkdownWriter : IDisposable
 
     public abstract WriteState WriteState { get; }
 
-    public virtual IFormatProvider FormatProvider => CultureInfo.CurrentCulture;
+    public abstract IFormatProvider FormatProvider { get; }
 
     public virtual MarkdownWriterSettings Settings { get; }
 
