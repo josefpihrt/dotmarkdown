@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fix table format ([#37](https://github.com/josefpihrt/dotmarkdown/pull/37)).
+- Fix table formatting ([#37](https://github.com/josefpihrt/dotmarkdown/pull/37)).
 
 ## [0.3.0-beta] - 2023-07-27
 
