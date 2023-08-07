@@ -26,9 +26,9 @@ internal static class DocusaurusTestHelpers
         return CreateDocusaurusWriter(CreateWriter(new MarkdownFormat(codeBlockOptions: options)));
     }
 
-    public static DocusaurusMarkdownWriter CreateDocusaurusWriter(DocusaurusMarkdownFormat? format = null)
+    public static DocusaurusMarkdownWriter CreateDocusaurusWriter(DocusaurusMarkdownFormat? docusaurusFormat = null, MarkdownFormat? format = null)
     {
-        return new DocusaurusMarkdownWriter(CreateWriter(), format);
+        return new DocusaurusMarkdownWriter(CreateWriter(format), docusaurusFormat);
     }
 
     public static DocusaurusMarkdownWriter CreateDocusaurusWriter(MarkdownWriter writer, DocusaurusMarkdownFormat? format = null)

@@ -1,14 +1,12 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using DotMarkdown.Linq;
 
 namespace DotMarkdown;
 
-internal class MarkdownTextWriter : MarkdownBaseWriter, ITableAnalyzer
+internal class MarkdownTextWriter : MarkdownBaseWriter
 {
     private const int BufferSize = 1024 * 6;
     private const int BufferOverflow = 32;
@@ -29,6 +27,8 @@ internal class MarkdownTextWriter : MarkdownBaseWriter, ITableAnalyzer
     }
 
     protected internal override int Length { get; set; }
+
+    public override IFormatProvider FormatProvider => _writer.FormatProvider;
 
     public override void WriteString(string text)
     {
@@ -378,10 +378,5 @@ internal class MarkdownTextWriter : MarkdownBaseWriter, ITableAnalyzer
                 }
             }
         }
-    }
-
-    public IReadOnlyList<TableColumnInfo>? AnalyzeTable(IEnumerable<MElement> rows)
-    {
-        return TableAnalyzer.Analyze(rows, Settings, _writer.FormatProvider)?.AsReadOnly();
     }
 }

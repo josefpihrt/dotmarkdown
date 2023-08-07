@@ -50,6 +50,10 @@ public sealed class DocusaurusMarkdownWriter : MarkdownWriter
     }
 
     #region Decorator
+    public override MarkdownWriterSettings Settings => Writer.Settings;
+
+    public override IFormatProvider FormatProvider => Writer.FormatProvider;
+
     public override WriteState WriteState => Writer.WriteState;
 
     public override void Flush() => Writer.Flush();

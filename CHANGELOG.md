@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add overload of `DocusaurusMarkdownWriter.WriteDocusaurusFrontMatter` ([#38](https://github.com/josefpihrt/dotmarkdown/pull/38)).
 
+### Changed
+
+- Make `ITableAnalyzer` obsolete ([#37](https://github.com/josefpihrt/dotmarkdown/pull/37)).
+- Add abstract property `MarkdownWriter.FormatProvider` (BREAKING CHANGE)
+
+### Fixed
+
+- Fix table formatting ([#37](https://github.com/josefpihrt/dotmarkdown/pull/37)).
+
 ## [0.3.0-beta] - 2023-07-27
 
 ### Added
