@@ -45,6 +45,9 @@ public static class DocusaurusExtensions
         if (writer.WriteState != WriteState.Start)
             throw new InvalidOperationException("Docusaurus front matter can be written only at the beginning of the document.");
 
+        if (labels is null)
+            return;
+
         var pendingStart = true;
         foreach ((string key, object value) in labels)
         {
