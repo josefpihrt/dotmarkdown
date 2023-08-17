@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2023-08-17
+
 ### Added
 
 - Add overload of `DocusaurusMarkdownWriter.WriteDocusaurusFrontMatter` ([#38](https://github.com/josefpihrt/dotmarkdown/pull/38)).
