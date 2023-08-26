@@ -38,6 +38,19 @@ jobs:
       - run: dotnet format --no-restore --verify-no-changes --severity info
       - run: dotnet build --no-restore
       - run: dotnet test --no-build
+      - uses: actions/checkout@v3
+        with:
+          repository: josefpihrt/wordb
+          path: wordb
+      - run: dotnet tool install -g Roslynator.DotNet.Cli --version 0.7.0
+      - run: |
+          roslynator spellcheck DotMarkdown.sln --dry-run --scope all --exclude DotMarkdown/LanguageIdentifiers.cs DotMarkdown/Emojis.cs --words \
+            spellcheck \
+            ../wordb/data/en \
+            ../wordb/data/en-us \
+            ../wordb/data/names.txt \
+            ../wordb/data/tech.names.txt \
+            ../wordb/data/tech.acronyms.txt
       - run: dotnet pack --no-build
       - uses: actions/upload-artifact@v3
         with:
