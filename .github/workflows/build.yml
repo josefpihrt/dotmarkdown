@@ -45,7 +45,7 @@ jobs:
           path: wordb
       - run: dotnet tool install -g Roslynator.DotNet.Cli --version 0.7.0
       - run: |
-          roslynator spellcheck DotMarkdown.sln --dry-run --scope all --words \
+          roslynator spellcheck DotMarkdown.sln --dry-run --scope all --exclude DotMarkdown/LanguageIdentifiers.cs --words \
             spellcheck \
             ../wordb/data/en \
             ../wordb/data/en-us \
