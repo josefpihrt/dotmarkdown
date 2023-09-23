@@ -1,4 +1,4 @@
-# DotMarkdown <img align="left" width="48px" height="48px" src="http://pihrt.net/images/DotMarkdown.ico">
+# DotMarkdown <img align="left" width="48px" height="48px" src="images/dotmarkdown-logo-small.png">
 
 ## Introduction 
 
