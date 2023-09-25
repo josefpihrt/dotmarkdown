@@ -12,7 +12,7 @@
 
 ## Documentation
 
-* [Reference documentation](https://josefpihrt.github.io/docs/dotmarkdown/ref)
+* [Reference documentation](https://josefpihrt.github.io/docs/dotmarkdown/api)
 
 ## Usage 
 
