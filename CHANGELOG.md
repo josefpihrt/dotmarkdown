@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Update logo ([#43](https://github.com/josefpihrt/dotmarkdown/pull/43)).
+- Update logo ([#43](https://github.com/josefpihrt/dotmarkdown/pull/43), [#45](https://github.com/josefpihrt/dotmarkdown/pull/45)).
 
 ## [0.3.0] - 2023-08-17
 
