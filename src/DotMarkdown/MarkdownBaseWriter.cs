@@ -31,7 +31,10 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
     protected MarkdownBaseWriter(MarkdownWriterSettings? settings = null)
     {
-        Settings = settings ?? MarkdownWriterSettings.Default;
+        settings ??= MarkdownWriterSettings.Default;
+
+        Settings = settings;
+        Escaper = settings.EscaperProvider.GetDefaultEscaper();
 
         _codeFenceRegex = Format.CodeFenceStyle switch
         {
@@ -80,7 +83,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
     protected internal abstract int Length { get; set; }
 
-    protected MarkdownCharEscaper Escaper { get; set; } = MarkdownCharEscaper.Default;
+    protected MarkdownCharEscaper Escaper { get; set; }
 
     private TableColumnInfo CurrentColumn => _tableColumns![_tableColumnIndex];
 
@@ -704,7 +707,7 @@ internal abstract class MarkdownBaseWriter : MarkdownWriter
 
             ThrowIfCannotWriteEnd(State.Link);
 
-            Escaper = MarkdownCharEscaper.Default;
+            Escaper = Settings.EscaperProvider.GetDefaultEscaper();
             WriteRaw("]");
             WriteRaw("(");
             WriteString(url, MarkdownCharEscaper.LinkUrl);

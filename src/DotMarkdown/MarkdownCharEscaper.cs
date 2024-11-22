@@ -2,23 +2,23 @@
 
 namespace DotMarkdown;
 
-internal abstract class MarkdownCharEscaper
+public abstract class MarkdownCharEscaper
 {
-    public static char DefaultEscapingChar { get; } = '\\';
+    internal static char DefaultEscapingChar { get; } = '\\';
 
-    public static MarkdownCharEscaper Default { get; } = new DefaultMarkdownEscaper();
+    internal static MarkdownCharEscaper Default { get; } = new DefaultMarkdownEscaper();
 
-    public static MarkdownCharEscaper LinkText { get; } = new LinkTextMarkdownEscaper();
+    internal static MarkdownCharEscaper LinkText { get; } = new LinkTextMarkdownEscaper();
 
-    public static MarkdownCharEscaper LinkUrl { get; } = new LinkUrlMarkdownEscaper();
+    internal static MarkdownCharEscaper LinkUrl { get; } = new LinkUrlMarkdownEscaper();
 
-    public static MarkdownCharEscaper LinkTitle { get; } = new LinkTitleMarkdownEscaper();
+    internal static MarkdownCharEscaper LinkTitle { get; } = new LinkTitleMarkdownEscaper();
 
-    public static MarkdownCharEscaper AngleBrackets { get; } = new AngleBracketsMarkdownEscaper();
+    internal static MarkdownCharEscaper AngleBrackets { get; } = new AngleBracketsMarkdownEscaper();
 
-    public static MarkdownCharEscaper InlineCodeInsideTable { get; } = new InlineCodeInsideTableMarkdownEscaper();
+    internal static MarkdownCharEscaper InlineCodeInsideTable { get; } = new InlineCodeInsideTableMarkdownEscaper();
 
-    public static MarkdownCharEscaper NoEscape { get; } = new NoEscapeMarkdownEscaper();
+    internal static MarkdownCharEscaper NoEscape { get; } = new NoEscapeMarkdownEscaper();
 
     public abstract bool ShouldBeEscaped(char value);
 

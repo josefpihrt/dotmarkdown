@@ -12,12 +12,14 @@ public class MarkdownWriterSettings
         MarkdownFormat? format = null,
         string? newLineChars = null,
         NewLineHandling newLineHandling = NewLineHandling.Replace,
-        bool closeOutput = false)
+        bool closeOutput = false,
+        IMarkdownEscaperProvider? escaper = null)
     {
         Format = format ?? MarkdownFormat.Default;
         NewLineChars = newLineChars ?? Environment.NewLine;
         NewLineHandling = newLineHandling;
         CloseOutput = closeOutput;
+        EscaperProvider = escaper ?? MarkdownEscaperProvider.Default;
     }
 
     public static MarkdownWriterSettings Default { get; } = new();
@@ -33,6 +35,8 @@ public class MarkdownWriterSettings
     public NewLineHandling NewLineHandling { get; }
 
     public bool CloseOutput { get; }
+
+    public IMarkdownEscaperProvider EscaperProvider { get; }
 
     public MarkdownWriterSettings WithFormat(MarkdownFormat format)
     {
